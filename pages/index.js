@@ -34,7 +34,37 @@ image:'/brazil.jpg'
       title:'Japan',
       description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
       stars:4,
-      image:'/brazil.jpg'
+      image:'/japan.jpg'
+      }
+
+]
+
+
+const universities = [
+  
+  {
+title:'Cambridge University',
+description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+stars:4,
+image:'/camb.jpg'
+},
+{
+  title:'Harvard University',
+  description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+  stars:4,
+  image:'/harvard.jpg'
+  },
+  {
+    title:'John Hopkins',
+    description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+    stars:4,
+    image:'/hopkins.jpg'
+    },
+    {
+      title:'MIT',
+      description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+      stars:4,
+      image:'/mit.jpg'
       }
 
 ]
@@ -50,21 +80,21 @@ image:'/brazil.jpg'
       </Head>
       <DefaultLayout>
 
-<Section title="Top Cities of 2022 to : Study Abroad" align="center" color="var(--brand-col1)">
+<Section title="Top Cities of 2023 to : Study Abroad" align="center" color="var(--brand-col1)">
 
 <div className={styles.cardhold}>
   {countries && countries.map((i,d)=>{
 
     return <div className={styles.card} style={{backgroundImage:"url("+i.image+")"}}>
+      <div className={styles.gradfill}></div>
+      <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
-      <p>{i.description}</p>
+      <p>{i.description.substring(0,260)}...</p>
       <div className={styles.stars}>
       {Array(i.stars).fill().map((i,d)=>{
-return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10.7878 3.10215C11.283 2.09877 12.7138 2.09876 13.209 3.10215L15.567 7.87987L20.8395 8.64601C21.9468 8.80691 22.3889 10.1677 21.5877 10.9487L17.7724 14.6676L18.6731 19.9189C18.8622 21.0217 17.7047 21.8627 16.7143 21.342L11.9984 18.8627L7.28252 21.342C6.29213 21.8627 5.13459 21.0217 5.32374 19.9189L6.2244 14.6676L2.40916 10.9487C1.60791 10.1677 2.05005 8.80691 3.15735 8.64601L8.42988 7.87987L10.7878 3.10215Z" fill="var(--brand-col2)"/>
-</svg>
+return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
 
-    })}</div>
+    })}</div></div>
     </div>
   })
 
@@ -72,7 +102,28 @@ return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http:/
 
 </div>
 </Section>
+<Section title="Top Universities of 2023" align="center" color="var(--brand-col1)">
 
+<div className={styles.cardhold}>
+  {universities && universities.map((i,d)=>{
+
+    return <div className={styles.card} style={{backgroundImage:"url("+i.image+")"}}>
+      <div className={styles.gradfill}></div>
+      <div class={styles.cardcontent}>
+      <h2>{i.title}</h2>
+      <p>{i.description.substring(0,260)}...</p>
+      <div className={styles.stars}>
+      {Array(i.stars).fill().map((i,d)=>{
+return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
+
+    })}</div></div>
+    </div>
+  })
+
+  }
+
+</div>
+</Section>
       </DefaultLayout>
     </>
   )

@@ -1,0 +1,400 @@
+.navcont {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0px;
+    height: auto;
+    padding: 40px 7vw;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    font-family: SF Pro Display;
+    color: black;
+    z-index: 999;
+    user-select: none;
+}
+
+.gr {
+    color: var(--brand-col1);
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.active .gr {
+    color: var(--brand-accent);
+}
+
+.active {
+    color: var(--brand-col4);
+}
+
+.hasChild {
+    padding-left: 3vw;
+}
+
+.navlogo {
+    max-width: 300px;
+    width: auto;
+    position: relative;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.navlogo img {
+    position: relative;
+    width: 64px;
+    height: auto;
+    display: block;
+}
+
+.hasChild:hover {
+    color: var(--brand-col1);
+}
+
+.hasChild:hover path {
+    fill: var(--brand-accent);
+}
+
+.navlist ul li:not(.navsub li) {
+    cursor: pointer;
+    padding-right: 3vw;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.navlist .hasChild {
+    padding-left: 0;
+}
+
+.navlist .navsub li {
+    margin: 10px 0;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.navlist ul li:hover {
+    color: var(--brand-col1);
+}
+
+.navlist ul li:hover svg path {
+    fill: var(--brand-col1);
+}
+
+.hasChild svg {
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hasChild:hover svg {
+    transform: rotate(180deg);
+}
+
+.hasChild {
+    display: flex;
+}
+
+.hasChild ul {
+    display: none;
+}
+
+.navlist ul .hasChild:hover ul {
+    display: flex;
+}
+
+.navlist svg path {
+    fill: white;
+}
+
+.active svg path {
+    fill: var(--brand-col1);
+}
+
+.navlist ul button,
+.navmob button {
+    border: 0;
+    outline: 0;
+    background-color: var(--brand-col1);
+    padding: 15px 30px;
+    font-family: SF Pro Display;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.navlist ul button:hover {
+    filter: brightness(0.9);
+    border: 2px solid black;
+    box-shadow: 3px 3px 32px -10px var(--brand-col1);
+}
+
+.navmob button {
+    padding: 15px 20px;
+    width: 100%;
+    text-align: center !important;
+}
+
+.navmob .spc {
+    height: auto;
+    cursor: pointer !important;
+    position: absolute;
+    bottom: -35%;
+    right: 0;
+    text-align: center !important;
+    width: 100%;
+    z-index: 99 !important;
+}
+
+.navmob .spc:hover {
+    cursor: pointer;
+}
+
+.navmob .spc button {
+    cursor: pointer;
+}
+
+.se button {
+    cursor: pointer;
+}
+
+.navlist .navsub {
+    display: none;
+    max-height: 0px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    background-color: black;
+    color: black;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    padding: 10px 0;
+    pointer-events: none;
+    opacity: 0;
+    top: 50%;
+    font-family: SF Pro Display;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.hasChild:hover .navsub {
+    display: flex;
+    opacity: 1;
+    max-height: 500px;
+    pointer-events: all;
+    animation: slipdown 0.3s normal cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation-fill-mode: forwards;
+}
+
+.navsub {
+    box-shadow: 8px 8px 22px -5px #00000022;
+}
+
+@keyframes slipdown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.navsub a {
+    padding: 15px 30px !important;
+}
+
+.navlist ul {
+    padding: 0;
+    list-style: none;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.active ul button {
+    background-color: var(--brand-accent);
+    border: 2px solid black;
+}
+
+.navmob {
+    display: none;
+}
+
+.tgbutton {
+    width: 44px;
+    height: 44px;
+    padding: 5px;
+    background-color: black;
+    border-radius: 10px;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.navhold {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    flex-direction: column;
+    right: 0px;
+    opacity: 0;
+    pointer-events: none;
+    min-height: 100px;
+    width: auto;
+    background-color: black;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 20px 30px;
+    color: black;
+    box-shadow: 5px 5px 32px -9px #00000033;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hasChild li,
+.navhold ul li {
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+/* .ma {
+    cursor: pointer;
+    height: inherit;
+    min-height: 20px;
+}
+ */
+
+.hasChild li:hover,
+.navhold ul li:hover {
+    cursor: pointer;
+    color: var(--brand-accent);
+}
+
+.navhold ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.hasChild li {
+    cursor: pointer;
+}
+
+.navhold ul>*:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.navhold * {
+    list-style: none;
+    text-align: right;
+}
+
+.activemob .navhold {
+    top: 54px;
+    right: 0;
+    pointer-events: all;
+    opacity: 1;
+    display: flex;
+}
+
+.navhold .navsub {
+    display: none;
+    flex-direction: column;
+    padding: 20px 20px;
+    color: black;
+    margin: 0;
+    background-color: #ffffff;
+    pointer-events: none;
+    position: absolute;
+    border-radius: 10px;
+    right: 105%;
+}
+
+.navhold .gr {
+    color: var(--brand-accent);
+}
+
+.navhold .hasChild svg {
+    position: relative !important;
+    right: 0;
+    top: 0;
+    left: 0;
+    fill: var(--brand-col1);
+}
+
+.activemob .navsub {
+    pointer-events: all;
+}
+
+.navhold .navsub li {
+    position: relative;
+}
+
+.navhold .navsub a {
+    padding: 5px 0 !important;
+}
+
+.navmob svg {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.navmob .navon {
+    opacity: 0;
+}
+
+.navmob .navoff {
+    display: block;
+    opacity: 1;
+}
+
+.activemob .navon {
+    display: block;
+    opacity: 1;
+    transform: rotate(45deg);
+}
+
+.activemob .navoff {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+.activemob .tgbutton {
+    background-color: var(--brand-col1);
+    box-shadow: 5px 5px 32px -9px var(--brand-col1);
+}
+
+.tgbutton:hover {
+    box-shadow: 5px 5px 32px -9px var(--brand-col1);
+    border: 2px solid black;
+}
+
+.navmob {
+    position: relative;
+    display: flex;
+    right: 0;
+    top: 0;
+}
+
+@media only screen and (max-width:1040px) {
+    .navlist {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .navlogo img {
+        width: 150px;
+    }
+}
