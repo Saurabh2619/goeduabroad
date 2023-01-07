@@ -1,0 +1,53 @@
+.section {
+    width: 100%;
+    height: auto;
+    padding: 0 3vw 50px 3vw;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    min-height: 50vh;
+}
+
+.center {
+    text-align: center;
+    width: 100%;
+}
+
+.container {
+    position: relative;
+}
+
+.visible {
+    overflow: visible;
+}
+
+.shead {
+    font-size: 56px;
+    line-height: 64px;
+    color: black;
+    font-family: Playfair Display, sans-serif;
+    font-weight: bold;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+@media only screen and (max-width:968px) {
+    .section {
+        width: 100%;
+        padding: 15px 20px;
+        min-height: 20vh;
+    }
+    .shead {
+        font-size: 6vw;
+        line-height: 7vw;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .shead {
+        font-size: 7vw;
+        line-height: 7.5vw;
+    }
+}

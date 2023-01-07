@@ -1,0 +1,30 @@
+.cardhold {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    flex: 0 0 24%;
+    margin: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 70vh;
+    padding: 10px 20px;
+    font-family: SF Pro Display;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card h2 {
+    font-family: Playfair Display;
+    font-size: 32px;
+    margin: 5px 0;
+    color: white;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #eee;
+}
