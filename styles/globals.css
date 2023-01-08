@@ -98,6 +98,10 @@ body {
   }
 } */
 
+.b1 {
+    color: var(--brand-col1);
+}
+
 html,
 body {
     color-scheme: only light;

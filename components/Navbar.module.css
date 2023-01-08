@@ -235,7 +235,7 @@
     width: 44px;
     height: 44px;
     padding: 5px;
-    background-color: black;
+    background-color: white;
     border-radius: 10px;
     transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -250,7 +250,7 @@
     pointer-events: none;
     min-height: 100px;
     width: auto;
-    background-color: black;
+    background-color: white;
     border-radius: 10px;
     gap: 10px;
     padding: 20px 30px;
@@ -365,6 +365,10 @@
     transform: rotate(45deg);
 }
 
+.navon path {
+    fill: white;
+}
+
 .activemob .navoff {
     opacity: 0;
     transform: rotate(90deg) scale(0.5);
@@ -377,7 +381,7 @@
 
 .tgbutton:hover {
     box-shadow: 5px 5px 32px -9px var(--brand-col1);
-    border: 2px solid black;
+    border: 1px solid white;
 }
 
 .navmob {

@@ -1,11 +1,12 @@
 .section {
     width: 100%;
     height: auto;
-    padding: 0 3vw 50px 3vw;
+    /* padding: 0 3vw 50px 3vw; */
     margin: 0 auto;
     position: relative;
     overflow: hidden;
     min-height: 50vh;
+    padding: 0 8vw 50px 8vw;
 }
 
 .center {
