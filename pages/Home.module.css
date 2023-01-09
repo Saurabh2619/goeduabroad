@@ -176,6 +176,70 @@
     opacity: 0.3;
 }
 
+.whyus {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.why {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px 0;
+    flex: 0 0 33%;
+    height: 300px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.why p {
+    font-family: Playfair Display;
+    font-size: 2rem;
+    z-index: 9;
+    margin: 5px 0;
+    position: relative;
+    padding: 20px;
+    color: white;
+}
+
+.mask2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    opacity: 0;
+    z-index: 1;
+    background: linear-gradient(225deg, rgba(255, 255, 255, 0) 40%, var(--brand-col1) 90%);
+    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.mask3 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(225deg, rgba(255, 255, 255, 0) 40%, rgba(0, 0, 0, 0.836) 90%);
+    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.why:hover .mask2 {
+    opacity: 1;
+}
+
 .dcard {
     width: 100%;
     height: 400px;
@@ -332,6 +396,19 @@
 .students .right img {
     width: 100%;
     transform: translate(2%, -2%) rotate(15deg);
+    animation: float 8s normal infinite ease;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(2%, -6%) rotate(8deg);
+    }
+    50% {
+        transform: translate(-2%, 6%) rotate(-8deg);
+    }
+    100% {
+        transform: translate(2%, -6%) rotate(8deg);
+    }
 }
 
 .students .left {
@@ -369,4 +446,124 @@
 .card svg {
     width: 24px;
     height: 24px;
+}
+
+@media only screen and (max-width:968px) {
+    .cardhold {
+        flex-wrap: wrap;
+    }
+    .card {
+        flex: 0 0 47%;
+    }
+    .why {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 10px 0;
+        flex: 0 0 49%;
+        height: 300px;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .hero {
+        width: 100%;
+        background-position: center;
+    }
+    .content {
+        width: 100%;
+    }
+    .mask {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 102%;
+        background: rgb(255, 255, 255);
+        background: linear-gradient(292deg, rgba(255, 255, 255, 0) 38%, rgba(255, 255, 255, 0.856) 70%);
+    }
+    .content h2 {
+        font-size: 11vw;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .students {
+        flex-direction: column-reverse;
+        width: 100%;
+        padding: 20px 4vw;
+    }
+    .hero {
+        padding: 0 4vw 50px 4vw;
+        padding-top: 80px;
+    }
+    .left,
+    .right {
+        width: 100% !important;
+    }
+    .students .left h2 {
+        font-size: 6vw;
+    }
+    .students .right {
+        justify-content: center;
+    }
+    .students .right .circle {
+        width: 60vw;
+        height: 60vw;
+    }
+    .hero p {
+        font-size: 12px;
+    }
+    .card {
+        flex: 0 0 45%;
+    }
+    .university img {
+        width: 30vw;
+        height: 30vw;
+    }
+    .authorities {
+        flex-direction: column;
+        padding: 10px 4vw;
+    }
+    .authorities .marqueecont {
+        width: 100%;
+    }
+    .authorities .heading {
+        font-size: 2rem;
+    }
+    .aitool h2 {
+        font-size: 2rem;
+        width: 100%;
+    }
+    .aitool {
+        padding: 20px 4vw;
+    }
+}
+
+@media only screen and (max-width:568px) {
+    .why {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 10px 0;
+        flex: 0 0 49%;
+        height: 200px;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .card {
+        flex: 0 0 100%;
+        padding: 20px;
+        margin: 10px 0;
+    }
+    .why p {
+        font-size: 1rem;
+    }
 }

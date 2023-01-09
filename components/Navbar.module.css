@@ -399,6 +399,9 @@
 
 @media only screen and (max-width:768px) {
     .navlogo img {
-        width: 150px;
+        width: 50px;
+    }
+    .navcont {
+        padding: 40px 4vw;
     }
 }

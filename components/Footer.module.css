@@ -108,3 +108,34 @@
     margin: 0 50px;
     border-top: 1px solid var(--brand-col1);
 }
+
+@media only screen and (max-width:968px) {
+    .cols {
+        flex-wrap: wrap;
+        padding: 10px 20px;
+    }
+    .footerlogo {
+        padding: 30px;
+    }
+    .badge {
+        height: 100px;
+    }
+    .col {
+        flex: 1 1 50%;
+        width: unset;
+    }
+}
+
+@media only screen and (max-width:568px) {
+    .bottom {
+        flex-direction: column;
+    }
+    .footer {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+    .inner {
+        width: 100%;
+        margin: 0 !important;
+    }
+}

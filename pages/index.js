@@ -17,7 +17,32 @@ export default function Home() {
   const [mobile,setMobile] = useState('desktop');
 
 
-
+const whyus =[
+  {
+    title:'Top Notch Service',
+    image:'https://www.theladders.com/wp-content/uploads/manager-office-190723.jpg'
+  },
+  {
+    title:'Broker Free',
+    image:'https://top10stockbroker.com/wp-content/uploads/2017/09/Full-Service-Broker-vs-Discount-Broker.jpg'
+  },
+  {
+    title:'Mentored by Experienced Professionals',
+    image:'https://img.freepik.com/free-photo/successful-happy-business-team_53876-20936.jpg?w=2000'
+  },
+  {
+    title:'Competitive Pricing',
+    image:'https://s3.us-east-1.amazonaws.com/co-assets/assets/images/_fbTw/pricing-models.jpg'
+  },
+  {
+    title:'24x7 Support',
+    image:'https://www.klipfolio.com/gatsby-files/static/795e3663f48593aafe53635bcc62c0b9/25-must-have-kpis-for-call-centre-managers-banner.jpg'
+  },
+  {
+    title:'Easy to Enroll & Get Started',
+    image:'https://scottflansburg.com/wp-content/uploads/2021/07/How-to-Quickly-Understand-Mathematical-Ideas-in-Just-Three-EASY-STEPS.jpg'
+  }
+]
 const slides2 =[
 {
   title:'Mr.Rosewood',
@@ -287,8 +312,18 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
   <div className={styles.circle}><img src='/gras.png'/></div>
 </div>
 </div>
-<Section title="Why Choose :Edu Abroad?" align="left" color="var(--brand-col1)"></Section>
-<Section title="Top Universities of 2023" align="center" color="var(--brand-col1)">
+<Section title="Why Choose :Edu Abroad?" align="left" color="var(--brand-col1)">
+<div className={styles.whyus}>
+{whyus && whyus.map((i,d)=>{
+
+  return <div className={styles.why} style={{backgroundImage:"url("+i.image+")"}}>
+    <div className={styles.mask2}></div>
+    <div className={styles.mask3}></div>
+    <p>{i.title}</p></div>
+})}
+</div>
+</Section>
+<Section title="Top Universities of this month : to Study Abroad" align="center" color="var(--brand-col1)">
 
 <div className={styles.cardhold}>
   {universities && universities.map((i,d)=>{
@@ -311,7 +346,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 </div>
 </Section>
 <Section title="Partner Universities" align="center" color="var(--brand-col1)">
-<Marquee speed={80}>
+<Marquee speed={80} gradientWidth={80}>
   {partners && partners.map((i,d)=>{
 
     return <div className={styles.partners}>
