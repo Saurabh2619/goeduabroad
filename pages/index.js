@@ -22,24 +22,28 @@ const slides2 =[
 {
   title:'Mr.Rosewood',
   college:'Harvard',
+  role:'Executive Director',
   image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
   collegeimage:'/1.png',
 },
 {
   title:'Mr.Rosewood',
   college:'Harvard',
+  role:'Executive Director',
   image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
   collegeimage:'/1.png',
 },
 {
   title:'Mr.Rosewood',
   college:'Harvard',
+  role:'Executive Director',
   image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
   collegeimage:'/1.png',
 },
 {
   title:'Mr.Rosewood',
   college:'Harvard',
+  role:'Executive Director',
   image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
   collegeimage:'/1.png',
 }
@@ -357,8 +361,12 @@ return(<>
 
 <SwiperSlide key={index}><a href={`/courses/${item.slug}`} className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
   
+  <div className={styles.dcardcontent}>
+    <img className={styles.colimg} src={item.collegeimage}/>
+    <div>
   <h2>{item.title}</h2>
-  
+  <p>{item.role}</p></div>
+  </div>
   <div className={styles.stars}>
 
   </div>
