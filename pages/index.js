@@ -2,13 +2,73 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from './Home.module.css'
+import {useState,useEffect} from 'react';
 import DefaultLayout from '../layouts/DefaultLayout'
 import Section from '../components/Section'
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper';
+import 'swiper/css'
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/autoplay'
 import Marquee from "react-fast-marquee";
 
 export default function Home() {
+  const [mobile,setMobile] = useState('desktop');
 
+
+
+const slides2 =[
+{
+  title:'Mr.Rosewood',
+  college:'Harvard',
+  image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
+  collegeimage:'/1.png',
+},
+{
+  title:'Mr.Rosewood',
+  college:'Harvard',
+  image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
+  collegeimage:'/1.png',
+},
+{
+  title:'Mr.Rosewood',
+  college:'Harvard',
+  image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
+  collegeimage:'/1.png',
+},
+{
+  title:'Mr.Rosewood',
+  college:'Harvard',
+  image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
+  collegeimage:'/1.png',
+}
+
+]
+
+  useEffect(()=>{
+  
+    function setWidth(){
+      
+      if(window.innerWidth < 768){
+        setMobile('mobile');
+      
+      }
+      else if(window.innerWidth < 968){
+        setMobile('tablet')
+      }
+      else{
+        setMobile('desktop');
+      }
+    }
+    window.addEventListener("resize",(e)=>{
+  setWidth()
+    })
+  
+    window.addEventListener('load',()=>{
+      setWidth();
+    })
+  },[])
 const herocountries = [
   {
     title:'Antarctica',
@@ -188,7 +248,10 @@ className={styles.content}>
 </div>
 </div>
         </div>
-      <Section title="About Us" align="left" color="var(--brand-col1)"></Section>
+      <Section title="About Us" align="left" color="var(--brand-col1)">
+{/* <img className={styles.right} src={'/rightimage.png'}/> */}
+
+      </Section>
 <Section title="Top Cities of 2023 to : Study Abroad" align="center" color="var(--brand-col1)">
 
 <div className={styles.cardhold}>
@@ -254,8 +317,60 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
   })}
 </Marquee>
 </Section>
+<div className={styles.aitool}>
+<img src='/collegpano.png'/>
+  <h2>Our AI Tool will help you to choose suitable university for yourself</h2>
+  <a href="#">Get Started, It's Free !!</a>
+</div>
+<Section title="Mentors" align="center" color="var(--brand-col1)">
 
-<Section title="Mentors" align="center" color="var(--brand-col1)"></Section>
+<Swiper
+     modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={mobile === "mobile" ? 30 : mobile === "tablet" ?30 : 70}
+      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 4}
+      loop={true}
+      autoplay={true}
+      
+      pagination={{ clickable: true }}
+      
+      centeredSlides={true}
+      onSlideChange={() =>{}}
+      onSwiper={(swiper) => console.log(swiper)}
+      onInit={(swiper) => {
+       
+        swiper.navigation.update();
+      }}
+      navigation={{
+        nextEl: '.next',
+        prevEl: '.prev',
+        clickable:true,
+      }}
+   
+    >
+
+
+     
+      
+      {slides2 && slides2.map((item,index)=>{
+
+return(<>
+
+<SwiperSlide key={index}><a href={`/courses/${item.slug}`} className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
+  
+  <h2>{item.title}</h2>
+  
+  <div className={styles.stars}>
+
+  </div>
+  </a></SwiperSlide>
+
+</>)
+})} 
+
+
+    </Swiper>
+
+</Section>
 <div className={styles.authorities}>
 <h2 className={styles.heading}>Trusted by Giant Authorities</h2>
 <div className={styles.marqueecont}>
