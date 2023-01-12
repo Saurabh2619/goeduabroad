@@ -261,12 +261,13 @@ image:'/camb.jpg'
       </Head>
       <DefaultLayout>
         <div className={styles.hero}>
+          <video muted playsInline="true" autoplay="true" loop="true"><source src='/v2.mp4'/></video>
 <div className={styles.mask}></div>
 <div
 className={styles.content}>
   <h2><span className='b1'>An Initiative to</span><br/>Build Career Abroad</h2>
   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-<div className={styles.getstarted}><input className={styles.input} placeholder="Enter your email address"></input><button>Get Started</button></div>
+<div className={styles.getstarted}><input className={styles.input} placeholder="Enter your email address"></input><input className={styles.input} placeholder="Enter your Phone"></input><button>Get Started</button></div>
 <div className={styles.top}>
   <h3>Top Countries to Study Abroad :</h3>
   <div className={styles.conts}>
