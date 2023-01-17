@@ -6,3 +6,244 @@
 .maincont {
     background-color: white;
 }
+
+.ai {
+    width: auto;
+    display: flex;
+    background-color: var(--brand-col1);
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+    flex-direction: row;
+    padding: 10px 30px 10px 10px;
+    border-radius: 10px;
+    position: fixed;
+    left: 20px;
+    z-index: 989;
+    cursor: pointer;
+    bottom: 20px;
+    text-align: center;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.ai svg {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+
+.ai:hover {
+    background-color: black;
+}
+
+.ai::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: var(--brand-col1);
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    filter: blur(5px);
+    border-radius: 10px;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: scale(0.5);
+}
+
+.ai:hover::before {
+    opacity: 0.5;
+    transform: scale(1.2);
+}
+
+.wa {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 989;
+}
+
+.waicon {
+    padding: 10px;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    border-radius: 200px;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: white;
+    box-shadow: 4px 4px 12px -5px transparent, 1px 1px 0px 0px #00000011, 8px 8px 22px -3px #00000022;
+}
+
+.waicon:hover {
+    background-color: #25D366;
+}
+
+.phone {
+    width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 64px;
+    background-color: var(--brand-col1);
+    position: fixed;
+    right: 94px;
+    z-index: 989;
+    border-radius: 200px;
+    bottom: 20px;
+}
+
+.wawin {
+    position: absolute;
+    width: 300px;
+    background-color: white;
+    border-radius: 20px;
+    height: auto;
+    min-height: 44px;
+    padding: 10px;
+    right: 0;
+    bottom: 72px;
+    opacity: 0;
+    display: flex;
+    box-shadow: 1px 1px 0px 0px #00000011, 8px 8px 22px -3px #00000022;
+    flex-direction: row;
+    border: 1px solid transparent;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    transform: translateY(20px);
+    animation: slideup .3s normal cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation-fill-mode: forwards;
+}
+
+.wawin input {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-family: SF Pro Display;
+    flex: 1;
+    margin-right: 10px;
+    outline: 0;
+    border: 1px solid #ddd;
+}
+
+.wawin button {
+    width: 44px;
+    height: 44px;
+    background-color: #25D366;
+    border-radius: 200px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: pop .3s normal cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 150ms;
+}
+
+@keyframes pop {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px) rotate(-45deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px) rotate(0deg);
+    }
+}
+
+.wawin button::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 200px;
+    background-color: #25D366;
+    content: '';
+    z-index: -1;
+    transition: all .9s cubic-bezier(0.215, 0.610, 0.355, 1);
+    transform: scale(0);
+    opacity: 0;
+}
+
+.activeIcon {
+    background-color: #25D366;
+    border: 1px solid white;
+    box-shadow: 4px 4px 22px -5px #25D366, 1px 1px 0px 0px #00000011, 8px 8px 22px -3px #00000022 !important;
+}
+
+
+/* .activeIcon svg {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) rotate(45deg) !important;
+} */
+
+.waicon svg {
+    opacity: 0;
+    transition: all .9s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 35px;
+    height: 35px;
+    transform: translate(-50%, -50%) rotate(0deg);
+    z-index: 9;
+    animation: main .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+}
+
+@keyframes main {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+}
+
+.waicon img {
+    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 1;
+}
+
+.activeIcon img {
+    opacity: 0;
+}
+
+.wawin button:hover::before {
+    transform: scale(1.3);
+    opacity: 0.5;
+    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes slideup {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .ai {
+        font-size: 12px;
+    }
+    .ai svg {
+        width: 14px;
+    }
+}

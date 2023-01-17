@@ -11,7 +11,7 @@
 /* width */
 
 .swiper-wrapper {
-    transition: 0.7s cubic-bezier(.56, .03, .18, .99) !important;
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
 }
 
 ::-webkit-scrollbar {
@@ -24,6 +24,17 @@
     height: 0;
     overflow: hidden;
     max-width: 100%;
+}
+
+.paginate,
+.paginate2 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .embed-container iframe,
