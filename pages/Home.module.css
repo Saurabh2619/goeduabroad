@@ -738,6 +738,27 @@
     line-height: 16px;
 }
 
+.who {
+    width: 100%;
+    display: flex;
+    font-family: SF Pro Display;
+    flex-direction: row;
+}
+
+.col1,
+.col2 {
+    width: 50%;
+}
+
+.col2 {
+    background-color: var(--brand-col1);
+    margin-left: 20px;
+    background-image: url('/newyork.webp');
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+}
+
 .card svg {
     width: 24px;
     height: 24px;
@@ -820,6 +841,19 @@
 }
 
 @media only screen and (max-width:768px) {
+    .who {
+        flex-direction: column-reverse;
+    }
+    .col2 {
+        height: 500px;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    .col1 {
+        width: 100%;
+        font-size: 14px;
+    }
     .conts {
         width: 100%;
     }
