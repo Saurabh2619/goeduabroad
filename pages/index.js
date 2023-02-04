@@ -9,10 +9,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css'
 import 'swiper/css/pagination';
+import Link from 'next/link'
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay'
 import CustomSelect from '../components/CustomSelect';
 import Marquee from "react-fast-marquee";
+import { supabase } from '../utils/supabaseClient';
 
 export default function Home() {
   const [mobile,setMobile] = useState('desktop');
@@ -37,7 +39,7 @@ const whyus =[
   },
   {
     title:'24x7 Support',
-    image:'https://www.klipfolio.com/gatsby-files/static/795e3663f48593aafe53635bcc62c0b9/25-must-have-kpis-for-call-centre-managers-banner.jpg'
+    image:'https://blog.hubspot.com/hubfs/customer-service-phrases.jpg'
   },
   {
     title:'Easy to Enroll & Get Started',
@@ -115,6 +117,9 @@ const benefits=[{
         setMobile('desktop');
       }
     }
+
+setWidth();
+
     window.addEventListener("resize",(e)=>{
   setWidth()
     })
@@ -246,6 +251,66 @@ const authorities =[
 
 ]
 
+const results = [
+  
+  {
+title:'Vedant Sagar',
+description:'Abhishek has helped me with improving my SAT score by 250 points, he has also helped me in writing and formatting essays for the college. Apart from that I got a lot of guidance about universities which I never knew before. He also helped me get job in University once I came to Northeastern University. In Boston he was working like a local guardian to me, if I have any issues I know whom to contact for solving those problems. Strongly recommend.',
+stars:4,
+image:'/r1.jpg',
+college:'Northeastern University',
+},
+{
+  title:'Shruti Maheshwari',
+  description:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.',
+  stars:5,
+  image:'/r2.jpg',
+  college:'University of Bristol',
+  },
+  {
+    title:'Bhavya Mishra',
+    description:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.',
+    stars:4,
+    image:'/r3.jpg',
+    college:'University of BATH',
+    },
+    {
+      title:'Titiksha Singh',
+      description:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.      ',
+      stars:4,
+      image:'/r4.jpg',
+      college:'University of Buffalo',
+      },
+      {
+        title:'Dr.Naman Tandon',
+        description:'I undertook career guidance advice from Dr. Swati A Mishra while I was in my first year of  BSc Life Sciences from Hansraj College, University of Delhi. She helped me identify my career goals and pathways. Under her able guidance and profile building exercise, I got admission to the prestigious King’s College London, UK, where I did MSc in Immunology. Then again she guided me for  PhD in Immunology from the University of Paris, France. Now I am working with National Institute of Health, USA. Dr. Mishra has been a mentor and guide throughout my journey. I strongly recommend services offered by Go Career Guru and especially the profile building exercise, it’s very well developed and has helped me a lot for achieving my career aspirations.        ',
+        stars:4,
+        image:'/r5.png',
+        college:'Universite de Paris'
+        },
+        {
+          title:'Anannya',
+          description:'Under the able guidance of Professor Swati Mishra, my vision to Study Abroad has taken shape. I made it through top ranked universities in UK like, SOAS, University of Glasgow, Leeds University. I also was able to bag a number of Scholarships worth almost 75% to cover my tuition fee. Glad that I was in such good hands. I strongly recommend the Team. They are best there is in the Indian market.          ',
+          stars:5,
+          image:'/r6.jpg',
+          college:'SOAS  - University of London',
+          },
+          {
+            title:'Prabal Muttoo',
+            description:'Started taking advice from Dr. Swati Mishra and her team of experts about 15 months before my intended month of entry. The entire process, from the counselling sessions to streamlining of the SOP, LOR submissions etc was well coordinated. Throughout the application process, the team pushes you to make every aspect of the application perfect. Overall, the approach was very professional and practical. Prior to the one-on-one counselling sessions, I had a brief interaction on possible career options to explore the domain I wished for. The team is highly responsive and goes out of their way to help you. I highly recommend Career Guru to any student aspiring to get into top institutions. I got offers from SOAS – University of London, LSE, Edinburgh among other universities. I finally joined LSE and graduated with an MSc in Politics and Communication.',
+            stars:4,
+            image:'/r9.jpeg',
+            college:'The London University of Economics & Political Science',
+            },
+            {
+              title:'Vishisht Tiwari',
+              description:'M.Engineering in Electrical and Computer Engineering from Cornell University, USA. B.Engineering in Electronic Engineering from the University of Manchester, UK. Currently working at Intertrust Technologies in San Francisco as a Software Engineer specializing in Cyber Security.              ',
+              stars:4,
+              image:'/r10.jpg',
+              college:'Cornell University',
+              }
+
+]
 const goals = [
   {
   
@@ -315,7 +380,45 @@ image:'/camb.webp'
       }
 
 ]
+
+const courses = [
+  
+  {
+title:'Course 1',
+description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+
+image:'https://cdn.dribbble.com/users/3956332/screenshots/15328827/online_courses_4x.jpg'
+},
+{
+  title:'Course 2',
+  description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+  
+  image:'https://img.freepik.com/premium-vector/online-courses-concept_23-2148524391.jpg'
+  },
+  {
+    title:'Course 3',
+    description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+    
+    image:'https://cdn.dribbble.com/users/2501809/screenshots/6381280/4.jpg'
+    },
+    {
+      title:'Course 4',
+      description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+      
+      image:'https://img.freepik.com/premium-vector/language-learning-education-training-courses-online-illustration-foreign-languages-by-internet-phone-app-icons-english-german-french-university-school-course-dictionary_109722-2554.jpg'
+      }
+
+]
 async function SubmitContact(){
+
+const {data,error} = await supabase.from('leads').insert({formData}).select();
+
+
+if(data){}
+else if(error){
+
+}
+
 
 }
   return (
@@ -350,7 +453,10 @@ className={styles.content}>
 {/* <img className={styles.right} src={'/rightimage.png'}/> */}
 <div className={styles.who}>
 
-  <div className={styles.col1}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+  <div className={styles.col1}>
+    <p>Edu Abroad is founded by former Professor of IIM Lucknow, Dr. Swati Abhishek Mishra. She holds a Master’s in Management in a joint program with University of Cambridge and Massachusetts Institute of Technology, and a PhD. in Strategy and Marketing from University of Cambridge. She was the winner of various prestigious scholarships like Cambridge Commonwealth Trust Scholar, DFID (UK Government) Scholar, Hinduja Foundation Scholar, Worts Travellling Scholars Fund, and numerous other scholarships. She has been a keen educator, mentor and nurtured thousands of students over the last two decades. She has extensive corporate and government consulting experience in Strategy and Growth domain........</p>
+  <Link href={'/about'}><button className={styles.mainbutton}>Read More</button></Link>
+  </div>
   <div className={styles.col2}></div>
 </div>
       </Section>
@@ -397,15 +503,16 @@ className={styles.content}>
 
    
 {/* <div className={styles.cardhold}> */}
-  {countries && countries.map((i,d)=>{
+  {results && results.map((i,d)=>{
 
     return <SwiperSlide key={i}>
       <div className={styles.rcard} >
       <img src={i.image}/>
+      <div className={styles.rbadge}>{i.college}</div>
       <div className={styles.cric} style={{backgroundImage:"url("+i.image+")"}}></div>
       <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
-      <p>{i.description.substring(0,160)}...</p>
+      <p>{i.description}</p>
       <div className={styles.stars}>
       {Array(i.stars ? i.stars : 0).fill().map((i,d)=>{
 return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
@@ -473,7 +580,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
    
 {/* <div className={styles.cardhold}> */}
-  {universities && universities.map((i,d)=>{
+  {courses && courses.map((i,d)=>{
 
     return <SwiperSlide key={i}>
       <div className={styles.ccard} >
@@ -481,11 +588,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
       <p>{i.description.substring(0,160)}...</p>
-      <div className={styles.stars}>
-      {Array(i.stars ? i.stars : 0).fill().map((i,d)=>{
-return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
-
-    })}</div>
+   
     <div className={styles.buttons}>
 <a>Enroll Now</a>
 <a>Read More</a>
@@ -527,7 +630,10 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       loop={true}
       autoplay={true}
       
-      pagination={{ clickable: true }}
+      pagination={{ 
+        el:".paginate3",
+        
+        clickable: true }}
       
       centeredSlides={false}
       onSlideChange={() =>{}}
@@ -571,6 +677,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
   }
 
  </Swiper>
+ <div className={"paginate3"}></div>
 </Section>{/* 
 <div className={styles.students}>
 <div className={styles.left}>
@@ -591,7 +698,10 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       loop={true}
       autoplay={true}
       
-      pagination={{ clickable: true }}
+      pagination={{ 
+        el:".paginate4",
+        
+        clickable: true }}
       
       centeredSlides={false}
       onSlideChange={() =>{}}
@@ -635,8 +745,9 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
   }
 
  </Swiper>
+ <div className={"paginate4"}></div>
 </Section>
-<Section title="Partner Universities" align="center" color="var(--brand-col1)">
+<Section title="Featured Universities" align="center" color="var(--brand-col1)">
 <Marquee speed={80} gradientWidth={80}>
   {partners && partners.map((i,d)=>{
 
@@ -657,7 +768,10 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       loop={true}
       autoplay={true}
       
-      pagination={{ clickable: true }}
+      pagination={{ 
+        el:".paginate5",
+        
+        clickable: true }}
       
       centeredSlides={true}
       onSlideChange={() =>{}}
@@ -699,7 +813,7 @@ return(<>
 
 
     </Swiper>
-
+    <div className={"paginate5"}></div>
 </Section>
 {/* <div className={styles.authorities}>
 <h2 className={styles.heading}>Trusted by Giant Authorities</h2>
@@ -723,7 +837,7 @@ return <div className={styles.partners}>
 </div>
 </div> */}
 
-<div className={styles.formhold}>
+<div className={styles.formhold} id="expert">
         
 <div className={styles.formcontent}>
   
@@ -750,8 +864,10 @@ return <div className={styles.partners}>
 <div className={styles.aitool}>
 <img src='/collegpano.png'/>
   <h2>Our AI Tool will help you to choose suitable university for yourself</h2>
-  <a href="#">Get Started, It's Free !!</a>
+  <a href="https://www.applyboard.com/partners/354594/intake-form">Get Started, It's Free !!</a>
 </div>
+
+
       </DefaultLayout>
     </>
   )

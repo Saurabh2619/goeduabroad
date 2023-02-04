@@ -1,0 +1,355 @@
+.parent {
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.hero {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.content {
+    width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: up .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation-fill-mode: forwards;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    font-family: SF Pro Display;
+    font-size: 12px;
+    font-weight: 200;
+    margin: 10px 0;
+}
+
+.breadcrumb p {
+    margin: 0;
+}
+
+.breadcrumb a {
+    color: var(--brand-col1);
+}
+
+@keyframes up {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.content h2,
+.content h3,
+.content h1 {
+    font-family: Playfair Display;
+    color: var(--brand-col1);
+    margin: 10px 0;
+}
+
+.content {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: flex-start;
+    justify-content: center;
+    padding-bottom: 100px;
+}
+
+.input:focus,
+.input:hover {
+    outline: 0;
+    border: 1px solid var(--brand-col2);
+}
+
+.input {
+    user-select: all;
+    font-family: SF Pro Display;
+    width: 100%;
+    background-color: white;
+    color: black;
+    box-shadow: 4px 4px 12px -5px #00000022;
+    padding: 1.5vh;
+    border-radius: 10px;
+    border: 0;
+    font-size: 12px;
+    margin: 5px 0;
+    position: relative;
+    border: 1px solid transparent;
+    border: 1px solid #ddd;
+}
+
+.modaloverlay {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 99999;
+    background-color: #00000022;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.modal {
+    width: 600px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.modal h2 {
+    margin: 5px 0;
+    font-family: Playfair Display;
+    color: var(--brand-col1);
+}
+
+.modal div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.modal div a {
+    background-color: var(--brand-col1);
+    color: white;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: SF Pro Display;
+}
+
+.modal p {
+    font-size: 16px;
+    margin: 5px auto;
+    width: 400px;
+    font-family: SF Pro Display;
+}
+
+.submit {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    font-family: SF Pro Display;
+    cursor: pointer;
+    background-color: black;
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid white;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.submit:hover {
+    filter: brightness(1.1);
+    background-color: #333333;
+    color: white;
+}
+
+.error {
+    color: red;
+    font-family: SF Pro Display;
+    font-size: 12px;
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.fielderror {
+    border: 1px solid red !important;
+    background-color: rgba(255, 0, 0, 0.048);
+}
+
+.fielderror:focus {
+    border: 1px solid red !important;
+}
+
+.form {
+    padding: 20px;
+    position: sticky;
+    top: 124px;
+}
+
+.form {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 4px 4px 12px -4px #00000022;
+    min-height: 20vh;
+    margin: 20px 0;
+}
+
+.left {
+    width: 60%;
+    padding-right: 30px;
+}
+
+.right .featured {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.col {
+    height: 100%;
+}
+
+.form img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    transform: translateY(4px) translateX(5px);
+    border-radius: 200px;
+    border: 1px solid var(--brand-col1);
+}
+
+.right {
+    width: 40%;
+}
+
+.content .html {
+    font-family: SF Pro Display;
+    font-size: 14px;
+}
+
+.content strong {
+    color: var(--brand-col1);
+    font-family: SF Pro Display;
+}
+
+.universities {
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+.universities li {
+    font-family: SF Pro Display;
+    font-weight: 100 !important;
+    font-size: 14px;
+    margin: 6px 0;
+    background-color: #a51c3022;
+    border-radius: 10px;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.universities li::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 15px;
+    border-radius: 200px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--brand-col1);
+}
+
+.submit svg {
+    width: 18px;
+    height: auto;
+    margin-right: 10px;
+    animation: rot 2s normal infinite linear;
+}
+
+.content table {
+    width: 100%;
+}
+
+.content tr,
+.content td,
+.content th,
+.content tbody,
+.content thead {
+    border: 1px solid #ddd;
+    color: black;
+    padding: 5px 20px;
+}
+
+.content table strong {
+    color: black;
+    font-weight: 400;
+}
+
+.content thead {
+    background-color: var(--brand-col1);
+}
+
+@keyframes rot {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media only screen and (max-width:1200px) {
+    .content {
+        width: 90%;
+        padding-top: 50px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width:968px) {
+    .modal {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .modal p {
+        width: auto;
+        margin: 0 auto;
+    }
+    .modal div {
+        flex-direction: column;
+    }
+    .modal div a {
+        margin: 5px;
+    }
+    .content {
+        flex-direction: column-reverse;
+        width: 90%;
+        padding-top: 50px;
+        margin: 0 auto;
+    }
+    .hero {
+        height: 30vh;
+    }
+    .left {
+        padding: 0;
+    }
+    .left,
+    .right {
+        width: 100%;
+    }
+    .form {
+        top: 0;
+        position: relative;
+    }
+}

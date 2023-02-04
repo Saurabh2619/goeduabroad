@@ -5,7 +5,7 @@ import styles from './DefaultLayout.module.css'
 import Link from 'next/link'
 function DefaultLayout(props){
 
-    const phone = "9999999999";
+    const phone = "9044442989";
     const [wa,setWa] = useState();
     const [active,setActive] = useState('');
     return <div className={styles.maincont}>

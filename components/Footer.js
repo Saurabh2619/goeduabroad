@@ -25,40 +25,52 @@ function Footer(){
     title:'YouTube',
 },
     ]
-    const quicks = [
-        {
-            link:'#',
-            title:'Home',
-        },
-        {
-            link:'#',
-            title:'Countries',
-        },
-        {
-            link:'#',
-            title:'About',
-        },
-        {
-            link:'#',
-            title:'Careers',
-        },
-        {
-            link:'#',
-            title:'Contact',
-        },
-            ]
+    
+const quicks = [{
+
+    title:'Home',
+    link:'/'
+},
+{
+
+    title:'About',
+    link:'/about'
+},
+{
+
+    title:'Study Abroad',
+    link:'/study-abroad'
+},
+
+{
+
+    title:'Test Prep',
+    link:'/testprep'
+},
+{
+
+    title:'Services',
+    link:'/services'
+},
+{
+
+    title:'Contact Us',
+    link:'/contact'
+},
+
+]
 
             const resources = [
                 {
-                    link:'#',
+                    link:'/legals/privacy',
                     title:'Privacy Policy',
                 },
                 {
-                    link:'#',
+                    link:'/legals/tnc',
                     title:'Terms & Conditions',
                 },
                 {
-                    link:'#',
+                    link:'/legals/refund',
                     title:'Refund Policy',
                 },
                 {
@@ -74,7 +86,12 @@ function Footer(){
             <div className={styles.cols}>
 <div className={styles.col}>
 <h2>Quick Links</h2>
-{quicks && quicks.map((i,d)=>{
+{quicks && quicks.filter((i,d)=>{
+    if(d == 0 || d == 1 || d == 5){
+        return i
+    }
+}).map((i,d)=>{
+    
     return <a className={styles.link} href={i.link}><li>{i.title}</li></a>
 })}
 </div>
@@ -93,9 +110,9 @@ function Footer(){
 
             </div>
             <div className={styles.third}>
-            <button className={styles.expert}>Talk to an Expert</button></div>
+            <a href="#expert" className={styles.expert}>Talk to an Expert</a></div>
             <div className={styles.inner}>
-                <span><a href="tel:+919999999999">Contact : +91 999 999 9999</a> | <a href="mailto:info@goeduabroad.com">Email : info@goeduabroad.com</a></span>
+                <span><a href="tel:+919044442989">Contact : +91 904 444 2989</a> | <a href="mailto:info@goeduabroad.com">Email : info@goeduabroad.com</a></span>
             </div>
         </div>
         <div className={styles.bottom}>
