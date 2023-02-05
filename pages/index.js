@@ -15,11 +15,14 @@ import 'swiper/css/autoplay'
 import CustomSelect from '../components/CustomSelect';
 import Marquee from "react-fast-marquee";
 import { supabase } from '../utils/supabaseClient';
+import Notifications from '../components/Notification';
 
 export default function Home() {
   const [mobile,setMobile] = useState('desktop');
-
-
+const [getstarted,setGet] = useState();
+const [notificationText,setNotificationText] = useState();
+const [thankyou,setThankYou] = useState(false)
+const [loading,setLoading] = useState(false);
 const whyus =[
   {
     title:'Top Notch Service',
@@ -411,15 +414,54 @@ image:'https://cdn.dribbble.com/users/3956332/screenshots/15328827/online_course
 ]
 async function SubmitContact(){
 
-const {data,error} = await supabase.from('leads').insert({formData}).select();
+  if(formData && formData.fullname && formData.email && formData.phone && formData.goal && validateEmail(formData.email) && validatePhone(formData.phone)){
+    setLoading(true)
+    const {data,error} = await supabase.from('leads').insert({
+        name:formData.fullname,
+email:formData.email,
+phone:formData.phone,
 
+subject:formData.goal,
+source:'Homepage'
+    }).select();
 
-if(data){}
-else if(error){
+    if(data){
+setNotification('Submitted Successfully');
+setLoading(false)
+setThankYou(true)
+    }else if(error){
+        setLoading(false)
+setNotification('Something went Wrong')
+    }
+}
+else{
+    setLoading(false)
+setNotification('Please Fill all the fields correctly')
 
 }
 
 
+}
+
+function setNotification(de){
+
+  setNotificationText(de);
+  setTimeout(()=>{setNotificationText()},2500);
+}
+
+async function submitGetStarted(a){
+
+
+  
+  const {data,error} = await supabase.from('getstarted').insert({phone:a}).select()
+
+
+  if(data){
+    setNotification('Submitted Successfully');
+    setGet()
+  }else if(error){
+    setNotification('Something went Wrong')
+  }
 }
   return (
     <>
@@ -431,6 +473,14 @@ else if(error){
         
       </Head>
       <DefaultLayout>
+      {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
+         {thankyou ? <div className={styles.modaloverlay}><div className={styles.modal}><h2>Thank You for Submission</h2><p>Our Executive will get back to you shortly meanwhile you can browse our website or apply for more services or preparation plans.</p>
+        <div>
+
+            <a onClick={(e)=>{e.preventDefault(),setThankYou(false)}}>Browse More</a>
+            <a href="tel:+919044442989">Call Us</a>
+        </div>
+        </div></div>:''}  
         <div className={styles.hero}>
           <video muted playsInline="true" autoplay="true" loop="true"><source src='/v2.mp4'/></video>
 <div className={styles.mask}></div>
@@ -438,7 +488,11 @@ else if(error){
 className={styles.content}>
   <h2><span className='b1'>An Initiative to</span><br/>Build Career Abroad</h2>
   {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p> */}
-<div className={styles.getstarted}><input className={styles.input} placeholder="Enter your Phone"></input><button>Get Started</button></div>
+<div className={styles.getstarted}><input value={getstarted} className={styles.input} placeholder="Enter your Phone" onChange={(e)=>{setGet(e.target.value)}}></input><button onClick={()=>{getstarted && getstarted.length > 6 ? submitGetStarted(getstarted) : setNotification('Please fill all the fields')}}>{loading? 
+    <svg width="800px" height="800px" viewBox="0 0 256 256" id="Flat" fill="white">
+  <path d="M64,136H32a8,8,0,0,1,0-16H64a8,8,0,0,1,0,16ZM173.25488,90.74512a7.97769,7.97769,0,0,0,5.65723-2.34278l22.62695-22.62695a8.00052,8.00052,0,1,0-11.31445-11.31445l-22.627,22.627a8,8,0,0,0,5.65722,13.65723ZM65.77539,54.46094A8.00052,8.00052,0,0,0,54.46094,65.77539l22.627,22.62695A8.00052,8.00052,0,0,0,88.40234,77.08789Zm11.3125,113.13672-22.62695,22.627a8.00052,8.00052,0,0,0,11.31445,11.31445l22.62695-22.62695a8.00052,8.00052,0,0,0-11.31445-11.31445ZM224,120H192a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16Zm-45.08789,47.59766a8.00052,8.00052,0,0,0-11.31445,11.31445l22.627,22.62695a8.00052,8.00052,0,1,0,11.31445-11.31445ZM128,184a8.00039,8.00039,0,0,0-8,8v32a8,8,0,0,0,16,0V192A8.00039,8.00039,0,0,0,128,184Zm0-160a8.00039,8.00039,0,0,0-8,8V64a8,8,0,0,0,16,0V32A8.00039,8.00039,0,0,0,128,24Z"/>
+</svg>
+:''}Get Started</button></div>
 <div className={styles.top}>
   <h3>Top Countries to Study Abroad :</h3>
   <div className={styles.conts}>
@@ -857,7 +911,13 @@ return <div className={styles.partners}>
 
 <CustomSelect single={true} z={9} full="true" defaultText="Select your Goal" noPadding={true} objects={goals} setSelect={(r)=>{setFormData(res=>({...res,goal:r}))}}/>
 {formData  && formData.fullname && formData.phone && formData.email && formData.goal? '':<p className={styles.error}>Please fill all the fields</p>}
-<div onClick={SubmitContact} className={styles.submit}>SUBMIT</div>
+<div onClick={SubmitContact} className={styles.submit}>
+{loading? 
+    <svg width="800px" height="800px" viewBox="0 0 256 256" id="Flat" fill="white">
+  <path d="M64,136H32a8,8,0,0,1,0-16H64a8,8,0,0,1,0,16ZM173.25488,90.74512a7.97769,7.97769,0,0,0,5.65723-2.34278l22.62695-22.62695a8.00052,8.00052,0,1,0-11.31445-11.31445l-22.627,22.627a8,8,0,0,0,5.65722,13.65723ZM65.77539,54.46094A8.00052,8.00052,0,0,0,54.46094,65.77539l22.627,22.62695A8.00052,8.00052,0,0,0,88.40234,77.08789Zm11.3125,113.13672-22.62695,22.627a8.00052,8.00052,0,0,0,11.31445,11.31445l22.62695-22.62695a8.00052,8.00052,0,0,0-11.31445-11.31445ZM224,120H192a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16Zm-45.08789,47.59766a8.00052,8.00052,0,0,0-11.31445,11.31445l22.627,22.62695a8.00052,8.00052,0,1,0,11.31445-11.31445ZM128,184a8.00039,8.00039,0,0,0-8,8v32a8,8,0,0,0,16,0V192A8.00039,8.00039,0,0,0,128,184Zm0-160a8.00039,8.00039,0,0,0-8,8V64a8,8,0,0,0,16,0V32A8.00039,8.00039,0,0,0,128,24Z"/>
+</svg>
+:''}
+  SUBMIT</div>
 
 </div>
         </div>

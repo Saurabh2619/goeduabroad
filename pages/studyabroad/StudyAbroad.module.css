@@ -193,6 +193,11 @@
     padding: 20px;
     position: sticky;
     top: 124px;
+    background-color: white;
+}
+
+.left iframe {
+    width: 100%;
 }
 
 .form {
@@ -298,6 +303,11 @@
 
 .content thead {
     background-color: var(--brand-col1);
+    color: white !important;
+}
+
+.content th {
+    color: white;
 }
 
 @keyframes rot {

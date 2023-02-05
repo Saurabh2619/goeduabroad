@@ -33,13 +33,14 @@ setPostData(datac[0])
 async function SubmitContact(){
 
 
-    if(formData && formData.fullname && formData.email && formData.phone && validateEmail(formData.email) && validatePhone(formData.phone)){
+    if(formData && formData.fullname && formData.email && formData.phone && formData.city && validateEmail(formData.email) && validatePhone(formData.phone)){
         setLoading(true)
         const {data,error} = await supabase.from('leads').insert({
             name:formData.fullname,
 email:formData.email,
 phone:formData.phone,
-country:postData.heading,
+test_name:postData.heading,
+city:formData.city,
         }).select();
 
         if(data){
@@ -80,20 +81,21 @@ function validatePhone(phone) {
 <div className={styles.content}>
 
 <div className={styles.left}>
-    <div className={styles.breadcrumb}><a href='/'>Home {'>'} </a><p>Study Abroad {'>'}</p><p>{postData.heading}</p></div>
-<h1>Study Abroad in {postData.heading}</h1>
+    <div className={styles.breadcrumb}><a href='/'>Home {'>'} </a><p>Test Preparation {'>'}</p><p>{postData.heading}</p></div>
+<h1>Prepare for {postData.heading} with EduAbroad</h1>
 <div className={styles.html} dangerouslySetInnerHTML={{__html:filterhtml}}></div>
-    <h2>List of Universities in {postData.heading}</h2>
-    <ul className={styles.universities} dangerouslySetInnerHTML={{__html:JSON.parse(postData.universities)}}></ul>
+   {/*  <h2>List of Universities in {postData.heading}</h2>
+    <ul className={styles.universities} dangerouslySetInnerHTML={{__html:JSON.parse(postData.universities)}}></ul> */}
      </div>
 <div className={styles.right}>
-    <h3>Featured Image</h3>
+    
 <div><img className={styles.featured} src={postData.featured_image}/></div>
 <div className={styles.col}><div className={styles.form}>
-    <h2>Start your Career in {postData.heading} <img src={postData.flag}/></h2>
+    <h2>Enroll in {postData.heading} Test Preparation Program</h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
+<input name={"city"} className={styles.input + " " + (formData &&  formData.city && formData.city.length > 0 ? '' : styles.fielderror)} placeholder={"Enter your City"} type={"text"} value={formData && formData.city} onChange={(e)=>{setFormData(res=>({...res,city:e.target.value})) }}/>
 
 {formData  && formData.fullname && formData.phone && formData.email? '':<p className={styles.error}>Please fill all the fields</p>}
 <div onClick={SubmitContact} className={styles.submit}>{loading? 
@@ -116,7 +118,7 @@ export default TestPreparation;
 
 export async function getServerSideProps(context){
 
-const {data,error} = await supabase.from('studyabroad').select('*').eq('slug',context.query.slug)
+const {data,error} = await supabase.from('testpreps').select('*').eq('slug',context.query.slug)
 let datac;
 if(data){
 datac = data;

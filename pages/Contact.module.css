@@ -2,3 +2,209 @@
     height: 100px;
     width: 100%;
 }
+
+.parent {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left,
+.right {
+    width: 50%;
+}
+
+.right {
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.submit svg {
+    width: 18px;
+    height: auto;
+    margin-right: 10px;
+    animation: rot 2s normal infinite linear;
+}
+
+.right a {
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    font-family: SF Pro Display;
+    color: var(--brand-col1);
+    float: left;
+}
+
+.right a svg {
+    margin-right: 10px;
+}
+
+.left h2,
+.right h2 {
+    font-family: Playfair Display;
+    color: var(--brand-col1);
+}
+
+.left iframe {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.input:focus,
+.input:hover {
+    outline: 0;
+    border: 1px solid var(--brand-col2);
+}
+
+.input {
+    user-select: all;
+    font-family: SF Pro Display;
+    width: 100%;
+    background-color: white;
+    color: black;
+    box-shadow: 4px 4px 12px -5px #00000022;
+    padding: 1.5vh;
+    border-radius: 10px;
+    border: 0;
+    font-size: 12px;
+    margin: 5px 0;
+    position: relative;
+    border: 1px solid transparent;
+    border: 1px solid #ddd;
+}
+
+.submit {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    font-family: SF Pro Display;
+    cursor: pointer;
+    background-color: black;
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid white;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes rot {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.submit:hover {
+    filter: brightness(1.1);
+    background-color: #333333;
+    color: white;
+}
+
+.error {
+    color: red;
+    font-family: SF Pro Display;
+    font-size: 12px;
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.fielderror {
+    border: 1px solid red !important;
+    background-color: rgba(255, 0, 0, 0.048);
+}
+
+.fielderror:focus {
+    border: 1px solid red !important;
+}
+
+.modaloverlay {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 99999;
+    background-color: #00000022;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.modal {
+    width: 600px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.modal h2 {
+    margin: 5px 0;
+    font-family: Playfair Display;
+    color: var(--brand-col1);
+}
+
+.modal div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.modal div a {
+    background-color: var(--brand-col1);
+    color: white;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: SF Pro Display;
+}
+
+.modal p {
+    font-size: 16px;
+    margin: 5px auto;
+    width: 400px;
+    font-family: SF Pro Display;
+}
+
+@media only screen and (max-width:968px) {
+    .modal {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .modal p {
+        width: auto;
+        margin: 0 auto;
+    }
+    .modal div {
+        flex-direction: column;
+    }
+    .modal div a {
+        margin: 5px;
+    }
+    .parent {
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+        padding-bottom: 50px;
+    }
+    .right {
+        padding-left: 0;
+    }
+    .left,
+    .right {
+        width: 100%;
+    }
+}

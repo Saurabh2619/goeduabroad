@@ -18,6 +18,13 @@
     width: 4px;
 }
 
+.video-container {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
 iframe .wrapper {
     padding: 20px !important;
 }

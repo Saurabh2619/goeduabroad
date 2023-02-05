@@ -110,7 +110,7 @@ const quicks = [{
 
             </div>
             <div className={styles.third}>
-            <a href="#expert" className={styles.expert}>Talk to an Expert</a></div>
+            <a href="/contact" className={styles.expert}>Talk to an Expert</a></div>
             <div className={styles.inner}>
                 <span><a href="tel:+919044442989">Contact : +91 904 444 2989</a> | <a href="mailto:info@goeduabroad.com">Email : info@goeduabroad.com</a></span>
             </div>
