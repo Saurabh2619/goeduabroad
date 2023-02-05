@@ -65,6 +65,10 @@
     border: 1px solid white;
 }
 
+.menuhold li svg {
+    pointer-events: none;
+}
+
 .menuhold ul {
     padding: 0;
     list-style-type: none;
@@ -326,6 +330,11 @@
 
 .menuhold li:hover svg path {
     fill: var(--brand-col1);
+}
+
+.mobmenu li svg {
+    margin-top: 5px;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 @media only screen and (max-width:1040px) {

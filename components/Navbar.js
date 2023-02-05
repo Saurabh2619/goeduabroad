@@ -53,10 +53,7 @@ const studyabroad = [
     }
 ]
 const services = [
-    {
-        title:'Study Abroad',
-        slug:'services/studyabroad'
-    },
+   
     {
         title:'Career Counselling',
         slug:'services/careercounselling'
@@ -65,10 +62,7 @@ const services = [
         title:'Profile Design',
         slug:'services/profiledesign'
     },
-    {
-        title:'Test Preparation',
-        slug:'services/testpreparation'
-    },
+   
     {
         title:'Interview Preparation',
         slug:'services/interview'
@@ -118,8 +112,8 @@ const testprep = [
     }
 ]
 
-const sublinks = [[],[],
-    studyabroad,testprep,services,[]
+const sublinks = [[{}],[{}],
+    studyabroad,testprep,services,[{}]
 ]
 
 const links = [{
@@ -178,6 +172,10 @@ function handleSwitchON(a){
     setToggle()
 }
 function handleToggle(a,b){
+    setToggle();
+
+    clearTimeout(timeouta);
+    setTimeoutA(null);
     b.preventDefault();
     setToggle(a)
 }
@@ -217,6 +215,12 @@ const rect = e.target.getBoundingClientRect();
         y:rect.top+30
     })
 }
+function handleClear(){
+
+    clearTimeout(timeouta);
+    setTimeoutA(null);
+    setToggle();
+}
 return(<>
 {toggle ? 
 <div onMouseOver={()=>{setHovering(true)}} onMouseEnter={()=>{setHovering(true),clearTimeout(timeouta),setTimeoutA(null)}} onMouseLeave={()=>{setHovering(false),setToggle()}} className={styles.desknav} style={{top:positionModal.y,left:positionModal.x}}>
@@ -234,7 +238,7 @@ return(<>
 
 <div className={styles.menuhold}><ul>
 {links && links.map((i,d)=>{
-    return <li key={i.title} onClick={(e)=>{i.dropdown ? handleToggle(d,e) : ''}} onMouseEnter={(e)=>{setPos(e),i.dropdown ? handleToggle(d,e) : ''}} onMouseLeave={()=>{handleOut()}} ><a href={i.link}>{i.title}</a>
+    return <li key={i.title} onClick={(e)=>{i.dropdown ? handleToggle(d,e) : ''}} onMouseEnter={(e)=>{setPos(e),i.dropdown ? handleToggle(d,e) : handleClear()}} onMouseLeave={()=>{handleOut()}} ><a href={i.link}>{i.title}</a>
     {i.dropdown ? 
     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.22 8.47a.75.75 0 0 1 1.06 0L12 15.19l6.72-6.72a.75.75 0 1 1 1.06 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L4.22 9.53a.75.75 0 0 1 0-1.06Z" fill="#000"/></svg>
     :''}
@@ -259,7 +263,7 @@ viewBox="0 0 50 50">
 <div className={styles.mobmenu + " " + (activeToggle?styles.activemenu : '') + " " + (toggle && toggle != undefined ? styles.sub :'')}>
 <ul>
 {links && links.map((i,d)=>{
-    return <li className={toggle == d ? styles.togactive : ''}><a href={i.link} onClick={(e)=>{i.dropdown ? handleToggle(d,e) : ''}}>{i.title}</a>
+    return <li className={toggle == d ? styles.togactive : ''}><a href={i.link} onClick={(e)=>{i.dropdown ? handleToggle(d,e) : handleSwitchON(false)}}>{i.title}</a>
     {i.dropdown ? <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 3a.75.75 0 0 1 .743.648l.007.102.001 7.25h7.253a.75.75 0 0 1 .102 1.493l-.102.007h-7.253l.002 7.25a.75.75 0 0 1-1.493.101l-.007-.102-.002-7.249H3.752a.75.75 0 0 1-.102-1.493L3.752 11h7.25L11 3.75a.75.75 0 0 1 .75-.75Z" fill="#000"/></svg>:''}
     </li>
 })}
@@ -273,7 +277,7 @@ viewBox="0 0 50 50">
     </div>
 
     {sublinks && toggle && sublinks[toggle].map((i,d)=>{
-return <Link href={`/${i.slug}`}><li style={{animationDelay:`${d+3}00ms`}}>{i.icon ? <img src={i.icon}/>:''}{i.title}</li></Link>
+return <Link href={`/${i.slug}`}><li onClick={()=>{activeToggle?handleSwitchON(false):handleSwitchON(true)}} style={{animationDelay:`${d+3}00ms`}}>{i.icon ? <img src={i.icon}/>:''}{i.title}</li></Link>
     })}
 </div>
 </>)
