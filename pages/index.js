@@ -17,11 +17,13 @@ import Marquee from "react-fast-marquee";
 import { supabase } from '../utils/supabaseClient';
 import Notifications from '../components/Notification';
 
-export default function Home() {
+export default function Home({datac,datad}) {
   const [mobile,setMobile] = useState('desktop');
 const [getstarted,setGet] = useState();
 const [notificationText,setNotificationText] = useState();
-const [thankyou,setThankYou] = useState(false)
+const [thankyou,setThankYou] = useState(false);
+const [courses,setCourses] = useState([]);
+const [mentors,setMentors] = useState();
 const [loading,setLoading] = useState(false);
 const whyus =[
   {
@@ -121,6 +123,8 @@ const benefits=[{
       }
     }
 
+
+
 setWidth();
 
     window.addEventListener("resize",(e)=>{
@@ -130,6 +134,14 @@ setWidth();
     window.addEventListener('load',()=>{
       setWidth();
     })
+  },[])
+
+  useEffect(()=>{
+    console.log(datac,datad)
+    {datac && datac.map((i,d)=>{
+      setCourses(res=>([...res,{image:i.featured_image,title:i.heading,description:i.description,slug:i.slug}]))
+    })}
+    setMentors(datad)
   },[])
 const herocountries = [
   {
@@ -383,7 +395,7 @@ image:'/camb.webp'
       }
 
 ]
-
+/* 
 const courses = [
   
   {
@@ -411,7 +423,7 @@ image:'https://cdn.dribbble.com/users/3956332/screenshots/15328827/online_course
       image:'https://img.freepik.com/premium-vector/language-learning-education-training-courses-online-illustration-foreign-languages-by-internet-phone-app-icons-english-german-french-university-school-course-dictionary_109722-2554.jpg'
       }
 
-]
+] */
 async function SubmitContact(){
 
   if(formData && formData.fullname && formData.email && formData.phone && formData.goal && validateEmail(formData.email) && validatePhone(formData.phone)){
@@ -641,11 +653,11 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       <img src={i.image}/>
       <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
-      <p>{i.description.substring(0,160)}...</p>
+      {i.description? <p>{i.description.substring(0,160)}...</p>:''}
    
     <div className={styles.buttons}>
-<a>Enroll Now</a>
-<a>Read More</a>
+<Link href="/contact">Enroll Now</Link>
+<Link href={`/testpreps/${i.slug}`}>Read More</Link>
 
     </div>
     </div>
@@ -845,11 +857,11 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
      
       
-      {slides2 && slides2.map((item,index)=>{
+      {mentors && mentors.map((item,index)=>{
 
 return(<>
 
-<SwiperSlide key={index}><a href={`/courses/${item.slug}`} className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
+<SwiperSlide key={index}><a className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
   
   <div className={styles.dcardcontent}>
     <img className={styles.colimg} src={item.collegeimage}/>
@@ -932,3 +944,12 @@ return <div className={styles.partners}>
     </>
   )
 }
+
+
+export async function getServerSideProps(context){
+
+  const [datac,datad] = await Promise.all([supabase.from('testpreps').select('*'),supabase.from('mentors').select('*')])
+  
+  
+  return { props: {datac: datac ? datac.data : {}, datad:datad? datad.data : {}} } 
+  }

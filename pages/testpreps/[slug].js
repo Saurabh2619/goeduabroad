@@ -91,7 +91,7 @@ function validatePhone(phone) {
     
 <div><img className={styles.featured} src={postData.featured_image}/></div>
 <div className={styles.col}><div className={styles.form}>
-    <h2>Enroll in {postData.heading} Test Preparation Program</h2>
+    <h2>Enroll in {postData.heading}  Preparation Program</h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
