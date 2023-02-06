@@ -17,6 +17,10 @@ const reasons = [
     title:'General',
     value:'general'
 },
+{
+    title:'Admission',
+    value:'admission'
+},
 
 {
     title:'Enquiry',
