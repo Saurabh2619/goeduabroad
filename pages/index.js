@@ -839,7 +839,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
         
         clickable: true }}
       
-      centeredSlides={true}
+      centeredSlides={false}
       onSlideChange={() =>{}}
       onSwiper={(swiper) => console.log(swiper)}
       onInit={(swiper) => {
