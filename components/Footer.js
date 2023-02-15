@@ -5,23 +5,23 @@ function Footer(){
 
     const socials = [
 {
-    link:'#',
+    link:'https://www.facebook.com/profile.php?id=100089557687518',
     title:'Facebook',
 },
 {
-    link:'#',
+    link:'https://www.linkedin.com/in/edu-abroad-b92079262/',
     title:'LinkedIn',
 },
 {
-    link:'#',
+    link:'https://www.instagram.com/go_eduabroad/',
     title:'Instagram',
 },
 {
-    link:'#',
+    link:'https://wa.me/919044442989',
     title:'WhatsApp',
 },
 {
-    link:'#',
+    link:'https://www.youtube.com/@eduabroad121',
     title:'YouTube',
 },
     ]
