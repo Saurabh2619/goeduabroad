@@ -80,7 +80,7 @@ const services = [
         slug:'services/schooling'
     }
 ]
-const testprep = [
+/* const testprep = [
 
     {
         title:'CAT',
@@ -110,10 +110,10 @@ const testprep = [
         title:'TOEFL',
         slug:'testpreps/toefl'
     }
-]
+] */
 
 const sublinks = [[{}],[{}],
-    studyabroad,testprep,services,[{}]
+    studyabroad,[{}],services,[{}]
 ]
 
 const links = [{
@@ -137,9 +137,9 @@ const links = [{
 
 {
 
-    title:'Test Prep',
-    link:'/testprep',
-    dropdown:true,
+    title:'IELTS GURU',
+    link:'/testpreps/ielts',
+    dropdown:false,
 },
 {
 

@@ -104,7 +104,8 @@ setNotification('Please Fill all the fields correctly')
 
     <div className={styles.left}>
         <h2>Reach Us out at our Physical Office</h2>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.543752394721!2d80.98876461504369!3d26.854460183152714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x570873c9e9d0e357!2zMjbCsDUxJzE2LjEiTiA4MMKwNTknMjcuNCJF!5e0!3m2!1sen!2sin!4v1675768511460!5m2!1sen!2sin" width="600" height="450" style={{border:"0"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.5446772045625!2d80.98877671504361!3d26.85443078315282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUxJzE2LjAiTiA4MMKwNTknMjcuNSJF!5e0!3m2!1sen!2sin!4v1676965264887!5m2!1sen!2sin" width="600" height="450" style={{border:"0"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        
     </div>
     <div className={styles.right}>
 <h2>Contact Details</h2>

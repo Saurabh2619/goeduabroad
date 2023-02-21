@@ -315,6 +315,7 @@
     width: 24px;
     height: 24px;
     margin-right: 10px;
+    border-radius: 200px;
 }
 
 .cont p {
@@ -323,7 +324,7 @@
 
 .getstarted button,
 .mainbutton {
-    width: 20%;
+    width: auto;
     margin-left: 10px;
     padding: 10px 20px;
     background-color: var(--brand-col1);
@@ -851,12 +852,15 @@
 }
 
 .col2 {
-    background-color: var(--brand-col1);
+    position: relative;
+    width: 50%;
+    overflow: hidden;
     margin-left: 20px;
-    background-image: url('/newyork.webp');
-    background-position: center;
-    background-size: cover;
+}
+
+.col2 iframe {
     border-radius: 20px;
+    overflow: hidden;
 }
 
 .card svg {

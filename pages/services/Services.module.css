@@ -63,6 +63,14 @@
     margin: 10px 0;
 }
 
+.content h3 {
+    font-size: 1.8rem;
+}
+
+.content h1 {
+    font-size: 3rem;
+}
+
 .content {
     margin-top: 80px;
     display: flex;

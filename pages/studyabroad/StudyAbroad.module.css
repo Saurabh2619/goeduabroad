@@ -63,6 +63,14 @@
     margin: 10px 0;
 }
 
+.content h3 {
+    font-size: 1.8rem;
+}
+
+.content h1 {
+    font-size: 3rem;
+}
+
 .content {
     margin-top: 80px;
     display: flex;
@@ -209,6 +217,10 @@
     margin: 20px 0;
 }
 
+.form h2 {
+    font-size: 2.5rem;
+}
+
 .left {
     width: 60%;
     padding-right: 30px;
@@ -240,7 +252,7 @@
 
 .content .html {
     font-family: SF Pro Display;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .content strong {

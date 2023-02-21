@@ -14,6 +14,10 @@
     width: 100%;
 }
 
+.small {
+    margin: 5px 0 10px 0;
+}
+
 .container {
     position: relative;
 }
