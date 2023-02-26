@@ -416,7 +416,7 @@ const partners=[{
 const countries = [
   
   {
-title:'Brazil',
+title:'Australia',
 description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
 stars:4,
 image:'/brazil.webp'
@@ -428,13 +428,13 @@ image:'/brazil.webp'
   image:'/canada.webp'
   },
   {
-    title:'New York',
+    title:'London',
     description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     stars:4,
     image:'/newyork.webp'
     },
     {
-      title:'Japan',
+      title:'United States of America',
       description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
       stars:4,
       image:'/japan.webp'
@@ -712,7 +712,7 @@ className={styles.content}>
 <div className={styles.who}>
 
   <div className={styles.col1}>
-    <p>Edu Abroad is founded by former Professor of IIM Lucknow, Dr. Swati Abhishek Mishra. She holds a Master’s in Management in a joint program with University of Cambridge and Massachusetts Institute of Technology, and a PhD. in Strategy and Marketing from University of Cambridge. She was the winner of various prestigious scholarships like Cambridge Commonwealth Trust Scholar, DFID (UK Government) Scholar, Hinduja Foundation Scholar, Worts Travellling Scholars Fund, and numerous other scholarships. She has been a keen educator, mentor and nurtured thousands of students over the last two decades. She has extensive corporate and government consulting experience in Strategy and Growth domain........</p>
+    <p>Edu Abroad is founded by former Professor of IIM Lucknow, Dr. Swati Abhishek Mishra. She holds a Master’s in Management in a joint program with University of Cambridge and Massachusetts Institute of Technology, and a PhD. in Strategy and Marketing from University of Cambridge. She was the winner of ………...</p>
   <Link href={'/about'}><button className={styles.mainbutton}>Read More</button></Link>
   </div>
   <div className={styles.col2}>
@@ -887,7 +887,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 })}
 </div>
 </Section>
-<Section title="Top Cities of 2023 to : Study Abroad" align="center" color="var(--brand-col1)">
+<Section title="Top Countries of 2023 to : Study Abroad" align="center" color="var(--brand-col1)">
 
 <Swiper
      modules={[Navigation, Pagination, Autoplay]}
@@ -1133,13 +1133,13 @@ return <div className={styles.partners}>
 
 </div>
         </div>
-<div className={styles.aitool}>
+{/* <div className={styles.aitool}>
 <img src='/collegpano.png'/>
   <h2>Our AI Tool will help you to choose suitable university for yourself</h2>
   <a href="https://www.applyboard.com/partners/354594/intake-form">Get Started, It's Free !!</a>
-</div>
+</div> */}
 
-
+<div id="applyboard" style={{display:'flex',alignContent:'center',alignItems:'center',justifyContent:'center'}} dangerouslySetInnerHTML={{__html:"<div style='max-width:1200px' id=\"ab-embedded-search\" data-host=\"https://www.applyboard.com\" data-rp-ref=\"17323\" data-orientation=\"horizontal\" data-default-countries=\"USA,Canada,United Kingdom,Australia,Ireland\"></div><script type=\"text/javascript\" src=\"https://www.applyboard.com/assets/embedded_search.js\"></script>"}}></div>
       </DefaultLayout>
     </>
   )

@@ -27,6 +27,28 @@
     overflow: hidden;
 }
 
+.parent .left li {
+    font-family: SF Pro Display;
+    font-weight: 100 !important;
+    font-size: 14px;
+    margin: 6px 0;
+    background-color: #a51c3022;
+    border-radius: 10px;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.parent .left li::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 15px;
+    border-radius: 200px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--brand-col1);
+}
+
 .parent h2,
 .parent h3,
 .parent h1 {
@@ -37,6 +59,15 @@
     font-family: SF Pro Display;
     font-size: 14px;
     font-weight: 300;
+}
+
+.parent .left * {
+    font-family: SF Pro Display;
+}
+
+.parent .left ol {
+    list-style-type: none;
+    padding-left: 15px;
 }
 
 @media only screen and (max-width:968px) {

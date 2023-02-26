@@ -1,0 +1,49 @@
+.tabs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.tab {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab table {
+    max-width: 100%;
+}
+
+.tabtn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ddd;
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+    align-content: center;
+}
+
+.tabcontent {
+    max-height: 0px;
+    overflow: hidden;
+    position: relative;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.activeTab .tabcontent {
+    max-height: 300vh;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.tabtn svg {
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.activeTab .tabtn svg {
+    transform: rotate(45deg);
+}
