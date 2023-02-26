@@ -30,7 +30,7 @@ const ResponsiveIFrame = ({ src }) => {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%",
+          height:"100%",
         }}
       />
     </div>
@@ -193,233 +193,49 @@ const herocountries = [
 ]
 
 const partners=[{
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/mit.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/1-300x118.jpg",
+  image: "MIT-Logo.png",
+  image2: "/logo.jpg",
   title: "Massachusetts Institute of Technology",
   title2: "University Of Cambridge"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/1-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/2-300x118.jpg",
-  title: "University Of Cambridge",
-  title2: "University Of Oxford"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/2-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/3-300x118.jpg",
-  title: "University Of Oxford",
+}, 
+{
+  image: "/oxford.png",
+  image2: "/yale.png",
+  title: "University of Oxford",
   title2: "Yale University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/3-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/4-300x118.jpg",
-  title: "Yale University",
-  title2: "Wharton University Of Pennsylvania"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/4-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/5-300x118.jpg",
-  title: "Wharton University Of Pennsylvania",
+}, 
+{
+  image: "/wharton.png",
+  image2: "/lbs.png",
+  title: "Wharton University of Pennsylvania",
   title2: "London Business School"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/5-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/1-2.jpg",
-  title: "London Business School",
-  title2: "University of New South Wales"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/1-2.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/4-1.jpg",
+},
+{
+  image: "/unsw.png",
+  image2: "/melbourne.png",
   title: "University of New South Wales",
   title2: "University of Melbourne"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/4-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/3-1.jpg",
-  title: "University of Melbourne",
-  title2: "MCGill University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/3-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/1-1.jpg",
-  title: "MCGill University",
+},
+{
+  image: "/mcgill.png",
+  image2: "/harvard.png",
+  title: "MCGill University ",
   title2: "Harvard University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/1-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/5-1.jpg",
-  title: "Harvard University",
-  title2: "University of Toronto"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/5-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/uc.jpg",
+},
+{
+  image: "/toronto.png",
+  image2: "/dublin.jpg",
   title: "University of Toronto",
   title2: "University College Dublin"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/uc.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/mit.jpg",
-  title: "University College Dublin",
-  title2: "Massachusetts Institute of Technology"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/mit.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/1-300x118.jpg",
-  title: "Massachusetts Institute of Technology",
-  title2: "University Of Cambridge"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/1-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/2-300x118.jpg",
-  title: "University Of Cambridge",
-  title2: "University Of Oxford"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/2-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/3-300x118.jpg",
-  title: "University Of Oxford",
-  title2: "Yale University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/3-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/4-300x118.jpg",
-  title: "Yale University",
-  title2: "Wharton University Of Pennsylvania"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/4-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/5-300x118.jpg",
-  title: "Wharton University Of Pennsylvania",
-  title2: "London Business School"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/5-300x118.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/1-2.jpg",
-  title: "London Business School",
-  title2: "University of New South Wales"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/1-2.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/4-1.jpg",
-  title: "University of New South Wales",
-  title2: "University of Melbourne"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/4-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/3-1.jpg",
-  title: "University of Melbourne",
-  title2: "MCGill University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/3-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/1-1.jpg",
-  title: "MCGill University",
-  title2: "Harvard University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/1-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/5-1.jpg",
-  title: "Harvard University",
-  title2: "University of Toronto"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/5-1.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/03/uc.jpg",
-  title: "University of Toronto",
-  title2: "University College Dublin"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/03/uc.jpg",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/DPS-lko.png",
-  title: "University College Dublin",
-  title2: "DPS, lko"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/DPS-lko.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Cathedral.png",
-  title: "DPS, lko",
-  title2: "Cathedral"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Cathedral.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Wipro.png",
-  title: "Cathedral",
-  title2: "Wipro"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Wipro.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/KPMG.png",
-  title: "Wipro",
-  title2: "KPMG"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/KPMG.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Royal-Bank-of-Scotland.png",
-  title: "KPMG",
-  title2: "Royal Bank of Scotland"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Royal-Bank-of-Scotland.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Amazon.png",
-  title: "Royal Bank of Scotland",
-  title2: "Amazon"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Amazon.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/APS-logo.png",
-  title: "Amazon",
-  title2: "APS"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/APS-logo.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Jaypee-Institute-of-Information-Technology.png",
-  title: "APS",
-  title2: "Jaypee Institute of Information Technology"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Jaypee-Institute-of-Information-Technology.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Byjus-logo.png",
-  title: "Jaypee Institute of Information Technology",
-  title2: "Byjus"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Byjus-logo.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Seth-mr-Jaipuria.png",
-  title: "Byjus",
-  title2: "Seth M.R Jaipuria"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Seth-mr-Jaipuria.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/All-saints-nainital.png",
-  title: "Seth M.R Jaipuria",
-  title2: "All Saints, Nainital"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/All-saints-nainital.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/vibgyor-high-school.png",
-  title: "All Saints, Nainital",
-  title2: "Vibgyor High School"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/vibgyor-high-school.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Lucknow-University.png",
-  title: "Vibgyor High School",
-  title2: "Lucknow University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Lucknow-University.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/it-college.png",
-  title: "Lucknow University",
-  title2: "IT College"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/it-college.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/AGDC.png",
-  title: "IT College",
-  title2: "AGDC"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/AGDC.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2021/07/Loreto-logo.png",
-  title: "AGDC",
-  title2: "Loreto"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2021/07/Loreto-logo.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/09/Mayour-School-Noida.png",
-  title: "Loreto",
-  title2: "Mayoor School Noida"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/09/Mayour-School-Noida.png",
-  image2: "https://gocareerguru.com/wp-content/uploads/2020/09/Amity-Intenational-School.png",
-  title: "Mayoor School Noida",
-  title2: "Amity International School"
-}, {
-  image: "https://gocareerguru.com/wp-content/uploads/2020/09/Amity-Intenational-School.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/09/Amity-University.png",
-  title: "Amity International School",
-  title2: "Amity University"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/09/Amity-University.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/09/Delhi-Public-School.png",
-  title: "Amity University",
-  title2: "Delhi Public School"
-}, {
-  image: "http://gocareerguru.com/wp-content/uploads/2020/09/Delhi-Public-School.png",
-  image2: "http://gocareerguru.com/wp-content/uploads/2020/09/CITY-MONTESSORY-SCHOOL.png",
-  title: "Delhi Public School",
-  title2: "CMS"
-}]
+},
+]
 const countries = [
   
   {
 title:'Australia',
 description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
 stars:4,
-image:'/brazil.webp'
+image:'https://www.state.gov/wp-content/uploads/2022/02/shutterstock_1025960785-2560x1300.jpg'
 },
 {
   title:'Canada',
@@ -431,13 +247,13 @@ image:'/brazil.webp'
     title:'London',
     description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     stars:4,
-    image:'/newyork.webp'
+    image:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/London_Big_Ben_Phone_box.jpg/640px-London_Big_Ben_Phone_box.jpg'
     },
     {
       title:'United States of America',
       description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
       stars:4,
-      image:'/japan.webp'
+      image:'https://images.unsplash.com/photo-1471306224500-6d0d218be372?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXNhfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
       }
 
 ]
@@ -1014,7 +830,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
  <div className={"paginate4"}></div>
 </Section>
 <Section title="Featured Universities" align="center" color="var(--brand-col1)">
-<Marquee speed={80} gradientWidth={80}>
+<Marquee speed={100} gradientWidth={80}>
   {partners && partners.map((i,d)=>{
 
     return <div className={styles.partners}>

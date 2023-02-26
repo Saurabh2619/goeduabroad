@@ -846,14 +846,13 @@
     flex-direction: row;
 }
 
-.col1,
-.col2 {
-    width: 50%;
+.col1 {
+    width: 60%;
 }
 
 .col2 {
     position: relative;
-    width: 50%;
+    width: 40%;
     overflow: hidden;
     margin-left: 20px;
 }
@@ -964,7 +963,7 @@
         flex-direction: column-reverse;
     }
     .col2 {
-        height: 500px;
+        height: auto;
         width: 100%;
         margin: 0;
         margin-bottom: 20px;
