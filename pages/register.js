@@ -21,6 +21,7 @@ import 'swiper/css/autoplay'
 import Switcher from '../components/Switcher'
 import CustomSelect from '../components/CustomSelect'
 import DefaultLayout from '../layouts/DefaultLayout'
+import { supabase } from '../utils/supabaseClient'
 
 export default function Home() {
 
@@ -35,6 +36,7 @@ const [notificationText,setNotificationText] = useState();
 const [timeoutId, setTimeoutId] = useState(null);
 const [datahtml,setHtml] = useState();
 const [formData,setFormData] = useState();
+const [mentors,setMentors] = useState([]);
 const years = [{
   title:'2023',
   value:'2023'
@@ -50,38 +52,34 @@ const years = [{
 ]
 
 const testimonials =[{
-  icon:'https://ipmcareer.com/files/2023/01/resutls-1.png',
- heading:'Best IPMAT Results'
+  icon:'<svg width="44" height="44" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.788 3.103c.495-1.004 1.926-1.004 2.421 0l2.358 4.777 5.273.766c1.107.161 1.549 1.522.748 2.303l-.905.882a6.5 6.5 0 0 0-9.441 7.43l-3.96 2.082c-.99.52-2.147-.32-1.958-1.424l.9-5.25-3.815-3.72c-.801-.78-.359-2.142.748-2.303L8.43 7.88l2.358-4.777Zm3.49 10.872a2 2 0 0 1-1.441 2.497l-.584.144a5.729 5.729 0 0 0 .006 1.807l.54.13a2 2 0 0 1 1.45 2.51l-.187.632c.44.386.94.699 1.484.921l.494-.518a2 2 0 0 1 2.899 0l.498.525a5.281 5.281 0 0 0 1.483-.913l-.198-.686a2 2 0 0 1 1.441-2.496l.584-.144a5.716 5.716 0 0 0-.006-1.808l-.54-.13a2 2 0 0 1-1.45-2.51l.187-.63a5.278 5.278 0 0 0-1.484-.923l-.493.519a2 2 0 0 1-2.9 0l-.498-.525c-.544.22-1.044.53-1.483.912l.198.686ZM17.5 19c-.8 0-1.45-.672-1.45-1.5 0-.829.65-1.5 1.45-1.5.8 0 1.45.671 1.45 1.5 0 .828-.65 1.5-1.45 1.5Z" fill="#222F3D"/></svg>',
+ heading:'Top Notch Service'
 
 },
 {
-  icon:'https://ipmcareer.com/files/2023/01/professsor-1.png',
- heading:'Best IITs - IIMs Faculties'
+  icon:'<svg width="44" height="44" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 14.001a1.5 1.5 0 0 1 1.493 1.356L15 15.5v.17a1.75 1.75 0 0 0-1.988.345l-2.5 2.501a1.75 1.75 0 0 0 0 2.475l.683.681c-.897.233-1.84.327-2.695.327-2.722 0-6.335-.956-6.495-4.27L2 17.5v-2a1.5 1.5 0 0 1 1.356-1.493L3.5 14l10 .001Z" fill="#222F3D"/><path d="m14.78 17.783-1.219 1.22h6.878l-1.22-1.22a.75.75 0 0 1 1.061-1.06l2.5 2.502a.75.75 0 0 1 0 1.06l-2.5 2.499a.75.75 0 0 1-1.06-1.061l1.22-1.22h-6.88l1.22 1.22a.75.75 0 1 1-1.06 1.06l-2.5-2.498a.75.75 0 0 1 0-1.061l2.5-2.501a.75.75 0 1 1 1.06 1.06Z" fill="#222F3D"/><path d="M20.988 16.016 22 17.03V15.5l-.007-.145A1.5 1.5 0 0 0 20.5 14h-5.012l.113.162c.25.387.399.844.399 1.338v2l-.007.28a5.52 5.52 0 0 1-.015.223h2.19a1.75 1.75 0 0 1 2.82-1.987ZM8.5 3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9ZM17.5 5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Z" fill="#222F3D"/></svg>',
+ heading:'Mentored by Experienced Professionals'
 
 }
 ,
 {
-  icon:'https://ipmcareer.com/files/2023/01/study-material-1.png',
- heading:'Excellent Study Material'
+  icon:'<svg width="44" height="44" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.75C2 5.784 2.784 5 3.75 5h13.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 17.25 17H3.75A1.75 1.75 0 0 1 2 15.25v-8.5Zm3-.5v1a.75.75 0 0 1-.75.75h-1v1.5h1A2.25 2.25 0 0 0 6.5 7.25v-1H5Zm5.5 7.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Zm-7.25.5h1a.75.75 0 0 1 .75.75v1h1.5v-1a2.25 2.25 0 0 0-2.25-2.25h-1V14Zm12.75.75a.75.75 0 0 1 .75-.75h1v-1.5h-1a2.25 2.25 0 0 0-2.25 2.25v1H16v-1Zm0-7.5v-1h-1.5v1a2.25 2.25 0 0 0 2.25 2.25h1V8h-1a.75.75 0 0 1-.75-.75Z" fill="#222F3D"/><path d="M4.401 18.5A2.999 2.999 0 0 0 7 20h10.25A4.75 4.75 0 0 0 22 15.25V10c0-1.11-.603-2.08-1.5-2.599v7.849a3.25 3.25 0 0 1-3.25 3.25H4.401Z" fill="#222F3D"/></svg>',
+ heading:'Competitive Pricing'
 
 },
 {
-  icon:'https://ipmcareer.com/files/2023/01/ai-booked-1.png',
- heading:'AI based Test Series'
+  icon:'<svg width="44" height="44" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.25 13.5h-4a.75.75 0 0 1-.75-.75v-6a.75.75 0 0 1 1.5 0V12h3.25a.75.75 0 0 1 0 1.5ZM12 2C6.478 2 2 6.478 2 12s4.478 10 10 10 10-4.478 10-10S17.522 2 12 2Z" fill="#222F3D"/></svg>',
+ heading:'24x7 Support'
 
 },
 {
-  icon:'https://ipmcareer.com/files/2023/01/one-on-one-counselling-1.png',
- heading:'One-on-One Mentorship from IIMs Graduates'
+  icon:'<svg width="44" height="44" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.836 2.034c.112.038.222.084.329.136l1.283.632a1.25 1.25 0 0 0 1.104 0l1.283-.632a2.75 2.75 0 0 1 3.681 1.253l.074.162.063.167.46 1.353c.125.368.414.656.781.781l1.354.46a2.75 2.75 0 0 1 1.581 3.819l-.631 1.283a1.25 1.25 0 0 0 0 1.104l.631 1.283a2.75 2.75 0 0 1-1.581 3.818l-1.354.46a1.25 1.25 0 0 0-.78.781l-.461 1.354a2.75 2.75 0 0 1-3.818 1.581l-1.283-.631a1.25 1.25 0 0 0-1.104 0l-1.283.631a2.75 2.75 0 0 1-3.818-1.581l-.46-1.354a1.25 1.25 0 0 0-.782-.78l-1.353-.461a2.75 2.75 0 0 1-1.582-3.818l.632-1.283a1.25 1.25 0 0 0 0-1.104l-.632-1.283a2.75 2.75 0 0 1 1.582-3.818l1.353-.46a1.25 1.25 0 0 0 .781-.782l.46-1.353a2.75 2.75 0 0 1 3.49-1.718Zm5.633 6.935-5.419 5.42-1.974-2.37a.75.75 0 1 0-1.152.96l2.5 3a.75.75 0 0 0 1.106.051l6-6a.75.75 0 1 0-1.06-1.06Z" fill="#222F3D"/></svg>',
+ heading:'Easy to Enroll & Get Started'
 
 },
-{
-  icon:'https://ipmcareer.com/files/2023/01/doubt-1.png',
- heading:'One-on-One Doubt Clearing Sessions'
+]
 
-}]
-
-const heading=['Register Now','Its Free','Limited Seats','Best Coaching']
+const heading=['Register Now','Its Free','Limited Seats','Best Abroad Career Consultancy']
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
 
   console.log(arguments)
@@ -133,7 +131,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
           },
           {
               "paramKey": "formname",
-              "paramValue": "Main Landing Page"
+              "paramValue": "EduAbroad Main Landing Page"
           }
       ]
   });
@@ -155,82 +153,39 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
   xhr.send(data);
 }
 
-const mentors=[
-  {
+async function getMentors(){
 
-    image:'https://www.ipmcareer.com/files/2023/01/Ashutosh-Sir-e1641723253112.webp',
-    fullname:'Ashutosh Mishra',
-    role:'Master IIM Ahmedabad',
-    role2:'Bachelors Thapar University',
-    bg:'https://www.ipmcareer.com/files/2023/01/IIMA-LKP_0-1.webp'
-  },
-  {
 
-    image:'https://www.ipmcareer.com/files/2016/11/deepak-kushwaha-350x350.jpg',
-    fullname:'Deepak Kushwaha',
-    role:'Master IIM Lucknow',
-    role2:'Bachelors IIT Srinagar',
-    bg:'https://www.ipmcareer.com/files/2023/01/img-slider-4-1-1.webp'
-  },
-  {
+    const {data,error} = await supabase.from('mentors').select('*');
 
-    image:'https://www.ipmcareer.com/files/2023/01/Screen-Shot-2021-01-10-at-3.24.16-PM-283x350-1-1.png',
-    fullname:'Taruna Khanna',
-    role:'GCC UCLA Extension',
-    bg:'https://www.ipmcareer.com/files/2023/01/education-concept-student-studying-brainstorming-campus-concept-close-up-students-discussing-their-subject-books-textbooks-selective-focus-660x330-1.webp'
-    
-  },
-  {
+    if(data){
+console.log(data)
+setMentors(data && data.map((i,d)=>{
+    return {
+        fullname:i.title,
+        image:i.image,
+        collegeimage:i.collegeimage
+    }
+}))
 
-    image:'https://www.ipmcareer.com/files/2022/06/IMG_1848-350x350.jpg',
-    fullname:'Dr. Swati A. Mishra',
-    role:'Director Operations Lucknow Centre',
-    role2:'Former Professor IIM Lucknow',
-    bg:'https://cdn.britannica.com/85/13085-050-C2E88389/Corpus-Christi-College-University-of-Cambridge-England.jpg'
-    
-  },
-  {
+    }
+    else if(error){
+        setNotification('error getting mentors')
+    }
 
-    image:'https://ipmcareer.com/all-india-mock/files/manish.jpeg',
-    fullname:'Manish Dixit',
-    role:'IIT BHU Alumnus',
-    
-    bg:'https://www.ipmcareer.com/files/2023/01/iit_bhu_slider_03-1.webp'
-    
-  },
-  {
+}
 
-    image:'https://www.ipmcareer.com/files/2022/01/WhatsApp-Image-2022-01-09-at-4.49.41-PM-e1641850793724-350x350.jpeg',
-    fullname:'Rishabh Singh',
-    role:'IIFM Bhopal Alumnus',
-    bg:'https://www.careerindia.com/img/2013/10/24-indianinstituteofforestmanagement.jpg'
-    
-  },
-  {
-
-    image:'https://www.ipmcareer.com/files/2022/12/WhatsApp-Image-2022-12-15-at-7.11.51-PM-e1671269681720.jpeg',
-    fullname:'Divyansh Mishra',
-    role:'IIM Raipur',
-    bg:'https://www.ipmcareer.com/files/2023/01/jpg-1.webp'
-    
-  },
-  {
-
-    image:'https://www.ipmcareer.com/files/2022/01/Rishita-e1672914918610-350x350.jpg',
-    fullname:'Rishita Gupta',
-    role:'Multiple IIMs Call Getter',
-    bg:'https://backend.insideiim.com/wp-content/uploads/2017/04/IIM_Collage.jpg'
-    
-  }
-]
-
+useEffect(()=>{
+    getMentors()
+    console.log('d')
+},[])
 
 const slides = [{
-  image:'https://www.ipmcareer.com/files/2023/01/Website-Indoreq-scaled-_1_-_2_.webp',
-  alt:"IPM Careers IIM Indore Results "
+  image:'/header.png',
+  alt:"Edu Abroad Career Consultant "
 },{
-  image:'https://www.ipmcareer.com/files/2023/01/Rohtak-Results-Template-ooo-scaled-_1_.webp',
-  alt:'IPM Careers IIM Rohtak Results'
+  image:'/header.png',
+  alt:'Edu Abroad Career Consultant'
 }]
 const faqs=[
   {
@@ -351,7 +306,7 @@ console.log("api")
  })
 }
 
-const features = [<>Best & Promising<span className={styles.blue}>&nbsp;IPMAT Results</span></>,<>Mentoring by<span className={styles.blue}>&nbsp;IIM Alumni</span></>,<>Awarded #1<span className={styles.blue}> by ZEE News</span></>,<>Gained Media Exposure for<span className={styles.blue}> Excellent Academic Performance</span></>];
+const features = [<>Complete<span className={styles.blue}>&nbsp;Assistance</span></>,<>Mentoring by<span className={styles.blue}>&nbsp;Experienced Professionals</span></>,<>Dedicated IELTS<span className={styles.blue}> Course</span></>,<>Properly Planned <span className={styles.blue}> Career Guidance</span></>];
 const [mobile,setMobile] = useState("desktop");
 useEffect(()=>{
   
@@ -481,12 +436,12 @@ function validateEmail(email) {
   return (
     <>
       <Head>
-        <title>IPM Careers | {currentSub}</title>
+        <title>Edu Abroad | {currentSub}</title>
         <meta name="description" content="IPM Careers" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon} />
       </Head>
-      <DefaultLayout>
+      <DefaultLayout navbar>
       <main className={styles.main}>
         {isSubmitted? <div className={styles.modal}>
           <div className={styles.modalinner}>
@@ -582,7 +537,7 @@ return(<>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
 <input name={"city"} className={styles.input} placeholder={"Enter your City"} type={"text"} value={formData && formData.city} onChange={(e)=>{setFormData(res=>({...res,city:e.target.value})) }}/>
-<CustomSelect z={9} full="true" defaultText="When are you planning to take IPM?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
+<CustomSelect z={9} full="true" defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
 {formData && formData.city && formData.fullname && formData.phone && formData.email && formData.year? '':<p className={styles.error}>Please fill all the fields</p>}
 {/* <div onClick={TestApi} className={styles.submit}>TEST</div> */}
 <div onClick={SubmitContact} className={styles.submit}>SUBMIT</div>
@@ -633,20 +588,22 @@ return(<>
 </div>
 <div className={styles.col2}>
 <div className={styles.yt}>
-<YouTube className='embed-container' title='' videoId="bFszqpsA81g" opts={opts}  /></div>
+<YouTube className='embed-container' title='' videoId="iCl30mTXKnk" opts={opts}  /></div>
 </div>
 </div>
 
         </Section>
        
-        <Section title={"Know : Your Mentors"} color="var(--brand-col2)" align="right">
+        <Section title={"Know : Your Mentors"} color="var(--brand-col1)" align="left">
         <div className={styles.parent2}>
 
         {mentors && mentors.map((i,d)=>{
 return <div className={styles.card}>
-  <div alt={i.role} className={styles.bg} style={{backgroundImage:"url("+i.bg+")"}}></div>
+    <div className={styles.circ}></div>
+  {/* <div alt={i.role} className={styles.bg} style={{backgroundImage:"url("+i.bg+")"}}></div> */}
   <img alt={i.fullname} src={i.image}/>
   <h2>{i.fullname}</h2>
+  {i.collegeimage ? <img className={styles.colimg} src={i.collegeimage}/>:''}
   {i.role ? <p className={styles.para}>{i.role}</p>:''}
   {i.role2 ? <p className={styles.para}>{i.role2}</p>:''}
 </div>
@@ -693,7 +650,7 @@ return(<>
 <SwiperSlide key={index}>
 <div className={styles.testimonial_card}>
 
-  <img alt={i.heading} src={i.icon}/>
+  <div dangerouslySetInnerHTML={{__html:i.icon}} style={{marginRight:"15px"}}></div>
   <h2>{i.heading}</h2>
   <div className={styles.grad1}></div>
   <div className={styles.grad2}></div>
@@ -734,18 +691,18 @@ return(<>
 
 
    </Section>
-   <Section title={"Our Promising:Results"} color="var(--brand-col2)" align="left" visible="true">
- <img alt="IPM Careers Rohtak Results"  className={styles.results} src={'https://www.ipmcareer.com/files/2023/01/Rohtak-Results-Template-ooo-scaled-_1_.webp'}/>
+   <Section title={"Our Promising:Results"} color="var(--brand-col1)" align="center" visible="true">
+ <img alt="EduAbroad Resultss"  className={styles.results} src={'/'}/>
 
    </Section>
-   <Section title={"Frequently:Asked Questions"} color="var(--brand-col1)" align="left" visible="true">
+   <Section title={"Frequently:Asked Questions"} color="var(--brand-col1)" align="left" visible="true" >
    <FAQ items={faqs}/>
    </Section>
 
 {/* <button onClick={()=>{handleAPI()}} >Test</button> */}
 
-<div dangerouslySetInnerHTML={{__html :datahtml}}></div>
-
+{/* <div dangerouslySetInnerHTML={{__html :datahtml}}></div> */}
+<div className={styles.spacer}></div>
       </main>
       </DefaultLayout>
     </>
