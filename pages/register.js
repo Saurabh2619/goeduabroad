@@ -234,7 +234,7 @@ const reviews=[{
 
   image:'/r5.png',
   fullname:'Dr.Naman Tandon',
-  college:'/r5.png',
+  college:'Universite de Paris',
   title:'Best Career Guidance',
   review:'I undertook career guidance advice from Dr. Swati A Mishra while I was in my first year of  BSc Life Sciences from Hansraj College, University of Delhi. She helped me identify my career goals and pathways. Under her able guidance and profile building exercise, I got admission to the prestigious King’s College London, UK, where I did MSc in Immunology. Then again she guided me for  PhD in Immunology from the University of Paris, France. Now I am working with National Institute of Health, USA. Dr. Mishra has been a mentor and guide throughout my journey. I strongly recommend services offered by Go Career Guru and especially the profile building exercise, it’s very well developed and has helped me a lot for achieving my career aspirations.        '
 }
