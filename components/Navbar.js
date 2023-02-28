@@ -75,45 +75,34 @@ const services = [
         title:'Visa & Travel Assistance',
         slug:'services/visaandtravel'
     },
-    {
-        title:'Schooling Abroad & Summer School',
-        slug:'services/schooling'
-    }
+  
 ]
-/* const testprep = [
+ const testprep = [
 
     {
-        title:'CAT',
-        slug:'testpreps/cat'
+        title:'About IELTS',
+        slug:'testpreps/about-ielts'
     },
     {
-        title:'GMAT',
-        slug:'testpreps/gmat'
+        title:'What we offer',
+        slug:'testpreps/what-we-offer'
     },
     {
-        title:'GRE',
-        slug:'testpreps/gre'
+        title:'IELTS Structure',
+        slug:'testpreps/ielts-structure'
     },
     {
-        title:'SAT',
-        slug:'testpreps/sat'
+        title:'The IELTS 9-band scale',
+        slug:'testpreps/band-scale'
     },
     {
-        title:'ACT',
-        slug:'testpreps/act'
+        title:'Courses',
+        slug:'testpreps/courses'
     },
-    {
-        title:'IELTS',
-        slug:'testpreps/ielts'
-    },
-    {
-        title:'TOEFL',
-        slug:'testpreps/toefl'
-    }
-] */
+] 
 
 const sublinks = [[{}],[{}],
-    studyabroad,[{}],services,[{}]
+    studyabroad,testprep,services,[{}]
 ]
 
 const links = [{
@@ -139,7 +128,7 @@ const links = [{
 
     title:'IELTS GURU',
     link:'/testpreps/ielts',
-    dropdown:false,
+    dropdown:true,
 },
 {
 

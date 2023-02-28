@@ -63,8 +63,8 @@ const testimonials =[{
 }
 ,
 {
-  icon:'<svg width="44" height="44" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.75C2 5.784 2.784 5 3.75 5h13.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 17.25 17H3.75A1.75 1.75 0 0 1 2 15.25v-8.5Zm3-.5v1a.75.75 0 0 1-.75.75h-1v1.5h1A2.25 2.25 0 0 0 6.5 7.25v-1H5Zm5.5 7.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Zm-7.25.5h1a.75.75 0 0 1 .75.75v1h1.5v-1a2.25 2.25 0 0 0-2.25-2.25h-1V14Zm12.75.75a.75.75 0 0 1 .75-.75h1v-1.5h-1a2.25 2.25 0 0 0-2.25 2.25v1H16v-1Zm0-7.5v-1h-1.5v1a2.25 2.25 0 0 0 2.25 2.25h1V8h-1a.75.75 0 0 1-.75-.75Z" fill="#222F3D"/><path d="M4.401 18.5A2.999 2.999 0 0 0 7 20h10.25A4.75 4.75 0 0 0 22 15.25V10c0-1.11-.603-2.08-1.5-2.599v7.849a3.25 3.25 0 0 1-3.25 3.25H4.401Z" fill="#222F3D"/></svg>',
- heading:'Competitive Pricing'
+  icon:'<svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 3a1 1 0 0 0 0 2h12a1 1 0 1 0 0-2H6ZM10.354 13.701l.099.085.799.8v-1.957l-.002-.026V9.414l-.8.8-.097.085-.008.006a1 1 0 0 1-1.399-1.4l.006-.007.084-.098 2.354-2.357c.18-.273.505-.443.86-.443.324 0 .62.14.806.368l.005.007.046.064L15.465 8.8l.085.098.005.008a1 1 0 0 1 .01 1.177l-.006.008-.099.117-.106.091-.007.006a1 1 0 0 1-1.177.01l-.009-.007-.11-.093-.801-.801v1.957l.002.026v3.19l.794-.795a1 1 0 0 1 1.303-.097l.007.006.098.085.007.006a1 1 0 0 1 .096 1.302l-.005.008-.085.098-2.354 2.356a1.023 1.023 0 0 1-.86.444c-.356 0-.681-.17-.86-.443l-2.348-2.35a1 1 0 0 1 1.302-1.512l.008.006ZM5 20a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Z" fill="#222F3D"/></svg>',
+ heading:"Find what's right fit for you"
 
 },
 {
@@ -452,7 +452,7 @@ function validateEmail(email) {
           </p>
 
           <p>For Quick Assitance you can call us on : <a href="tel:+919616383524">+91 96163 83524</a></p>
-          <a href="https://ipmcareer.com/courses" className={styles.submit}>Explore Our Courses</a><a className={styles.submit} href="https://ipmcareer.com">Visit Our Website</a>
+          <a href="/#courses" className={styles.submit}>Explore Our Courses</a><a className={styles.submit} href="/">Visit Our Website</a>
           </div></div>:''}
       {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
         

@@ -58,7 +58,7 @@ const whyus =[
     image:'https://img.freepik.com/free-photo/successful-happy-business-team_53876-20936.jpg?w=2000'
   },
   {
-    title:'Competitive Pricing',
+    title:"Find what's right fit for you",
     image:'https://s3.us-east-1.amazonaws.com/co-assets/assets/images/_fbTw/pricing-models.jpg'
   },
   {
@@ -292,42 +292,42 @@ college:'Northeastern University',
   },
   {
     title:'Bhavya Mishra',
-    description:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.',
+    description:'I am thankful to the team Edu Abroad specially Dr. Swati Mishra. Dr. Swati always motivated me and all other students to work hard and stay focused. The faculty at Edu Abroad is very hard working and it made my dream come true. Proud to be student of Edu Abroad.',
     stars:4,
     image:'/r3.jpg',
     college:'University of BATH',
     },
     {
       title:'Titiksha Singh',
-      description:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.      ',
+      description:'Mentors at Edu Abroad are extremely dedicated and hard working. They make it a point for every student to be equally interactive in the training sessions. Mock interviews by experts from industry helped a lot.',
       stars:4,
       image:'/r4.jpg',
       college:'University of Buffalo',
       },
       {
         title:'Dr.Naman Tandon',
-        description:'I undertook career guidance advice from Dr. Swati A Mishra while I was in my first year of  BSc Life Sciences from Hansraj College, University of Delhi. She helped me identify my career goals and pathways. Under her able guidance and profile building exercise, I got admission to the prestigious King’s College London, UK, where I did MSc in Immunology. Then again she guided me for  PhD in Immunology from the University of Paris, France. Now I am working with National Institute of Health, USA. Dr. Mishra has been a mentor and guide throughout my journey. I strongly recommend services offered by Go Career Guru and especially the profile building exercise, it’s very well developed and has helped me a lot for achieving my career aspirations.        ',
+        description:'I would like to thank all the mentors of Edu Abroad who helped me throughout my journey. They helped me by motivating me and getting all my doubts clear. They helped me in clearing all my concepts. The study materials of Edu Abroad are very helpful and beneficial and the practice questions are of the level of actual IELTS exam.        ',
         stars:4,
         image:'/r5.png',
         college:'Universite de Paris'
         },
         {
           title:'Anannya',
-          description:'Under the able guidance of Professor Swati Mishra, my vision to Study Abroad has taken shape. I made it through top ranked universities in UK like, SOAS, University of Glasgow, Leeds University. I also was able to bag a number of Scholarships worth almost 75% to cover my tuition fee. Glad that I was in such good hands. I strongly recommend the Team. They are best there is in the Indian market.          ',
+          description:'My experience with Edu Abroad was truly memorable, the team was extremely supportive. They always made sure that all my doubts were cleared. It is for them that I have reached where I am now.',
           stars:5,
           image:'/r6.jpg',
           college:'SOAS  - University of London',
           },
           {
             title:'Prabal Muttoo',
-            description:'Started taking advice from Dr. Swati Mishra and her team of experts about 15 months before my intended month of entry. The entire process, from the counselling sessions to streamlining of the SOP, LOR submissions etc was well coordinated. Throughout the application process, the team pushes you to make every aspect of the application perfect. Overall, the approach was very professional and practical. Prior to the one-on-one counselling sessions, I had a brief interaction on possible career options to explore the domain I wished for. The team is highly responsive and goes out of their way to help you. I highly recommend Career Guru to any student aspiring to get into top institutions. I got offers from SOAS – University of London, LSE, Edinburgh among other universities. I finally joined LSE and graduated with an MSc in Politics and Communication.',
+            description:'I attribute my success in the IELTS Exam to the mentors at Edu Abroad. They gave us personalized attention and developed a comfortable and accommodating environment inside the classroom. Their doubt session helped us very much in preparing. They were available 24/7 for clearing our doubts even at odd hours. Thanks for all the help and hard work.',
             stars:4,
             image:'/r9.jpeg',
             college:'The London University of Economics & Political Science',
             },
             {
               title:'Vishisht Tiwari',
-              description:'M.Engineering in Electrical and Computer Engineering from Cornell University, USA. B.Engineering in Electronic Engineering from the University of Manchester, UK. Currently working at Intertrust Technologies in San Francisco as a Software Engineer specializing in Cyber Security.              ',
+              description:'I learned a lot of tips and tricks at Edu Abroad which were really game changing and it boosted my perspective of learning along. Those little things are the key factors which help students like me achieve the goals.              ',
               stars:4,
               image:'/r10.jpg',
               college:'Cornell University',
@@ -540,7 +540,7 @@ className={styles.content}>
 </div>
       </Section>
       
-      <Section title="Results" align="center" color="var(--brand-col1)">
+      <Section title="Our Previous :Results" align="center" color="var(--brand-col1)">
 
 
 
@@ -620,7 +620,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
 
       </Section>
-      <Section title="Courses" align="center" color="var(--brand-col1)">
+      <Section title="Courses" id="courses" align="center" color="var(--brand-col1)">
 
 
 
@@ -771,7 +771,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 </div>
 </div> */}
 
-<Section title="Top Universities of this month : to Study Abroad" align="center" color="var(--brand-col1)">
+<Section title="Top Universities of the month" align="center" color="var(--brand-col1)">
 
 <Swiper
      modules={[Navigation, Pagination, Autoplay]}

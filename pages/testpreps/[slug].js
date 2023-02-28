@@ -105,15 +105,16 @@ function validatePhone(phone) {
 <div className={styles.content}>
 
 <div className={styles.left}>
-    <div className={styles.breadcrumb}><a href='/'>Home {'>'} </a><p>Test Preparation {'>'}</p><p>{postData.heading}</p></div>
-<h1>Prepare for {postData.heading} with EduAbroad</h1>
-{/* <div className={styles.html} dangerouslySetInnerHTML={{__html:filterhtml}}></div> */}
-<div className={st.tabs}>
+    <div className={styles.breadcrumb}><a href='/'>Home {'>'} </a><p>Test Preparation {'>'} IELTS {">"}</p><p>{postData.heading}</p></div>
+<h3>Prepare for IELTS with EduAbroad</h3>
+<h1>{postData.heading}</h1>
+<div className={styles.html} dangerouslySetInnerHTML={{__html:filterhtml}}></div>
+{/* <div className={st.tabs}>
 {tabs && tabs.map((i,d)=>{
     return <div onClick={()=>{setactiveIndex(activeIndex != d ? d : 8)}} className={st.tab + " " + (activeIndex == d ? st.activeTab : '') }><div className={st.tabtn}><h2>{i.title}</h2>
     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.883 3.007 12 3a1 1 0 0 1 .993.883L13 4v7h7a1 1 0 0 1 .993.883L21 12a1 1 0 0 1-.883.993L20 13h-7v7a1 1 0 0 1-.883.993L12 21a1 1 0 0 1-.993-.883L11 20v-7H4a1 1 0 0 1-.993-.883L3 12a1 1 0 0 1 .883-.993L4 11h7V4a1 1 0 0 1 .883-.993L12 3l-.117.007Z" fill="black"/></svg>
     </div><div className={st.tabcontent} dangerouslySetInnerHTML={{__html:i.content}}></div></div>
-})}</div>
+})}</div> */}
    {/*  <h2>List of Universities in {postData.heading}</h2>
     <ul className={styles.universities} dangerouslySetInnerHTML={{__html:JSON.parse(postData.universities)}}></ul> */}
      </div>
@@ -121,7 +122,7 @@ function validatePhone(phone) {
     
 <div><img className={styles.featured} src={postData.featured_image}/></div>
 <div className={styles.col}><div className={styles.form}>
-    <h2>Enroll in {postData.heading}  Preparation Program</h2>
+    <h2>Enroll in IELTS  Preparation Program</h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
