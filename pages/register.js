@@ -189,28 +189,32 @@ const slides = [{
 }]
 const faqs=[
   {
-    question:"How will this IPMAT preparation help me?", 
-    answer:'Practicing IPMAT Mock Tests will help improve your time-management skills and build your confidence levels. So, it is advised to take up mock tests regularly and try to analyze your performance after completing each mock test.',   
+    question:"When to get started with the application process?", 
+    answer:'If you want to take our suggestion, then you must start your application process 6-8 months in advance. As application deadlines for universities, programs and courses differ, you are advised to check the official website of the university or you may contact education experts who can guide you throughout your application process.    ',   
   },
   {
-    question:"How many exams are covered under this preparation?", 
-    answer:'IPM BBA/BMS prep cover aptitude tests conducted by IIM Indore (IPMAT – Indore), IIM Rohtak (IPMAT – Rohtak), IIM Bodh Gaya and IIM Jammu (JIPMAT) for  their 5-year integrated programs. The test prep program also cover entrance tests conducted by DU (DU JAT), NMIMS (NPAT), Symbiosis (SET), Christ University (CUET), IP University (IPUCET) and St. Xavier’s College – Mumbai for their BMS program',   
+    question:"What are the basic documents required to make an application?", 
+    answer:"<ul>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/category/resume/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">CV</span></span></span></a></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Work experience if any</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/category/lor/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Letter of Recommendation (LOR</span></span></span></a><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">)</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/category/sop/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Statement of Purpose (SOP)</span></span></span></a></li>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/english-proficiency-test/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">English Proficiency Tests</span></span></span></a></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Financial proof to bear living expenses, visa application fees and university tuition fees</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Passport photograph, income proof residential proof, and photo ID</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Travel documents may include health insurance, passport, age proof, and vaccination proof</span></span></span></li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n",   
+  },
+  {
+    question:"How will Edu Abroad guide me on my study abroad journey?", 
+    answer:'Edu Abroad has an experienced team of international experts who’ve been helping students to pursue their dreams of studying abroad. Most of these students are international students thus we can help you with end-to-end assistance from the application process to accommodation.',   
+  },
+  {
+    question:"Who accepts IELTS scores?", 
+    answer:'IELTS is accepted by over 11,000 organizations in 140 countries.',   
   },
   {
     question:"Can I avail one on one clearing doubt sessions?", 
-    answer:'Students should contact their IPM Careers center to book a one-on-one doubt clearing session with a mentor.',   
+    answer:'Students should contact Edu Abroad to book a one-on-one doubt clearing session with a mentor.',   
   },
   {
     question:"How do I access live classes?", 
-    answer:'On successful completion of enrolment process, students receive a IPM Careers Zoom id & password to join IPM Careers live platform and to attend live, online classes.',   
-  },
-  {
-    question:"Is Fee Refundable?", 
-    answer:'Fee is neither Refundable nor transferable',   
+    answer:'On successful completion of enrolment process, students receive a Edu Abroad Zoom ID & password to join Edu Abroad live platform and to attend live, online classes.',   
   },
   {
     question:"Is there any contact number to reach you?", 
-    answer:'For any queries contact @8299470392.',   
+    answer:'Call us at 9044442989 to book a FREE 30-minutes counseling session today.',   
   }
 
 
@@ -691,8 +695,8 @@ return(<>
 
 
    </Section>
-   <Section title={"Our Promising:Results"} color="var(--brand-col1)" align="center" visible="true">
- <img alt="EduAbroad Resultss"  className={styles.results} src={'/'}/>
+   <Section title={"Our Previous:Results"} color="var(--brand-col1)" align="center" visible="true">
+ <img alt="EduAbroad Results"  className={styles.results}  src={'/'}/>
 
    </Section>
    <Section title={"Frequently:Asked Questions"} color="var(--brand-col1)" align="left" visible="true" >

@@ -41,7 +41,7 @@ export default function Home({datac,datad}) {
 const [getstarted,setGet] = useState();
 const [notificationText,setNotificationText] = useState();
 const [thankyou,setThankYou] = useState(false);
-const [courses,setCourses] = useState([]);
+/* const [courses,setCourses] = useState([]); */
 const [mentors,setMentors] = useState();
 const [loading,setLoading] = useState(false);
 const whyus =[
@@ -158,7 +158,7 @@ setWidth();
   useEffect(()=>{
     console.log(datac,datad)
     {datac && datac.map((i,d)=>{
-      setCourses(res=>([...res,{image:i.featured_image,title:i.heading,description:i.description,slug:i.slug}]))
+      /* setCourses(res=>([...res,{image:i.featured_image,title:i.heading,description:i.description,slug:i.slug}])) */
     })}
     setMentors(datad)
   },[])
@@ -273,29 +273,32 @@ const authorities =[
   },
 
 ]
-
+const fea = [
+  {
+    title:'Vedant Sagar',
+    description:'Abhishek has helped me with improving my SAT score by 250 points, he has also helped me in writing and formatting essays for the college. Apart from that I got a lot of guidance about universities which I never knew before. He also helped me get job in University once I came to Northeastern University. In Boston he was working like a local guardian to me, if I have any issues I know whom to contact for solving those problems. Strongly recommend.',
+    stars:4,
+    image:'/r1.jpg',
+    college:'Northeastern University',
+    },
+    {
+      title:'Shruti Maheshwari',
+      description:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.',
+      stars:5,
+      image:'/r2.jpg',
+      college:'University of Bristol',
+      },
+]
 const results = [
   
-  {
-title:'Vedant Sagar',
-description:'Abhishek has helped me with improving my SAT score by 250 points, he has also helped me in writing and formatting essays for the college. Apart from that I got a lot of guidance about universities which I never knew before. He also helped me get job in University once I came to Northeastern University. In Boston he was working like a local guardian to me, if I have any issues I know whom to contact for solving those problems. Strongly recommend.',
-stars:4,
-image:'/r1.jpg',
-college:'Northeastern University',
-},
-{
-  title:'Shruti Maheshwari',
-  description:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.',
-  stars:5,
-  image:'/r2.jpg',
-  college:'University of Bristol',
-  },
+
   {
     title:'Bhavya Mishra',
     description:'I am thankful to the team Edu Abroad specially Dr. Swati Mishra. Dr. Swati always motivated me and all other students to work hard and stay focused. The faculty at Edu Abroad is very hard working and it made my dream come true. Proud to be student of Edu Abroad.',
     stars:4,
     image:'/r3.jpg',
     college:'University of BATH',
+    country:"USA"
     },
     {
       title:'Titiksha Singh',
@@ -303,13 +306,15 @@ college:'Northeastern University',
       stars:4,
       image:'/r4.jpg',
       college:'University of Buffalo',
+      country:"USA"
       },
       {
         title:'Dr.Naman Tandon',
         description:'I would like to thank all the mentors of Edu Abroad who helped me throughout my journey. They helped me by motivating me and getting all my doubts clear. They helped me in clearing all my concepts. The study materials of Edu Abroad are very helpful and beneficial and the practice questions are of the level of actual IELTS exam.        ',
         stars:4,
         image:'/r5.png',
-        college:'Universite de Paris'
+        college:'Universite de Paris',
+        country:"France"
         },
         {
           title:'Anannya',
@@ -317,6 +322,7 @@ college:'Northeastern University',
           stars:5,
           image:'/r6.jpg',
           college:'SOAS  - University of London',
+          country:"UK"
           },
           {
             title:'Prabal Muttoo',
@@ -324,6 +330,7 @@ college:'Northeastern University',
             stars:4,
             image:'/r9.jpeg',
             college:'The London University of Economics & Political Science',
+            country:"UK"
             },
             {
               title:'Vishisht Tiwari',
@@ -331,6 +338,7 @@ college:'Northeastern University',
               stars:4,
               image:'/r10.jpg',
               college:'Cornell University',
+              country:"USA"
               }
 
 ]
@@ -403,35 +411,24 @@ image:'/camb.webp'
       }
 
 ]
-/* 
+
 const courses = [
   
   {
-title:'Course 1',
+title:'Academic Training',
 description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
 
 image:'https://cdn.dribbble.com/users/3956332/screenshots/15328827/online_courses_4x.jpg'
 },
 {
-  title:'Course 2',
+  title:'General Training',
   description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
   
   image:'https://img.freepik.com/premium-vector/online-courses-concept_23-2148524391.jpg'
   },
-  {
-    title:'Course 3',
-    description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    
-    image:'https://cdn.dribbble.com/users/2501809/screenshots/6381280/4.jpg'
-    },
-    {
-      title:'Course 4',
-      description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-      
-      image:'https://img.freepik.com/premium-vector/language-learning-education-training-courses-online-illustration-foreign-languages-by-internet-phone-app-icons-english-german-french-university-school-course-dictionary_109722-2554.jpg'
-      }
+ 
 
-] */
+]
 async function SubmitContact(){
 
   if(formData && formData.fullname && formData.email && formData.phone && formData.goal && validateEmail(formData.email) && validatePhone(formData.phone)){
@@ -590,7 +587,8 @@ className={styles.content}>
       <div className={styles.rbadge}>{i.college}</div>
       <div className={styles.cric} style={{backgroundImage:"url("+i.image+")"}}></div>
       <div class={styles.cardcontent}>
-      <h2>{i.title}</h2>
+      <h2>{i.title} <span className={styles.country}>{i.country? i.country : ''}</span></h2>
+      
       <p>{i.description}</p>
       {i.video ? <ResponsiveIFrame
       src={i.video}
@@ -628,7 +626,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       <Swiper
      modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={mobile === "mobile" ? 30 : mobile === "tablet" ?30 :10}
-      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 4}
+      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 2}
       loop={true}
       loopedSlides={5}
       autoplay={true}
@@ -665,15 +663,15 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
   {courses && courses.map((i,d)=>{
 
     return <SwiperSlide key={i}>
-      <div className={styles.ccard} >
-      <img src={i.image}/>
+      <div className={styles.ccard} style={{backgroundImage:`url('${i.image}')`}}>
+      {/* <img src={i.image}/> */}
       <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
-      {i.description? <p>{i.description.substring(0,160)}...</p>:''}
+      {/* {i.description? <p>{i.description.substring(0,160)}...</p>:''} */}
    
     <div className={styles.buttons}>
 <Link href="/contact">Enroll Now</Link>
-<Link href={`/testpreps/${i.slug}`}>Read More</Link>
+{/* <Link href={`/testpreps/${i.slug}`}>Read More</Link> */}
 
     </div>
     </div>
