@@ -695,10 +695,10 @@ return(<>
 
 
    </Section>
-   <Section title={"Our Previous:Results"} color="var(--brand-col1)" align="center" visible="true">
+   {/* <Section title={"Our Previous:Results"} color="var(--brand-col1)" align="center" visible="true">
  <img alt="EduAbroad Results"  className={styles.results}  src={'/'}/>
 
-   </Section>
+   </Section> */}
    <Section title={"Frequently:Asked Questions"} color="var(--brand-col1)" align="left" visible="true" >
    <FAQ items={faqs}/>
    </Section>
