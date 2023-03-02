@@ -41,7 +41,7 @@ export default function Home({datac,datad}) {
 const [getstarted,setGet] = useState();
 const [notificationText,setNotificationText] = useState();
 const [thankyou,setThankYou] = useState(false);
-/* const [courses,setCourses] = useState([]); */
+const [courses,setCourses] = useState([]);
 const [mentors,setMentors] = useState();
 const [loading,setLoading] = useState(false);
 const whyus =[
@@ -158,7 +158,7 @@ setWidth();
   useEffect(()=>{
     console.log(datac,datad)
     {datac && datac.map((i,d)=>{
-      /* setCourses(res=>([...res,{image:i.featured_image,title:i.heading,description:i.description,slug:i.slug}])) */
+      setCourses(res=>([...res,{image:i.featured_image,title:i.heading,description:i.description,slug:i.slug}]))
     })}
     setMentors(datad)
   },[])
@@ -412,7 +412,7 @@ image:'/camb.webp'
 
 ]
 
-const courses = [
+/* const courses = [
   
   {
 title:'Academic Training',
@@ -428,7 +428,7 @@ image:'https://blog.smartabroad.in/wp-content/uploads/2022/08/studying-student-o
   },
  
 
-]
+] */
 async function SubmitContact(){
 
   if(formData && formData.fullname && formData.email && formData.phone && formData.goal && validateEmail(formData.email) && validatePhone(formData.phone)){
@@ -618,7 +618,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
 
       </Section>
-      <Section title="Courses" id="courses" align="center" color="var(--brand-col1)">
+      <Section title="Services" id="courses" align="center" color="var(--brand-col1)">
 
 
 
@@ -626,7 +626,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       <Swiper
      modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={mobile === "mobile" ? 30 : mobile === "tablet" ?30 :10}
-      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 2}
+      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 4}
       loop={true}
       loopedSlides={5}
       autoplay={true}
@@ -670,7 +670,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       {/* {i.description? <p>{i.description.substring(0,160)}...</p>:''} */}
    
     <div className={styles.buttons}>
-<Link href="/contact">Enroll Now</Link>
+<Link href="/contact">Contact Us</Link>
 {/* <Link href={`/testpreps/${i.slug}`}>Read More</Link> */}
 
     </div>
@@ -962,7 +962,7 @@ return <div className={styles.partners}>
 
 export async function getServerSideProps(context){
 
-  const [datac,datad] = await Promise.all([supabase.from('testpreps').select('*'),supabase.from('mentors').select('*')])
+  const [datac,datad] = await Promise.all([supabase.from('services').select('*'),supabase.from('mentors').select('*')])
   
   
   return { props: {datac: datac ? datac.data : {}, datad:datad? datad.data : {}} } 
