@@ -181,7 +181,7 @@ useEffect(()=>{
 },[])
 
 const slides = [{
-  image:'/header.png',
+  image:'/ielts.png',
   alt:"Edu Abroad Career Consultant "
 },{
   image:'/header.png',
@@ -221,26 +221,29 @@ const faqs=[
 ]
 
 const reviews=[{
-  image:'/r1.jpg',
-  fullname:'Vedant Sagar',
-  college:'Northeastern University',
-  title:'Helped me Improve my Score',
-  review:'Abhishek has helped me with improving my SAT score by 250 points, he has also helped me in writing and formatting essays for the college. Apart from that I got a lot of guidance about universities which I never knew before. He also helped me get job in University once I came to Northeastern University. In Boston he was working like a local guardian to me, if I have any issues I know whom to contact for solving those problems. Strongly recommend.'
+  image:'/r4.jpg',
+  fullname:'Titiksha Singh',
+  college:'University of Buffalo',
+  title:'Very Helpful Faculty',
+  review:'Mentors at Edu Abroad are extremely dedicated and hard working. They make it a point for every student to be equally interactive in the training sessions. Mock interviews by experts from industry helped a lot.',
+  country:'USA'
 },{
 
-  image:'/r2.jpg',
-  fullname:'Shruti Maheshwari',
-  college:'University of Bristol',
-  title:'Very Humble & Helping Faculty',
-  review:'For me who has no one in family ever been to USA getting admission to US university seems like an arduous and impossible task before we came in touch with Abhishek. He helped me from preparing for SAT to getting accommodation after I got admission. He helped me in all the steps of the process and continue to help with internship search using his networks of contacts in USA. I got admission in 6 schools out of 7 I applied, I got scholarship from 3 Universities. Currently, I am studying at University of Buffalo that offered me $48,000 scholarship.'
+  image:'/r6.jpg',
+  fullname:'Anannya',
+  college:'SOAS  - University of London',
+  title:'Extremely Supportive Faculty',
+  review:'My experience with Edu Abroad was truly memorable, the team was extremely supportive. They always made sure that all my doubts were cleared. It is for them that I have reached where I am now.',
+  country:"UK"
 },
 {
 
   image:'/r5.png',
   fullname:'Dr.Naman Tandon',
   college:'Universite de Paris',
+  country:'France',
   title:'Best Career Guidance',
-  review:'I undertook career guidance advice from Dr. Swati A Mishra while I was in my first year of  BSc Life Sciences from Hansraj College, University of Delhi. She helped me identify my career goals and pathways. Under her able guidance and profile building exercise, I got admission to the prestigious King’s College London, UK, where I did MSc in Immunology. Then again she guided me for  PhD in Immunology from the University of Paris, France. Now I am working with National Institute of Health, USA. Dr. Mishra has been a mentor and guide throughout my journey. I strongly recommend services offered by Go Career Guru and especially the profile building exercise, it’s very well developed and has helped me a lot for achieving my career aspirations.        '
+  review:'I would like to thank all the mentors of Edu Abroad who helped me throughout my journey. They helped me by motivating me and getting all my doubts clear. They helped me in clearing all my concepts. The study materials of Edu Abroad are very helpful and beneficial and the practice questions are of the level of actual IELTS exam. '
 }
 ]
 
@@ -682,11 +685,14 @@ return(<>
     <div>
     <h2>{i.fullname}</h2>
     <p>{i.college}</p>
+    <p className={styles.country}>{i.country}</p>
     </div>
     </div>
     <div className={styles.rcontent}>
     <p className={styles.rtitle}>{i.title}</p>
-    <p>{i.review}</p></div>
+    <p>{i.review}</p>
+    
+    </div>
   </div>
 })}
 

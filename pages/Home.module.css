@@ -834,11 +834,14 @@
     background: linear-gradient(220deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.938) 100%);
 }
 
-.cardcontent {
-    z-index: 9;
+.ccard .cardcontent {
     background-color: white;
     border-radius: 20px;
     padding: 20px;
+}
+
+.cardcontent {
+    z-index: 9;
 }
 
 .card h2 {

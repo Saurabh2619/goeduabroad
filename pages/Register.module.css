@@ -19,6 +19,15 @@
     box-shadow: 4px 4px 22px -4px #00000022;
 }
 
+.country {
+    background-color: var(--brand-col1);
+    color: white;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
 .hd {
     width: 100%;
     display: flex;
@@ -823,7 +832,7 @@
     padding: 10px 10px;
     box-shadow: 4px 4px 12px -5px #00000033;
     border-radius: 20px;
-    margin-right: 20px;
+    margin: 20px 20px 0 0;
     border: 1px solid var(--brand-col2);
     overflow: hidden;
     position: relative;
