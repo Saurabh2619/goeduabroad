@@ -181,10 +181,10 @@ useEffect(()=>{
 },[])
 
 const slides = [{
-  image:'/ielts.png',
+  image:'/ielts.webp',
   alt:"Edu Abroad Career Consultant "
 },{
-  image:'/header.png',
+  image:'/rvw.webp',
   alt:'Edu Abroad Career Consultant'
 }]
 const faqs=[
