@@ -181,7 +181,7 @@ useEffect(()=>{
 },[])
 
 const slides = [{
-  image:'/ielts.webp',
+  image:'/EduAbroad.webp',
   alt:"Edu Abroad Career Consultant "
 },{
   image:'/rvw.webp',

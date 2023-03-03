@@ -50,8 +50,8 @@ const whyus =[
     image:'https://www.theladders.com/wp-content/uploads/manager-office-190723.jpg'
   },
   {
-    title:'Broker Free',
-    image:'https://top10stockbroker.com/wp-content/uploads/2017/09/Full-Service-Broker-vs-Discount-Broker.jpg'
+    title:'One-one-One Mentorship Sessions',
+    image:'https://www.gettingsmart.com/wp-content/uploads/2020/10/Mentorship-.jpg'
   },
   {
     title:'Mentored by Experienced Professionals',
@@ -165,12 +165,12 @@ setWidth();
 const herocountries = [
  
   {
-    title:'Australia',
-    image:'/aus.png',
+    title:'USA',
+    image:'/us.png',
     color:'skyblue',
   },
   {
-    title:'United Kingdom',
+    title:'UK',
     image:'/uk.png',
     color:'skyblue',
   },
@@ -180,16 +180,30 @@ const herocountries = [
     color:'skyblue',
   },
   {
+    title:'Australia',
+    image:'/aus.png',
+    color:'skyblue',
+  },
+  {
+    title:'New Zealand',
+    image:'https://cdn.britannica.com/17/3017-004-DCC13F9D/Flag-New-Zealand.jpg',
+    color:'skyblue',
+  },
+  {
+    title:'Ireland',
+    image:'https://cdn.britannica.com/33/1733-004-5BA407D6/FLAG-Ireland.jpg',
+    color:'skyblue',
+  },
+  {
+    title:'Singapore',
+    image:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_President_of_Singapore.svg/4320px-Flag_of_the_President_of_Singapore.svg.png',
+    color:'skyblue',
+  },
+  {
     title:'Europe',
     image:'https://upload.wikimedia.org/wikipedia/commons/8/8b/Europe_flag_circle.png',
     color:'skyblue',
   },
-  {
-    title:'United States of America',
-    image:'/us.png',
-    color:'skyblue',
-  },
-
 ]
 
 const partners=[{
@@ -769,7 +783,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 </div>
 </div> */}
 
-<Section title="Top Universities of the month" align="center" color="var(--brand-col1)">
+<Section title="Top Universities" align="center" color="var(--brand-col1)">
 
 <Swiper
      modules={[Navigation, Pagination, Autoplay]}

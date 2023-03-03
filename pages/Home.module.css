@@ -860,6 +860,7 @@
     margin: 5px 0;
     color: #eee;
     font-size: 12px;
+    display: none;
     line-height: 16px;
 }
 

@@ -126,7 +126,7 @@ const links = [{
 
 {
 
-    title:'IELTS GURU',
+    title:'IELTS Guru',
     link:'/testpreps/ielts',
     dropdown:true,
 },
