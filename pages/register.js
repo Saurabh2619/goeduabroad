@@ -376,7 +376,7 @@ async function SubmitContact(){
     /* TestApi(); */
   /*   triggerInterakt(); */
       /* await axios.post('/') */
-      cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://register.ipmcareer.com');
+      cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com');
   }
   else if(!formData){
     console.log('red')

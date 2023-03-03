@@ -44,6 +44,78 @@ const [thankyou,setThankYou] = useState(false);
 const [courses,setCourses] = useState([]);
 const [mentors,setMentors] = useState();
 const [loading,setLoading] = useState(false);
+function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,page) {
+
+  console.log(arguments)
+
+  var id = Date.now();
+  var data = JSON.stringify({
+      "projectKey": "VW50aXRsZSBQcm9qZWN0MTY1MDAxMzUxMDU5MQ==",
+      "audienceId": id,
+      "name": username,
+      "email": u_email,
+      "mobile": u_mobile,
+      "ios_fcm_token": "",
+      "web_fcm_token": "",
+      "android_fcm_token": "",
+      "profile_path": "",
+      "active": "",
+      "audience_id": "",
+      "paramList": [{
+              "paramKey": "source",
+              "paramValue": ""
+          },
+          {
+              "paramKey": "city",
+              "paramValue": u_city
+          },
+          {
+              "paramKey": "postcode",
+              "paramValue": ""
+          },
+          {
+              "paramKey": "total_amount",
+              "paramValue": ""
+          },
+          {
+              "paramKey": "abondon_cart",
+              "paramValue": true
+          },
+          {
+              "paramKey": "preparing_for_which_year",
+              "paramValue": u_year
+          },
+          {
+              "paramKey": "subject",
+              "paramValue": ""
+          },
+          {
+              "paramKey": "formurl",
+              "paramValue": linke
+          },
+          {
+              "paramKey": "formname",
+              "paramValue": page ? page: '',
+          }
+      ]
+  });
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener("readystatechange", function() {
+
+      if (this.readyState === 4) {
+          
+          setLoading(false)
+          setNotification('Submitted Successfully')
+          
+
+      }
+  });
+  xhr.open("POST", "https://api.cronberry.com/cronberry/api/campaign/register-audience-data");
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+
+  xhr.send(data);
+}
 const whyus =[
   {
     title:'Top Notch Service',
@@ -303,6 +375,7 @@ const fea = [
       college:'University of Bristol',
       },
 ]
+
 const results = [
   
 
@@ -446,7 +519,9 @@ image:'https://blog.smartabroad.in/wp-content/uploads/2022/08/studying-student-o
 async function SubmitContact(){
 
   if(formData && formData.fullname && formData.email && formData.phone && formData.goal && validateEmail(formData.email) && validatePhone(formData.phone)){
+    
     setLoading(true)
+    cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.goal,formData.city ? formData.city : 'N/A','https://goeduabroad.com','GoEduAbroad Main Page');
     const {data,error} = await supabase.from('leads').insert({
         name:formData.fullname,
 email:formData.email,
