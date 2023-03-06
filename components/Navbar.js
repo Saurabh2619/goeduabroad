@@ -147,7 +147,7 @@ const links = [{
 
 function checkwidth(d){
 
-    if(window.scrollY > window.outerHeight){
+    if(window.scrollY >  window.outerHeight){
         setActive(true)
     }else{
         setActive(false)
@@ -258,7 +258,7 @@ viewBox="0 0 50 50">
     </li>
 })}
 <a className={styles.button} href="https://eduabroad.tcyonline.com">Student Panel</a>
-<a onClick={()=>{setActiveToggle(false)}} className={styles.button} href="/#applyboard">AI Tool</a>
+{props.hideAI ? '' :<a onClick={()=>{setActiveToggle(false)}} className={styles.button} href="/#applyboard">AI Tool</a>}
 </ul>
 
 </div>

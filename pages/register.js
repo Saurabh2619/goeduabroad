@@ -448,7 +448,7 @@ function validateEmail(email) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon} />
       </Head>
-      <DefaultLayout navbar>
+      <DefaultLayout hideAI={true} navbar>
       <main className={styles.main}>
         {isSubmitted? <div className={styles.modal}>
           <div className={styles.modalinner}>
@@ -521,7 +521,7 @@ return(<>
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
-<h2>India's Leading Abroad Career Consultant</h2>
+<h2>India's Leading Study Abroad Consultant</h2>
 <p>Start your journey with us & start your career in abroad without any hassle.</p>
 <div className={styles.trust}>TRUSTED BY THOUSANDS OF STUDENTS</div>
 <Switcher features={features}/>

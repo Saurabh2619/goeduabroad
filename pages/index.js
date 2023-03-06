@@ -578,7 +578,7 @@ async function submitGetStarted(a){
         <link rel="icon" href="/edufavicon.svg" />
         
       </Head>
-      <DefaultLayout>
+      <DefaultLayout scroll={300}>
       {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
          {thankyou ? <div className={styles.modaloverlay}><div className={styles.modal}><h2>Thank You for Submission</h2><p>Our Executive will get back to you shortly meanwhile you can browse our website or apply for more services or preparation plans.</p>
         <div>
@@ -626,7 +626,7 @@ className={styles.content}>
 </div>
       </Section>
       
-      <Section title="Our Previous :Results" align="center" color="var(--brand-col1)">
+      <Section title="Testimonials" align="center" color="var(--brand-col1)">
 
 
 

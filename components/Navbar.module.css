@@ -91,6 +91,7 @@
     background-color: var(--brand-col1);
     display: block;
     color: white;
+    margin: 10px 0;
     border-radius: 10px;
 }
 
