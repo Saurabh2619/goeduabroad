@@ -94,7 +94,7 @@ function setNotification(de){
     setTimeout(()=>{setNotificationText()},2500);
 }
 const goals=[{title:'Main ',value:'yes'}]
-const filterhtml = JSON.parse(postData ? postData.html : "[{}]");
+const filterhtml = JSON.parse(postData &&  postData.id != 12 ? postData.html : "[]");
 useEffect(()=>{
 setPostData(datac[0])
     window.addEventListener('scroll',(e)=>{
@@ -102,7 +102,35 @@ setPostData(datac[0])
         setScrollPos(window.scrollY)
     })
 })
-
+const courses = [
+    {
+        title:'1 Month',
+        badge:'Best for Personal Teacher Attention',
+        benefits:'20 Hours of Live Classes, 100+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions',
+        price:'8000',
+        date:'15th March',
+        link:'/register',
+        image:'https://elearningindustry.com/wp-content/uploads/2015/10/6-convincing-reasons-take-elearning-course.jpg'
+    },
+    {
+        title:'45 days',
+        badge:'Best for Group Based Learning',
+        benefits:'20 Hours of Live Classes, 100+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions',
+        price:'8000',
+        date:'15th March',
+        link:'/register',
+        image:'https://elearningindustry.com/wp-content/uploads/2015/10/6-convincing-reasons-take-elearning-course.jpg'
+    },
+    {
+        title:'3 Months',
+        badge:'Best for Personal Teacher Attention',
+        benefits:'20 Hours of Live Classes, 100+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions',
+        price:'8000',
+        date:'15th March',
+        link:'/register',
+        image:'https://elearningindustry.com/wp-content/uploads/2015/10/6-convincing-reasons-take-elearning-course.jpg'
+    }
+]
 const tabs = [
     {
         title:'ABOUT IELTS',
@@ -183,6 +211,30 @@ function validatePhone(phone) {
 <h3>Prepare for IELTS with EduAbroad</h3>
 <h1>{postData.heading}</h1>
 <div className={styles.html} dangerouslySetInnerHTML={{__html:filterhtml}}></div>
+{postData && postData.id == 12? <div className={st.courses}>
+
+{courses && courses.map((i,d)=>{
+
+    return <div className={st.course}>
+        
+        <img className={st.courseimage} src={i.image}/>
+        <div className={st.coursecontent}>
+<h2>{i.title} IELTS Course</h2>
+<p className={st.badge}>{i.badge}</p>
+<strong><p>Benefits Includes:</p></strong>
+<ul>
+{i.benefits && i.benefits.split(',').map((a,c)=>{
+    return <li>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64"><path d="M32,2C15.431,2,2,15.432,2,32c0,16.568,13.432,30,30,30c16.568,0,30-13.432,30-30C62,15.432,48.568,2,32,2z M25.025,50  l-0.02-0.02L24.988,50L11,35.6l7.029-7.164l6.977,7.184l21-21.619L53,21.199L25.025,50z" fill="#43a047"/></svg>
+        {a}</li>
+})}</ul>
+{i.date ? <p className={st.date}>Starting from {i.date}</p>:''}
+<a href={i.link} target="_blank">Enroll Now</a>
+        </div>
+    </div>
+})}
+
+</div>:''}
 {/* <div className={st.tabs}>
 {tabs && tabs.map((i,d)=>{
     return <div onClick={()=>{setactiveIndex(activeIndex != d ? d : 8)}} className={st.tab + " " + (activeIndex == d ? st.activeTab : '') }><div className={st.tabtn}><h2>{i.title}</h2>

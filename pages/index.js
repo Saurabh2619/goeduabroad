@@ -271,11 +271,7 @@ const herocountries = [
     image:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_President_of_Singapore.svg/4320px-Flag_of_the_President_of_Singapore.svg.png',
     color:'skyblue',
   },
-  {
-    title:'Europe',
-    image:'https://upload.wikimedia.org/wikipedia/commons/8/8b/Europe_flag_circle.png',
-    color:'skyblue',
-  },
+
 ]
 
 const partners=[{
@@ -753,7 +749,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
     return <SwiperSlide key={i}>
       <div className={styles.ccard} style={{backgroundImage:`url('${i.image}')`}}>
-      {/* <img src={i.image}/> */}
+      <div className={styles.wt}></div>
       <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
       {/* {i.description? <p>{i.description.substring(0,160)}...</p>:''} */}

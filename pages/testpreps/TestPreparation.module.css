@@ -17,6 +17,89 @@
     max-width: 100%;
 }
 
+.courses {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: -10px;
+}
+
+.course * {
+    font-family: SF Pro Display;
+}
+
+.course {
+    width: 46%;
+    overflow: hidden;
+    padding: 0px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 6px 6px 8px -1px #00000022;
+    margin: 10px;
+}
+
+.course a {
+    width: 100%;
+    background-color: var(--brand-col1);
+    border-radius: 10px;
+    color: white;
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.course ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.course li {
+    margin: 5px 0;
+    color: #444;
+    font-size: 12px;
+}
+
+.course li svg {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.course .date {
+    width: 100%;
+    text-align: center;
+    background-color: #a51c3033;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: var(--brand-col1);
+}
+
+.course .courseimage {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.course .badge {
+    background-color: rgba(238, 135, 1, 0.6);
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.course .coursecontent {
+    padding: 20px;
+}
+
+.course a:hover {
+    filter: brightness(1.2);
+}
+
 .tabtn {
     width: 100%;
     display: flex;
@@ -46,4 +129,10 @@
 
 .activeTab .tabtn svg {
     transform: rotate(45deg);
+}
+
+@media only screen and (max-width:600px) {
+    .course {
+        width: 100%;
+    }
 }
