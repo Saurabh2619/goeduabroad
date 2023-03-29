@@ -215,7 +215,7 @@ return(<>
 <div onMouseOver={()=>{setHovering(true)}} onMouseEnter={()=>{setHovering(true),clearTimeout(timeouta),setTimeoutA(null)}} onMouseLeave={()=>{setHovering(false),setToggle()}} className={styles.desknav} style={{top:positionModal.y,left:positionModal.x}}>
 <ul>
 {sublinks && toggle && sublinks[toggle].map((i,d)=>{
-    return <Link href={`/${i.slug}`}><li style={{animationDelay:`${d*20}ms`}}>{i.icon ? <img src={i.icon}/>:''}{i.title}</li></Link>
+    return <Link href={`/${i.slug}`}><li style={{animationDelay:`${d*20}ms`}}>{i.icon ? <img alt={i.title} src={i.icon}/>:''}{i.title}</li></Link>
 })}
 
 </ul>
@@ -268,7 +268,7 @@ viewBox="0 0 50 50">
     </div>
 
     {sublinks && toggle && sublinks[toggle].map((i,d)=>{
-return <Link href={`/${i.slug}`}><li onClick={()=>{activeToggle?handleSwitchON(false):handleSwitchON(true)}} style={{animationDelay:`${d+3}00ms`}}>{i.icon ? <img src={i.icon}/>:''}{i.title}</li></Link>
+return <Link href={`/${i.slug}`}><li onClick={()=>{activeToggle?handleSwitchON(false):handleSwitchON(true)}} style={{animationDelay:`${d+3}00ms`}}>{i.icon ? <img alt={i.title} src={i.icon}/>:''}{i.title}</li></Link>
     })}
 </div>
 </>)

@@ -119,7 +119,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
 const whyus =[
   {
     title:'Top Notch Service',
-    image:'https://www.theladders.com/wp-content/uploads/manager-office-190723.jpg'
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/v1680129484/manager-office-190723_1_keg50f.webp'
   },
   {
     title:'One-one-One Mentorship Sessions',
@@ -139,7 +139,7 @@ const whyus =[
   },
   {
     title:'Easy to Enroll & Get Started',
-    image:'https://scottflansburg.com/wp-content/uploads/2021/07/How-to-Quickly-Understand-Mathematical-Ideas-in-Just-Three-EASY-STEPS.jpg'
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/v1680129484/How-to-Quickly-Understand-Mathematical-Ideas-in-Just-Three-EASY-STEPS_1_ujjivt.webp'
   }
 ]
 const slides2 =[
@@ -299,7 +299,7 @@ const partners=[{
   title2: "University of Melbourne"
 },
 {
-  image: "/mcgill.png",
+  image: "https://res.cloudinary.com/dbnrwsxj1/image/upload/v1680129484/mcgill_1_wqwwzt.webp",
   image2: "/harvard.png",
   title: "MCGill University ",
   title2: "Harvard University"
@@ -317,7 +317,7 @@ const countries = [
 title:'Australia',
 description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
 stars:4,
-image:'https://www.state.gov/wp-content/uploads/2022/02/shutterstock_1025960785-2560x1300.jpg'
+image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/v1680129484/shutterstock_1025960785-2560x1300_1_suhk9z.webp'
 },
 {
   title:'Canada',
@@ -335,7 +335,7 @@ image:'https://www.state.gov/wp-content/uploads/2022/02/shutterstock_1025960785-
       title:'United States of America',
       description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
       stars:4,
-      image:'https://images.unsplash.com/photo-1471306224500-6d0d218be372?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXNhfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+      image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/v1680129484/photo-1471306224500-6d0d218be372_1_ayi7ff.webp'
       }
 
 ]
@@ -472,25 +472,25 @@ const universities = [
 title:'Cambridge University',
 description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
 
-image:'/camb.webp'
+image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_775,q_22/v1680131251/camb_zlhcfl.webp'
 },
 {
   title:'Harvard University',
   description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
   
-  image:'/harvard.webp'
+  image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_800,q_22/v1680131252/harvard_fqewnf.webp'
   },
   {
     title:'John Hopkins',
     description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     
-    image:'/hopkins.webp'
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_1121,q_47/v1680131252/hopkins_erwtfv.webp'
     },
     {
       title:'MIT',
       description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
       
-      image:'/mit.webp'
+      image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_738,q_37/v1680131080/mit_vauoak.webp'
       }
 
 ]
@@ -584,7 +584,7 @@ async function submitGetStarted(a){
         </div>
         </div></div>:''}  
         <div className={styles.hero}>
-          <video muted playsInline="true" poster='/vidpost.jpg' autoplay="true" loop="true"><source src='/v3_comp.mp4'/></video>
+          <video muted playsInline="true" poster='https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_600,q_29/v1680131427/vidpost_v3pyun.jpg' autoplay="true" loop="true"><source src='/v3_comp.mp4'/></video>
 <div className={styles.mask}></div>
 <div
 className={styles.content}>
