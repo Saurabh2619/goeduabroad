@@ -600,7 +600,7 @@ className={styles.content}>
   <div className={styles.conts}>
 {herocountries && herocountries.map((i,d)=>{
 
-  return <div className={styles.cont}><img src={i.image}/> <p>{i.title}</p></div>
+  return <div className={styles.cont}><img alt={i.title} src={i.image}/> <p>{i.title}</p></div>
 })}</div>
 </div>
 </div>
@@ -668,7 +668,7 @@ className={styles.content}>
 
     return <SwiperSlide key={i}>
       <div className={styles.rcard} >
-      <img src={i.image}/>
+      <img alt={i.college} src={i.image}/>
       <div className={styles.rbadge}>{i.college}</div>
       <div className={styles.cric} style={{backgroundImage:"url("+i.image+")"}}></div>
       <div class={styles.cardcontent}>
@@ -917,8 +917,8 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
   {partners && partners.map((i,d)=>{
 
     return <div className={styles.partners}>
-      <div className={styles.university}><img src={i.image}/><p>{i.title}</p></div>
-      <div className={styles.university}><img src={i.image2}/><p>{i.title2}</p></div>
+      <div className={styles.university}><img alt={i.title} src={i.image}/><p>{i.title}</p></div>
+      <div className={styles.university}><img alt={i.title2} src={i.image2}/><p>{i.title2}</p></div>
     </div>
   })}
 </Marquee>
@@ -963,7 +963,7 @@ return(<>
 <SwiperSlide key={index}><a className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
   
   <div className={styles.dcardcontent}>
-    <img className={styles.colimg} src={item.collegeimage}/>
+    <img alt={item.title} className={styles.colimg} src={item.collegeimage}/>
     <div>
   <h2>{item.title}</h2>
   <p>{item.role}</p></div>
@@ -1010,7 +1010,7 @@ return <div className={styles.partners}>
 <p className={styles.para}>Includes benefits:</p>
 <div className={styles.benefits}>
   {benefits && benefits.map((i,d)=>{
-    return <div className={styles.benefit}><div className={styles.bimage}><img src={i.image}/></div><p>{i.benefit}</p></div>
+    return <div className={styles.benefit}><div className={styles.bimage}><img alt={i.benefit} src={i.image}/></div><p>{i.benefit}</p></div>
   })}
 </div>
 </div>
