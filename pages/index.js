@@ -584,7 +584,7 @@ async function submitGetStarted(a){
         </div>
         </div></div>:''}  
         <div className={styles.hero}>
-          <video muted playsInline="true" autoplay="true" loop="true"><source src='/v2.mp4'/></video>
+          <video muted playsInline="true" poster='/vidpost.jpg' autoplay="true" loop="true"><source src='/v3_comp.mp4'/></video>
 <div className={styles.mask}></div>
 <div
 className={styles.content}>
