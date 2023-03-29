@@ -610,8 +610,8 @@ className={styles.content}>
 <div className={styles.who}>
 
   <div className={styles.col1}>
-    <p>Edu Abroad is founded by former Professor of IIM Lucknow, Dr. Swati Abhishek Mishra. She holds a Master’s in Management in a joint program with University of Cambridge and Massachusetts Institute of Technology, and a PhD. in Strategy and Marketing from University of Cambridge. She was the winner of ………...</p>
-  <Link href={'/about'}><button className={styles.mainbutton}>Read More</button></Link>
+    <p>Edu Abroad is founded by former Professor of IIM Lucknow, Dr. Swati Abhishek Mishra. She holds a Master’s in Management in a joint program with University of Cambridge and Massachusetts Institute of Technology, and a PhD. in Strategy and Marketing from University of Cambridge. She was the winner of ……… Read More on About Page</p>
+  <Link href={'/about'}><button className={styles.mainbutton}>Open About Page</button></Link>
   </div>
   <div className={styles.col2}>
   <ResponsiveIFrame
