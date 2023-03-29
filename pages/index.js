@@ -20,6 +20,7 @@ const ResponsiveIFrame = ({ src }) => {
   return (
     <div className="video-container">
       <iframe
+      aria-label='YouTube Video'
         src={src}
         frameBorder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
