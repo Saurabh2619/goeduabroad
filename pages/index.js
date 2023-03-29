@@ -46,7 +46,7 @@ const [mentors,setMentors] = useState();
 const [loading,setLoading] = useState(false);
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,page) {
 
-  console.log(arguments)
+
 
   var id = Date.now();
   var data = JSON.stringify({
@@ -228,7 +228,7 @@ setWidth();
   },[])
 
   useEffect(()=>{
-    console.log(datac,datad)
+   
     {datac && datac.map((i,d)=>{
       setCourses(res=>([...res,{image:i.featured_image,title:i.heading,description:i.description,slug:i.slug}]))
     })}
@@ -238,37 +238,37 @@ const herocountries = [
  
   {
     title:'USA',
-    image:'/us.png',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_fill,h_44,w_44/v1680132882/us_qsodyv.webp',
     color:'skyblue',
   },
   {
     title:'UK',
-    image:'/uk.png',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_fill,h_44,q_10/v1680132881/uk_elgshi.webp',
     color:'skyblue',
   },
   {
     title:'Canada',
-    image:'https://static.vecteezy.com/system/resources/previews/011/571/442/original/circle-flag-of-canada-free-png.png',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_44,q_10/v1680132882/circle-flag-of-canada-free-png_v9rzo9.webp',
     color:'skyblue',
   },
   {
     title:'Australia',
-    image:'/aus.png',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_fill,h_44,q_10,w_44/v1680132881/aus_poai3u.webp',
     color:'skyblue',
   },
   {
     title:'New Zealand',
-    image:'https://cdn.britannica.com/17/3017-004-DCC13F9D/Flag-New-Zealand.jpg',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_fill,h_44,q_10,w_44/v1680132881/Flag-New-Zealand_lgl97e.webp',
     color:'skyblue',
   },
   {
     title:'Ireland',
-    image:'https://cdn.britannica.com/33/1733-004-5BA407D6/FLAG-Ireland.jpg',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_44,q_10,w_44/v1680132881/FLAG-Ireland_mezg2t.webp',
     color:'skyblue',
   },
   {
     title:'Singapore',
-    image:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_President_of_Singapore.svg/4320px-Flag_of_the_President_of_Singapore.svg.png',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_fill,h_44,q_10,w_44/v1680132987/4320px-Flag_of_the_President_of_Singapore.svg_m5wp3u.webp',
     color:'skyblue',
   },
 
@@ -643,7 +643,7 @@ className={styles.content}>
       
       centeredSlides={false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
@@ -724,7 +724,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       
       centeredSlides={false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
@@ -802,7 +802,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       
       centeredSlides={false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
@@ -870,7 +870,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       
       centeredSlides={false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
@@ -940,7 +940,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       
       centeredSlides={false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
