@@ -960,7 +960,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
 return(<>
 
-<SwiperSlide key={index}><a className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
+<SwiperSlide key={index}><div className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
   
   <div className={styles.dcardcontent}>
     <img alt={item.title} className={styles.colimg} src={item.collegeimage}/>
@@ -971,7 +971,7 @@ return(<>
   <div className={styles.stars}>
 
   </div>
-  </a></SwiperSlide>
+  </div></SwiperSlide>
 
 </>)
 })} 
