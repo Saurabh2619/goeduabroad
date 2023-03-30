@@ -170,7 +170,7 @@ const slides2 =[
   college:'Harvard',
   role:'Executive Director',
   image:'https://fmipa.um.ac.id/wp-content/uploads/2015/11/team-1-200x200.jpg',
-  collegeimage:'/1.png',
+  collegeimage:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_127,q_15/v1680135246/harvard_ajtss6.webp',
 }
 
 ]
@@ -301,7 +301,7 @@ const partners=[{
 },
 {
   image: "https://res.cloudinary.com/dbnrwsxj1/image/upload/v1680129484/mcgill_1_wqwwzt.webp",
-  image2: "/harvard.png",
+  image2: "https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_127,q_15/v1680135246/harvard_ajtss6.webp",
   title: "MCGill University ",
   title2: "Harvard University"
 },
@@ -324,13 +324,13 @@ image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/v1680129484/shutterstoc
   title:'Canada',
   description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
   stars:4,
-  image:'/canada.webp'
+  image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_1423,q_31/v1680135399/canada_w23oxt.webp'
   },
   {
     title:'UK',
     description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     stars:4,
-    image:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/London_Big_Ben_Phone_box.jpg/640px-London_Big_Ben_Phone_box.jpg'
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_726,q_23/v1680135059/London_Big_Ben_Phone_box_drho2j.webp'
     },
     {
       title:'United States of America',
@@ -479,7 +479,7 @@ image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_775,q_22/v168
   title:'Harvard University',
   description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
   
-  image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_800,q_22/v1680131252/harvard_fqewnf.webp'
+  image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_691,q_19/v1680131252/harvard_fqewnf.webp'
   },
   {
     title:'John Hopkins',
