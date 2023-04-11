@@ -138,6 +138,12 @@ const links = [{
 },
 {
 
+    title:'Blog',
+    link:'/blogs',
+    dropdown:false,
+},
+{
+
     title:'Contact Us',
     link:'/contact',
     dropdown:false,
@@ -215,7 +221,7 @@ return(<>
 <div onMouseOver={()=>{setHovering(true)}} onMouseEnter={()=>{setHovering(true),clearTimeout(timeouta),setTimeoutA(null)}} onMouseLeave={()=>{setHovering(false),setToggle()}} className={styles.desknav} style={{top:positionModal.y,left:positionModal.x}}>
 <ul>
 {sublinks && toggle && sublinks[toggle].map((i,d)=>{
-    return <Link href={`/${i.slug}`}><li style={{animationDelay:`${d*20}ms`}}>{i.icon ? <img alt={i.title} src={i.icon}/>:''}{i.title}</li></Link>
+    return <Link href={`/${i.slug}`}><li key={i.title} style={{animationDelay:`${d*20}ms`}}>{i.icon ? <img key={i.title} alt={i.title} src={i.icon}/>:''}{i.title}</li></Link>
 })}
 
 </ul>

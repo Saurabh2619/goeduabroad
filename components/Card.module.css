@@ -1,0 +1,226 @@
+.plan_card {
+    background-color: #ffffff;
+    min-height: 200px;
+    box-shadow: 6px 6px 22px -9px #00000044;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    max-width: 500px;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin: 40px 20px 40px 0px;
+    flex: 0 0 46%;
+}
+
+.plan_card a {
+    width: 100%;
+}
+
+.plan_card:hover {
+    cursor: pointer;
+    box-shadow: 22px 22px 22px -9px #00000022;
+}
+
+.image_holder {
+    z-index: 9;
+    width: 100%;
+    min-height: 200px;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.image_holder h2 {
+    color: white;
+    font-family: Playfair Display;
+    text-shadow: 2px 2px 0px black;
+    color: var(--brand-col1);
+    left: 20px;
+    position: absolute;
+    bottom: 20px;
+    margin: 0;
+    font-size: 26px;
+}
+
+.image_holder p {
+    color: white;
+    font-family: SF Pro Display;
+    right: 20px;
+    position: absolute;
+    background-color: red;
+    padding: 8px;
+    bottom: 20px;
+    border-radius: 8px;
+    line-height: 26px;
+    margin: 0;
+    font-size: 16px;
+}
+
+.content_holder h2 {
+    color: var(--brand-col1);
+    font-family: Playfair Display;
+    margin: 0;
+    font-size: 26px;
+    width: 100%;
+}
+
+.content_holder {
+    flex: 1;
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.content_holder p {
+    color: black;
+    font-family: SF Pro Display;
+    padding: 5px 0px;
+    border-radius: 8px;
+    line-height: normal;
+    margin: 0;
+    font-size: 12px;
+}
+
+.content_holder bro {
+    color: red;
+}
+
+.icon_holder {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: auto;
+    height: auto;
+    padding: 3px;
+    z-index: 10;
+}
+
+.icon_holder .icon_inner {
+    width: 36px;
+    height: 36px;
+    margin-left: 10px;
+}
+
+.enroll_btn {
+    width: auto;
+    height: auto;
+    background-color: red;
+    padding: 10px 5px;
+    position: relative;
+    border-radius: 10px;
+    width: auto;
+    text-align: center;
+    color: white;
+    width: 50%;
+    flex: 1;
+    cursor: pointer;
+    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: scale(1);
+    box-shadow: 2px 2px 12px -2px rgba(255, 0, 0, 0);
+}
+
+.enroll_btn button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    color: white;
+    font-family: SF Pro Display;
+    font-weight: bold;
+    border: 0px solid transparent;
+    background-color: transparent;
+    font-size: 16px;
+    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: scale(1);
+    text-shadow: 0px 0px 0px black;
+    padding: 0;
+    margin: 0;
+}
+
+.enroll_btn:hover {
+    transform: scale(0.97);
+    box-shadow: 2px 2px 12px -2px rgb(255, 0, 0);
+}
+
+.enroll_btn:hover button {
+    transform: scale(1.2);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.363);
+}
+
+.tel {
+    width: 50%;
+    text-align: center;
+}
+
+.tel:hover {
+    color: red;
+}
+
+.btn_holder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.perks {
+    padding: 10px 0px;
+    font-size: 14px;
+    font-family: SF Pro Display;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    background-image: url('/loader.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    background-color: transparent;
+    top: 20%;
+    animation: rotate 2s normal infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.perks ul {
+    margin: 0;
+    padding: 0 0px 0 20px;
+}
+
+.perks li::marker {
+    color: red;
+    padding: 0;
+    margin: 0;
+}
+
+.perks li p {
+    padding: 5px 0;
+}
+
+@media only screen and (max-width:968px) {
+    .plan_card {
+        flex: 0 1 100%;
+        margin: 20px 0px 20px 0px;
+    }
+}

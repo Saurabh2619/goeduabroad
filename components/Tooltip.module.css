@@ -1,0 +1,54 @@
+.tooltip {
+    width: auto;
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip:hover .tipcont,
+.tooltip:focus .tipcont {
+    pointer-events: all;
+    display: flex;
+    animation: revup .3s normal cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+}
+
+@keyframes revup {
+    0% {
+        transform: translateY(0%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(-50%);
+        opacity: 1;
+    }
+}
+
+.tipcont {
+    z-index: 999;
+    display: none;
+    position: absolute;
+    opacity: 0;
+    min-width: 200px;
+    min-height: 100px;
+    height: auto;
+    right: -50%;
+    top: -120%;
+    transform: translateY(-50%);
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px -9px #00000088;
+    width: auto;
+    padding: 15px;
+    pointer-events: none;
+}
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    z-index: -1;
+    background-color: rgb(255, 255, 255);
+    left: 10%;
+    position: absolute;
+    bottom: -3px;
+    transform: translate(0%, 0%) rotate(45deg);
+}

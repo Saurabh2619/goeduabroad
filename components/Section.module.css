@@ -9,6 +9,10 @@
     padding: 0 8vw 50px 8vw;
 }
 
+.noMargin {
+    padding: 0;
+}
+
 .center {
     text-align: center;
     width: 100%;
@@ -47,6 +51,9 @@
     .shead {
         font-size: 6vw;
         line-height: 7vw;
+    }
+    .noMargin {
+        padding: 0;
     }
 }
 
