@@ -410,6 +410,13 @@ async function SubmitContact(){
   /*   triggerInterakt(); */
       /* await axios.post('/') */
       cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com');
+      const {data,error} = await supabase.from('leads').insert({
+        name:formData.fullname,
+email:formData.email,
+phone:formData.phone,
+subject:formData.goal,
+source:'Study Abroad Page'
+    }).select();
   }
   else if(!formData){
     console.log('red')

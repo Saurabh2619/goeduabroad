@@ -91,7 +91,7 @@ export async function getServerSideProps(context) {
 setDa();
     } */
 
-    console.log(datac)
+    
 
 
     return { props: {data,datac} }

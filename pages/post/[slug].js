@@ -140,7 +140,7 @@ const {data,error} = await supabase.from('comments').insert({
      replyTo:c? d:null,
 }).select();
 if(data){
-    console.log(data)
+    
     setLocalComments(res=>([...res,data[0]]))
 }else{}
 
@@ -350,7 +350,7 @@ export async function getServerSideProps(context) {
   
   
   
-  console.log(datac)
+  
   
   
   
