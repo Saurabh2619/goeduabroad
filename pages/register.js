@@ -180,7 +180,12 @@ useEffect(()=>{
     console.log('d')
 },[])
 
-const slides = [{
+const slides = [
+  {
+    image:'/scholarship.jpg',
+    alt:"Edu Abroad Career Consultant "
+  },
+  {
   image:'/EduAbroad.webp',
   alt:"Edu Abroad Career Consultant "
 },{
