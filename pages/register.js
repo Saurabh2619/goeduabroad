@@ -184,14 +184,14 @@ const slides = [
   {
     image:'/scholarship.jpg',
     alt:"Edu Abroad Career Consultant "
-  },
-  {
+  }
+/*   {
   image:'/EduAbroad.webp',
   alt:"Edu Abroad Career Consultant "
 },{
   image:'/rvw.webp',
   alt:'Edu Abroad Career Consultant'
-}]
+} */]
 const faqs=[
   {
     question:"When to get started with the application process?", 
