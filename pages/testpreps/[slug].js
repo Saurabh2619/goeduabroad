@@ -6,6 +6,8 @@ import { supabase } from '../../utils/supabaseClient';
 import CustomSelect from '../../components/CustomSelect';
 import Notifications from '../../components/Notification';
 import st from './TestPreparation.module.css'
+import { NextSeo } from 'next-seo';
+
 function TestPreparation({datac}){
     const [notificationText,setNotificationText] = useState();
     const router = useRouter();
@@ -193,6 +195,30 @@ function validatePhone(phone) {
     return re.test(String(email).toLowerCase());
   }
     return <DefaultLayout>
+          <NextSeo
+      title={"Best "+postData?.heading + " Service | EduAbroad"}
+      description={postData && postData?.metaDesc? `${postData.metaDesc} | Best Study Abroad Consultant in India` : `${postData?.heading} | Best Study Abroad Consultant in India`}
+      canonical={`https://goeduabroad.com/testpreps/${postData?.slug}`}
+      openGraph={{
+        type: "article",
+        url: `https://goeduabroad.com/testpreps/${postData?.slug}`,
+        title: postData?.heading + " | EduAbroad Best Study Abroad Consultant",
+        description : postData && postData?.metaDesc? postData.metaDesc : postData?.heading,
+        article: {
+          publishedTime: postData?.created_at,
+          modifiedTime: postData?.created_at,
+          authors: ["Ashutosh Mishra"],
+          tags: postData?.tags? postData.tags :'',
+        },
+        images: [
+          {
+            url: postData?.featured_image,
+           
+            alt: postData?.heading + " | EduAbroad Best Study Abroad Consultant",
+          },
+        ],
+      }}
+    />
         {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
         {thankyou ? <div className={styles.modaloverlay}><div className={styles.modal}><h2>Thank You for Submission</h2><p>Our Executive will get back to you shortly meanwhile you can browse our website or apply for more services or preparation plans.</p>
         <div>

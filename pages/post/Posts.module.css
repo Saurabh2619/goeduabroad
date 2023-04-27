@@ -10,7 +10,7 @@
 }
 
 .post_holder {
-    width: 100%;
+    width: 60%;
 }
 
 .sidebar {
@@ -312,5 +312,11 @@
     .mainholder {
         flex-direction: column;
         margin-top: 80px;
+    }
+    .post_holder {
+        width: 100%;
+    }
+    .sidebar {
+        width: 100%;
     }
 }

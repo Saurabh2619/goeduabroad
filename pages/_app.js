@@ -1,8 +1,32 @@
 import Head from 'next/head'
 import '../styles/globals.css'
-
+import { DefaultSeo } from 'next-seo'
 export default function App({ Component, pageProps }) {
   return <>
+  
+   <DefaultSeo
+    title="EduAbroad | Best Study Abroad & IELTS Consultant in India"
+    description="EduAbroad is a leading study abroad consultant that helps students achieve their academic and career goals through international education. Our team of experienced professionals provides personalized guidance and support throughout the entire study abroad process, from choosing the right program to securing scholarships and visas. "
+  openGraph={{
+    type:'website',
+    locale:'en_US',
+    title:"EduAbroad | Best Study Abroad & IELTS Consultant in India",
+    url:'https://goeduabroad.com/',
+    description:"EduAbroad is a leading study abroad consultant that helps students achieve their academic and career goals through international education. Our team of experienced professionals provides personalized guidance and support throughout the entire study abroad process, from choosing the right program to securing scholarships and visas. ",
+    siteName:'EduAbroad | Best Study Abroad & IELTS Consultant in India',
+    images:[
+      {
+        url:'https://goeduabroad.com/mainbg.png',
+        alt:'EduAbroad | Best Study Abroad & IELTS Consultant in India'
+      }
+    ]
+  }}
+twitter={{
+  handle:'@eduabroad',
+  site:'@eduabroad',
+  cardType:'summary_large_image'
+}}
+  />
   <Head>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800"/>
  

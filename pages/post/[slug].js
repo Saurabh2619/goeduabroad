@@ -182,7 +182,7 @@ if(data){
         <h1 className={styles.ptitle}>{final.title}</h1>
         <div className={styles.meta}>
             <Tooltip content={<div className={styles.details}>
-                <a className={styles.email} href={`mailto:${final.author.email}`}>{final.author.email}</a>
+               
                 <p className={styles.authors}>{final.author.description}</p>
                 <div className={styles.icons}>
               {/*   {final?.author?.socials && final.author.socials.map((i,d)=>{

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../../utils/supabaseClient';
 import CustomSelect from '../../components/CustomSelect';
 import Notifications from '../../components/Notification';
+import { NextSeo } from 'next-seo';
 
 function StudyAbroad({datac}){
     const [notificationText,setNotificationText] = useState();
@@ -139,6 +140,30 @@ function validatePhone(phone) {
     return re.test(String(email).toLowerCase());
   }
     return <DefaultLayout>
+        <NextSeo
+      title={"Study Abroad in "+postData?.heading + " within your Budget | EduAbroad"}
+      description={postData && postData?.metaDesc? `${postData.metaDesc} | Best Study Abroad Consultant in India` : `Study Abroad in ${postData?.heading} within your Budget | Best Study Abroad Consultant in India`}
+      canonical={`https://goeduabroad.com/studyabroad/${postData?.slug}`}
+      openGraph={{
+        type: "article",
+        url: `https://goeduabroad.com/studyabroad/${postData?.slug}`,
+        title: "Study Abroad in "+postData?.heading + " within your Budget | EduAbroad",
+        description : postData && postData?.metaDesc? `${postData.metaDesc} | Best Study Abroad Consultant in India` : `Study Abroad in ${postData?.heading} within your Budget | Best Study Abroad Consultant in India`,
+        article: {
+          publishedTime: postData?.created_at,
+          modifiedTime: postData?.created_at,
+          authors: ["Dr. Swati Mishra"],
+          tags: postData?.tags? postData.tags :'',
+        },
+        images: [
+          {
+            url: postData?.featured_image,
+           
+            alt: "Study Abroad in "+postData?.heading + " within your Budget | EduAbroad Best Study Abroad Consultant",
+          },
+        ],
+      }}
+    />
         {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
         {thankyou ? <div className={styles.modaloverlay}><div className={styles.modal}><h2>Thank You for Submission</h2><p>Our Executive will get back to you shortly meanwhile you can browse our website or apply for more services or preparation plans.</p>
         <div>
