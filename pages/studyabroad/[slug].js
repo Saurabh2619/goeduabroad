@@ -95,6 +95,7 @@ function setNotification(de){
 const goals=[{title:'Main ',value:'yes'}]
 const filterhtml = JSON.parse(postData ? postData.html : "[{}]");
 useEffect(()=>{
+
 setPostData(datac[0])
     window.addEventListener('scroll',(e)=>{
 
@@ -139,27 +140,31 @@ function validatePhone(phone) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
+
+  useEffect(()=>{
+    console.log(postData)
+},[])
     return <DefaultLayout>
         <NextSeo
-      title={"Study Abroad in "+postData?.heading + " within your Budget | EduAbroad"}
-      description={postData && postData?.metaDesc? `${postData.metaDesc} | Best Study Abroad Consultant in India` : `Study Abroad in ${postData?.heading} within your Budget | Best Study Abroad Consultant in India`}
-      canonical={`https://goeduabroad.com/studyabroad/${postData?.slug}`}
+      title={"Study Abroad in "+ datac[0].heading + " within your Budget | EduAbroad"}
+      description={datac && datac[0].metaDesc ? `${datac[0].metaDesc} | Best Study Abroad Consultant in India` : `Study Abroad in ${datac[0].heading} within your Budget | Best Study Abroad Consultant in India`}
+      canonical={`https://goeduabroad.com/studyabroad/${datac[0]?.slug}`}
       openGraph={{
         type: "article",
-        url: `https://goeduabroad.com/studyabroad/${postData?.slug}`,
-        title: "Study Abroad in "+postData?.heading + " within your Budget | EduAbroad",
-        description : postData && postData?.metaDesc? `${postData.metaDesc} | Best Study Abroad Consultant in India` : `Study Abroad in ${postData?.heading} within your Budget | Best Study Abroad Consultant in India`,
+        url: `https://goeduabroad.com/studyabroad/${datac[0]?.slug}`,
+        title: "Study Abroad in "+datac[0]?.heading + " within your Budget | EduAbroad",
+        description : datac[0] && datac[0]?.metaDesc ? `${datac[0].metaDesc} | Best Study Abroad Consultant in India` : `Study Abroad in ${datac[0].heading} within your Budget | Best Study Abroad Consultant in India`,
         article: {
-          publishedTime: postData?.created_at,
-          modifiedTime: postData?.created_at,
+          publishedTime: datac[0].created_at,
+          modifiedTime: datac[0].created_at,
           authors: ["Dr. Swati Mishra"],
-          tags: postData?.tags? postData.tags :'',
+          tags: datac[0]?.tags? datac[0].tags :'',
         },
         images: [
           {
-            url: postData?.featured_image,
+            url: datac[0].featured_image,
            
-            alt: "Study Abroad in "+postData?.heading + " within your Budget | EduAbroad Best Study Abroad Consultant",
+            alt: "Study Abroad in "+datac[0]?.heading + " within your Budget | EduAbroad Best Study Abroad Consultant",
           },
         ],
       }}

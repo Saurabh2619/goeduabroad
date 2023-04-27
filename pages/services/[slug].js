@@ -143,25 +143,25 @@ function validatePhone(phone) {
   }
     return <DefaultLayout>
         <NextSeo
-      title={"Best "+postData?.heading + " Service | EduAbroad"}
-      description={postData && postData?.metaDesc? `${postData.metaDesc} | Best Study Abroad Consultant in India` : `${postData?.heading} | Best Study Abroad Consultant in India`}
-      canonical={`https://goeduabroad.com/services/${postData?.slug}`}
+      title={"Best "+datac[0].heading + " Service | EduAbroad"}
+      description={datac[0] && datac[0].metaDesc? `${datac[0].metaDesc} | Best Study Abroad Consultant in India` : `${datac[0].heading} | Best Study Abroad Consultant in India`}
+      canonical={`https://goeduabroad.com/services/${datac[0]?.slug}`}
       openGraph={{
         type: "article",
-        url: `https://goeduabroad.com/services/${postData?.slug}`,
-        title: "Best "+postData?.heading + " | EduAbroad",
-        description : postData && postData?.metaDesc? postData.metaDesc : postData?.heading,
+        url: `https://goeduabroad.com/services/${datac[0].slug}`,
+        title: "Best "+datac[0].heading + " | EduAbroad",
+        description : datac[0] && datac[0].metaDesc ? datac[0].metaDesc : datac[0]?.heading,
         article: {
-          publishedTime: postData?.created_at,
-          modifiedTime: postData?.created_at,
+          publishedTime: datac[0].created_at,
+          modifiedTime: datac[0].created_at,
           authors: ["Ashutosh Mishra"],
-          tags: postData?.tags? postData.tags :'',
+          tags: datac[0].tags? datac[0].tags :'',
         },
         images: [
           {
-            url: postData?.featured_image,
+            url: datac[0].featured_image,
            
-            alt: "Best "+postData?.heading + " | EduAbroad",
+            alt: "Best "+datac[0].heading + " | EduAbroad",
           },
         ],
       }}

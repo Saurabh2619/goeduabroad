@@ -155,27 +155,31 @@ if(data){
           
         </Head>
         <NextSeo
-        title={final?.metaTitle}
-        description={final?.metaDesc}
-        
-        openGraph={{
-
-            url:`https://goeduabroad.com/post/${final.slug}`,
-            images:[
-                {
-                    url:final?.img,
-                    alt:final?.metaTitle,
-                    
-                }
-                
-            ]
-        }}
-        twitter={{
-            cardType:'summary',
-            handle:'@goeduabroad',
-        }}
-        
-        /><div className={styles.mainholder}>
+      title={"Best "+final.title + " Service | EduAbroad"}
+      description={`${final.metaDesc}| Best Study Abroad Consultant in India`}
+      canonical={`https://goeduabroad.com/services/${final?.slug}`}
+      openGraph={{
+        type: "article",
+        url: `https://goeduabroad.com/services/${final?.slug}`,
+        title: final?.title + " | EduAbroad",
+        description : final && final.metaDesc? final.metaDesc : final?.title,
+        article: {
+          publishedTime: final.created_at,
+          modifiedTime: final.created_at,
+          authors: ["Ashutosh Mishra"],
+          tags: final?.tags? final.tags : '',
+        },
+        images: [
+          {
+            url: final.img,
+           
+            alt: final.title + " | EduAbroad",
+          },
+        ],
+      }}
+    />
+       
+       <div className={styles.mainholder}>
     <article className={styles.post_holder}>
 <div className={styles.spacer}></div>
 <img className={styles.featured} src={final.img} alt={final.title}/>
