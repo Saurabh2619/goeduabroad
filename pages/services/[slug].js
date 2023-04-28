@@ -6,7 +6,7 @@ import { supabase } from '../../utils/supabaseClient';
 import CustomSelect from '../../components/CustomSelect';
 import Notifications from '../../components/Notification';
 import { NextSeo } from 'next-seo';
-
+import Image from 'next/image'
 function Services({datac}){
     const [notificationText,setNotificationText] = useState();
     const router = useRouter();
@@ -176,7 +176,10 @@ function validatePhone(phone) {
         </div></div>:''}
         {postData != undefined ? <>
 <div key={postData.heading} className={styles.parent}>
-<div className={styles.herocont}><img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} style={{filter:`blur(${scrollPos/50}px) brightness(0.7)`}} className={styles.hero} src={postData.featured_image}/>
+<div className={styles.herocont}><Image alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} style={{filter:`blur(${scrollPos/50}px) brightness(0.7)`}} width={720}
+height={800}  
+objectFit="cover"
+  sizes="(min-width: 768px) 50vw, 100vw" className={styles.hero} src={postData.featured_image}/>
 <h2 className={styles.innerhead}>{postData.heading}</h2>
 </div>
 <div className={styles.content}>
