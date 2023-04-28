@@ -176,7 +176,7 @@ function validatePhone(phone) {
         </div></div>:''}
         {postData != undefined ? <>
 <div key={postData.heading} className={styles.parent}>
-<div className={styles.herocont}><Image alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} style={{filter:`blur(${scrollPos/50}px) brightness(0.7)`}} width={720}
+<div className={styles.herocont}><Image priority={true} placeholder={"blur"}  alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} style={{filter:`blur(${scrollPos/50}px) brightness(0.7)`}} width={720}
 height={800}  
 objectFit="cover"
   sizes="(min-width: 768px) 50vw, 100vw" className={styles.hero} src={postData.featured_image}/>
