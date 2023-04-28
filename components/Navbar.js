@@ -239,8 +239,8 @@ return(<>
     :''}
     </li>
 })}
-<a className={styles.button} href="https://pte.goeduabroad.com">Sign In</a>
-<a className={styles.button} href="/#applyboard">AI Tool</a>
+<li><a className={styles.button} href="https://pte.goeduabroad.com">Sign In</a></li>
+<li><a className={styles.button} href="/#applyboard">AI Tool</a></li>
 </ul>
 </div>
 <div className={styles.toggle + " " + (activeToggle? styles.activetoggle : '')} onClick={()=>{activeToggle?handleSwitchON(false):handleSwitchON(true)}}><svg className={styles.ham} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

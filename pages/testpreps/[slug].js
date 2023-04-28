@@ -229,13 +229,13 @@ function validatePhone(phone) {
         </div></div>:''}
         {postData != undefined ? <>
 <div key={postData.heading} className={styles.parent}>
-<img style={{filter:`blur(${scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
+<img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} style={{filter:`blur(${scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
 <div className={styles.content}>
 
 <div className={styles.left}>
     <div className={styles.breadcrumb}><a href='/'>Home {'>'} </a><p>Test Preparation {'>'} IELTS {">"}</p><p>{postData.heading}</p></div>
-<h3>Prepare for IELTS with EduAbroad</h3>
-<h1>{postData.heading}</h1>
+<h1>Prepare for IELTS with EduAbroad</h1>
+<h2>{postData.heading}</h2>
 <div className={styles.html} dangerouslySetInnerHTML={{__html:filterhtml}}></div>
 {postData && postData.id == 12? <div className={st.courses}>
 
@@ -243,7 +243,7 @@ function validatePhone(phone) {
 
     return <div className={st.course}>
         
-        <img className={st.courseimage} src={i.image}/>
+        <img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} className={st.courseimage} src={i.image}/>
         <div className={st.coursecontent}>
 <h2>{i.title} IELTS Course</h2>
 <p className={st.badge}>{i.badge}</p>
