@@ -179,7 +179,7 @@ function validatePhone(phone) {
         </div></div>:''}
         {postData != undefined ? <>
 <div key={postData.heading} className={styles.parent}>
-<img style={{filter:`blur(${scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
+<img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Study Abroad in" + datac[0]?.heading + " within your Budget | EduAbroad"} style={{filter:`blur(${scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
 <div className={styles.content}>
 
 <div className={styles.left}>
@@ -191,7 +191,7 @@ function validatePhone(phone) {
      </div>
 <div className={styles.right}>
     <h3>Featured Image</h3>
-<div><img className={styles.featured} src={postData.featured_image}/></div>
+<div><img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Study Abroad in" + datac[0]?.heading + " within your Budget | EduAbroad"} className={styles.featured} src={postData.featured_image}/></div>
 <div className={styles.col}><div className={styles.form}>
     <h2>Start your Career in {postData.heading} <img src={postData.flag}/></h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>

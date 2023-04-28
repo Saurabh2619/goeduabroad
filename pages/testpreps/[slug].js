@@ -229,7 +229,7 @@ function validatePhone(phone) {
         </div></div>:''}
         {postData != undefined ? <>
 <div key={postData.heading} className={styles.parent}>
-<img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} style={{filter:`blur(${scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
+<img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : datac[0]?.heading + " | EduAbroad"} style={{filter:`blur(${scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
 <div className={styles.content}>
 
 <div className={styles.left}>
@@ -243,7 +243,7 @@ function validatePhone(phone) {
 
     return <div className={st.course}>
         
-        <img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : "Best" + datac[0]?.heading + "Service in India | EduAbroad"} className={st.courseimage} src={i.image}/>
+        <img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : datac[0]?.heading + " | EduAbroad"} className={st.courseimage} src={i.image}/>
         <div className={st.coursecontent}>
 <h2>{i.title} IELTS Course</h2>
 <p className={st.badge}>{i.badge}</p>
@@ -272,7 +272,7 @@ function validatePhone(phone) {
      </div>
 <div className={styles.right}>
     
-<div><img className={styles.featured} src={postData.featured_image}/></div>
+<div><img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc :  datac[0]?.heading + " | EduAbroad"} className={styles.featured} src={postData.featured_image}/></div>
 <div className={styles.col}><div className={styles.form}>
     <h2>Enroll in IELTS  Preparation Program</h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>

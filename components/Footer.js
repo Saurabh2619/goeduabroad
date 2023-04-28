@@ -92,19 +92,19 @@ const quicks = [{
     }
 }).map((i,d)=>{
     
-    return <a className={styles.link} href={i.link}><li>{i.title}</li></a>
+    return <a className={styles.link} href={i.link}>{i.title}</a>
 })}
 </div>
 <div className={styles.col}>
 <h2>Useful Resources</h2>
 {resources && resources.map((i,d)=>{
-    return <a className={styles.link} href={i.link}><li>{i.title}</li></a>
+    return <a className={styles.link} href={i.link}>{i.title}</a>
 })}
 </div>
 <div className={styles.col}>
 <h2>Social Links</h2>
 {socials && socials.map((i,d)=>{
-    return <a className={styles.link} href={i.link}><li>{i.title}</li></a>
+    return <a className={styles.link} href={i.link}>{i.title}</a>
 })}
 </div>
 
