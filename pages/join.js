@@ -183,12 +183,16 @@ useEffect(()=>{
 const slides = [
  
   {
-  image:'https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png',
+  image:'/kickstart.jpg',
   alt:"Edu Abroad Career Consultant "
 },{
-  image:'https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png',
+  image:'/start-building-website.jpg',
   alt:'Edu Abroad Career Consultant'
-}]
+}
+,{
+    image:'/next-could-be.jpg',
+    alt:'Edu Abroad Career Consultant'
+  }]
 const faqs=[
   {
     question:"When to get started with the application process?", 
@@ -534,7 +538,7 @@ return(<>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
 <h2>India's Leading Study Abroad Consultant</h2>
-<p>Start your journey with us & start your career in abroad without any hassle.</p>
+<p>Cambridge-MIT trained expert shares her No. 1 Strategy for getting you to your Dream University : 'That's what i would do.'</p>
 <div className={styles.trust}>TRUSTED BY THOUSANDS OF STUDENTS</div>
 <Switcher features={features}/>
 <div className={styles.hold}>
