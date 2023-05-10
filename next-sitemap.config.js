@@ -5,7 +5,7 @@ module.exports = {
     robotsTxtOptions: {
         policies: [{
                 userAgent: "*",
-                disallow: ["/404"],
+                disallow: ["/404", "/age-5-10", "/services", "/image.webp"],
 
             },
             {
