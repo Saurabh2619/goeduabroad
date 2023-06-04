@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import {useState,useEffect} from 'react'
-import styles from './Register.module.css'
+import styles from './StudyAbroad.module.css'
 import FAQ from '../components/FAQ'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
@@ -22,8 +22,10 @@ import Switcher from '../components/Switcher'
 import CustomSelect from '../components/CustomSelect'
 import DefaultLayout from '../layouts/DefaultLayout'
 import { supabase } from '../utils/supabaseClient'
+import GradientMarquee from '../components/GradientMarquee'
+import Marquee from 'react-fast-marquee'
 
-export default function Home() {
+export default function Bootcamp() {
 
 const [isSubmitted,setSubmitted] = useState(false)
   const [scrolled,setScrolled] = useState();
@@ -35,6 +37,7 @@ const [activePopup,setActivePopup] = useState(false);
 const [notificationText,setNotificationText] = useState();
 const [timeoutId, setTimeoutId] = useState(null);
 const [datahtml,setHtml] = useState();
+const marqueeText = "Best IELTS Bootcamp | Increase your IELTS Score by 3 Bands | ";
 const [formData,setFormData] = useState();
 const [mentors,setMentors] = useState([]);
 const years = [{
@@ -131,7 +134,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
           },
           {
               "paramKey": "formname",
-              "paramValue": "EduAbraod Webinar Landing Page"
+              "paramValue": "EduAbroad Bootcamp Page"
           }
       ]
   });
@@ -180,11 +183,12 @@ useEffect(()=>{
     console.log('d')
 },[])
 
-const slides = [
- 
-  {
-  image:'/webinarart.jpg',
+const slides = [{
+  image:'/EduAbroad.webp',
   alt:"Edu Abroad Career Consultant "
+},{
+  image:'/rvw.webp',
+  alt:'Edu Abroad Career Consultant'
 }]
 const faqs=[
   {
@@ -312,7 +316,7 @@ console.log("api")
  })
 }
 
-const features = [<>Complete<span className={styles.blue}>&nbsp;Assistance</span></>,<>Mentoring by<span className={styles.blue}>&nbsp;Experienced Professionals</span></>,<>Dedicated IELTS<span className={styles.blue}> Course</span></>,<>Properly Planned <span className={styles.blue}> Career Guidance</span></>];
+const features = [<>Best<span className={styles.blue}> Abroad Consultant</span></>,<>Mentoring by<span className={styles.blue}>&nbsp;Experienced Professionals</span></>,<>Dedicated Consultation for<span className={styles.blue}> Studying in Abroad</span></>,<>Top Notch<span className={styles.blue}> Abroad Career Guidance</span></>];
 const [mobile,setMobile] = useState("desktop");
 useEffect(()=>{
   
@@ -366,6 +370,37 @@ async function triggerInterakt(){
   }).catch(res=>{
     console.log(res)})
 }
+
+
+const countries = [
+  
+  {
+title:'Australia',
+description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+stars:4,
+image:'https://www.state.gov/wp-content/uploads/2022/02/shutterstock_1025960785-2560x1300.jpg'
+},
+{
+  title:'Canada',
+  description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+  stars:4,
+  image:'/canada.webp'
+  },
+  {
+    title:'UK',
+    description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+    stars:4,
+    image:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/London_Big_Ben_Phone_box.jpg/640px-London_Big_Ben_Phone_box.jpg'
+    },
+    {
+      title:'United States of America',
+      description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+      stars:4,
+      image:'https://images.unsplash.com/photo-1471306224500-6d0d218be372?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXNhfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+      }
+
+]
+
 async function SubmitContact(){
   console.log(formData && Object.values(formData).filter((i,d)=> i.length > 2).length)
   if(formData && Object.values(formData).filter((i,d)=> i.length > 2).length > 3 && validateEmail(formData.email ? formData.email :'') && validatePhone(formData.phone ? formData.phone:'')){
@@ -375,17 +410,14 @@ async function SubmitContact(){
     /* TestApi(); */
   /*   triggerInterakt(); */
       /* await axios.post('/') */
-
       cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com');
       const {data,error} = await supabase.from('leads').insert({
         name:formData.fullname,
 email:formData.email,
 phone:formData.phone,
-
 subject:formData.goal,
-source:'Register Page'
+source:'Study Abroad Page'
     }).select();
-
   }
   else if(!formData){
     console.log('red')
@@ -452,10 +484,11 @@ function validateEmail(email) {
   return (
     <>
       <Head>
-        <title>Register for Webinar Now | {currentSub}</title>
-        <meta name="description" content="IPM Careers" />
+        <title>IELTS BootCamp | {currentSub}</title>
+        <meta name="description" content="EduAbroad IELTS Bootcamp" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon} />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' />
       </Head>
       <DefaultLayout hideAI={true} navbar>
       <main className={styles.main}>
@@ -481,74 +514,41 @@ function validateEmail(email) {
 </svg>
 <p>Sending your wish to IIM Gods</p>
 </div> :''}
+{/* <img className={styles.logo} src="/edulogo.svg"/> */}
         <div className={styles.hero}>
-        <Swiper
-     modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={10}
-      slidesPerView={1}
-      loop={true}
-      autoplay={true}
-      speed={1200}
-      pagination={{ clickable: true }}
-      centeredSlides={true}
-      onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
-      onInit={(swiper) => {
-       
-        swiper.navigation.update();
-      }}
-      navigation={{
-        nextEl: '.next',
-        prevEl: '.prev',
-        clickable:true,
-      }}
-   
-    >
-
-
-     
-      
-      {slides && slides.map((item,index)=>{
-
-return(<>
-
-<SwiperSlide key={index}><img alt={item.alt} className={styles.slideimage} src={item.image}/></SwiperSlide>
-
-</>)
-})} 
-
-
-    </Swiper>
-
-
+          
+  
+<img src='/bootcampart.jpg' style={{width:'100%',height:'100%'}}/>
         </div>
 
         
-
+<GradientMarquee text={marqueeText}></GradientMarquee>
           <section className={styles.maincont} id="form">
-
+{/* <img src='/skyline.svg' className={styles.skyline}/> */}
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
-<h2>Know How You can get into a Popular University</h2>
-<p>Cambridge-MIT trained expert talks about tips on getting into popular universities around the world such as Stanford, Yale, MIT etc</p>
-<div className={styles.trust}>TRUSTED BY THOUSANDS OF STUDENTS</div>
+<h2>A Perfect Bootcamp for IELTS Aspirants</h2>
+<p>Explore the ways you can increase your IELTS Score by 3 Bands.</p>
+<div className={styles.trust}>TOP RANKED CONSULTANT IN INDIA FOR ABROAD STUDIES</div>
+
 <Switcher features={features}/>
-<div className={styles.hold}>
+{/* <div className={styles.hold}>
   <p>Students Registered <br/><span className={styles.numbers}>{students}</span></p>
   <p>Admissions<br/><span className={styles.numbers}>{Math.floor(students/3)}</span></p>
   <p>Hours Served<br/><span className={styles.numbers}>{students*3}</span></p>
-</div>
+</div> */}
 <div>
   <div className={styles.progress}>
     <div className={styles.progress_inner} style={{width:formData ? Object.keys(formData).length*100/5 +"%" : '0%'}}><p>Form Progress : {formData ? Object.entries(formData).length*100/5 +"%" : '0%'}</p></div>
  {formData && Object.keys(formData).length*100/5 == 100 ?  <p style={{right:'0',left:'unset'}}>Done</p>:''}
   </div>
+ 
 </div>
 </div>
 <div className={styles.c2}>
   <div className={styles.formcont}>
-<h1 className={styles.team_heading}>Register for Webinar Now.</h1>
+<h1 className={styles.team_heading}>Register Now for IELTS Bootcamp</h1>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
@@ -587,7 +587,17 @@ return(<>
 </div>
           </section>
        
+         
+       
+         {/*  <div className={styles.mar}>
+<Marquee  speed={100} gradient={false}>
+              {countries && countries.map((i,d)=>{
+                return <div className={styles.country3} style={{backgroundImage:`url(${i.image})`}}>
+<h2>{i.title}</h2>
 
+                </div>
+              })}
+            </Marquee></div> */}
         <Section title={"Words by: Our Students"} color="var(--brand-col1)" align="left">
 <div className={styles.parent}>
 <div className={styles.col1}>
@@ -630,7 +640,7 @@ return <div className={styles.card}>
           </div></Section>
           
         
-   
+          
    
    <Section title={"Why choose: Edu Abroad?"} color="var(--brand-col1)" align="left" visible="true">
    <Swiper
@@ -681,6 +691,7 @@ return(<>
     </Swiper>
 
    </Section>
+   <GradientMarquee text={marqueeText}></GradientMarquee>
    <Section title={":Testimonials"} color="var(--brand-col1)" align="left" visible="true">
 
 <div className={styles.reviewholder}>
@@ -719,7 +730,6 @@ return(<>
    </Section>
 
 {/* <button onClick={()=>{handleAPI()}} >Test</button> */}
-
 {/* <div dangerouslySetInnerHTML={{__html :datahtml}}></div> */}
 <div className={styles.spacer}></div>
       </main>
