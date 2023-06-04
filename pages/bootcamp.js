@@ -529,7 +529,7 @@ function validateEmail(email) {
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
 <h2>A Perfect Bootcamp for IELTS Aspirants</h2>
-<p>Explore the ways you can increase your IELTS Score by 3 Bands.</p>
+<h3 className={styles.subhead}>Explore the ways you can increase your IELTS Score by 3 Bands. Target 8+ Bands</h3>
 <div className={styles.trust}>TOP RANKED CONSULTANT IN INDIA FOR ABROAD STUDIES</div>
 
 <Switcher features={features}/>
