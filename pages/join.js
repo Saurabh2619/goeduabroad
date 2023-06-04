@@ -131,7 +131,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
           },
           {
               "paramKey": "formname",
-              "paramValue": "EduAbraod Common Landing Page"
+              "paramValue": "EduAbraod Webinar Landing Page"
           }
       ]
   });
@@ -183,16 +183,9 @@ useEffect(()=>{
 const slides = [
  
   {
-  image:'/kickstart.jpg',
+  image:'/webinarart.jpg',
   alt:"Edu Abroad Career Consultant "
-},{
-  image:'/start-building-website.jpg',
-  alt:'Edu Abroad Career Consultant'
-}
-,{
-    image:'/next-could-be.jpg',
-    alt:'Edu Abroad Career Consultant'
-  }]
+}]
 const faqs=[
   {
     question:"When to get started with the application process?", 
@@ -537,8 +530,8 @@ return(<>
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
-<h2>India's Leading Study Abroad Consultant</h2>
-<p>Cambridge-MIT trained expert shares her No. 1 Strategy for getting you to your Dream University : 'That's what i would do.'</p>
+<h2>Know How You can get into a Popular University</h2>
+<p>Cambridge-MIT trained expert talks about tips on getting into popular universities around the world such as Stanford, Yale, MIT etc</p>
 <div className={styles.trust}>TRUSTED BY THOUSANDS OF STUDENTS</div>
 <Switcher features={features}/>
 <div className={styles.hold}>
