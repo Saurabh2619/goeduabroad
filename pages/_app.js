@@ -40,7 +40,7 @@ twitter={{
   </Head>
   
   <>
-  {process.env.NEXT_PUBLIC_SITE_LIVE ? 
+  {process.env.NEXT_PUBLIC_SITE_LIVE == "true" ? 
   <Component {...pageProps} />:
   <div><h1>Sorry, Something went Wrong!</h1><p>Please contact your cloud hosting provider to resolve the issue.</p></div>}</>
   </>
