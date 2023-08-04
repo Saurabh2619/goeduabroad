@@ -6,7 +6,7 @@ import Section from '../components/Section';
 import DefaultLayout from '../layouts/DefaultLayout';
 import { supabase } from '../utils/supabaseClient';
 import styles from './Contact.module.css'
-
+import axios from 'axios'
 function Contact(props){
 const [formData,setFormData] = useState();
 const [loading,setLoading] = useState(false);
@@ -132,10 +132,26 @@ function validatePhone(phone) {
     return re.test(String(email).toLowerCase());
   }
 
+  async function triggerInterakt(){
+    axios.post('./api/interakt',{
+      userId: Date.now(),
+      phoneNumber: formData.phone,
+      countryCode: "+91",
+      event: "Campaign Notification",
+      name: formData.fullname,
+      email: formData.email,
+  
+      tag: "Landing Page"
+    }).then(res=>{
+      console.log(res)
+    }).catch(res=>{
+      console.log(res)})
+  }
 async function SubmitContact(){
 
     if(formData && formData.fullname && formData.email && formData.phone && validateEmail(formData.email) && validatePhone(formData.phone)){
         setLoading(true);
+        triggerInterakt();
         cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.subject,formData.message,'https://goeduabroad.com','GoEduAbroad Contact Page');
         const {data,error} = await supabase.from('leads').insert({
             name:formData.fullname,

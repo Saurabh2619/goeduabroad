@@ -7,7 +7,7 @@ import CustomSelect from '../../components/CustomSelect';
 import Notifications from '../../components/Notification';
 import st from './TestPreparation.module.css'
 import { NextSeo } from 'next-seo';
-
+import axios from 'axios';
 function TestPreparation({datac}){
     const [notificationText,setNotificationText] = useState();
     const router = useRouter();
@@ -89,7 +89,6 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
   
     xhr.send(data);
   }
-
 function setNotification(de){
 
     setNotificationText(de);
@@ -157,11 +156,27 @@ const tabs = [
         content:"<p style=\"text-align:justify\"><span style=\"font-size:13.999999999999998pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><strong>Courses&nbsp;</strong></span></span></span></p>\r\n\r\n<ol>\r\n\t<li style=\"list-style-type:decimal\"><span style=\"font-size:13.999999999999998pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">ACADEMIC TRAINING&nbsp;</span></span></span></li>\r\n\t<li style=\"list-style-type:decimal\"><span style=\"font-size:13.999999999999998pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">GENERAL TRAINING </span></span></span></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n"
     }
 ]
+async function triggerInterakt(){
+    axios.post('./api/interakt',{
+      userId: Date.now(),
+      phoneNumber: formData.phone,
+      countryCode: "+91",
+      event: "Campaign Notification",
+      name: formData.fullname,
+      email: formData.email,
+  
+      tag: "Landing Page"
+    }).then(res=>{
+      console.log(res)
+    }).catch(res=>{
+      console.log(res)})
+  }
 async function SubmitContact(){
 
 
     if(formData && formData.fullname && formData.email && formData.phone && formData.city && validateEmail(formData.email) && validatePhone(formData.phone)){
         setLoading(true)
+triggerInterakt()
         cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.heading,formData.city,'https://goeduabroad.com','GoEduAbroad Test Prep Page');
         const {data,error} = await supabase.from('leads').insert({
             name:formData.fullname,

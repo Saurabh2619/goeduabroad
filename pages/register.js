@@ -354,21 +354,22 @@ useEffect(()=>{
   })})
 
 
-async function triggerInterakt(){
-  axios.post('./api/interakt',{
-    userId: Date.now(),
-    phoneNumber: formData.phone,
-    countryCode: "+91",
-    event: "Campaign Notification",
-    name: formData.fullname,
-    email: formData.email,
 
-    tag: "Landing Page"
-  }).then(res=>{
-    console.log(res)
-  }).catch(res=>{
-    console.log(res)})
-}
+  async function triggerInterakt(){
+    axios.post('./api/interakt',{
+      userId: Date.now(),
+      phoneNumber: formData.phone,
+      countryCode: "+91",
+      event: "Campaign Notification",
+      name: formData.fullname,
+      email: formData.email,
+  
+      tag: "Landing Page"
+    }).then(res=>{
+      console.log(res)
+    }).catch(res=>{
+      console.log(res)})
+  }
 async function SubmitContact(){
   console.log(formData && Object.values(formData).filter((i,d)=> i.length > 2).length)
   if(formData && Object.values(formData).filter((i,d)=> i.length > 2).length > 3 && validateEmail(formData.email ? formData.email :'') && validatePhone(formData.phone ? formData.phone:'')){
@@ -378,7 +379,7 @@ async function SubmitContact(){
     /* TestApi(); */
   /*   triggerInterakt(); */
       /* await axios.post('/') */
-
+triggerInterakt();
       cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com');
       const {data,error} = await supabase.from('leads').insert({
         name:formData.fullname,

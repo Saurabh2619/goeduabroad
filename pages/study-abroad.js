@@ -407,7 +407,7 @@ async function SubmitContact(){
     setLoader(true)
     
     /* TestApi(); */
-  /*   triggerInterakt(); */
+    triggerInterakt();
       /* await axios.post('/') */
       cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com');
       const {data,error} = await supabase.from('leads').insert({

@@ -16,6 +16,7 @@ import CustomSelect from '../components/CustomSelect';
 import Marquee from "react-fast-marquee";
 import { supabase } from '../utils/supabaseClient';
 import Notifications from '../components/Notification';
+import axios from 'axios'
 const ResponsiveIFrame = ({ src }) => {
   return (
     <div className="video-container">
@@ -513,11 +514,27 @@ image:'https://blog.smartabroad.in/wp-content/uploads/2022/08/studying-student-o
  
 
 ] */
+async function triggerInterakt(){
+  axios.post('./api/interakt',{
+    userId: Date.now(),
+    phoneNumber: formData.phone,
+    countryCode: "+91",
+    event: "Campaign Notification",
+    name: formData.fullname,
+    email: formData.email,
+
+    tag: "Landing Page"
+  }).then(res=>{
+    console.log(res)
+  }).catch(res=>{
+    console.log(res)})
+}
 async function SubmitContact(){
 
   if(formData && formData.fullname && formData.email && formData.phone && formData.goal && validateEmail(formData.email) && validatePhone(formData.phone)){
     
     setLoading(true)
+    triggerInterakt()
     cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.goal,formData.city ? formData.city : 'N/A','https://goeduabroad.com','GoEduAbroad Main Page');
     const {data,error} = await supabase.from('leads').insert({
         name:formData.fullname,

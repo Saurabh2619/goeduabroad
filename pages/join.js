@@ -351,6 +351,7 @@ useEffect(()=>{
   })})
 
 
+
 async function triggerInterakt(){
   axios.post('./api/interakt',{
     userId: Date.now(),
@@ -375,7 +376,7 @@ async function SubmitContact(){
     /* TestApi(); */
   /*   triggerInterakt(); */
       /* await axios.post('/') */
-
+triggerInterakt();
       cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com');
       const {data,error} = await supabase.from('leads').insert({
         name:formData.fullname,

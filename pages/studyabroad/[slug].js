@@ -6,7 +6,7 @@ import { supabase } from '../../utils/supabaseClient';
 import CustomSelect from '../../components/CustomSelect';
 import Notifications from '../../components/Notification';
 import { NextSeo } from 'next-seo';
-
+import axios from 'axios'
 function StudyAbroad({datac}){
     const [notificationText,setNotificationText] = useState();
     const router = useRouter();
@@ -15,6 +15,22 @@ function StudyAbroad({datac}){
 const [postData,setPostData] = useState();
 const [thankyou,setThankYou] = useState(false)
 const [formData,setFormData]  = useState();
+
+async function triggerInterakt(){
+    axios.post('./api/interakt',{
+      userId: Date.now(),
+      phoneNumber: formData.phone,
+      countryCode: "+91",
+      event: "Campaign Notification",
+      name: formData.fullname,
+      email: formData.email,
+  
+      tag: "Landing Page"
+    }).then(res=>{
+      console.log(res)
+    }).catch(res=>{
+      console.log(res)})
+  }
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,page) {
 
     console.log(arguments)
@@ -109,6 +125,7 @@ async function SubmitContact(){
 
     if(formData && formData.fullname && formData.email && formData.phone && validateEmail(formData.email) && validatePhone(formData.phone)){
         setLoading(true)
+        triggerInterakt()
         cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.heading,formData.city,'https://goeduabroad.com','GoEduAbroad Study Abroad Page');
         const {data,error} = await supabase.from('leads').insert({
             name:formData.fullname,
