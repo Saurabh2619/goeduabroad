@@ -155,7 +155,7 @@ if(data){
           
         </Head>
         <NextSeo
-      title={"Best "+final.title + " Service | EduAbroad"}
+      title={final.title }
       description={`${final.metaDesc}| Best Study Abroad Consultant in India`}
       canonical={`https://goeduabroad.com/services/${final?.slug}`}
       openGraph={{
