@@ -1,0 +1,41 @@
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: rgb(255, 174, 0);
+}
+
+.green {
+    background-color: rgb(20, 206, 20);
+}
+
+.indicont {
+    width: 100%;
+    height: 5px;
+    margin: 5px 0;
+}
+
+.parentindi {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+}
+
+.spacex {
+    width: 10px;
+}
+
+.indicate {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+}
+
+.indistroke {
+    border-radius: 200px;
+    height: 100%;
+    max-width: 100%;
+}

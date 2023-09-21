@@ -1,0 +1,49 @@
+.input:focus,
+.input:hover {
+    outline: 0;
+    border: 1px solid var(--brand-col2);
+}
+
+.input {
+    user-select: all;
+    font-family: DM Sans;
+    width: 100%;
+    background-color: white;
+    color: black;
+    box-shadow: 4px 4px 12px -5px #00000022;
+    padding: 1.5vh;
+    border-radius: 10px;
+    border: 0;
+    flex: 1;
+    font-size: 12px;
+    margin: 5px 0;
+    position: relative;
+    border: 1px solid transparent;
+    border: 1px solid #ddd;
+}
+
+.label {
+    font-size: 12px !important;
+    margin: 0;
+}
+.colorwrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;justify-content: center;
+
+}
+
+.color{
+    
+    width: 44px;
+    height: 44px;
+    border-radius: 220px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+}
+.textarea {
+    min-height: 250px;
+    resize: both;
+}

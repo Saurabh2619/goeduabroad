@@ -1,0 +1,25 @@
+.codewrap {
+    border-radius: 20px;
+    overflow: hidden;
+    user-select: auto;
+    margin: 10px 0;
+}
+
+.codewrap * {
+    user-select: text;
+}
+
+.codewrap>div:not(.filepath) {
+    padding: 20px 15px;
+}
+
+.filepath {
+    padding: 10px 20px;
+    font-family: DM Sans;
+    font-weight: 500;
+    font-size: 12px;
+    color: white;
+    margin-bottom: -2px;
+    background: rgb(32, 32, 32);
+    background: linear-gradient(204deg, rgb(55, 53, 73) 0%, rgb(93, 90, 102) 100%);
+}

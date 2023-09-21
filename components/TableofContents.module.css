@@ -1,0 +1,47 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    position: relative;
+    box-shadow: 4px 4px 12px -4px #00000022;
+    padding: 10px 20px;
+    border-radius: 10px;
+    padding-top: 30px;
+    flex-wrap: wrap;
+    font-family: DM Sans;
+    letter-spacing: -0.5px;
+}
+
+.heading {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.badge {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 80%;
+    border-radius: 10px;
+    background-color: var(--brand-accent);
+}
+
+.item {
+    position: relative;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
+
+.item {
+    text-decoration: underline;
+}
+
+.item:hover {
+    color: var(--brand-accent);
+}

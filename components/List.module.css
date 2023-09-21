@@ -1,0 +1,56 @@
+.items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    align-content: flex-start;
+    justify-content: flex-start;
+    font-family: DM Sans;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    background-color: white;
+    box-shadow: 4px 4px 12px -4px #00000022;
+    width: 100%;
+    padding: 10px 20px;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    position: relative;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.item:hover {
+    box-shadow: 8px 8px 22px -2px #00000022;
+}
+
+.item p,
+.item h2 {
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+.badge {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    height: 50%;
+    width: 5px;
+    border-radius: 10px;
+    background-color: var(--brand-accent);
+}
+
+.item h2 {
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.item p {
+    font-size: 12px;
+    color: #999;
+}

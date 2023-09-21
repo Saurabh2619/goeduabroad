@@ -23,6 +23,7 @@ import Card from '../../components/Card';
 import DefaultLayout from '../../layouts/DefaultLayout';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import RenderEditor from '../../components/RenderEditor';
 function Post({data,datac}) {
     
     const router = useRouter();
@@ -205,9 +206,9 @@ return <a href={i.link}><img src={i.icon}/></a>
             
        
            
-            <CustomRender data={JSON.parse(final.jsonContent)}/>
+        
             
-            {final.MarkdownData ?  <ReactMarkdown className={styles.markdown} remarkPlugins={[remarkGfm]}>{final.MarkdownData}</ReactMarkdown>:''}
+            {final.MarkdownData ?  <ReactMarkdown className={styles.markdown} remarkPlugins={[remarkGfm]}>{final.MarkdownData}</ReactMarkdown>:<RenderEditor isJSON={false} renderFrontEndOnly={true} postData={final}  onChange={(e)=>{}}></RenderEditor>}
             </div>
         
        
@@ -336,29 +337,35 @@ return(<>
 }
 export default Post;
 export async function getServerSideProps(context) {
-    // Fetch data from external API
-  
-  
-    const [data, datac] = await Promise.all([
-     await supabase
-  .from('categories')
-  .select('*')
-  , 
-  await supabase
-  .from('blog_posts')
-  .select('*,author!inner(*)')
-  .eq('slug',context.query.slug)
-    ]);
+  // Fetch data from external API
+
+
+  const [data, datac] = await Promise.all([
+   await supabase
+.from('categories')
+.select('*')
+, 
+await supabase
+.from('blog_posts')
+.select('*,author!inner(*)')
+.match({'slug':context.query.slug,'isActive':true})
+  ]);
+
+if(datac?.data?.length == 0){
+  return {
+      redirect: {
+        destination: '/404', // Set the destination route where you want to redirect
+        permanent: false, // Set this to true for a 301 permanent redirect, or false for a 302 temporary redirect
+      }}
+}
+
+
+
+
+
+
 
 
   
-  
-  
-  
-  
-  
-  
-  
-    
-    return { props: {data,datac} }
-  }
+  return { props: {data,datac} }
+}

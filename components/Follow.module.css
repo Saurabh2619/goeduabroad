@@ -1,0 +1,24 @@
+.logos img {
+    width: 36px;
+}
+
+.logos a:not(:first-child) {
+    padding-left: 5px;
+}
+
+.follow h2 {
+    font-size: 26px;
+    font-family: Modernist;
+    font-weight: bold;
+    margin: 15px 0;
+    text-transform: uppercase;
+}
+
+.footer {
+    text-align: right;
+    color: white;
+}
+
+.footer a {
+    filter: invert(1) brightness(1.5);
+}

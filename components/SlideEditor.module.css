@@ -1,0 +1,88 @@
+.swiperditor img {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.main {
+    position: relative;
+    max-width: 20%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    margin: 10px;
+    display: flex;
+}
+
+.main svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    cursor: pointer;
+    background-color: var(--brand-col1);
+    border-radius: 200px;
+    padding: 5px;
+    transform: translate(-50%, -50%);
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.main svg:hover {
+    box-shadow: 4px 4px 12px -5px var(--brand-col1);
+    transform: translate(-50%, -50%) scale(1.23);
+}
+
+.slides {
+    margin: -10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+.controls {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.control p {
+    margin: 0;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.control {
+    width: auto;
+    margin: 10px;
+}
+
+.addSlide {
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    max-width: 20%;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px dashed #ddd;
+}
+
+.swiperditor {
+    width: 100%;
+    position: relative;
+}
