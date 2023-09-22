@@ -2,6 +2,25 @@ import styles from './Card.module.css'
 
 
 import Link from 'next/link';
+
+function isoDateToWords(isoDate) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+  
+    const dateObj = new Date(isoDate);
+    if (isNaN(dateObj)) {
+      return "Invalid date";
+    }
+  
+    const day = dateObj.getDate();
+    const month = months[dateObj.getMonth()];
+    const year = dateObj.getFullYear();
+  
+    return `${day} ${month} ${year}`;
+  }
+
 function Card(props){
     return(
     
@@ -27,9 +46,10 @@ return(<img width={36} height={36} alt={item.title} src={item.source} className=
 
 
 
-
+{props?.date ? <p className={styles.date}>{isoDateToWords(props.date)}</p>:''}
 <h2>{props.title}</h2>
-<span className={styles.perks}>{props.description ? props.description.substring(0,74)+"......" : ''}</span>
+<span className={styles.perks}>{props.description ? props.description.substring(0,154)+"......" : ''}</span>
+
 </div></a></Link>
     </div>
     

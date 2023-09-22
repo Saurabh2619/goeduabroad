@@ -19,7 +19,23 @@ useEffect(()=>{
 setQuery(router.query.string)
 }
 })
-
+function isoDateToWords(isoDate) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+  
+    const dateObj = new Date(isoDate);
+    if (isNaN(dateObj)) {
+      return "Invalid date";
+    }
+  
+    const day = dateObj.getDate();
+    const month = months[dateObj.getMonth()];
+    const year = dateObj.getFullYear();
+  
+    return `${month} ${day}, ${year}`;
+  }
 const d = new Date(Date.now());
     return(
 <DefaultLayout isSideBar={true} isHomepage={false} cat={data.data} isActivePassive={true} >
@@ -51,7 +67,7 @@ const d = new Date(Date.now());
 {datac?.data && datac?.data?.length > 0 ? datac.data.map((item,index)=>{
   return(
 <>
-    <Card icons={item.icons} key={index} slug={item.slug} title={item.title} description={item.intro} image={item.img}/>
+    <Card icons={item.icons} key={index} slug={item.slug} date={item.created_at} title={item.title} description={item.intro} image={item.img}/>
   </>
   )
 }):'Posts are Unavailable'}

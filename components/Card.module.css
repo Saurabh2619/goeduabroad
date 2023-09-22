@@ -15,7 +15,12 @@
     margin: 40px 20px 40px 0px;
     flex: 0 0 46%;
 }
-
+.date{
+    border: 1px solid #ddd;
+    padding: 5px 10px !important;
+    margin: 0 !important;
+    border-radius: 200px !important;
+}
 .plan_card a {
     width: 100%;
 }
@@ -65,7 +70,7 @@
     color: var(--brand-col1);
     font-family: Playfair Display;
     margin: 0;
-    font-size: 26px;
+    font-size: 18px;
     width: 100%;
 }
 
