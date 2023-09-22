@@ -35,4 +35,18 @@
     .gridr {
         padding-right: 0;
     }
+    .post_holder{
+        padding: 10px 0px;
+    }
+    .gridr{
+        padding: 0 20px;
+    }
+    .mainhead{
+        padding: 0 20px;
+        padding-top: 100px;
+        color: var(--brand-col1);
+    }
+    .para{
+        padding: 0 20px;
+    }
 }

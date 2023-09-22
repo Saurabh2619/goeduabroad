@@ -12,7 +12,7 @@ function CustomSelect(props) {
 useEffect(()=>{
     
     if(props?.defaultIndex != undefined && typeof props.defaultIndex == "number") {
-    setActiveState({ value: props.objects[props.defaultIndex].value, title: props.objects[props.defaultIndex].title, ind: props.defaultIndex });}
+    setActiveState({ value: props.objects[props.defaultIndex]?.value, title: props.objects[props.defaultIndex]?.title, ind: props.defaultIndex });}
 },[])
 
   return (
