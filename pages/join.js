@@ -368,9 +368,56 @@ async function triggerInterakt(){
     console.log(res)})
 }
 async function SubmitContact(){
-  console.log(formData && Object.values(formData).filter((i,d)=> i.length > 2).length)
-  if(formData && Object.values(formData).filter((i,d)=> i.length > 2).length > 3 && validateEmail(formData.email ? formData.email :'') && validatePhone(formData.phone ? formData.phone:'')){
+  
+  if (!formData.fullname || formData.fullname.trim() === '') {
+    setNotification('Fullname field is empty');
+    return null;
+  }
 
+  // Check email
+  if (!formData.email || formData.email.trim() === '') {
+    setNotification('Email field is empty');
+    return null;
+  }
+
+  // Validate the email format using a regular expression
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!emailRegex.test(formData.email)) {
+    setNotification('Email is not valid');
+    return null;
+  }
+
+  // Check phone
+  if (!formData.phone || formData.phone.trim() === '') {
+    setNotification('Phone field is empty');
+    return null;
+  }
+
+  // Validate the phone number
+  const phoneRegex = /^[0-9]{10}$/; // Change the regex pattern as needed
+  if (!phoneRegex.test(formData.phone)) {
+    setNotification('Phone number is not valid');
+    return null;
+  }
+
+  // Check year
+  if (!formData.year || formData.year.trim() === '') {
+    setNotification('Year field is empty');
+    return null;
+  }
+
+  // Validate the year
+  const year = parseInt(formData.year);
+  if (isNaN(year) || year < 1900 || year > 2099) {
+    setNotification('Year is not valid');
+    return null;
+  }
+
+  // Check city
+  if (!formData.city || formData.city.trim() === '') {
+    setNotification('City field is empty');
+    return null;
+  }
     setLoader(true)
     
     /* TestApi(); */
@@ -387,15 +434,7 @@ subject:formData.goal,
 source:'Register Page'
     }).select();
 
-  }
-  else if(!formData){
-    console.log('red')
-setNotification('Please fill all the fields')
-  }
-  else{
-    console.log(formData)
-setNotification('Please fill all the fields')
-  }
+ 
  
 }
 
