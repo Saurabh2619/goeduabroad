@@ -368,7 +368,10 @@ async function triggerInterakt(){
     console.log(res)})
 }
 async function SubmitContact(){
-  
+  if(formData == undefined){
+    setNotification('All Fields are empty')
+    return null
+  }
   if (!formData.fullname || formData.fullname.trim() === '') {
     setNotification('Fullname field is empty');
     return null;

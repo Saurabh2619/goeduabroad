@@ -530,8 +530,60 @@ async function triggerInterakt(){
     console.log(res)})
 }
 async function SubmitContact(){
+  if(formData == undefined){
+    setNotification('All Fields are empty')
+    return null
+  }
+  if (!formData.fullname || formData.fullname.trim() === '') {
+    setNotification('Fullname field is empty');
+    return null;
+  }
 
-  if(formData && formData.fullname && formData.email && formData.phone && formData.goal && validateEmail(formData.email) && validatePhone(formData.phone)){
+  // Check email
+  if (!formData.email || formData.email.trim() === '') {
+    setNotification('Email field is empty');
+    return null;
+  }
+
+  // Validate the email format using a regular expression
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!emailRegex.test(formData.email)) {
+    setNotification('Email is not valid');
+    return null;
+  }
+
+  // Check phone
+  if (!formData.phone || formData.phone.trim() === '') {
+    setNotification('Phone field is empty');
+    return null;
+  }
+
+  // Validate the phone number
+  const phoneRegex = /^[0-9]{10}$/; // Change the regex pattern as needed
+  if (!phoneRegex.test(formData.phone)) {
+    setNotification('Phone number is not valid');
+    return null;
+  }
+
+  // Check year
+  if (!formData.year || formData.year.trim() === '') {
+    setNotification('Year field is empty');
+    return null;
+  }
+
+  // Validate the year
+  const year = parseInt(formData.year);
+  if (isNaN(year) || year < 1900 || year > 2099) {
+    setNotification('Year is not valid');
+    return null;
+  }
+
+  // Check city
+  if (!formData.city || formData.city.trim() === '') {
+    setNotification('City field is empty');
+    return null;
+  }
+  
     
     setLoading(true)
     triggerInterakt()
@@ -553,12 +605,8 @@ setThankYou(true)
         setLoading(false)
 setNotification('Something went Wrong')
     }
-}
-else{
-    setLoading(false)
-setNotification('Please Fill all the fields correctly')
 
-}
+
 
 
 }

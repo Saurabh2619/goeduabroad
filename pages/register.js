@@ -371,6 +371,11 @@ useEffect(()=>{
       console.log(res)})
   }
 async function SubmitContact(){
+
+  if(formData == undefined){
+    setNotification('All Fields are empty')
+    return null
+  }
   /* console.log(formData && Object.values(formData).filter((i,d)=> i.length > 2).length) */
   if (!formData.fullname || formData.fullname.trim() === '') {
     setNotification('Fullname field is empty');
