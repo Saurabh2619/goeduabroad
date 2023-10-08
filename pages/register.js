@@ -22,6 +22,7 @@ import Switcher from '../components/Switcher'
 import CustomSelect from '../components/CustomSelect'
 import DefaultLayout from '../layouts/DefaultLayout'
 import { supabase } from '../utils/supabaseClient'
+import { cbKey } from '../utils/cronBerryKey'
 
 export default function Home() {
 
@@ -86,7 +87,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
 
   var id = Date.now();
   var data = JSON.stringify({
-      "projectKey": "VW50aXRsZSBQcm9qZWN0MTY1MDAxMzUxMDU5MQ==",
+      "projectKey": cbKey,
       "audienceId": id,
       "name": username,
       "email": u_email,

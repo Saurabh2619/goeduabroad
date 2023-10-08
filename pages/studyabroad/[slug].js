@@ -7,6 +7,7 @@ import CustomSelect from '../../components/CustomSelect';
 import Notifications from '../../components/Notification';
 import { NextSeo } from 'next-seo';
 import axios from 'axios'
+import { cbKey } from '../../utils/cronBerryKey';
 function StudyAbroad({datac}){
     const [notificationText,setNotificationText] = useState();
     const router = useRouter();
@@ -37,7 +38,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
   
     var id = Date.now();
     var data = JSON.stringify({
-        "projectKey": "VW50aXRsZSBQcm9qZWN0MTY1MDAxMzUxMDU5MQ==",
+        "projectKey": cbKey,
         "audienceId": id,
         "name": username,
         "email": u_email,

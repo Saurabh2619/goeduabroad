@@ -17,6 +17,7 @@ import Marquee from "react-fast-marquee";
 import { supabase } from '../utils/supabaseClient';
 import Notifications from '../components/Notification';
 import axios from 'axios'
+import { cbKey } from '../utils/cronBerryKey';
 const ResponsiveIFrame = ({ src }) => {
   return (
     <div className="video-container">
@@ -52,7 +53,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
 
   var id = Date.now();
   var data = JSON.stringify({
-      "projectKey": "VW50aXRsZSBQcm9qZWN0MTY1MDAxMzUxMDU5MQ==",
+      "projectKey": cbKey,
       "audienceId": id,
       "name": username,
       "email": u_email,
