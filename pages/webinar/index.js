@@ -493,22 +493,27 @@ const studentsz = [
     {
         image:'/vishist.png',
         name:'Vishist Tiwari',
+        college:'University of Manchester, Cornell University',
     },
     {
         image:'/titik.png',
         name:'Titiksha Singh',
+        college:'University of Buffalo',
     },
     {
         image:'/ananya.png',
-        name:'Anannya',
+        college:'University of London',
+        name:'Annanya',
     },
     {
         image:'/naman.png',
         name:'Dr. Naman Tandon',
+        college:'Kings College London,Universite de Paris',
     },
     {
         image:'/bhavya.png',
         name:'Bhavya Mishra',
+        college:'The University of Warwick',
     }
     
 ]
@@ -598,27 +603,12 @@ function validateEmail(email) {
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
-<h2>Register for Our Webinar: India's Premier Abroad Education Consultants</h2>
-<p>Unlock Your Global Opportunities with Expert Guidance</p>
-<div className={styles.trust}>TOP RANKED CONSULTANT IN INDIA FOR ABROAD STUDIES</div>
-
-<Switcher features={features}/>
-{/* <div className={styles.hold}>
-  <p>Students Registered <br/><span className={styles.numbers}>{students}</span></p>
-  <p>Admissions<br/><span className={styles.numbers}>{Math.floor(students/3)}</span></p>
-  <p>Hours Served<br/><span className={styles.numbers}>{students*3}</span></p>
-</div> */}
-<div>
-  <div className={styles.progress}>
-    <div className={styles.progress_inner} style={{width:formData ? Object.keys(formData).length*100/5 +"%" : '0%'}}><p>Form Progress : {formData ? Object.entries(formData).length*100/5 +"%" : '0%'}</p></div>
- {formData && Object.keys(formData).length*100/5 == 100 ?  <p style={{right:'0',left:'unset'}}>Done</p>:''}
-  </div>
- 
-</div>
+<div className={styles.yt}>
+<YouTube className='embed-container' title='' videoId="Srx7gFesyH8" opts={opts}  /></div>
 </div>
 <div className={styles.c2}>
   <div className={styles.formcont}>
-<h1 className={styles.team_heading}>Register Now for our Webinar</h1>
+<h1 className={styles.team_heading}>Register Now for the FREE Webinar</h1>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
@@ -676,6 +666,7 @@ function validateEmail(email) {
             return <div className={styles.card + " " + styles.scard}>
                 <img src={i.image}/>
                 <h2>{i.name}</h2>
+                <p>{i.college}</p>
                 </div>
         })
     }
@@ -684,28 +675,7 @@ function validateEmail(email) {
             <div className={styles.spacer}></div>
             <div className={styles.spacer}></div>
             <div className={styles.spacer}></div>
-        <Section title={""} color="var(--brand-col1)" align="left">
-<div className={styles.parent}>
-<div className={styles.col1}>
-    <h1 className={styles.head5}>Catch a Glimpse: What Awaits You in Our Webinar</h1>
-<h2>Know More About this webinar with the help of this video</h2>
-{/* <p>Our students are thrilled with the classes that we offer. They consistently express their satisfaction with the quality of the instruction, the engaging curriculum, and the supportive learning environment. They appreciate the individualized attention that they receive from our dedicated teachers, and they are making steady progress in their studies. Overall, our students are incredibly happy with the education that they are receiving, and it shows in their enthusiasm and dedication to their studies.</p> */}
-{/* <ul className={styles.words}>
-	<li>Many of our students have commented on how much they enjoy the interactive nature of the classes, with a variety of activities and group work that keeps them engaged and motivated.</li>
-	<li>The feedback that we receive from our students consistently highlights the supportive and inclusive culture of our school. They feel welcomed and valued as members of our community, and they appreciate the inclusive and respectful atmosphere that our teachers create.</li>
-	<li>In addition to the positive comments about the classes themselves, our students also often express appreciation for the extra support that is available to them. Whether it&#39;s through tutoring, office hours, or other resources, our students know that they can get the help that they need to succeed.</li>
-	<li>Overall, our students are extremely satisfied with the education that they are receiving, and we are continually working to improve and enhance the learning experience for all of our students.</li>
-</ul> */}
-
-
-</div>
-<div className={styles.col2}>
-<div className={styles.yt}>
-<YouTube className='embed-container' title='' videoId="Srx7gFesyH8" opts={opts}  /></div>
-</div>
-</div>
-
-        </Section>
+        
        
         {/* <Section title={"Know : Your Mentors"} color="var(--brand-col1)" align="left">
         <div className={styles.parent2}>
