@@ -1209,7 +1209,7 @@ p.rtitle {
         height: 15vw;
     }
     .maincont {
-        flex-direction: column;
+        flex-direction: column-reverse;
         flex-wrap: wrap;
     }
     .maincont2 {
