@@ -581,7 +581,7 @@ function validateEmail(email) {
   <h2 className={styles.head}><span style={{color:'var(--brand-col1)',fontWeight:"700",fontFamily:"Playfair Display"}}>Do you want to Study Abroad </span><br/>but don't know where to start? </h2>
  <div className={styles.content}> <p style={{color:"black"}}>Join Us !<br/>
  <span style={{color:"var(--brand-col1)"}}>
- October 8 @ 6 PM </span></p>
+ October 15th @ 6 PM </span></p>
   </div>
   <a href='#form' className={styles.btn}>Register Now</a>
 </div>
