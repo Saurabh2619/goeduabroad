@@ -932,7 +932,7 @@ p.rtitle {
 .divider2 {
     display: flex;
     width: 50%;
-    max-height: 80vh;
+    
     z-index: 2;
 }
 
