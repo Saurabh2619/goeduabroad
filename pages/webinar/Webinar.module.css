@@ -935,6 +935,9 @@ p.rtitle {
     
     z-index: 2;
 }
+.divider2 img{
+    max-height: 80vh;
+}
 
 .hero {
     display: flex;
@@ -1000,7 +1003,7 @@ p.rtitle {
 
 .divider1 .head {
     color: black;
-    font-size: 3rem;
+    font-size: 3vw;
     font-weight: 500;
     margin: 5px 0;
     font-family: SF Pro Display;
