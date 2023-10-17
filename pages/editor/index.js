@@ -812,7 +812,7 @@ else if(i.type == "file"){
 
 else if(i.type == "select"){return <>
 <h2>{i.label}</h2>
-<CustomSelect defaultIndex={posteditorData.cat.id} noPadding out z={9} objects={i?.objects} defaultText={"Select Category"} setSelect={(a)=>{console.log(a),setPostEditorData(res=>({...res,cat:({...res.cat,id:a})}))}} /></>
+<CustomSelect defaultIndex={posteditorData.cat.id} noPadding out z={9} objects={i?.objects} defaultText={"Select Category"} setSelect={(a)=>{console.log(a),setPostEditorData(res=>({...res,cat:({...res.cat,id:categories[a].id})}))}} /></>
 }
 else if(i.type == "dynamic"){
     
