@@ -1,0 +1,284 @@
+.logo{
+    position: relative;
+   
+    width: 44px;
+}
+.main{
+    max-width: 800px;
+    height: 100vh;
+    width: 100%;
+    
+    
+}
+
+.bg{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background:url('/grid.jpg');
+    background-repeat: repeat;
+    background-size: 300px;
+    opacity: 0.2;
+}
+.error{
+    color: red;
+    font-size: 12px;
+}
+.formcontainer{
+    width: 100%;
+    background-color: white;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: slideup .6s normal cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+    box-shadow: 4px 4px 12px -5px #00000022;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.form input{
+    width: 100%;
+    background-color: white;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px ;
+    font-family:  SF Pro Display;
+}
+
+.form input::placeholder{
+    font-family:  SF Pro Display;
+}
+.not{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding: 10px 20px;
+    background-color: var(--brand-col1);
+    font-family: SF Pro Display;
+    z-index: 99999;
+    color: white;
+    text-align: center;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: comeup 2s normal cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+}
+.game{
+    width: 100%;
+    overflow: hidden;
+    background-color: white;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: slideup .6s normal cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;align-items: center;
+    align-content: center;
+    min-height: 60vh;
+    border-radius: 20px;
+    padding: 10px 30px;
+}
+.scoreMain{
+    text-align: center;
+    width: 100%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;justify-content: center;
+    align-content: center;
+}
+.det{
+    text-align: center;
+    width: 100%;
+    max-width: 250px;
+    margin: 10px auto;
+    color: #707070;
+}
+.green{
+text-align:center;
+width: auto;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+align-content: center;justify-content: center;
+font-size: 2rem;
+margin: 0 auto;
+height: 100px;
+width: 100px;
+border-radius: 1000px;
+color: white;
+
+    background-color: #4fa10b;
+}
+@keyframes slideup {
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+@keyframes comeup {
+    0%{
+        transform: translateY(100%);
+    }
+    20%{
+        transform: translateY(0);
+    }
+    90%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(100%);
+    }
+    
+}
+.form label{
+    font-family:  SF Pro Display;
+    margin: 5px 0;
+    font-weight: 100;
+    font-size: 14px;
+    display: inline-block;
+}
+.form input[type="checkbox"]{
+    text-align: left;
+    width: auto;
+    
+}
+.nav{
+    text-align: left;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0px;
+    width: 100%;
+    max-width: 800px;
+
+    padding: 10px 20px;
+    z-index: 9999;
+    background-color: white;
+    box-shadow: 4px 4px 22px -10px #00000022;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    border-radius: 0 0 10px 10px;
+
+}
+.fullmain{
+    min-height: 100vh;
+    max-height: 100vh;
+  background-color: #ececec;
+  
+    margin: 0 auto;
+    position: relative;display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;justify-content: center;
+}
+
+.nav h2{
+    color: var(--brand-col1);
+}
+.main *{
+    font-family: SF Pro Display;
+}
+.container{
+    position: relative;
+    width: 100%;
+    flex: 1;
+    
+    height: 100%;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;align-content: center;
+}
+
+.welcome{
+    width: 100%;
+    text-align: center;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: slideup .6s normal cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+    background-color: white;
+    position: relative;
+    padding: 10px 20px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;justify-content: center;
+    border-radius: 20px;
+    box-shadow: 4px 4px 22px -10px #00000022;
+}
+.questions{
+    width: 100%;
+}
+.question{
+    opacity: 0;
+    display: none;
+    width: 100%;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: slideup .6s normal cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+}
+.question h2{
+    margin: 5px 0;
+}
+.question p{
+    margin: 5px 0;
+}
+.activeQuestion{
+   
+   
+    display: flex;
+    opacity: 1;
+    flex-direction: column;
+    
+    
+}
+
+.options{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;align-items: flex-start;align-content: flex-start;
+}
+.option{
+    cursor: pointer;
+    background-color: var(--brand-col1);
+    border: 1px solid var(--brand-col1);
+    padding: 10px 20px;
+    color:white;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    
+}
+.option:hover{
+background-color: white;
+color: var(--brand-col1);
+}
+.button{
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--brand-col1);
+    cursor: pointer;
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.button:hover{
+filter: brightness(0.8);
+}
+
+
+
