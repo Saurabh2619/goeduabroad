@@ -556,15 +556,15 @@ function validateEmail(email) {
       </Head>
       <DefaultLayout hideAI={true} navbar>
       <main className={styles.main}>
-        {isSubmitted? <div className={styles.modal}>
+      {isSubmitted? <div className={styles.modal}>
           <div className={styles.modalinner}>
           <h2>Thank You !!</h2>
-          <h3>Choosing Us today is the best decision you could have made yet.</h3>
+          <h3>Choosing EduAbroad today is the best decision you could have made yet.</h3>
           <p>We've received your details</p>
           <p>Our Executive will get back to you shortly.
           </p>
 
-          <p>For Quick Assitance you can call us on : <a href="tel:+919616383524">+91 96163 83524</a></p>
+          <p>For Quick Assistance you can call us on : <a href="tel:+919044442989">+919044442989</a></p>
           <a href="/#courses" className={styles.submit}>Explore Our Courses</a><a className={styles.submit} href="/">Visit Our Website</a>
           </div></div>:''}
       {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
