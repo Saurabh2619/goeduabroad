@@ -94,7 +94,7 @@ export async function getServerSideProps(context) {
   , 
   await supabase
   .from('blog_posts')
-  .select('*,cat!inner(*)').eq('isActive',true).order('created_at',{ascending:false})
+  .select('title,created_at,author,intro,slug,img,icons,cat!inner(*)').eq('isActive',true).order('created_at',{ascending:false})
     ]);
     let da = 0;
  /*    function setDa(){
