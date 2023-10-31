@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import {useState,useEffect} from 'react'
-import styles from './Webinar.module.css'
+import styles from './Test.module.css'
 import FAQ from '../../components/FAQ'
 import Footer from '../../components/Footer'
 import Navbar from '../../components/Navbar'
@@ -131,7 +131,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
           },
           {
               "paramKey": "formname",
-              "paramValue": "EduAbroad Webinar Page"
+              "paramValue": "EduAbroad All India Mock Test Page"
           }
       ]
   });
@@ -460,7 +460,7 @@ async function SubmitContact(){
 email:formData.email,
 phone:formData.phone,
 subject:formData.goal,
-source:'Study Abroad Page'
+source:'All India Mock Test Page'
     }).select();
  
  
@@ -583,32 +583,38 @@ function validateEmail(email) {
           
        <div className={styles.dotgrid} />
 <div className={styles.divider1}>
-  <h2 className={styles.head}><span style={{color:'var(--brand-col1)',fontWeight:"700",fontFamily:"Playfair Display"}}>Do you want to Study Abroad </span><br/>but don't know where to start? </h2>
- <div className={styles.content}> <p style={{color:"black"}}>Join Us !<br/>
- <span style={{color:"var(--brand-col1)"}}>
- October 15th @ 6 PM </span></p>
+  <h2 className={styles.head}><span style={{color:'var(--brand-col1)',fontWeight:"700",fontFamily:"Playfair Display"}}>Are you preparing for </span><br/>IELTS, TOEFL, PTE? </h2>
+ 
+ 
+ 
+ <div className={styles.content}><h3 className={styles.claim}>Sign Up for</h3> <p style={{color:"black"}}><span style={{color:"var(--brand-col1)"}}>ALL INDIA FREE MOCK TEST</span><br/>
+ and get upto <span style={{color:"var(--brand-col1)"}}>
+  100% Scholarship </span></p>
   </div>
   <a href='#form' className={styles.btn}>Register Now</a>
+  <p>4th & 5th November</p>
 </div>
 <div className={styles.divider2}>
-  <img src='/lp.png'/>
+  <img src='/student22.png'/>
 </div>
 
         </div>
 
         
-<GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee>
+<GradientMarquee text="Preparing for IELTS,TOEFL,PTE? | Preparing for IELTS,TOEFL,PTE?"></GradientMarquee>
           <section className={styles.maincont} id="form">
 {/* <img src='/skyline.svg' className={styles.skyline}/> */}
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
 <div className={styles.yt}>
-<YouTube className='embed-container' title='' videoId="Srx7gFesyH8" opts={opts}  /></div>
+{/* <YouTube className='embed-container' title='' videoId="Srx7gFesyH8" opts={opts}  /> */}
+
+</div>
 </div>
 <div className={styles.c2}>
   <div className={styles.formcont}>
-<h1 className={styles.team_heading}>Register Now for the FREE Webinar</h1>
+<h1 className={styles.team_heading}>Register Now for the All India Mock Test</h1>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
@@ -649,7 +655,7 @@ function validateEmail(email) {
        
          
        
-          <div className={styles.mar}>
+         {/*  <div className={styles.mar}>
 <Marquee  speed={100} gradient={false}>
               {countries && countries.map((i,d)=>{
                 return <div className={styles.country3} style={{backgroundImage:`url(${i.image})`}}>
@@ -658,7 +664,7 @@ function validateEmail(email) {
                 </div>
               })}
        
-            </Marquee></div>
+            </Marquee></div> */}
             <Section title={"Our Results"} color="var(--brand-col1)" align="left">
 <div className={styles.cards}>
     {
@@ -748,7 +754,7 @@ return(<>
     </Swiper>
 
    </Section>
-   <GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee>
+   <GradientMarquee text="Preparing for IELTS,TOEFL,PTE? | Preparing for IELTS,TOEFL,PTE?"></GradientMarquee>
    <Section title={":Testimonials"} color="var(--brand-col1)" align="left" visible="true">
 
 <div className={styles.reviewholder}>
@@ -782,9 +788,9 @@ return(<>
  <img alt="EduAbroad Results"  className={styles.results}  src={'/'}/>
 
    </Section> */}
-   <Section title={"Frequently:Asked Questions"} color="var(--brand-col1)" align="left" visible="true" >
+  {/*  <Section title={"Frequently:Asked Questions"} color="var(--brand-col1)" align="left" visible="true" >
    <FAQ items={faqs}/>
-   </Section>
+   </Section> */}
 
 {/* <button onClick={()=>{handleAPI()}} >Test</button> */}
 {/* <div dangerouslySetInnerHTML={{__html :datahtml}}></div> */}
