@@ -496,7 +496,7 @@ function validateEmail(email) {
         {isSubmitted? <div className={styles.modal}>
           <div className={styles.modalinner}>
           <h2>Thank You !!</h2>
-          <h3>Choosing Us today is the best decision you could have made yet.</h3>
+          <h3>Choosing EduAbroad is the best decision you have made.</h3>
           <p>We've received your details</p>
           <p>Our Executive will get back to you shortly.
           </p>
