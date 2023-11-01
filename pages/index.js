@@ -635,7 +635,7 @@ async function submitGetStarted(a){
   return (
     <>
       <Head>
-        <title>Edu Abroad | Study in Abroad</title>
+        <title>EduAbroad | Best Study Abroad Consultant in India - Rated #1</title>
         <meta name="description" content="Study in Abroad" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/edufavicon.svg" />
