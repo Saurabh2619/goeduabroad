@@ -706,37 +706,14 @@ return <div className={styles.card}>
           
    
    <Section title={"Why choose: Edu Abroad?"} color="var(--brand-col1)" align="left" visible="true">
-   <Swiper
-     modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={10}
-      slidesPerView={mobile === "mobile" ? 1.3 : mobile === "tablet" ? 2.5 : 4.5}
-      loop={true}
-      autoplay={true}
-      loopFillGroupWithBlank={false}
-      pagination={{ clickable: true }}
-      centeredSlides={mobile === "desktop" || mobile === "tablet" ? false : false}
-      onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
-      onInit={(swiper) => {
-       
-        swiper.navigation.update();
-      }}
-      navigation={{
-        nextEl: '.next',
-        prevEl: '.prev',
-        clickable:true,
-      }}
-   
-    >
-
-
-     
+ 
+     <div className={styles.testimoni}>
       
       {testimonials && testimonials.map((i,index)=>{
 
 return(<>
 
-<SwiperSlide key={index}>
+
 <div className={styles.testimonial_card}>
 
   <div dangerouslySetInnerHTML={{__html:i.icon}} style={{marginRight:"15px"}}></div>
@@ -745,13 +722,13 @@ return(<>
   <div className={styles.grad2}></div>
 </div>
 
-</SwiperSlide>
+
 
 </>)
 })} 
+</div>
 
-
-    </Swiper>
+    
 
    </Section>
    <GradientMarquee text="Preparing for IELTS,TOEFL,PTE? | Preparing for IELTS,TOEFL,PTE?"></GradientMarquee>

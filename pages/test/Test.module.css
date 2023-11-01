@@ -412,7 +412,6 @@
 .c1 {
     flex: 1;
     position: relative;
-    height: auto;
 }
 
 .c2 {
@@ -1146,6 +1145,10 @@ p.rtitle {
 }
 
 @media only screen and (max-width:968px) {
+
+    .testimoni > div{
+        flex:  1 1 47% !important;
+    }
     .country3 {
         width: 50vw;
         height: 20vw;
@@ -1257,8 +1260,29 @@ p.rtitle {
         padding: 20px 0;
     }
 }
+.testimoni{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    margin: -10px;
+    flex-wrap: wrap;
+}
 
+.testimoni > div{
+    margin: 10px;
+    flex: 1;
+}
 @media only screen and (max-width:768px) {
+   .maincont{
+    flex-wrap: nowrap;
+
+   }
+
+   .c1{
+    margin-top: 20px;
+   }
     .divider2{
         padding-right: 0;
  padding-top: 10vh;       
