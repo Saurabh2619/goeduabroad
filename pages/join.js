@@ -23,6 +23,7 @@ import CustomSelect from '../components/CustomSelect'
 import DefaultLayout from '../layouts/DefaultLayout'
 import { supabase } from '../utils/supabaseClient'
 import { cbKey } from '../utils/cronBerryKey'
+import Offer from '../components/OfferPopup'
 
 export default function Home() {
 
@@ -502,6 +503,7 @@ function validateEmail(email) {
         <link rel="icon" href={favicon} />
       </Head>
       <DefaultLayout hideAI={true} navbar>
+        
       <Offer data={formData} onClose={()=>{setSubmitted(false)}} submitted={isSubmitted}></Offer>
       <main className={styles.main}>
      {/*  {isSubmitted? <div className={styles.modal}>

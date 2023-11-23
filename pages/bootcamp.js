@@ -25,6 +25,7 @@ import { supabase } from '../utils/supabaseClient'
 import GradientMarquee from '../components/GradientMarquee'
 import Marquee from 'react-fast-marquee'
 import { cbKey } from '../utils/cronBerryKey'
+import Offer from '../components/OfferPopup'
 
 export default function Bootcamp() {
 
@@ -492,6 +493,7 @@ function validateEmail(email) {
         <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' />
       </Head>
       <DefaultLayout hideAI={true} navbar>
+        
       <Offer data={formData} onClose={()=>{setSubmitted(false)}} submitted={isSubmitted}></Offer>
       <main className={styles.main}>
        {/*  {isSubmitted? <div className={styles.modal}>

@@ -535,6 +535,7 @@ function validateEmail(email) {
         <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' />
       </Head>
       <DefaultLayout hideAI={true} navbar>
+        
         <Offer data={formData} onClose={()=>{setSubmitted(false)}} submitted={isSubmitted}></Offer>
       <main className={styles.main + " tailwind"}>
         {/* {isSubmitted? <div className={styles.modal}>
