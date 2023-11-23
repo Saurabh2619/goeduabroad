@@ -25,6 +25,8 @@ import { supabase } from '../utils/supabaseClient'
 import GradientMarquee from '../components/GradientMarquee'
 import Marquee from 'react-fast-marquee'
 import { cbKey } from '../utils/cronBerryKey'
+import Offer from '../components/OfferPopup'
+
 
 export default function Home() {
 
@@ -521,6 +523,8 @@ function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
+
+
   return (
     <>
       <Head>
@@ -531,8 +535,9 @@ function validateEmail(email) {
         <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' />
       </Head>
       <DefaultLayout hideAI={true} navbar>
-      <main className={styles.main}>
-        {isSubmitted? <div className={styles.modal}>
+        <Offer data={formData} onClose={()=>{setSubmitted(false)}} submitted={isSubmitted}></Offer>
+      <main className={styles.main + " tailwind"}>
+        {/* {isSubmitted? <div className={styles.modal}>
           <div className={styles.modalinner}>
           <h2>Thank You !!</h2>
           <h3>Choosing EduAbroad is the best decision you have made.</h3>
@@ -542,7 +547,7 @@ function validateEmail(email) {
 
           <p>For Quick Assistance you can call us on : <a href="tel:+919044442989">+919044442989</a></p>
           <a href="/#courses" className={styles.submit}>Explore Our Courses</a><a className={styles.submit} href="/">Visit Our Website</a>
-          </div></div>:''}
+          </div></div>:''} */}
       {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
         
 {loader? <div className={styles.loader}>

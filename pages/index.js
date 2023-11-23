@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
+
 import styles from './Home.module.css'
 import {useState,useEffect} from 'react';
 import DefaultLayout from '../layouts/DefaultLayout'
@@ -642,6 +642,7 @@ async function submitGetStarted(a){
         
       </Head>
       <DefaultLayout scroll={300}>
+      
       {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
          {thankyou ? <div className={styles.modaloverlay}><div className={styles.modal}><h2>Thank You for Submission</h2><p>Our Executive will get back to you shortly meanwhile you can browse our website or apply for more services or preparation plans.</p>
         <div>

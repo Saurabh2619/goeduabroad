@@ -492,8 +492,9 @@ function validateEmail(email) {
         <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' />
       </Head>
       <DefaultLayout hideAI={true} navbar>
+      <Offer data={formData} onClose={()=>{setSubmitted(false)}} submitted={isSubmitted}></Offer>
       <main className={styles.main}>
-        {isSubmitted? <div className={styles.modal}>
+       {/*  {isSubmitted? <div className={styles.modal}>
           <div className={styles.modalinner}>
           <h2>Thank You !!</h2>
           <h3>Choosing EduAbroad is the best decision you have made.</h3>
@@ -503,7 +504,7 @@ function validateEmail(email) {
 
           <p>For Quick Assitance you can call us on : <a href="tel:+919616383524">+91 96163 83524</a></p>
           <a href="/#courses" className={styles.submit}>Explore Our Courses</a><a className={styles.submit} href="/">Visit Our Website</a>
-          </div></div>:''}
+          </div></div>:''} */}
       {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
         
 {loader? <div className={styles.loader}>

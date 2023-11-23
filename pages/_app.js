@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import '../styles/globals.css'
 import { DefaultSeo } from 'next-seo'
+import { NextUIProvider } from '@nextui-org/react'
+
+
 export default function App({ Component, pageProps }) {
   return <>
   
@@ -37,12 +40,13 @@ twitter={{
         
     
   {/* <script type="text/javascript" dangerouslySetInnerHTML={{__html:"var jscomp = jscomp || {};\njscomp.scope = {};\njscomp.createTemplateTagFirstArg = function (c) {\n  return (c.raw = c);\n};\njscomp.createTemplateTagFirstArgWithRaw = function (c, a) {\n  c.raw = a;\n  return c;\n};\nvar ApplyBoardEmbeddedSearch = (function () {\n  function c() {\n    var a = document.getElementById(\"ab-embedded-search\");\n    if (a) {\n      var e = a.hasAttribute(\"data-rp-ref\")\n        ? a.getAttribute(\"data-rp-ref\")\n        : \"\";\n      if (e) {\n        var n = a.hasAttribute(\"data-host\")\n            ? a.getAttribute(\"data-host\")\n            : \"https://www.applyboard.com\",\n          k = a.hasAttribute(\"data-orientation\")\n            ? a.getAttribute(\"data-orientation\")\n            : \"horizontal\",\n          p = [\"USA\", \"United Kingdom\", \"Canada\"],\n          h = a.hasAttribute(\"data-default-countries\")\n            ? a.getAttribute(\"data-default-countries\")\n            : \"\";\n        h = h\n          .split(\",\")\n          .filter(function (b) {\n            return p.includes(b);\n          })\n          .map(function (b) {\n            return encodeURIComponent(b);\n          })\n          .join(\",\");\n        a.style.cssText =\n          \"vertical\" === k\n            ? \"margin:50px auto; height: 525px; width:100%; max-width: 500px;\"\n            : \"margin:50px auto; height: 350px; width:100%; max-width: 800px; transition: height 0.25s;\";\n        e = (function (b, f, g) {\n          var d = document.createElement(\"iframe\");\n          d.setAttribute(\n            \"src\",\n            g + \"/embedded_search?rp_ref=\" + b + \"&countries=\" + f\n          );\n          d.setAttribute(\"scrolling\", \"no\");\n          d.setAttribute(\"frameborder\", \"0\");\n          d.style.cssText = \"width:100%; height:100%;\";\n          d.classList.add(\"ab-emmbedded-search-iframe\");\n          return d;\n        })(e, h, n);\n        a.appendChild(e);\n        if (\"horizontal\" === k) {\n          var l = function () {\n              a.style.height = 720 >= a.offsetWidth ? \"525px\" : \"350px\";\n            },\n            m = !1;\n          (function (b, f, g) {\n            b.addEventListener\n              ? b.addEventListener(f, g)\n              : b.attachEvent(\"on\" + f, function () {\n                  g.call(b);\n                });\n          })(window, \"resize\", function () {\n            clearTimeout(m);\n            m = setTimeout(l, 250);\n          });\n          l();\n        }\n      } else\n        a.innerHTML =\n          \"<span>Embedded Search configuration error: Recruitment Partner ID not specified.</span>\";\n    }\n  }\n  return {\n    onStart: function () {\n      \"loading\" !== document.readyState\n        ? c()\n        : document.addEventListener\n        ? document.addEventListener(\"DOMContentLoaded\", c)\n        : document.attachEvent(\"onreadystatechange\", function () {\n            \"loading\" !== document.readyState && c();\n          });\n    },\n  };\n})();\nApplyBoardEmbeddedSearch.onStart();\n"}}></script> */}
-  <script dangerouslySetInnerHTML={{__html:"(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N7XZ7N5H');"}}></script>
+  
   </Head>
   
   <>
+ 
   {process.env.NEXT_PUBLIC_SITE_LIVE == "true" ? 
-  <Component {...pageProps} />:
+  <NextUIProvider> <Component {...pageProps} /></NextUIProvider>:
   <div><h1>Sorry, Something went Wrong!</h1><p>Please contact your cloud hosting provider to resolve the issue.</p></div>}</>
   </>
 }
