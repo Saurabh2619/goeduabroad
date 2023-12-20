@@ -85,7 +85,7 @@ const testimonials =[{
 ]
 
 const heading=['Register Now','Its Free','Limited Seats','Best Abroad Career Consultancy']
-function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
+function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,eprogram) {
 
   console.log(arguments)
 
@@ -138,7 +138,11 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
           {
               "paramKey": "formname",
               "paramValue": "EduAbroad Study Consultant Page"
-          }
+          },
+          {
+            "paramKey": "program",
+            "paramValue": eprogram
+        }
       ]
   });
   var xhr = new XMLHttpRequest();
@@ -181,6 +185,29 @@ setMentors(data && data.map((i,d)=>{
 
 }
 
+const programs = [
+  {
+    title:'PG Diploma',
+    value:'PG Diploma'
+  },
+  {
+    title:"Master's",
+    value:"Master's"
+  },
+  {
+    title:"Bachelor's",
+    value:"Bachelor's"
+  },
+  
+  {
+    title:'PhD',
+    value:'PhD'
+  },
+  {
+    title:'Not Decided',
+    value:'Not Decided'
+  }
+]
 useEffect(()=>{
     getMentors()
     console.log('d')
@@ -450,9 +477,14 @@ async function SubmitContact(){
     return null;
   }
 
+
   // Check city
   if (!formData.city || formData.city.trim() === '') {
     setNotification('City field is empty');
+    return null;
+  }
+  if (!formData.program) {
+    setNotification('Program is not Selected');
     return null;
   }
     setLoader(true)
@@ -460,7 +492,7 @@ async function SubmitContact(){
     /* TestApi(); */
     triggerInterakt();
       /* await axios.post('/') */
-      cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com');
+      cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com',formData.program);
       const {data,error} = await supabase.from('leads').insert({
         name:formData.fullname,
 email:formData.email,
@@ -607,7 +639,8 @@ function validateEmail(email) {
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
 <input name={"city"} className={styles.input} placeholder={"Enter your City"} type={"text"} value={formData && formData.city} onChange={(e)=>{setFormData(res=>({...res,city:e.target.value})) }}/>
-<CustomSelect z={9} full="true" defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
+<CustomSelect fullWidth z={9} full="true" defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
+<CustomSelect fullWidth z={7} full="true" defaultText="What do you wish to pursue?" noPadding={true} objects={programs} setSelect={(r)=>{setFormData(res=>({...res,program:r}))}}/>
 {formData && formData.city && formData.fullname && formData.phone && formData.email && formData.year? '':<p className={styles.error}>Please fill all the fields</p>}
 {/* <div onClick={TestApi} className={styles.submit}>TEST</div> */}
 <div onClick={SubmitContact} className={styles.submit}>SUBMIT</div>

@@ -16,7 +16,7 @@ useEffect(()=>{
 },[])
 
   return (
-    <div className={styles.wrapper} style={{ zIndex: props.z, padding: props.noPadding ? '0px' : '' }}>
+    <div className={styles.wrapper + " " + (props?.fullWidth ? styles.fullWidth : '')} style={{ zIndex: props.z, padding: props.noPadding ? '0px' : '' }}>
       <input
         readOnly={props.readonly}
         defaultValue={props.defaultText || ''}
