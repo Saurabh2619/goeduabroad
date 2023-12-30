@@ -505,7 +505,7 @@ function validateEmail(email) {
   
 </circle>
 </svg>
-<p>Sending your wish to IIM Gods</p>
+<p>Submitting your details</p>
 </div> :''}
 {/* <img className={styles.logo} src="/edulogo.svg"/> */}
         <div className={styles.hero}>

@@ -522,7 +522,7 @@ function validateEmail(email) {
   
 </circle>
 </svg>
-<p>Sending your wish to IIM Gods</p>
+<p>Submitting your details</p>
 </div> :''}
         <div className={styles.hero}>
         <Swiper
