@@ -7,7 +7,8 @@ import Section from '../components/Section';
 import Card from '../components/Card';
 import { NextSeo } from 'next-seo';
 import DefaultLayout from '../layouts/DefaultLayout';
-function Blogs({data,datac,da}) {
+import Paginator from '../components/Paginator';
+function Blogs({data,datac,da,pagecount,pagenumber}) {
 
     const router = useRouter();
 
@@ -64,17 +65,13 @@ const d = new Date(Date.now());
 <div className={styles.post_holder}>
     <h1 className={styles.mainhead}>{`Showing all Posts`}</h1>
     <p className={styles.para}>Number of Posts : {datac?.data?.length}</p>
-<Section noMargin text={''}><div className={styles.gridr}>
-{datac?.data && datac?.data?.length > 0 ? datac.data.map((item,index)=>{
-  return(
-<>
-    <Card icons={item.icons} key={index} slug={item.slug} date={item.created_at} title={item.title} description={item.intro} image={item.img}/>
-  </>
-  )
-}):'Posts are Unavailable'}
+<Section noMargin text={''}>
+{datac?.data && datac?.data?.length > 0 ? <Paginator pagenumber={pagenumber || 0} count={pagecount.count} items={datac.data} renderFunction={(item,index)=>{
+     return <Card icons={item.icons} key={index} slug={item.slug} date={item.created_at} title={item.title} description={item.intro} image={item.img}/>}}>
+  </Paginator> :'Posts are Unavailable'}
 {datac?.data?.length > 0 ? '' : <p>There is no post in this category</p>}
 
-</div>
+
 
     </Section></div>
 
@@ -86,15 +83,25 @@ export default Blogs;
 export async function getServerSideProps(context) {
     // Fetch data from external API
   
-  
-    const [data, datac] = await Promise.all([
+  const pagenumber = context.query.pg || 0;
+  function getRange(){
+    const posts = 15;
+    if(pagenumber == undefined){
+        return [0,14]
+    }
+        return [posts * pagenumber , posts * pagenumber + posts - 1];
+      }
+    const [data, datac ,pagecount] = await Promise.all([
      await supabase
   .from('categories')
   .select('*')
   , 
   await supabase
   .from('blog_posts')
-  .select('title,created_at,author,intro,slug,img,icons,cat!inner(*)').eq('isActive',true).order('created_at',{ascending:false})
+  .select('title,created_at,author,intro,slug,img,icons,cat!inner(*)').eq('isActive',true).order('created_at',{ascending:false}).range(getRange()[0],getRange()[1]),
+  await supabase
+  .from('blog_posts')
+  .select('id',{count:'exact'}).eq('isActive',true)
     ]);
     let da = 0;
  /*    function setDa(){
@@ -111,6 +118,6 @@ setDa();
     
 
 
-    return { props: {data,datac} }
+    return { props: {data,datac,pagecount,pagenumber } }
 
 }
