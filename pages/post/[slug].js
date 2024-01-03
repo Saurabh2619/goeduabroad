@@ -114,7 +114,7 @@ setQuery(router.query.slug)
     }
 
     async function getRelatedPosts(a,b){
-        await supabase.from('blog_posts').select('*').eq('cat',b).neq('id',a).then((res)=>{
+        await supabase.from('blog_posts').select('*').match({'cat':b,"isActive":true}).neq('id',a).limit(5).then((res)=>{
             
               setRelatedPosts(res.data)
            
