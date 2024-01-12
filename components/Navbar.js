@@ -1,6 +1,7 @@
 import styles from './Navbar.module.css'
 import {useEffect, useState} from 'react'
 import Link from 'next/link';
+import { supabase } from '../utils/supabaseClient';
 function Navbar(props){
 
 const [active,setActive] = useState();
@@ -8,6 +9,7 @@ const [activeToggle,setActiveToggle] = useState();
 const [toggle,setToggle] = useState();
 const [timeouta,setTimeoutA] = useState(null);
 const [isHovering,setHovering] = useState(false);
+const [contacts,setContacts] = useState([]);
 const [positionModal,setPositionModal] = useState({
     x:0,
     y:0,
@@ -101,8 +103,10 @@ const services = [
     },
 ] 
 
+
+
 const sublinks = [[{}],[{}],
-    studyabroad,testprep,services,[{}]
+    studyabroad,testprep,services,[{}],contacts
 ]
 
 const links = [{
@@ -146,7 +150,7 @@ const links = [{
 
     title:'Contact Us',
     link:'/contact',
-    dropdown:false,
+    dropdown:true,
 },
 
 ]
@@ -191,6 +195,28 @@ useEffect(()=>{
       }
 
 },[timeouta])
+
+async function getContacts(){
+
+const {data,error} = await supabase.from('franchise').select("id,title,slug")
+
+if(data && data?.length > 0){
+    setContacts(data.map((i,d)=>{
+        return {
+            title:i?.title,
+            slug:`contact/${i?.slug}`
+        }
+    }))
+}
+else{}
+
+
+}
+
+
+useEffect(()=>{
+    getContacts()
+},[])
 function handleOut(){
 
     const id = setTimeout(() => {
