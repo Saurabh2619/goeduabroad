@@ -116,7 +116,7 @@ function getCurrentYear() {
 <div className={styles.col}>
 <h2>Our Branches</h2>
 {contacts && contacts.map((i,d)=>{
-    return <a className={styles.link} href={`/contact/${i.slug}`}>{i.title}</a>})}
+    return <a className={styles.link} href={`${i.slug}`}>{i.title}</a>})}
 </div>
 
             </div>
