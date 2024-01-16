@@ -235,7 +235,7 @@ return(<>
 </div>:''}
 <div className={styles.navcont + " " + (active && !activeToggle? styles.active : '')}>
 
-    <Link href={'/'} legacyBehavior><a aria-label='Edu Abroad Official Logo' className={styles.navlogo + " " + (active? styles.invert  : '')}><img alt='Edu Abroad Site Logo' height={"100px"} width={"52.2px"} src='/edulogo.svg'/></a></Link>
+    <Link href={'/'} legacyBehavior><a aria-label='Edu Abroad Official Logo' className={styles.navlogo + " " + (active? styles.invert  : '')}><img alt='Edu Abroad Site Logo' height={"100px"} width={"52.2px"} src='/enl.svg'/></a></Link>
 
 <div className={styles.menuhold}><ul>
 {links && links.map((i,d)=>{

@@ -29,12 +29,12 @@
 .active {
     background-color: white;
     color: var(--brand-col4);
-    padding: 20px 7vw;
+    padding: 0px 7vw;
     box-shadow: 4px 4px 12px -5px #00000022;
 }
 
 .active .navlogo img {
-    width: 50px;
+    width: 200px;
 }
 
 .hasChild {
@@ -51,7 +51,7 @@
 .navlogo img {
     position: relative;
     transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    width: 64px;
+    width: 264px;
     height: auto;
     display: block;
 }
@@ -414,7 +414,7 @@
         transform: translateX(0px);
     }
     .navlogo img {
-        width: 50px;
+        width: calc(10vw + 200px);
     }
     .navcont {
         padding: 20px 4vw;
