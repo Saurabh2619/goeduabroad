@@ -1,19 +1,19 @@
 import styles from './Footer.module.css';
 
-function Footer(){
+function Footer(props){
 
-
+const contacts = props?.contacts
     const socials = [
 {
     link:'https://www.facebook.com/profile.php?id=100089557687518',
     title:'Facebook',
 },
 {
-    link:'https://www.linkedin.com/in/edu-abroad-b92079262/',
+    link:'https://www.linkedin.com/company/goeduabroad/',
     title:'LinkedIn',
 },
 {
-    link:'https://www.instagram.com/go_eduabroad/',
+    link:'https://www.instagram.com/goeduabroad/',
     title:'Instagram',
 },
 {
@@ -21,7 +21,7 @@ function Footer(){
     title:'WhatsApp',
 },
 {
-    link:'https://www.youtube.com/@eduabroad121',
+    link:'https://www.youtube.com/@eduabroad6658',
     title:'YouTube',
 },
     ]
@@ -60,6 +60,11 @@ const quicks = [{
 
 ]
 
+function getCurrentYear() {
+    const currentYear = new Date().getFullYear();
+    return currentYear;
+  }
+
             const resources = [
                 {
                     link:'/legals/privacy',
@@ -82,7 +87,7 @@ const quicks = [{
     return <footer className={styles.footerouter}><div className={styles.footer}>
         <div className={styles.top}>
             <div className={styles.badge}><img alt='Edu Abroad Label' src="/label.svg"/></div>
-            <img alt='Edu Abroad Logo' className={styles.footerlogo} src='/edulogo.svg'/>
+            <img alt='Edu Abroad Logo' className={styles.footerlogo} src='/enl.svg'/>
             <div className={styles.cols}>
 <div className={styles.col}>
 <h2>Quick Links</h2>
@@ -104,8 +109,14 @@ const quicks = [{
 <div className={styles.col}>
 <h2>Social Links</h2>
 {socials && socials.map((i,d)=>{
-    return <a className={styles.link} href={i.link}>{i.title}</a>
+    return <a target="_blank" className={styles.link} href={i.link}>{i.title}</a>
 })}
+</div>
+
+<div className={styles.col}>
+<h2>Our Branches</h2>
+{contacts && contacts.map((i,d)=>{
+    return <a className={styles.link} href={`/contact/${i.slug}`}>{i.title}</a>})}
 </div>
 
             </div>
@@ -116,7 +127,7 @@ const quicks = [{
             </div>
         </div>
         <div className={styles.bottom}>
-            <p>2023© All Rights Reserved | Edu Abroad</p>
+            <p>{getCurrentYear()}© All Rights Reserved | Edu Abroad</p>
             <a href="https://blog.nmnvisuals.com">Developed & Designed by NMN Visuals</a>
         </div>
         </div></footer>

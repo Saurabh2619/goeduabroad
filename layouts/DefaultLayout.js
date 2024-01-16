@@ -4,7 +4,33 @@ import Navbar from '../components/Navbar';
 import styles from './DefaultLayout.module.css'
 import Link from 'next/link'
 import {useRouter} from 'next/router';
+import { supabase } from '../utils/supabaseClient';
 function DefaultLayout(props){
+
+
+const [contacts,setContacts] = useState([])
+
+    async function getContacts(){
+
+        const {data,error} = await supabase.from('franchise').select("id,title,slug")
+        
+        if(data && data?.length > 0){
+            setContacts(data.map((i,d)=>{
+                return {
+                    title:i?.title,
+                    slug:`contact/${i?.slug}`
+                }
+            }))
+        }
+        else{}
+        
+        
+        }
+        
+        
+        useEffect(()=>{
+            getContacts()
+        },[])
 
 
     const router = useRouter();
@@ -37,7 +63,7 @@ useEffect(()=>{
 </svg>
             <p>Loading...</p></div>
         </div>:''}
-       {props.navbar ?'': <Navbar customScroll={props.scroll} hideAI={props.hideAI}/>} 
+       {props.navbar ?'': <Navbar contacts={contacts} customScroll={props.scroll} hideAI={props.hideAI}/>} 
 
         
       {props.hideAI ? '' :  <div onClick={()=>{router.push('/#applyboard')}} className={styles.ai}><svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.293 15.707a1 1 0 0 0 1.414 0L12 9.414l6.293 6.293a1 1 0 0 0 1.414-1.414l-7-7a1 1 0 0 0-1.414 0l-7 7a1 1 0 0 0 0 1.414Z" fill="#DDE6E8"/></svg>Try Our AI Tool</div>}
@@ -62,7 +88,7 @@ useEffect(()=>{
 
     {props.children}
 </div>
-        <Footer/>
+        <Footer contacts={contacts}/>
     </div>
 }
 

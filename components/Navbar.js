@@ -9,7 +9,7 @@ const [activeToggle,setActiveToggle] = useState();
 const [toggle,setToggle] = useState();
 const [timeouta,setTimeoutA] = useState(null);
 const [isHovering,setHovering] = useState(false);
-const [contacts,setContacts] = useState([]);
+const contacts = props?.contacts
 const [positionModal,setPositionModal] = useState({
     x:0,
     y:0,
@@ -196,27 +196,7 @@ useEffect(()=>{
 
 },[timeouta])
 
-async function getContacts(){
 
-const {data,error} = await supabase.from('franchise').select("id,title,slug")
-
-if(data && data?.length > 0){
-    setContacts(data.map((i,d)=>{
-        return {
-            title:i?.title,
-            slug:`contact/${i?.slug}`
-        }
-    }))
-}
-else{}
-
-
-}
-
-
-useEffect(()=>{
-    getContacts()
-},[])
 function handleOut(){
 
     const id = setTimeout(() => {

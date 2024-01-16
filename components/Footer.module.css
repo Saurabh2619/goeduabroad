@@ -13,7 +13,7 @@
 }
 
 .footerlogo {
-    width: 150px;
+    width: 350px;
     padding: 40px 40px 0 40px;
 }
 
@@ -131,6 +131,12 @@
 }
 
 @media only screen and (max-width:568px) {
+    .footerlogo{
+        width: 70%;
+        padding-bottom: 10px;
+        padding-left: 20px;
+    
+    }
     .bottom {
         flex-direction: column;
     }
@@ -141,5 +147,18 @@
     .inner {
         width: 100%;
         margin: 0 !important;
+    }
+    .third{
+        padding: 10px 20px;
+        margin: 0 auto;
+        justify-content: center;
+        width: 100%;
+      
+    }
+    .third a{
+        font-size: 18px;
+        width: 100%;
+        text-align: center;
+
     }
 }

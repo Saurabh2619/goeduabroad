@@ -567,7 +567,7 @@ async function SubmitContact(){
   }
 
   // Check year
-  if (!formData.year || formData.year.trim() === '') {
+  /* if (!formData.year || formData.year.trim() === '') {
     setNotification('Year field is empty');
     return null;
   }
@@ -577,13 +577,13 @@ async function SubmitContact(){
   if (isNaN(year) || year < 1900 || year > 2099) {
     setNotification('Year is not valid');
     return null;
-  }
+  } */
 
   // Check city
-  if (!formData.city || formData.city.trim() === '') {
+ /*  if (!formData.city || formData.city.trim() === '') {
     setNotification('City field is empty');
     return null;
-  }
+  } */
   
     
     setLoading(true)
