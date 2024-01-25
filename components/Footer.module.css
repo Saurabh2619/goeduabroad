@@ -36,6 +36,14 @@
     padding: 5px 0;
     font-size: 14px;
 }
+.cambridge{
+    width: 80%;
+    margin-top: 10px;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+}
 
 .link:hover {
     color: var(--brand-col1);

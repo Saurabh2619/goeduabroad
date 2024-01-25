@@ -87,7 +87,9 @@ function getCurrentYear() {
     return <footer className={styles.footerouter}><div className={styles.footer}>
         <div className={styles.top}>
             <div className={styles.badge}><img alt='Edu Abroad Label' src="/label.svg"/></div>
-            <img alt='Edu Abroad Logo' className={styles.footerlogo} src='/enl.svg'/>
+            <div className={styles.footerlogo}>
+            <img alt='Edu Abroad Logo' className={styles.logo} src='/enl.svg'/>
+            <img alt='Cambridge Logo' width={120} className={styles.cambridge} src='/cambridge.svg'/></div>
             <div className={styles.cols}>
 <div className={styles.col}>
 <h2>Quick Links</h2>

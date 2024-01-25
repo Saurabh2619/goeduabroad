@@ -36,7 +36,10 @@
 .active .navlogo img {
     width: 200px;
 }
-
+.cambridge{
+    width: 60% !important;
+    margin-top: 10px;
+}
 .hasChild {
     padding-left: 3vw;
 }
