@@ -23,9 +23,9 @@ return
     
     
     imageData.append('file',a);
-    imageData.append('upload_preset','leg7fkr7')
+    imageData.append('upload_preset','ipmcareer')
     
-    axios.post('https://api.cloudinary.com/v1_1/duyo9pzxy/image/upload/',imageData,{
+    axios.post('https://api.cloudinary.com/v1_1/dh8kszkqe/image/upload/',imageData,{
         headers: {
             'Content-Type': 'multipart/form-data'
           }

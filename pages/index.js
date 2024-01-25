@@ -683,7 +683,7 @@ className={styles.content}>
   </div>
   <div className={styles.col2}>
   <ResponsiveIFrame
-      src="https://www.youtube.com/embed/iCl30mTXKnk"
+      src="https://www.youtube.com/embed/24cD834S5Yw"
     />
 
   </div>
