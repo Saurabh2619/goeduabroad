@@ -2,11 +2,11 @@ import Head from 'next/head'
 import '../styles/globals.css'
 import { DefaultSeo } from 'next-seo'
 import { NextUIProvider } from '@nextui-org/react'
-
+import {SpeedInsights} from '@vercel/speed-insights/next';
 
 export default function App({ Component, pageProps }) {
   return <>
-  
+  <SpeedInsights></SpeedInsights>
    <DefaultSeo
     title="EduAbroad | Best Study Abroad & IELTS Consultant in India"
     description="EduAbroad is a leading study abroad consultant that helps students achieve their academic and career goals through international education. Our team of experienced professionals provides personalized guidance and support throughout the entire study abroad process, from choosing the right program to securing scholarships and visas. "
