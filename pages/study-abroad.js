@@ -27,6 +27,7 @@ import Marquee from 'react-fast-marquee'
 import { cbKey } from '../utils/cronBerryKey'
 import Offer from '../components/OfferPopup'
 import { getCurrentAndNextTwoYears } from '../utils/utilityfunctions'
+import { gtag_report_conversion } from '../utils/googleTag'
 
 
 export default function Home() {
@@ -141,6 +142,11 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,epr
           
           setLoader(false)
           setNotification('Submitted Successfully')
+          gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {
+            console.log('Conversion tracked successfully.');
+            // Optionally, you can add any post-conversion logic here
+          });
+          
           setSubmitted(true)
 
       }
