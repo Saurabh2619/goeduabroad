@@ -33,7 +33,7 @@ twitter={{
   <Head>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800"/>
  
-        <title>Edu Abroad | Study in Abroad</title>
+        <title>EduAbroad | Study in Abroad</title>
         <meta name="description" content="Study in Abroad" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/edufavicon.svg" />

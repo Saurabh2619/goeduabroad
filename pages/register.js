@@ -175,10 +175,10 @@ const slides = [
  
   {
   image:'/EduAbroad.webp',
-  alt:"Edu Abroad Career Consultant "
+  alt:"EduAbroad Career Consultant "
 },{
   image:'/rvw.webp',
-  alt:'Edu Abroad Career Consultant'
+  alt:'EduAbroad Career Consultant'
 }]
 const faqs=[
   {
@@ -190,8 +190,8 @@ const faqs=[
     answer:"<ul>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/category/resume/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">CV</span></span></span></a></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Work experience if any</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/category/lor/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Letter of Recommendation (LOR</span></span></span></a><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">)</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/category/sop/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Statement of Purpose (SOP)</span></span></span></a></li>\r\n\t<li style=\"list-style-type:disc\"><a href=\"https://leverageedu.com/blog/english-proficiency-test/\" style=\"text-decoration:none\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">English Proficiency Tests</span></span></span></a></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Financial proof to bear living expenses, visa application fees and university tuition fees</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Passport photograph, income proof residential proof, and photo ID</span></span></span></li>\r\n\t<li style=\"list-style-type:disc\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial\"><span style=\"color:#000000\">Travel documents may include health insurance, passport, age proof, and vaccination proof</span></span></span></li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n",   
   },
   {
-    question:"How will Edu Abroad guide me on my study abroad journey?", 
-    answer:'Edu Abroad has an experienced team of international experts who’ve been helping students to pursue their dreams of studying abroad. Most of these students are international students thus we can help you with end-to-end assistance from the application process to accommodation.',   
+    question:"How will EduAbroad guide me on my study abroad journey?", 
+    answer:'EduAbroad has an experienced team of international experts who’ve been helping students to pursue their dreams of studying abroad. Most of these students are international students thus we can help you with end-to-end assistance from the application process to accommodation.',   
   },
   {
     question:"Who accepts IELTS scores?", 
@@ -199,11 +199,11 @@ const faqs=[
   },
   {
     question:"Can I avail one on one clearing doubt sessions?", 
-    answer:'Students should contact Edu Abroad to book a one-on-one doubt clearing session with a mentor.',   
+    answer:'Students should contact EduAbroad to book a one-on-one doubt clearing session with a mentor.',   
   },
   {
     question:"How do I access live classes?", 
-    answer:'On successful completion of enrolment process, students receive a Edu Abroad Zoom ID & password to join Edu Abroad live platform and to attend live, online classes.',   
+    answer:'On successful completion of enrolment process, students receive a EduAbroad Zoom ID & password to join EduAbroad live platform and to attend live, online classes.',   
   },
   {
     question:"Is there any contact number to reach you?", 
@@ -218,7 +218,7 @@ const reviews=[{
   fullname:'Titiksha Singh',
   college:'University of Buffalo',
   title:'Very Helpful Faculty',
-  review:'Mentors at Edu Abroad are extremely dedicated and hard working. They make it a point for every student to be equally interactive in the training sessions. Mock interviews by experts from industry helped a lot.',
+  review:'Mentors at EduAbroad are extremely dedicated and hard working. They make it a point for every student to be equally interactive in the training sessions. Mock interviews by experts from industry helped a lot.',
   country:'USA'
 },{
 
@@ -226,7 +226,7 @@ const reviews=[{
   fullname:'Anannya',
   college:'SOAS  - University of London',
   title:'Extremely Supportive Faculty',
-  review:'My experience with Edu Abroad was truly memorable, the team was extremely supportive. They always made sure that all my doubts were cleared. It is for them that I have reached where I am now.',
+  review:'My experience with EduAbroad was truly memorable, the team was extremely supportive. They always made sure that all my doubts were cleared. It is for them that I have reached where I am now.',
   country:"UK"
 },
 {
@@ -236,7 +236,7 @@ const reviews=[{
   college:'Universite de Paris',
   country:'France',
   title:'Best Career Guidance',
-  review:'I would like to thank all the mentors of Edu Abroad who helped me throughout my journey. They helped me by motivating me and getting all my doubts clear. They helped me in clearing all my concepts. The study materials of Edu Abroad are very helpful and beneficial and the practice questions are of the level of actual IELTS exam. '
+  review:'I would like to thank all the mentors of EduAbroad who helped me throughout my journey. They helped me by motivating me and getting all my doubts clear. They helped me in clearing all my concepts. The study materials of EduAbroad are very helpful and beneficial and the practice questions are of the level of actual IELTS exam. '
 }
 ]
 
@@ -493,7 +493,7 @@ function validateEmail(email) {
   return (
     <>
       <Head>
-        <title>Edu Abroad | {currentSub}</title>
+        <title>EduAbroad | {currentSub}</title>
         <meta name="description" content="IPM Careers" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon} />
@@ -675,7 +675,7 @@ return <div className={styles.card}>
         
    
    
-   <Section title={"Why choose: Edu Abroad?"} color="var(--brand-col1)" align="left" visible="true">
+   <Section title={"Why choose: EduAbroad?"} color="var(--brand-col1)" align="left" visible="true">
    <Swiper
      modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={10}

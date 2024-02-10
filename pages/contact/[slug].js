@@ -198,7 +198,7 @@ setNotification('Please Fill all the fields correctly')
         <h2>Reach Us out at our {a?.title} Office</h2>
         <iframe src={a?.map || "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.5446772045625!2d80.98877671504361!3d26.85443078315282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUxJzE2LjAiTiA4MMKwNTknMjcuNSJF!5e0!3m2!1sen!2sin!4v1676965264887!5m2!1sen!2sin"} width="600" height="450" style={{border:"0"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         
-    </div>
+    </div> 
     <div className={styles.right}>
 <h2>Contact Details</h2>
         <a href={`mailto:${a?.email || "info@goeduabroad.com"}`}><svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.25 4h13.5a3.25 3.25 0 0 1 3.245 3.066L22 7.25v9.5a3.25 3.25 0 0 1-3.066 3.245L18.75 20H5.25a3.25 3.25 0 0 1-3.245-3.066L2 16.75v-9.5a3.25 3.25 0 0 1 3.066-3.245L5.25 4h13.5-13.5ZM20.5 9.373l-8.15 4.29a.75.75 0 0 1-.603.043l-.096-.042L3.5 9.374v7.376a1.75 1.75 0 0 0 1.606 1.744l.144.006h13.5a1.75 1.75 0 0 0 1.744-1.607l.006-.143V9.373ZM18.75 5.5H5.25a1.75 1.75 0 0 0-1.744 1.606L3.5 7.25v.429l8.5 4.473 8.5-4.474V7.25a1.75 1.75 0 0 0-1.607-1.744L18.75 5.5Z" fill="#000"/></svg>{a?.email || 'info@goeduabroad.com'}</a>
