@@ -33,7 +33,7 @@ function About(props){
     </div>
     <div className={styles.right}>
     <ResponsiveIFrame
-      src="https://www.youtube.com/embed/iCl30mTXKnk"
+      src="https://www.youtube.com/embed/24cD834S5Yw"
     />
     </div>
 </div>

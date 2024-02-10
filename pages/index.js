@@ -380,7 +380,7 @@ const results = [
 
   {
     title:'Bhavya Mishra',
-    description:'I am thankful to the team Edu Abroad specially Dr. Swati Mishra. Dr. Swati always motivated me and all other students to work hard and stay focused. The faculty at Edu Abroad is very hard working and it made my dream come true. Proud to be student of Edu Abroad.',
+    description:'I am thankful to the team EduAbroad specially Dr. Swati Mishra. Dr. Swati always motivated me and all other students to work hard and stay focused. The faculty at EduAbroad is very hard working and it made my dream come true. Proud to be student of EduAbroad.',
     stars:4,
     image:'/r3.jpg',
     college:'University of BATH',
@@ -388,7 +388,7 @@ const results = [
     },
     {
       title:'Titiksha Singh',
-      description:'Mentors at Edu Abroad are extremely dedicated and hard working. They make it a point for every student to be equally interactive in the training sessions. Mock interviews by experts from industry helped a lot.',
+      description:'Mentors at EduAbroad are extremely dedicated and hard working. They make it a point for every student to be equally interactive in the training sessions. Mock interviews by experts from industry helped a lot.',
       stars:4,
       image:'/r4.jpg',
       college:'University of Buffalo',
@@ -396,7 +396,7 @@ const results = [
       },
       {
         title:'Dr.Naman Tandon',
-        description:'I would like to thank all the mentors of Edu Abroad who helped me throughout my journey. They helped me by motivating me and getting all my doubts clear. They helped me in clearing all my concepts. The study materials of Edu Abroad are very helpful and beneficial and the practice questions are of the level of actual IELTS exam.        ',
+        description:'I would like to thank all the mentors of EduAbroad who helped me throughout my journey. They helped me by motivating me and getting all my doubts clear. They helped me in clearing all my concepts. The study materials of EduAbroad are very helpful and beneficial and the practice questions are of the level of actual IELTS exam.        ',
         stars:4,
         image:'/r5.png',
         college:'Universite de Paris',
@@ -404,7 +404,7 @@ const results = [
         },
         {
           title:'Anannya',
-          description:'My experience with Edu Abroad was truly memorable, the team was extremely supportive. They always made sure that all my doubts were cleared. It is for them that I have reached where I am now.',
+          description:'My experience with EduAbroad was truly memorable, the team was extremely supportive. They always made sure that all my doubts were cleared. It is for them that I have reached where I am now.',
           stars:5,
           image:'/r6.jpg',
           college:'SOAS  - University of London',
@@ -412,7 +412,7 @@ const results = [
           },
           {
             title:'Prabal Muttoo',
-            description:'I attribute my success in the IELTS Exam to the mentors at Edu Abroad. They gave us personalized attention and developed a comfortable and accommodating environment inside the classroom. Their doubt session helped us very much in preparing. They were available 24/7 for clearing our doubts even at odd hours. Thanks for all the help and hard work.',
+            description:'I attribute my success in the IELTS Exam to the mentors at EduAbroad. They gave us personalized attention and developed a comfortable and accommodating environment inside the classroom. Their doubt session helped us very much in preparing. They were available 24/7 for clearing our doubts even at odd hours. Thanks for all the help and hard work.',
             stars:4,
             image:'/r9.jpeg',
             college:'The London University of Economics & Political Science',
@@ -420,7 +420,7 @@ const results = [
             },
             {
               title:'Vishisht Tiwari',
-              description:'I learned a lot of tips and tricks at Edu Abroad which were really game changing and it boosted my perspective of learning along. Those little things are the key factors which help students like me achieve the goals.              ',
+              description:'I learned a lot of tips and tricks at EduAbroad which were really game changing and it boosted my perspective of learning along. Those little things are the key factors which help students like me achieve the goals.              ',
               stars:4,
               image:'/r10.jpg',
               college:'Cornell University',
@@ -678,7 +678,7 @@ className={styles.content}>
 <div className={styles.who}>
 
   <div className={styles.col1}>
-    <p>Edu Abroad is founded by former Professor of IIM Lucknow, Dr. Swati Abhishek Mishra. She holds a Master’s in Management in a joint program with University of Cambridge and Massachusetts Institute of Technology, and a PhD. in Strategy and Marketing from University of Cambridge. She was the winner of ……… Read More on About Page</p>
+    <p>EduAbroad is founded by former Professor of IIM Lucknow, Dr. Swati Abhishek Mishra. She holds a Master’s in Management in a joint program with University of Cambridge and Massachusetts Institute of Technology, and a PhD. in Strategy and Marketing from University of Cambridge. She was the winner of ……… Read More on About Page</p>
   <Link href={'/about'}><button className={styles.mainbutton}>Open About Page</button></Link>
   </div>
   <div className={styles.col2}>
@@ -914,7 +914,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 </Section>{/* 
 <div className={styles.students}>
 <div className={styles.left}>
-<h2>Join 9000+ students <br/>who joined <span className='b1'>Edu Abroad</span></h2>
+<h2>Join 9000+ students <br/>who joined <span className='b1'>EduAbroad</span></h2>
 <button onClick={()=>{}}>Join Now</button>
 </div>
 <div className={styles.right}>
@@ -1083,7 +1083,7 @@ return <div className={styles.partners}>
 </div>
 </div>
 <div className={styles.formcont}>
-<h1 className={styles.team_heading}>Plan your Career in Abroad with<strong> Edu Abroad</strong>.</h1>
+<h1 className={styles.team_heading}>Plan your Career in Abroad with<strong> EduAbroad</strong>.</h1>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
