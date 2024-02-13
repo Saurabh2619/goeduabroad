@@ -301,7 +301,7 @@ async function triggerInterakt(a){
   
         }
     });
-    xhr.open("POST", "https://api.cronberry.com/cronberry/api/campaign/register-audience-data");
+    xhr.open("POST", "https://register.cronberry.com/api/campaign/register-audience-data");
     xhr.setRequestHeader("Content-Type", "application/json");
   
   

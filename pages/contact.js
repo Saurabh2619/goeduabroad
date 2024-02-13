@@ -79,7 +79,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
   
         }
     });
-    xhr.open("POST", "https://api.cronberry.com/cronberry/api/campaign/register-audience-data");
+    xhr.open("POST", "https://register.cronberry.com/api/campaign/register-audience-data");
     xhr.setRequestHeader("Content-Type", "application/json");
   
   
