@@ -14,7 +14,77 @@
     align-content: center;
     padding: 0 8vw 0px 8vw;
 }
+.marquee{
+    background-color: var(--brand-col1);
+    position: relative;
+    z-index: 888;
+    color: white;
+    font-weight: 500;
+    font-family: Work Sans;
+    padding: 10px 0;
+}
+.partner{
+    width: 100%;
+    background-color: #0580e8;
+position: relative;
+    min-height: 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;justify-content: center;
+}
+.emblem{
+    position: absolute;
+    right: -10px;
+    top: 0;
+    height: 90%;
+    width: auto;
+}
+.partnertext{
+    padding: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 1560px;
+    margin: 0 auto;
+    color: white;
+    font-family: Work Sans;
+    z-index: 99;
+    position: relative;
+    
+    
+}
+.spacer{
+    height: 20px;
+    width: 10px;
+}
+.newslogo{
+    margin: 0 15px;
+    width: 120px;
+}
+.partnertext h2{
+    font-weight: 500 !important;
+    font-size: 44px;
+    margin: 10px 0;
+}
 
+.emblem2{
+    right: 20%;
+    top: 0;
+    width: 200px;
+    height: auto;
+    position: absolute;
+}
+.partnerlogo{
+background-color: white;
+padding: 15px 20px;
+box-shadow: 4px 4px 22px -10px #00000022;
+border-radius: 10px;
+}
+.marquee img{
+    margin: 0 15px;
+}
 .mask {
     position: absolute;
     left: 0;
@@ -914,6 +984,22 @@
 }
 
 @media only screen and (max-width:968px) {
+    .partnertext{
+        padding: 5vw;
+        max-width: unset;
+        width: 100%;
+    }
+    .emblem{
+        width: 80px;
+        top: 0;
+        height: auto;
+    }
+    .partnertext h2{
+        font-size: 26px;
+    }
+    .emblem2{
+        opacity: 0.2;
+    }
     .card h2 {
         font-size: 5vw;
         font-weight: 600;

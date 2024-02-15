@@ -32,6 +32,7 @@ twitter={{
   />
   <Head>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700,800"/>
  
         <title>EduAbroad | Study in Abroad</title>
         <meta name="description" content="Study in Abroad" />

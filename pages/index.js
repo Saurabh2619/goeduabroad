@@ -237,6 +237,76 @@ setWidth();
     })}
     setMentors(datad)
   },[])
+
+const logo1 = [
+  {
+    title:'News Company',
+    src:'/l1.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l2.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l3.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l4.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l5.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l6.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l7.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l8.jpg'
+  }
+]
+
+const logo2 = [
+  {
+    title:'News Company',
+    src:'/l1.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l2.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l3.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l4.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l5.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l6.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l7.jpg'
+  },
+  {
+    title:'News Company',
+    src:'/l8.jpg'
+  }
+]
 const herocountries = [
  
   {
@@ -618,6 +688,8 @@ function setNotification(de){
   setTimeout(()=>{setNotificationText()},2500);
 }
 
+const marqueeContent = <><img src='/camblog.svg' width={120}/> OFFICAL CAMBRIDGE LEARNING PARTNER</>
+
 async function submitGetStarted(a){
 
 
@@ -673,6 +745,8 @@ className={styles.content}>
 </div>
 </div>
         </div>
+        <div className={styles.marquee}>
+        <Marquee speed={100} gradientWidth={0}>{marqueeContent}  {marqueeContent}  {marqueeContent}  {marqueeContent}  {marqueeContent}  {marqueeContent}</Marquee></div>
       <Section title=":Who are we?" align="left" color="var(--brand-col1)" small>
 {/* <img className={styles.right} src={'/rightimage.png'}/> */}
 <div className={styles.who}>
@@ -689,7 +763,15 @@ className={styles.content}>
   </div>
 </div>
       </Section>
-      
+      <div className={styles.partner}>
+      <img src='/emblem.svg' width={220} className={styles.emblem}/>
+<img src='/emb2.svg' width={220} className={styles.emblem2}/>
+<div className={styles.partnertext}>
+<img src='/enl.svg' width={220} className={styles.partnerlogo}/>
+
+<h2 className={styles.camtext}>CAMBRIDGE LEARNING PARNTER</h2>
+<img src='/camnew.svg' width={220} className={styles.camblogo}/></div>
+      </div>
       <Section title="Testimonials" align="center" color="var(--brand-col1)">
 
 
@@ -771,6 +853,30 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
 
       </Section>
+
+
+<Section title=":Media Features" id="media" align="center" color="var(--brand-col1)">
+  
+  <div className={styles.featured}>
+  <Marquee speed={80}>
+{logo1 && logo1.map((i,d)=>{
+  return <img src={i.src} className={styles.newslogo}/>
+})}
+{logo1 && logo1.map((i,d)=>{
+  return <img src={i.src} className={styles.newslogo}/>
+})}
+  </Marquee>
+  <div className={styles.spacer}></div>
+  <Marquee speed={80}>
+  {logo2 && logo2.map((i,d)=>{
+  return <img src={i.src} className={styles.newslogo}/>
+})}
+{logo2 && logo2.map((i,d)=>{
+  return <img src={i.src} className={styles.newslogo}/>
+})}
+    </Marquee>
+    </div>
+    </Section>
       <Section title="Services" id="courses" align="center" color="var(--brand-col1)">
 
 
