@@ -130,7 +130,7 @@ const links = [{
 
 {
 
-    title:'IELTS Guru',
+    title:'IELTS',
     link:'/testpreps/ielts',
     dropdown:true,
 },

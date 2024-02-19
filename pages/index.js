@@ -688,7 +688,7 @@ function setNotification(de){
   setTimeout(()=>{setNotificationText()},2500);
 }
 
-const marqueeContent = <><img src='/camblog.svg' width={120}/> OFFICAL CAMBRIDGE LEARNING PARTNER</>
+const marqueeContent = <><img src='/camblog.svg' width={120}/> OFFICIAL CAMBRIDGE LEARNING PARTNER</>
 
 async function submitGetStarted(a){
 

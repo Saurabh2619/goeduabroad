@@ -180,7 +180,7 @@ useEffect(()=>{
 const slides = [
  
   {
-  image:'/cambridgecreative .jpg',
+  image:'/cambridgecreative.jpg',
   alt:"EduAbroad Career Consultant "
 },{
   image:'/rvw.webp',
