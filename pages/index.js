@@ -769,7 +769,7 @@ className={styles.content}>
 <div className={styles.partnertext}>
 <img src='/enl.svg' width={220} className={styles.partnerlogo}/>
 
-<h2 className={styles.camtext}>CAMBRIDGE LEARNING PARNTER</h2>
+<h2 className={styles.camtext}>CAMBRIDGE LEARNING PARTNER</h2>
 <img src='/camnew.svg' width={220} className={styles.camblogo}/></div>
       </div>
       <Section title="Testimonials" align="center" color="var(--brand-col1)">

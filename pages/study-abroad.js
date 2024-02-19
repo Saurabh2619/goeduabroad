@@ -587,12 +587,14 @@ function validateEmail(email) {
 </svg>
 <p>Submitting Form</p>
 </div> :''}
-<img className={styles.logo} src="/edulogo.svg"/>
+<img className={styles.logo} src="/enl.svg"/>
         <div className={styles.hero}>
           
        <div className={styles.dotgrid} />
 <div className={styles.divider1}>
+<img src='/cambridge.svg' width={220} style={{margin:"10px 0"}}/>
   <h2 className={styles.head}>Build your <br/><span style={{color:'var(--brand-col1)'}}>Career Abroad</span> </h2>
+  
   <p>Get Started with your Studies in Abroad with Best Study Abroad Consultant</p>
   <a href='#form' className={styles.btn}>Register Now</a>
 </div>
