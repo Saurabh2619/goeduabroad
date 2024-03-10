@@ -9,6 +9,49 @@
 
 
 
+[data-table="true"] table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 15px !important;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  [data-table="true"] table thead tr {
+    background-color: var(--brand-col1) !important;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  [data-table="true"] table th,
+  [data-table="true"] table td {
+    padding: 12px 15px;
+  }
+  
+  [data-table="true"] table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  [data-table="true"] table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  [data-table="true"] table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--brand-col1);
+  }
+  
+  [data-table="true"] table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+  [data-table="true"] table a{
+  color:var(--brand-col1);
+  text-decoration:underline;
+  }
+
 
 /* width */
 
