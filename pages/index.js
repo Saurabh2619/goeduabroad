@@ -868,11 +868,11 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
   </Marquee>
   <div className={styles.spacer}></div>
   <Marquee speed={80}>
-  {logo2 && logo2.map((i,d)=>{
-  return <img src={i.src} className={styles.newslogo}/>
+  {Array(10).fill().map((i,d)=>{
+  return <img src={`/c${d+1}.png`} className={styles.newslogo}/>
 })}
-{logo2 && logo2.map((i,d)=>{
-  return <img src={i.src} className={styles.newslogo}/>
+{Array(10).fill().map((i,d)=>{
+  return <img src={`/c${d+1}.png`} className={styles.newslogo}/>
 })}
     </Marquee>
     </div>
