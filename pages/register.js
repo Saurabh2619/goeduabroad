@@ -178,14 +178,19 @@ useEffect(()=>{
 },[])
 
 const slides = [
- 
+  {
+    image:'/holipost.jpg',
+    alt:'EduAbroad Holi Sale'
+  },
   {
   image:'/cambridgecreative.jpg',
   alt:"EduAbroad Career Consultant "
 },{
   image:'/rvw.webp',
   alt:'EduAbroad Career Consultant'
-}]
+}
+
+]
 const faqs=[
   {
     question:"When to get started with the application process?", 

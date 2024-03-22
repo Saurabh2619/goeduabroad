@@ -18,7 +18,10 @@
         width: auto;
         box-shadow: 4px 4px 22px -4px #00000022;
     }
-    
+    .sale{
+        width: 100%;
+        border-radius: 20px;
+    }
     .country {
         background-color: var(--brand-col1);
         color: white;
