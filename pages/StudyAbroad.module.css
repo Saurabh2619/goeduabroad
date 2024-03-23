@@ -934,7 +934,8 @@
     .divider2 {
         display: flex;
         width: 50%;
-        max-height: 80vh;
+
+        max-height: 90vh;
         z-index: 2;
     }
     
@@ -980,8 +981,8 @@
         position: absolute;
         left: 5rem;
         top: 2rem;
-        width: 300px;
-        height: 100px;
+        width: auto;
+        height: 80px;
         z-index: 9999;
     }
     
@@ -1129,8 +1130,8 @@
         .logo {
             left: 20px;
             top: 20px;
-            width: 80px;
-            height: 80px;
+            width: auto;
+            height: 50px;
         }
         .divider1 .head {
             font-size: 12vw;

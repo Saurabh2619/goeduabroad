@@ -54,7 +54,7 @@
 .navlogo img {
     position: relative;
     transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    width: 264px;
+    width: calc(80px + 10vw);
     height: auto;
     display: block;
 }
@@ -340,7 +340,18 @@
     margin-top: 5px;
     transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+@media only screen and (max-width:1280px) {
 
+    .menuhold{
+        padding: 10px 20px;
+    }
+    .menuhold ul{
+        margin: 0px;
+    }
+    .button{
+        margin: 0px;
+    }
+}
 @media only screen and (max-width:1040px) {
     .navlist {
         display: none;

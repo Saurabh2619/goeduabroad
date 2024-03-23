@@ -1187,4 +1187,10 @@ border-radius: 10px;
     .why p {
         font-size: 1rem;
     }
+    .content h2{
+        font-size: 32px;
+    }
+    .cont p{
+        font-size: 12px !important; 
+    }
 }
