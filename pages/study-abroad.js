@@ -611,7 +611,7 @@ function validateEmail(email) {
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
-  <img className={styles.sale} width={'100%'} src='/finan.jpg'/>
+  <img className={styles.sale} width={'100%'} src='/satoffer.jpg'/>
 <h2>Get Started with Best Study Abroad Consultant in India</h2>
 <p>Start your journey with us & start your career in abroad with best study abroad consultant</p>
 <div className={styles.trust}>TOP RANKED CONSULTANT IN INDIA FOR ABROAD STUDIES</div>

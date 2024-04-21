@@ -179,8 +179,8 @@ useEffect(()=>{
 
 const slides = [
   {
-    image:'/finan.jpg',
-    alt:'EduAbroad Holi Sale'
+    image:'/satoffer.jpg',
+    alt:'EduAbroad SAT Offer'
   },
   {
   image:'/cambridgecreative.jpg',
