@@ -24,7 +24,7 @@ import DefaultLayout from '../layouts/DefaultLayout'
 import { supabase } from '../utils/supabaseClient'
 import { cbKey } from '../utils/cronBerryKey'
 import Offer from '../components/OfferPopup'
-import { getCurrentAndNextTwoYears } from '../utils/utilityfunctions'
+import { getCurrentAndNextTwoYears, removeNumbers } from '../utils/utilityfunctions'
 import { gtag_report_conversion } from '../utils/googleTag'
 
 export default function Home() {
@@ -484,6 +484,8 @@ async function studentlogin(d){
     console.log(res)
   })
 }
+
+
 function validatePhone(phone) {
   const re =  /^(\+\d{1,4})?(?!0+\s+,?$)\d{10}\s*,?$/;
   return re.test(phone);
@@ -597,7 +599,7 @@ return(<>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
-<input name={"city"} className={styles.input} placeholder={"Enter your City"} type={"text"} value={formData && formData.city} onChange={(e)=>{setFormData(res=>({...res,city:e.target.value})) }}/>
+<input name={"city"} className={styles.input} placeholder={"Enter your City"} type={"text"} value={formData && formData.city} onChange={(e)=>{setFormData(res=>({...res,city:removeNumbers(e.target.value)})) }}/>
 <CustomSelect z={9} full="true" defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
 {formData && formData.city && formData.fullname && formData.phone && formData.email && formData.year? '':<p className={styles.error}>Please fill all the fields</p>}
 {/* <div onClick={TestApi} className={styles.submit}>TEST</div> */}
