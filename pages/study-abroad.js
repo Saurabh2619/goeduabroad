@@ -724,6 +724,22 @@ return <div className={styles.card}>
           
           </div></Section>
           
+
+          <Section  color="var(--brand-col1)" align="left">
+            <h2 className={styles.heading}>Why choose EduAbroad <br/><span className={styles.red}>as your study abroad consultants?</span>
+</h2>
+<div className={styles.list}>
+<p>
+•EduAbroad is the one stop destination for you to fulfill your dreams to study abroad. </p>
+<p>•We are the official learning partners of the University of Cambridge currently serving at Lucknow, Delhi, Mumbai, Kanpur, Indore and Nagpur. <br/></p>
+<p>•At EduAbroad you get exclusive study material, books and portal containing mock tests of the University of Cambridge which prepare you comprehensively and in the best possible manner for your various tests necessary for you to study abroad. <br/></p>
+<p>•We have the best faculty in India trained directly by Cambridge University for preparation of IELTS, TOEFL, SAT, GMAT, GRE, PTE. <br/></p>
+<p>•We assist our students in every step of their journey giving them personalized support from course & university selection; building application profile, SOP, CV & Video CV; helping students in getting scholarship & financial aid; accommodation and travel assistance and right till visa assistance and interview preparation. <br/></p>
+<p>•We are the one study abroad consultant which pays utmost attention to test preparation as we know that it is the most crucial step for you to study abroad. <br/></p>
+<p>•Also, our students get the golden opportunity to get invaluable insights from our renowned mentor & founder Dr. Swati Mishra, an alumna of the University of Cambridge and MIT, USA, and a former IIM Lucknow Professor, which helps them to overcome every challenge in their way with utmost ease.  <br/></p>
+<p>•With EduAbroad by your side, there is no stopping until you reach your dream university.</p>
+</div>
+          </Section>
         
           
    

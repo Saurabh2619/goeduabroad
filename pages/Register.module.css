@@ -10,7 +10,22 @@
     overflow: hidden;
     font-family: SF Pro Display;
 }
-
+.heading{
+    font-size: 56px;
+    font-family: Playfair Display;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+.list p{
+    margin: 5px 0;
+}
+.red{
+    color: var(--brand-col1);
+}
 .yt {
     border-radius: 20px;
     overflow: hidden;

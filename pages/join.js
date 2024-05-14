@@ -178,10 +178,7 @@ useEffect(()=>{
 },[])
 
 const slides = [
-  {
-    image:'/holipost.jpg',
-    alt:'EduAbroad Holi Sale'
-  },
+ 
   {
   image:'/webinarart.jpg',
   alt:"EduAbroad Career Consultant "

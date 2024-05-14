@@ -683,6 +683,22 @@ return <div className={styles.card}>
          
           
           </div></Section>
+
+
+
+          <Section  color="var(--brand-col1)" align="left">
+            <h2 className={styles.heading}>Why choose EduAbroad  <br/><span className={styles.red}>as your IELTS coaching partner?</span>
+</h2>
+<div className={styles.list}>
+<p>•EduAbroad is the one stop destination for you if you want to ace the IELTS exam.</p>
+<p>•We are the official learning partners of the University of Cambridge currently serving at Lucknow, Delhi, Mumbai, Kanpur, Indore and Nagpur.</p>
+<p>•Therefore, you get books and portal containing mock tests exclusively from the University of Cambridge and best-in-class IELTS coaching material which prepare you for your IELTS exam.</p>
+<p>•We have the best faculty in India trained directly by Cambridge University for IELTS coaching and we have a dedicated team specially for preparing students for IELTS and also assisting them in their study abroad jounrey further - right from application, SOP, CV to helping students in getting scholarship & financial aid, getting accommodation, travel assistance and visa assistance.  </p>
+<p>•We understand that cracking IELTS is the most crucial aspect for any student who has to pursue their dream of studying abroad.</p>
+<p>•Our students get the golden opportunity to get invaluable insights from our renowned mentor & founder Dr. Swati Mishra, an alumna of the University of Cambridge and MIT, USA, and a former IIM Lucknow Professor, which helps them to overcome every challenge in their way with utmost ease. </p>
+<p>•With EduAbroad by your side, there is no stopping until you reach your dream university! Join us now to get the best IELTS coaching to turn your study abroad dreams into reality.</p>
+</div>
+          </Section>
           
         
    
