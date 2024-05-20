@@ -587,19 +587,19 @@ function validateEmail(email) {
 </svg>
 <p>Submitting Form</p>
 </div> :''}
-<img className={styles.logo} src="/enl.svg"/>
+<Image alt='EduAbroad Logo Official' width={200} height={50} className={styles.logo} src="/enl.svg"/>
         <div className={styles.hero}>
           
        <div className={styles.dotgrid} />
 <div className={styles.divider1}>
-<img src='/cambridge.svg' width={200} style={{margin:"2px 0 !important"}}/>
+<Image width="100" height={"60"} src='/cambridge.svg' style={{margin:"2px 0 !important"}}/>
   <h2 className={styles.head}>Build your <br/><span style={{color:'var(--brand-col1)'}}>Career Abroad</span> </h2>
   
   <p>Get Started with your Studies in Abroad with Best Study Abroad Consultant</p>
   <a href='#form' className={styles.btn}>Register Now</a>
 </div>
 <div className={styles.divider2}>
-  <img src='/student.png'/>
+  <Image width={"300"} height={"800"} alt='Student holding SAT Exam Books' src='/student.png'/>
 </div>
 
         </div>
@@ -607,11 +607,11 @@ function validateEmail(email) {
         
 <GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee>
           <section className={styles.maincont} id="form">
-<img src='/skyline.svg' className={styles.skyline}/>
+<Image width={"1920"} height={"500"} alt='Abroad Study Sklyine | EduAbroad Best Study Abroad Consultants' src='/skyline.svg' className={styles.skyline}/>
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
-  <img className={styles.sale} width={'100%'} src='/satoffer.jpg'/>
+  <Image height={"200"} alt='SAT Summer Sale Offer upto 90% OFF | EduAbroad Best Study Abroad Consultants' className={styles.sale} width={'1920'} src='/satoffer.jpg'/>
 <h2>Get Started with Best Study Abroad Consultant in India</h2>
 <p>Start your journey with us & start your career in abroad with best study abroad consultant</p>
 <div className={styles.trust}>TOP RANKED CONSULTANT IN INDIA FOR ABROAD STUDIES</div>
@@ -712,9 +712,9 @@ function validateEmail(email) {
 return <div className={styles.card}>
     <div className={styles.circ}></div>
   {/* <div alt={i.role} className={styles.bg} style={{backgroundImage:"url("+i.bg+")"}}></div> */}
-  <img alt={i.fullname} src={i.image}/>
+  <Image width={"100"} height={"100"} alt={i.fullname} src={i.image}/>
   <h2>{i.fullname}</h2>
-  {i.collegeimage ? <img className={styles.colimg} src={i.collegeimage}/>:''}
+  {i.collegeimage ? <Image width={"100"} height={"80"} alt={i?.colleganame || i?.fullname} className={styles.colimg} src={i.collegeimage}/>:''}
   {i.role ? <p className={styles.para}>{i.role}</p>:''}
   {i.role2 ? <p className={styles.para}>{i.role2}</p>:''}
 </div>
@@ -724,6 +724,62 @@ return <div className={styles.card}>
           
           </div></Section>
           
+
+          <Section  color="var(--brand-col1)" align="left">
+            <h2 className={styles.heading}>Mastering the SAT Exam with EduAbroad:<br/><span className={styles.red}>Your Trusted Partner in Test Preparation</span>
+</h2>
+<div className={styles.list}>
+<p>The SAT exam is a critical milestone for students aspiring to study in prestigious universities worldwide. As a standardized test widely used for college admissions in the United States, it plays a significant role in shaping academic futures. To navigate this challenging exam, partnering with a reliable study abroad consultant like EduAbroad can make all the difference. Here, we explore the intricacies of the SAT exam and how EduAbroad can support you on your test preparation journey.</p>
+
+<h2><strong>Understanding the SAT Exam</strong></h2>
+<p>The SAT, or Scholastic Assessment Test, assesses a student's readiness for college. It comprises two main sections: Evidence-Based Reading and Writing (EBRW) and Math. Each section is scored on a scale of 200-800, with a total possible score of 1600. There is also an optional Essay section, which some colleges may require.</p>
+
+
+<h3><strong>Key Components of the SAT:</strong></h3>
+<ol>
+  <li>
+ <strong> Evidence-Based Reading and Writing (EBRW)</strong>
+<ul>
+  <p>
+  <strong>- Reading Test:</strong> Focuses on comprehension and reasoning skills through passages from literature, historical documents, social sciences, and natural sciences.
+  </p><p>  <strong>- Writing and Language Test:</strong> Tests grammar, vocabulary in context, and editing skills through passages that require correction and improvement.
+  </p>
+</ul>
+  </li>
+  <li><strong>Math</strong>
+  <ul>
+  <p>
+  <strong> - Calculator Section:</strong> Allows the use of a calculator and covers a range of topics from algebra to advanced math.
+  </p><p>  <strong>- No Calculator Section:</strong> Tests arithmetic, algebra, and problem-solving skills without the use of a calculator.
+  </p>
+</ul>
+  </li>
+  <li><strong>Optional Essay</strong>
+  <ul>
+  <p>
+  - Tests the ability to analyze a passage and write a coherent and insightful essay.
+  </p>
+</ul>
+  </li>
+</ol>
+<h2>Why Choose EduAbroad for SAT Preparation?
+</h2>
+<h3>Expert Guidance and Resources</h3>
+<h3>Comprehensive Test Preparation</h3>
+<h3>Experienced Tutors</h3>
+<h3>Supportive Learning Environment</h3>
+<h3>Track Record of Success</h3>
+<h2>The EduAbroad Advantage</h2>
+<h2>Conclusion</h2>
+<p>The SAT exam is a crucial step in your academic journey, and preparing for it requires dedication, strategy, and expert guidance. EduAbroad is your trusted partner in this endeavor, offering the tools, resources, and support you need to succeed. With our tailored approach and proven track record, you can approach the SAT with confidence and achieve your desired score.
+
+</p>
+<p>
+Embark on your test preparation journey with EduAbroad today and take the first step towards a bright academic future. Contact us now to learn more about our SAT preparation programs and how we can help you reach your goals.
+</p>
+</div>
+          </Section>
+        
 
           <Section  color="var(--brand-col1)" align="left">
             <h2 className={styles.heading}>Why choose EduAbroad <br/><span className={styles.red}>as your study abroad consultants?</span>
@@ -740,10 +796,9 @@ return <div className={styles.card}>
 <p>•With EduAbroad by your side, there is no stopping until you reach your dream university.</p>
 </div>
           </Section>
-        
           
    
-   <Section title={"Why choose: EduAbroad?"} color="var(--brand-col1)" align="left" visible="true">
+  {/*  <Section title={"Why choose: EduAbroad?"} color="var(--brand-col1)" align="left" visible="true">
    <Swiper
      modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={10}
@@ -791,7 +846,7 @@ return(<>
 
     </Swiper>
 
-   </Section>
+   </Section> */}
    <GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee>
    <Section title={":Testimonials"} color="var(--brand-col1)" align="left" visible="true">
 
@@ -802,7 +857,7 @@ return(<>
     <div className={styles.shape}></div>
     <div className={styles.shape2}></div>
 <div className={styles.rcard_profile}>
-  <img alt={i.fullname} src={i.image}/>
+  <Image width={"100"} height={"100"} alt={i.fullname} src={i.image}/>
     <div>
     <h2>{i.fullname}</h2>
     <p>{i.college}</p>
@@ -822,10 +877,7 @@ return(<>
 
 
    </Section>
-   {/* <Section title={"Our Previous:Results"} color="var(--brand-col1)" align="center" visible="true">
- <img alt="EduAbroad Results"  className={styles.results}  src={'/'}/>
-
-   </Section> */}
+ 
    <Section title={"Frequently:Asked Questions"} color="var(--brand-col1)" align="left" visible="true" >
    <FAQ items={faqs}/>
    </Section>

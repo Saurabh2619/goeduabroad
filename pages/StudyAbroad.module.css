@@ -36,6 +36,7 @@
     .sale{
         width: 100%;
         border-radius: 20px;
+        height: auto;
     }
     .country {
         background-color: var(--brand-col1);
