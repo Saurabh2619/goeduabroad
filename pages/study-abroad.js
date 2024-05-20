@@ -738,10 +738,10 @@ return <div className={styles.card}>
 <h3><strong>Key Components of the SAT:</strong></h3>
 <ol>
   <li>
- <strong> Evidence-Based Reading and Writing (EBRW)</strong>
+ <strong>Evidence-Based Reading and Writing (EBRW)</strong>
 <ul>
   <p>
-  <strong>- Reading Test:</strong> Focuses on comprehension and reasoning skills through passages from literature, historical documents, social sciences, and natural sciences.
+  <strong>Reading Test:</strong> Focuses on comprehension and reasoning skills through passages from literature, historical documents, social sciences, and natural sciences.
   </p><p>  <strong>- Writing and Language Test:</strong> Tests grammar, vocabulary in context, and editing skills through passages that require correction and improvement.
   </p>
 </ul>
@@ -757,7 +757,7 @@ return <div className={styles.card}>
   <li><strong>Optional Essay</strong>
   <ul>
   <p>
-  - Tests the ability to analyze a passage and write a coherent and insightful essay.
+  Tests the ability to analyze a passage and write a coherent and insightful essay.
   </p>
 </ul>
   </li>
@@ -765,11 +765,33 @@ return <div className={styles.card}>
 <h2>Why Choose EduAbroad for SAT Preparation?
 </h2>
 <h3>Expert Guidance and Resources</h3>
+<p>EduAbroad stands out as a premier study abroad consultant with a track record of helping students achieve their academic goals. Our expert counselors provide personalized guidance, tailored study plans, and access to top-notch resources to help you excel in the SAT.</p>
 <h3>Comprehensive Test Preparation</h3>
+<p>At EduAbroad, we understand that each student has unique strengths and weaknesses. Our comprehensive test preparation program includes:</p>
+<ul>
+
+  <li><strong>Diagnostic Tests:</strong> Identify your starting point and areas for improvement.</li>
+<li><strong>Customized Study Plans:</strong> Tailored to your learning pace and schedule.</li>
+<li><strong>Practice Tests:</strong> Simulate real exam conditions to build confidence and stamina.</li>
+<li><strong>Targeted Lessons:</strong> Focus on critical concepts and strategies for each section of the SAT.</li>
+</ul>
 <h3>Experienced Tutors</h3>
+<p>Our team of experienced tutors is dedicated to helping you master the SAT. They provide insightful instruction, tips, and techniques to tackle even the most challenging questions. With their support, you can improve your performance and achieve a higher score.</p>
 <h3>Supportive Learning Environment</h3>
+<p>EduAbroad offers a supportive learning environment where students can thrive. Our small class sizes ensure personalized attention, and our interactive teaching methods make learning engaging and effective.</p>
 <h3>Track Record of Success</h3>
+
+<p>EduAbroad has helped countless students gain admission to top universities by achieving stellar SAT scores. Our success stories speak volumes about the quality of our test preparation services.</p>
 <h2>The EduAbroad Advantage</h2>
+
+<p>Choosing EduAbroad for your SAT preparation means investing in a brighter future. Here’s what sets us apart:</p>
+
+<ul>
+  <li><strong>Proven Results:</strong> High success rates with students achieving significant score improvements.</li>
+<li><strong>Comprehensive Support:</strong> From initial consultation to final test day, we’re with you every step of the way.</li>
+<li><strong>Global Reach:</strong> Extensive network of partner universities and colleges worldwide.</li>
+</ul>
+
 <h2>Conclusion</h2>
 <p>The SAT exam is a crucial step in your academic journey, and preparing for it requires dedication, strategy, and expert guidance. EduAbroad is your trusted partner in this endeavor, offering the tools, resources, and support you need to succeed. With our tailored approach and proven track record, you can approach the SAT with confidence and achieve your desired score.
 
