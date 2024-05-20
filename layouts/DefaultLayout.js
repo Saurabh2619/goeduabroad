@@ -5,6 +5,7 @@ import styles from './DefaultLayout.module.css'
 import Link from 'next/link'
 import {useRouter} from 'next/router';
 import { supabase } from '../utils/supabaseClient';
+import Image from 'next/image';
 function DefaultLayout(props){
 
 
@@ -111,7 +112,7 @@ onClick={()=>{handleAnimateClose()}}
 <img width={120} alt='Golden Graduation Cap' src='/gradgold.svg'/>
 
     </div>
-    <img alt='Cambridge University Campus' src='/campus.png' className={styles.bottomimage}/>
+    <Image width={"1920"} height={"1080"} alt='Cambridge University Campus' src='https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,q_84,w_1470/v1716230943/campus_f35ygm.webp' className={styles.bottomimage}/>
 </div>
 <div className={styles.badge + " " + (promo  ? styles.closed : '')}>
     <div className={styles.badgeinner} onClick={()=>{setPromo(true)}}>

@@ -566,7 +566,7 @@ function validateEmail(email) {
 
 return(<>
 
-<SwiperSlide key={index}><img alt={item.alt} className={styles.slideimage} src={item.image}/></SwiperSlide>
+<SwiperSlide key={index}><Image width={'1998'} height={'793'} alt={item.alt} className={styles.slideimage} src={item.image}/></SwiperSlide>
 
 </>)
 })} 
@@ -581,8 +581,8 @@ return(<>
 
           <section className={styles.maincont} id="form">
 
-            <div className={styles.grad1}></div>
-            <div className={styles.grad2}></div>
+        {/*     <div className={styles.grad1}></div>
+            <div className={styles.grad2}></div> */}
 <div className={styles.c1}>
 <h2>India's Leading Study Abroad Consultant</h2>
 <p>Join our IELTS Preparation Full Course. Get Assistance from Experienced Mentors.</p>
@@ -672,9 +672,9 @@ return(<>
 return <div className={styles.card}>
     <div className={styles.circ}></div>
   {/* <div alt={i.role} className={styles.bg} style={{backgroundImage:"url("+i.bg+")"}}></div> */}
-  <img alt={i.fullname} src={i.image}/>
+  <Image width={"100"} height={"100"} alt={i.fullname} src={i.image}/>
   <h2>{i.fullname}</h2>
-  {i.collegeimage ? <img alt={i?.collegealt || i.fullname} className={styles.colimg} src={i.collegeimage}/>:''}
+  {i.collegeimage ? <Image width={"100"} height={"20"}  alt={i?.collegealt || i.fullname} className={styles.colimg} src={i.collegeimage}/>:''}
   {i.role ? <p className={styles.para}>{i.role}</p>:''}
   {i.role2 ? <p className={styles.para}>{i.role2}</p>:''}
 </div>
@@ -761,7 +761,7 @@ return(<>
     <div className={styles.shape}></div>
     <div className={styles.shape2}></div>
 <div className={styles.rcard_profile}>
-  <img alt={i.fullname} src={i.image}/>
+  <Image width={"100"} height={"100"} alt={i.fullname} src={i.image}/>
     <div>
     <h2>{i.fullname}</h2>
     <p>{i.college}</p>
