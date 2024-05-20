@@ -592,7 +592,7 @@ function validateEmail(email) {
           
        <div className={styles.dotgrid} />
 <div className={styles.divider1}>
-<Image width="100" height={"60"} src='/cambridge.svg' style={{margin:"2px 0 !important"}}/>
+<Image width="200" height={"60"} alt='EduAbroad in Association with Cambridge University' src='/cambridge.svg' style={{margin:"2px 0 !important",objectPosition:"left"}}/>
   <h2 className={styles.head}>Build your <br/><span style={{color:'var(--brand-col1)'}}>Career Abroad</span> </h2>
   
   <p>Get Started with your Studies in Abroad with Best Study Abroad Consultant</p>
