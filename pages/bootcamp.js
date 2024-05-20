@@ -76,7 +76,7 @@ const testimonials =[{
 const heading=['Register Now','Its Free','Limited Seats','Best Abroad Career Consultancy']
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
 
-  console.log(arguments)
+  
 
   var id = Date.now();
   var data = JSON.stringify({
@@ -153,7 +153,7 @@ async function getMentors(){
     const {data,error} = await supabase.from('mentors').select('*');
 
     if(data){
-console.log(data)
+
 setMentors(data && data.map((i,d)=>{
     return {
         fullname:i.title,
@@ -171,7 +171,7 @@ setMentors(data && data.map((i,d)=>{
 
 useEffect(()=>{
     getMentors()
-    console.log('d')
+    
 },[])
 
 const slides = [{
@@ -247,7 +247,7 @@ function setNotification(de){
   }
 
   setNotificationText(de);
-   const id = setTimeout(()=>{setNotificationText(),setTimeoutId(null),console.log('notcall')},2500);
+   const id = setTimeout(()=>{setNotificationText(),setTimeoutId(null)},2500);
    setTimeoutId(id)
 }
 useEffect(()=>{
@@ -294,7 +294,7 @@ const opts ={
   },
 }
 async function handleAPI(a,b,c){
-console.log("api")
+
  await axios.post('/api/hello',{
    fullname:a,
    event:"Free Consulation",
@@ -357,9 +357,9 @@ async function triggerInterakt(){
 
     tag: "Landing Page"
   }).then(res=>{
-    console.log(res)
+    
   }).catch(res=>{
-    console.log(res)})
+    })
 }
 
 
@@ -393,7 +393,7 @@ image:'https://www.state.gov/wp-content/uploads/2022/02/shutterstock_1025960785-
 ]
 
 async function SubmitContact(){
-  console.log(formData && Object.values(formData).filter((i,d)=> i.length > 2).length)
+  
   if(formData && Object.values(formData).filter((i,d)=> i.length > 2).length > 3 && validateEmail(formData.email ? formData.email :'') && validatePhone(formData.phone ? formData.phone:'')){
 
     setLoader(true)
@@ -411,11 +411,11 @@ source:'Study Abroad Page'
     }).select();
   }
   else if(!formData){
-    console.log('red')
+    
 setNotification('Please fill all the fields')
   }
   else{
-    console.log(formData)
+    
 setNotification('Please fill all the fields')
   }
  
@@ -461,7 +461,7 @@ async function studentlogin(d){
   }).then(res=>{
     
   }).catch(res=>{
-    console.log(res)
+    
   })
 }
 function validatePhone(phone) {
@@ -646,7 +646,7 @@ return <div className={styles.card}>
       pagination={{ clickable: true }}
       centeredSlides={mobile === "desktop" || mobile === "tablet" ? false : false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();

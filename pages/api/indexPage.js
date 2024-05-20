@@ -12,7 +12,7 @@ export default function handler(req, res) {
       
         try {
           const response = await axios.post(`${url}?key=${apiKey}`, data);
-          console.log('Indexing API response:', response.data);
+          
           return response.data;
         } catch (error) {
           console.error('Error calling Indexing API:', error.message);
@@ -20,7 +20,7 @@ export default function handler(req, res) {
       };
       
     const {curl,apik}  = req.body;
-    console.log(curl,apik,req.body)
+    
     sendIndexingRequest(curl,apik);
 
     

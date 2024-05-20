@@ -115,7 +115,7 @@ const CustomEditor = dynamic(() => import('./CustomEditor'), {
           type:"textarea",
           component:InputField,
           key:"data",
-          default:"function()=>{console.log('trial')}"
+          default:"function()=>{}"
       },{
         name:"FilePath",
         type:"text",
@@ -676,7 +676,7 @@ const RenderEditor = (props) =>{
 
 
     const updateDataAtIndex = (index, key, value) => {
-        /* console.log(value) */
+        
         // Step 1: Retrieve the current state data
         const updatedData = [...postData];
     
@@ -714,7 +714,7 @@ const RenderEditor = (props) =>{
             props:newprops
         }
     
-        console.log(dataToAdd)
+        
         addDataAtIndex(index,dataToAdd);
         setSelector()
     }
@@ -743,7 +743,7 @@ const RenderEditor = (props) =>{
         ...(itemz.type == "select"? {noPadding:true ,defaultText:`Select ${itemz.key}`,z:9,objects:itemz.objects, setSelect:(e)=>updateDataAtIndex(activeEdit,itemz.key,e)}:{}),
         ...(itemz.type == "image"? { min:itemz.min,max:itemz.max,data:{image:field.props[itemz.key]},onUploadComplete:(e)=>updateDataAtIndex(activeEdit,itemz.key,e)}:{})
        }
-    /* console.log(pr,itemz) */
+    
     return pr;
        }
         

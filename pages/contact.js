@@ -15,7 +15,7 @@ const [thankyou,setThankYou] = useState(false)
 const [notificationText,setNotificationText] = useState();
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,page) {
 
-    console.log(arguments)
+    
   
     var id = Date.now();
     var data = JSON.stringify({
@@ -144,9 +144,9 @@ function validatePhone(phone) {
   
       tag: "Landing Page"
     }).then(res=>{
-      console.log(res)
+      
     }).catch(res=>{
-      console.log(res)})
+      })
   }
 async function SubmitContact(){
 

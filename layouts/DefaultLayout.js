@@ -105,13 +105,13 @@ onClick={()=>{handleAnimateClose()}}
    
     </div>
     <div className={styles.promocontent}>
-<h2>We are proudly</h2>
+<p>We are proudly</p>
 <h1>Official Cambridge Learning Partners</h1>
-<h5>(Makers of IELTS Exam)</h5>
-<img width={120} src='/gradgold.svg'/>
+<h2>(Makers of IELTS Exam)</h2>
+<img width={120} alt='Golden Graduation Cap' src='/gradgold.svg'/>
 
     </div>
-    <img src='/campus.png' className={styles.bottomimage}/>
+    <img alt='Cambridge University Campus' src='/campus.png' className={styles.bottomimage}/>
 </div>
 <div className={styles.badge + " " + (promo  ? styles.closed : '')}>
     <div className={styles.badgeinner} onClick={()=>{setPromo(true)}}>

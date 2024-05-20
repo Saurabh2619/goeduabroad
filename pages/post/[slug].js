@@ -300,7 +300,7 @@ return(<>
       pagination={{ clickable: true }}
       centeredSlides={mobile === "desktop" || mobile === "tablet" ? false : false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();

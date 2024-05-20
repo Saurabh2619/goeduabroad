@@ -23,7 +23,7 @@ function getInitValue(a){
   if(a == undefined){
     return min+suffix;
   }
-  console.log('not undefined',a)
+  
   const given = parseInt(a);
   const r = given/(max-min)*100
   return Math.round(r).toFixed(0);
@@ -64,7 +64,7 @@ props.onChange("auto")
 ]
 
 function getValueIndex(value) {
-  console.log(value)
+  
   if(!value){
     return 0
   }

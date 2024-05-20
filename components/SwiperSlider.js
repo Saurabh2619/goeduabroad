@@ -32,7 +32,7 @@ function SwiperSlider(props){
       centeredSlides={props?.config?.centered || false }
       onSlideChange={() =>{}}
 
-      onSwiper={(swiper) => console.log(swiper,props)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();

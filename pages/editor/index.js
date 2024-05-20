@@ -114,7 +114,7 @@ if(localStorage.getItem('isAuth-nmnVis-Bl')){
 
 
 useEffect(()=>{
-    console.log(categories)
+    
 },[categories])
 const toolbaroptions = {
     container: [['bold', 'italic', 'underline', 'strike'],        // Text formatting options
@@ -164,7 +164,7 @@ function renderEditorComps(a){
 
 function activatePostEditor(a,b){
     setPostEditor(a);
-    console.log(a)
+    
     setPostEditorData(b)}
 
 useEffect(()=>{
@@ -436,7 +436,7 @@ async function getSetCategory(){
 
 async function getUserEmail(){
     const a = localStorage.getItem('isAuth-nmnVis-El')
-    console.log(a)
+    
 }
 useEffect(()=>{
     getUserEmail()
@@ -561,7 +561,7 @@ async function SubmitData(data) {
       }
     }
   
-    console.log("Submitted")
+    
   }
   
 function setNotification(de){
@@ -664,7 +664,7 @@ async function deletePostById(a){
     },500)
     }
     else if(error){
-        console.log(error)
+        
         setNotification('error')
     }
 
@@ -707,7 +707,7 @@ function isAllowed() {
 
 async function uploadImage(a,b,c){
     const imageData = new FormData;
-    console.log(a)
+    
     imageData.append('file',a);
     imageData.append('upload_preset','nmnblog')
     
@@ -716,7 +716,7 @@ async function uploadImage(a,b,c){
             'Content-Type': 'multipart/form-data'
           }
     }).then(resa=>{
-       console.log(resa)
+       
     })
     
     
@@ -812,7 +812,7 @@ else if(i.type == "file"){
 
 else if(i.type == "select"){return <>
 <h2>{i.label}</h2>
-<CustomSelect defaultIndex={posteditorData.cat.id} noPadding out z={9} objects={i?.objects} defaultText={"Select Category"} setSelect={(a)=>{console.log(a),setPostEditorData(res=>({...res,cat:({...res.cat,id:categories[a].id})}))}} /></>
+<CustomSelect defaultIndex={posteditorData.cat.id} noPadding out z={9} objects={i?.objects} defaultText={"Select Category"} setSelect={(a)=>{setPostEditorData(res=>({...res,cat:({...res.cat,id:categories[a].id})}))}} /></>
 }
 else if(i.type == "dynamic"){
     
@@ -954,10 +954,10 @@ value:i.title}
             <h3>Meta Title : {quickEdits?.metaTitle?.length}/60</h3>
             <div key={"metatitle"} onClick={()=>{setContentEditable(1)}} contentEditable={contentEditable == 1? true :false } onInput={(e)=>{setQuickEdits(res=>({...res,metaTitle:e.currentTarget && e?.currentTarget?.innerText  }))}} onBlur={(e)=>{updateField(e.currentTarget.textContent,'metaTitle',quickEdits.id)}}>{quickEdits.metaTitle}</div>
             <h3>Meta Description : {quickEdits?.metaDesc?.length}/160</h3>
-            <div key={"metadesc"} onClick={()=>{setContentEditable(2)}} contentEditable={contentEditable == 2? true :false } onInput={(e)=>{console.log(e.currentTarget.value),setQuickEdits(res=>({...res,metaDesc:e.currentTarget && e?.currentTarget?.innerText  }))}} onBlur={(e)=>{updateField(e.currentTarget.textContent,'metaDesc',quickEdits.id)}}>{quickEdits.metaDesc}</div>
+            <div key={"metadesc"} onClick={()=>{setContentEditable(2)}} contentEditable={contentEditable == 2? true :false } onInput={(e)=>{setQuickEdits(res=>({...res,metaDesc:e.currentTarget && e?.currentTarget?.innerText  }))}} onBlur={(e)=>{updateField(e.currentTarget.textContent,'metaDesc',quickEdits.id)}}>{quickEdits.metaDesc}</div>
            
 
-           {/* <div onClick={()=>{setContentEditable(3)}} contentEditable={contentEditable == 3? true :false } onInput={(e)=>{console.log(e.currentTarget.innerText)}}>{quickEdits.author}</div> */}
+           {/* <div onClick={()=>{setContentEditable(3)}} contentEditable={contentEditable == 3? true :false } onInput={(e)=>{}}>{quickEdits.author}</div> */}
             
         </div>
     </div>:''}

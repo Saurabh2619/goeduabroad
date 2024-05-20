@@ -74,7 +74,7 @@ const testimonials =[{
 const heading=['Register Now','Its Free','Limited Seats','Best Abroad Career Consultancy']
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
 
-  console.log(arguments)
+  
 
   var id = Date.now();
   var data = JSON.stringify({
@@ -136,7 +136,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
           setNotification('Submitted Successfully');
 
           gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {
-            console.log('Conversion tracked successfully.');
+            
             // Optionally, you can add any post-conversion logic here
           });
           setSubmitted(true)
@@ -156,7 +156,7 @@ async function getMentors(){
     const {data,error} = await supabase.from('mentors').select('*');
 
     if(data){
-console.log(data)
+
 setMentors(data && data.map((i,d)=>{
     return {
         fullname:i.title,
@@ -174,19 +174,19 @@ setMentors(data && data.map((i,d)=>{
 
 useEffect(()=>{
     getMentors()
-    console.log('d')
+    
 },[])
 
 const slides = [
   {
-    image:'/satoffer.jpg',
+    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_1998/v1716228547/satoffer_si33ow.webp',
     alt:'EduAbroad SAT Offer'
   },
   {
-  image:'/cambridgecreative.jpg',
+  image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_1968/v1716228530/cambridgecreative_wyp0ja.webp',
   alt:"EduAbroad Career Consultant "
 },{
-  image:'/rvw.webp',
+  image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_2056/v1716228545/rvw_rveust.webp',
   alt:'EduAbroad Career Consultant'
 }
 
@@ -257,7 +257,7 @@ function setNotification(de){
   }
 
   setNotificationText(de);
-   const id = setTimeout(()=>{setNotificationText(),setTimeoutId(null),console.log('notcall')},2500);
+   const id = setTimeout(()=>{setNotificationText(),setTimeoutId(null)},2500);
    setTimeoutId(id)
 }
 useEffect(()=>{
@@ -304,7 +304,7 @@ const opts ={
   },
 }
 async function handleAPI(a,b,c){
-console.log("api")
+
  await axios.post('/api/hello',{
    fullname:a,
    event:"Free Consulation",
@@ -368,9 +368,9 @@ useEffect(()=>{
   
       tag: "Landing Page"
     }).then(res=>{
-      console.log(res)
+      
     }).catch(res=>{
-      console.log(res)})
+      })
   }
 async function SubmitContact(){
 
@@ -378,7 +378,7 @@ async function SubmitContact(){
     setNotification('All Fields are empty')
     return null
   }
-  /* console.log(formData && Object.values(formData).filter((i,d)=> i.length > 2).length) */
+  
   if (!formData.fullname || formData.fullname.trim() === '') {
     setNotification('Fullname field is empty');
     return null;
@@ -490,7 +490,7 @@ async function studentlogin(d){
   }).then(res=>{
     
   }).catch(res=>{
-    console.log(res)
+    
   })
 }
 function validatePhone(phone) {
@@ -546,7 +546,7 @@ function validateEmail(email) {
       pagination={{ clickable: true }}
       centeredSlides={true}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
@@ -674,7 +674,7 @@ return <div className={styles.card}>
   {/* <div alt={i.role} className={styles.bg} style={{backgroundImage:"url("+i.bg+")"}}></div> */}
   <img alt={i.fullname} src={i.image}/>
   <h2>{i.fullname}</h2>
-  {i.collegeimage ? <img className={styles.colimg} src={i.collegeimage}/>:''}
+  {i.collegeimage ? <img alt={i?.collegealt || i.fullname} className={styles.colimg} src={i.collegeimage}/>:''}
   {i.role ? <p className={styles.para}>{i.role}</p>:''}
   {i.role2 ? <p className={styles.para}>{i.role2}</p>:''}
 </div>
@@ -703,7 +703,7 @@ return <div className={styles.card}>
         
    
    
-   <Section title={"Why choose: EduAbroad?"} color="var(--brand-col1)" align="left" visible="true">
+   {/* <Section title={"Why choose: EduAbroad?"} color="var(--brand-col1)" align="left" visible="true">
    <Swiper
      modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={10}
@@ -714,7 +714,7 @@ return <div className={styles.card}>
       pagination={{ clickable: true }}
       centeredSlides={mobile === "desktop" || mobile === "tablet" ? false : false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
@@ -751,7 +751,7 @@ return(<>
 
     </Swiper>
 
-   </Section>
+   </Section> */}
    <Section title={":Testimonials"} color="var(--brand-col1)" align="left" visible="true">
 
 <div className={styles.reviewholder}>

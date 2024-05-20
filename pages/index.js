@@ -596,9 +596,9 @@ async function triggerInterakt(){
 
     tag: "Landing Page"
   }).then(res=>{
-    console.log(res)
+    
   }).catch(res=>{
-    console.log(res)})
+    })
 }
 async function SubmitContact(){
   if(formData == undefined){

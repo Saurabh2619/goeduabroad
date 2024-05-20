@@ -162,11 +162,11 @@ return <div className={styles.questions}>
   
       if (isFormValid()) {
         // Handle form submission
-        console.log('Form data submitted:', formData);
+        
         onSubmit(formData)
       } else {
         // Form is not valid; display error messages
-        console.log('Form data is invalid. Please correct the errors.');
+       
         onError("Please fill correct details")
       }
     };
@@ -229,14 +229,14 @@ async function triggerInterakt(a){
   
       tag: "Landing Page"
     }).then(res=>{
-      console.log(res)
+      
     }).catch(res=>{
-      console.log(res)})
+      })
   }
 
   function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
 
-    console.log(arguments)
+    
   
     var id = Date.now();
     var data = JSON.stringify({

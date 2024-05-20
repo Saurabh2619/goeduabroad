@@ -51,7 +51,7 @@ useEffect(()=>{
     if(props?.data){
         setData(props.data)
     }
-    console.log(props)
+    
 },[])
 
 

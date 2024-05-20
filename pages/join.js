@@ -74,7 +74,7 @@ const testimonials =[{
 const heading=['Register Now','Its Free','Limited Seats','Best Abroad Career Consultancy']
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
 
-  console.log(arguments)
+  
 
   var id = Date.now();
   var data = JSON.stringify({
@@ -135,7 +135,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke) {
           setLoader(false)
           setNotification('Submitted Successfully');
           gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {
-            console.log('Conversion tracked successfully.');
+            
             // Optionally, you can add any post-conversion logic here
           });
           
@@ -156,7 +156,7 @@ async function getMentors(){
     const {data,error} = await supabase.from('mentors').select('*');
 
     if(data){
-console.log(data)
+
 setMentors(data && data.map((i,d)=>{
     return {
         fullname:i.title,
@@ -174,7 +174,7 @@ setMentors(data && data.map((i,d)=>{
 
 useEffect(()=>{
     getMentors()
-    console.log('d')
+    
 },[])
 
 const slides = [
@@ -249,7 +249,7 @@ function setNotification(de){
   }
 
   setNotificationText(de);
-   const id = setTimeout(()=>{setNotificationText(),setTimeoutId(null),console.log('notcall')},2500);
+   const id = setTimeout(()=>{setNotificationText(),setTimeoutId(null)},2500);
    setTimeoutId(id)
 }
 useEffect(()=>{
@@ -296,7 +296,7 @@ const opts ={
   },
 }
 async function handleAPI(a,b,c){
-console.log("api")
+
  await axios.post('/api/hello',{
    fullname:a,
    event:"Free Consulation",
@@ -360,9 +360,9 @@ async function triggerInterakt(){
 
     tag: "Landing Page"
   }).then(res=>{
-    console.log(res)
+    
   }).catch(res=>{
-    console.log(res)})
+    })
 }
 async function SubmitContact(){
   if(formData == undefined){
@@ -478,7 +478,7 @@ async function studentlogin(d){
   }).then(res=>{
     
   }).catch(res=>{
-    console.log(res)
+    
   })
 }
 
@@ -536,7 +536,7 @@ function validateEmail(email) {
       pagination={{ clickable: true }}
       centeredSlides={true}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();
@@ -687,7 +687,7 @@ return <div className={styles.card}>
       pagination={{ clickable: true }}
       centeredSlides={mobile === "desktop" || mobile === "tablet" ? false : false}
       onSlideChange={() =>{}}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onInit={(swiper) => {
        
         swiper.navigation.update();

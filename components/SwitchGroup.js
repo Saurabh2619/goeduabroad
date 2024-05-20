@@ -7,13 +7,13 @@ function SwitchGroup(props){
 
     
     useEffect(()=>{
-       console.log(props.defaultValue)
+      
         setActive(props.defaultValue || 0)
         props.onChange(props?.data[0].value)   
     },[])
     
     function initValue(a,b){
-console.log(a)
+
         setActive(a)
         
         props.onChange(b)

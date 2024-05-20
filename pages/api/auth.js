@@ -12,7 +12,7 @@ export default function(req, res) {
             const a = r.findIndex(x => x.email == req.body.a.email);
 
             if (r[a].password == req.body.a.password) {
-                console.log(r)
+                
                 res.status(200).json({ logged: true, email: req.body.a.email, message: "Logged in Successfully" })
             } else {
 

@@ -19,7 +19,7 @@ const [thankyou,setThankYou] = useState(false)
 const [formData,setFormData]  = useState()
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,page) {
 
-    console.log(arguments)
+    
   
     var id = Date.now();
     var data = JSON.stringify({
@@ -114,9 +114,9 @@ async function triggerInterakt(){
   
       tag: "Landing Page"
     }).then(res=>{
-      console.log(res)
+      
     }).catch(res=>{
-      console.log(res)})
+      })
   }
 
 async function SubmitContact(){
@@ -246,7 +246,7 @@ datac = data;
 
 }
 else if(error){
-console.log(error)
+
 }
 
 return { props: {datac: datac ? datac : {}} } 

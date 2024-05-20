@@ -5,7 +5,7 @@ export default async function LoginHandler(req, res) {
 
         const body = req.body;
 
-        console.log(req.body)
+        
         axios.post('https://api.interakt.ai/v1/public/track/users/', {
 
             userId: req.body.userId,
@@ -29,7 +29,7 @@ export default async function LoginHandler(req, res) {
 
             if (reso.data.result) {
                 eventCall();
-                console.log(reso.data)
+                
             }
 
         }).catch((reso) => {
@@ -62,7 +62,7 @@ export default async function LoginHandler(req, res) {
             }).then(reso => {
 
                 if (reso.data.result) {
-                    console.log('secondcall', reso.data)
+                    
                     res.status(200).end();
                 } else {
                     res.status(400).end()
