@@ -14,7 +14,7 @@ const [loading,setLoading] = useState(false);
 const [thankyou,setThankYou] = useState(false)
 const [notificationText,setNotificationText] = useState();
 const a = props?.data[0]
-
+const {slug} = props;
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,page) {
 
     
@@ -38,7 +38,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
             },
             {
                 "paramKey": "city",
-                "paramValue": u_city
+                "paramValue": slug
             },
             {
                 "paramKey": "postcode",
@@ -155,12 +155,13 @@ async function SubmitContact(){
     if(formData && formData.fullname && formData.email && formData.phone && validateEmail(formData.email) && validatePhone(formData.phone)){
         setLoading(true);
         triggerInterakt();
-        cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.subject,formData.message,'https://goeduabroad.com','GoEduAbroad Contact Page');
+        cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.subject,formData.message,'https://goeduabroad.com',`${slug} Contact Page`);
         const {data,error} = await supabase.from('leads').insert({
             name:formData.fullname,
 email:formData.email,
 phone:formData.phone,
 subject:formData.subject,
+city:slug,
 message:formData.message,
         }).select();
 
@@ -207,8 +208,8 @@ setNotification('Please Fill all the fields correctly')
    <p> Address : {a?.address}</p>
     </div>
     
-   
-{/* <h2>Submit Contact Request</h2>
+ { slug == "delhi"?  <>
+<h2>Contact Us</h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
@@ -221,7 +222,7 @@ setNotification('Please Fill all the fields correctly')
   <path d="M64,136H32a8,8,0,0,1,0-16H64a8,8,0,0,1,0,16ZM173.25488,90.74512a7.97769,7.97769,0,0,0,5.65723-2.34278l22.62695-22.62695a8.00052,8.00052,0,1,0-11.31445-11.31445l-22.627,22.627a8,8,0,0,0,5.65722,13.65723ZM65.77539,54.46094A8.00052,8.00052,0,0,0,54.46094,65.77539l22.627,22.62695A8.00052,8.00052,0,0,0,88.40234,77.08789Zm11.3125,113.13672-22.62695,22.627a8.00052,8.00052,0,0,0,11.31445,11.31445l22.62695-22.62695a8.00052,8.00052,0,0,0-11.31445-11.31445ZM224,120H192a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16Zm-45.08789,47.59766a8.00052,8.00052,0,0,0-11.31445,11.31445l22.627,22.62695a8.00052,8.00052,0,1,0,11.31445-11.31445ZM128,184a8.00039,8.00039,0,0,0-8,8v32a8,8,0,0,0,16,0V192A8.00039,8.00039,0,0,0,128,184Zm0-160a8.00039,8.00039,0,0,0-8,8V64a8,8,0,0,0,16,0V32A8.00039,8.00039,0,0,0,128,24Z"/>
 </svg>
 :''}
-    SUBMIT</div> */}
+    SUBMIT</div></>:''}
     </div>
 
 </div>
@@ -255,5 +256,5 @@ export async function getServerSideProps(context) {
   
   
     
-    return { props: {data} }
+    return { props: {data , slug:context.query.slug} }
   }
