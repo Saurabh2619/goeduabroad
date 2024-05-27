@@ -8,6 +8,7 @@ import { supabase } from '../../utils/supabaseClient';
 import styles from './Contact.module.css'
 import axios from 'axios'
 import { cbKey } from '../../utils/cronBerryKey';
+import { getCurrentAndNextTwoYears } from '../../utils/utilityfunctions';
 function Contact(props){
 const [formData,setFormData] = useState();
 const [loading,setLoading] = useState(false);
@@ -15,7 +16,10 @@ const [thankyou,setThankYou] = useState(false)
 const [notificationText,setNotificationText] = useState();
 const a = props?.data[0]
 const {slug} = props;
-function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,page) {
+
+
+const years = getCurrentAndNextTwoYears();
+function cronberryTrigger(username, u_email, u_mobile, u_year, pursue, linke,page) {
 
     
   
@@ -57,8 +61,8 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
                 "paramValue": u_year
             },
             {
-                "paramKey": "subject",
-                "paramValue": ""
+                "paramKey": "course",
+                "paramValue": pursue
             },
             {
                 "paramKey": "formurl",
@@ -155,12 +159,12 @@ async function SubmitContact(){
     if(formData && formData.fullname && formData.email && formData.phone && validateEmail(formData.email) && validatePhone(formData.phone)){
         setLoading(true);
         triggerInterakt();
-        cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.subject,formData.message,'https://goeduabroad.com',`${slug} Contact Page`);
+        cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.pursue,'https://goeduabroad.com',`${slug} Contact Page`);
         const {data,error} = await supabase.from('leads').insert({
             name:formData.fullname,
 email:formData.email,
 phone:formData.phone,
-subject:formData.subject,
+subject:formData?.pursue,
 city:slug,
 message:formData.message,
         }).select();
@@ -181,7 +185,10 @@ setNotification('Please Fill all the fields correctly')
     }
 
 }
-
+function sanitizePhone(a){
+    if(a != undefined)
+    return a.replace(/\D/g, '');
+}
     return <DefaultLayout>
          {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
          {thankyou ? <div className={styles.modaloverlay}><div className={styles.modal}><h2>Thank You for Submission</h2><p>Our Executive will get back to you shortly meanwhile you can browse our website or apply for more services or preparation plans.</p>
@@ -212,9 +219,9 @@ setNotification('Please Fill all the fields correctly')
 <h2>Contact Us</h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
-<input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
-<CustomSelect single={true} z={9} full="true" defaultText="Select Subject" noPadding={true} objects={reasons} setSelect={(r)=>{setFormData(res=>({...res,subject:r}))}}/>
-<textarea placeholder='Write Message Here' className={styles.input} onChange={(e)=>{setFormData(res=>({...res,message:e.target.value}))}}></textarea>
+<input name={"phone"} maxLength={10} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:sanitizePhone(e.target.value)})) }}/>
+<CustomSelect z={9} fullWidth defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
+<input placeholder='What do you wish to pursue?' className={styles.input} onChange={(e)=>{setFormData(res=>({...res,pursue:e.target.value}))}}></input>
 {formData  && formData.fullname && formData.phone && formData.email && formData.goal? '':<p className={styles.error}>Please fill all the fields</p>}
 <div onClick={SubmitContact} className={styles.submit}>
 {loading? 
