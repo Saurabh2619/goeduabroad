@@ -185,6 +185,30 @@ setNotification('Please Fill all the fields correctly')
     }
 
 }
+
+const programs = [
+    {
+      title:'PG Diploma',
+      value:'PG Diploma'
+    },
+    {
+      title:"Master's",
+      value:"Master's"
+    },
+    {
+      title:"Bachelor's",
+      value:"Bachelor's"
+    },
+    
+    {
+      title:'PhD',
+      value:'PhD'
+    },
+    {
+      title:'Not Decided',
+      value:'Not Decided'
+    }
+  ]
 function sanitizePhone(a){
     if(a != undefined)
     return a.replace(/\D/g, '');
@@ -221,7 +245,7 @@ function sanitizePhone(a){
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} maxLength={10} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:sanitizePhone(e.target.value)})) }}/>
 <CustomSelect z={9} fullWidth defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
-<input placeholder='What do you wish to pursue?' className={styles.input} onChange={(e)=>{setFormData(res=>({...res,pursue:e.target.value}))}}></input>
+<CustomSelect z={9} fullWidth defaultText="What do you wish to pursue?" noPadding={true} objects={programs} setSelect={(r)=>{setFormData(res=>({...res,pursue:r}))}}/>
 {formData  && formData.fullname && formData.phone && formData.email && formData.goal? '':<p className={styles.error}>Please fill all the fields</p>}
 <div onClick={SubmitContact} className={styles.submit}>
 {loading? 
