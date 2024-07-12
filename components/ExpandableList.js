@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './ExpandableList.module.css'
 import HTML_Render from './HTML_Render';
+import { FAQPageJsonLd } from 'next-seo';
 
 
 function List(props){
@@ -14,6 +15,10 @@ useEffect(()=>{
     setData(props.value)
 },[props])
     return <div className={styles.items}>
+       {data != undefined && data?.length > 0 ? 
+       <FAQPageJsonLd
+      mainEntity={data.map((i,d)=> ( {questionName:i.question,acceptedAnswerText:i?.answer}) )}
+    />:''}
         {data && data.map((i,d)=>{
 
             return <div className={styles.itemwrap + " " +(active == d ? styles.active : '')} onClick={()=>{setActive(d)}}><div className={styles.item}>
