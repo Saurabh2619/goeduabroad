@@ -185,7 +185,7 @@ if(data){
     <article className={styles.post_holder}>
 <div className={styles.spacer}></div>
 
-<img className={styles.featured} src={final.img} alt={final.title}/>
+<img className={styles.featured} src={final.img} title={final?.metaTitle ?? 'Best Study Abroad Consultants in India'} alt={final?.metaTitle}/>
         <h1 className={styles.ptitle}>{final.title}</h1>
         <div className={styles.meta}>
             <Tooltip content={<div className={styles.details}>
