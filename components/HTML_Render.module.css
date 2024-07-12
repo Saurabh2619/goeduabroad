@@ -1,3 +1,19 @@
 .reac {
     font-family: SF Pro Display !important;
+    
+}
+
+.reac figure{
+    overflow-x: auto;
+    padding: 10px;
+    
+    margin: 0 !important;
+}
+.reac figure table {
+    
+}
+
+.reac figure::-webkit-scrollbar{
+    width: 2px;
+    height: 2px;
 }

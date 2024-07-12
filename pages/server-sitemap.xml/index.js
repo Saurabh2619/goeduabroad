@@ -5,7 +5,7 @@ export const getServerSideProps = async(ctx) => {
 
     const [data, datgr,datapr,datapro] = await Promise.all([
 
-        await supabase.from('services').select('*'), await supabase.from('blog_posts').select('*'), await supabase.from('studyabroad').select('*'),await supabase.from('testpreps').select('*')
+        await supabase.from('services').select('slug,created_at'), await supabase.from('blog_posts').select('slug,created_at'), await supabase.from('studyabroad').select('slug,created_at'),await supabase.from('testpreps').select('slug,created_at')
     ])
 
     var r;
@@ -14,30 +14,42 @@ export const getServerSideProps = async(ctx) => {
         r = data.data.map((i, d) => ({
             "loc": `https://goeduabroad.com/services/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
+            "priority":1,
+            "changefreq":"daily"
         }))
         const ne = datgr.data.map((i, d) => ({
             "loc": `https://goeduabroad.com/post/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
+            "priority":1,
+            "changefreq":"daily"
+            
         }))
         const net = datapr.data.map((i, d) => ({
             "loc": `https://goeduabroad.com/studyabroad/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
+            "priority":1,
+            "changefreq":"daily"
         }))
         const neto = datapro.data.map((i, d) => ({
             "loc": `https://goeduabroad.com/testpreps/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
+            "priority":1,
+            "changefreq":"daily"
         }))
         const stat = [{
             "loc": `https://goeduabroad.com/contact`,
 
         }]
         r = [...r, ...ne, ...stat,...net,...neto];
-     console.table(r)
+     
 
     }
 
     const field = [...r];
-    return getServerSideSitemapLegacy(ctx,field)
+    console.log(data) 
+    const t = getServerSideSitemapLegacy(ctx,field)
+     
+     return t;
 }
 
 export default function Site() {}

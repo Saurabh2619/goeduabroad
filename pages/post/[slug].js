@@ -181,8 +181,10 @@ if(data){
     />
        
        <div className={styles.mainholder}>
+        <div className={styles.topbar}></div>
     <article className={styles.post_holder}>
 <div className={styles.spacer}></div>
+
 <img className={styles.featured} src={final.img} alt={final.title}/>
         <h1 className={styles.ptitle}>{final.title}</h1>
         <div className={styles.meta}>
@@ -331,7 +333,7 @@ return(<>
 </div> : ''}
 
     </article>
-    <div className={styles.sidebar}></div></div>
+    {/* <div className={styles.sidebar}></div> */}</div>
     
     </DefaultLayout>)
 }

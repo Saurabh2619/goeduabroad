@@ -107,7 +107,7 @@ onClick={()=>{handleAnimateClose()}}
     </div>
     <div className={styles.promocontent}>
 <p>We are proudly</p>
-<h1>Official Cambridge Learning Partners</h1>
+<h2>Official Cambridge Learning Partners</h2>
 <h2>(Makers of IELTS Exam)</h2>
 <img width={120} alt='Golden Graduation Cap' src='/gradgold.svg'/>
 

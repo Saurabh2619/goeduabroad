@@ -10,16 +10,17 @@
 }
 
 .post_holder {
-    width: 60%;
+    width: 100%;
+    z-index: 5;
 }
 
-.sidebar {
+/* .sidebar {
     width: 40%;
     background-color: rgb(247, 247, 247);
     margin: 0 0 0 10px;
     border-radius: 10px;
 }
-
+ */
 .markdown {
     font-family: SF Pro Display;
 }
@@ -174,7 +175,24 @@
     width: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 10px;
+    border-radius: calc(2vw + 5px);
+    max-width: 1100px;
+    background-color: #ddd;
+    
+    aspect-ratio: 16/9;
+    height: auto;
+    border: 1px solid #ddd;
+    box-shadow: 4px 4px 12px -2px #00000033;
+}
+.topbar{
+    position: absolute;
+    left:  0;
+    top: 0;
+    height: 500px;
+    width: 100%;
+    background-color: var(--brand-col1);
+    opacity: 0.1;
+    z-index: 0;
 }
 
 .comment {
@@ -309,6 +327,9 @@
 }
 
 @media only screen and (max-width:968px) {
+    .topbar{
+        height: 300px;
+    }
     .mainholder {
         flex-direction: column;
         margin-top: 80px;
