@@ -486,12 +486,12 @@ const fields = [
    
    
     
-    {
+  /*   {
         label:"Enter Slug",
         key:'slug',
         placeholder:"Enter Post Slug",
         type:"text",
-    }
+    } */
     
     
 ]
@@ -534,7 +534,7 @@ async function PublishNewPost(a){
         category:a.category,
         jsonContent:"[]",
         isActive:false,
-        slug:a.slug,
+       
         author:filterEmail,
         
     }).select();
