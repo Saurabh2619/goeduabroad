@@ -13,6 +13,15 @@
     
 }
 
+.reac a{
+
+    font-weight: 500;
+    color: var(--brand-col1);
+    text-decoration: underline;
+    cursor: pointer;
+    
+}
+
 .reac figure::-webkit-scrollbar{
     width: 2px;
     height: 2px;
