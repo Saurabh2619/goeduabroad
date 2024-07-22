@@ -106,18 +106,27 @@ setPostData(datac[0])
 })
 const courses = [
     {
-        title:'1 Month',
+        title:'15 Days',
         badge:'Best for Personal Teacher Attention',
-        benefits:'20 Hours of Live Classes, 100+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions',
+        benefits:'15 Hours of Live Classes, 10+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
         price:'8000',
         date:'15th March',
         link:'/register',
         image:'https://elearningindustry.com/wp-content/uploads/2015/10/6-convincing-reasons-take-elearning-course.jpg'
     },
     {
-        title:'45 days',
+        title:'1 Month',
+        badge:'Best for Personal Teacher Attention',
+        benefits:'30 Hours of Live Classes, 20+ Mock Tests,  12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
+        price:'8000',
+        date:'15th March',
+        link:'/register',
+        image:'https://elearningindustry.com/wp-content/uploads/2015/10/6-convincing-reasons-take-elearning-course.jpg'
+    },
+    {
+        title:'2 Months',
         badge:'Best for Group Based Learning',
-        benefits:'20 Hours of Live Classes, 100+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions',
+        benefits:'60 Hours of Live Classes, 40+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
         price:'8000',
         date:'15th March',
         link:'/register',
@@ -126,7 +135,7 @@ const courses = [
     {
         title:'3 Months',
         badge:'Best for Personal Teacher Attention',
-        benefits:'20 Hours of Live Classes, 100+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions',
+        benefits:'90 Hours of Live Classes, 60+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
         price:'8000',
         date:'15th March',
         link:'/register',
@@ -245,7 +254,7 @@ function validatePhone(phone) {
         </div></div>:''}
         {postData != undefined ? <>
 <div key={postData.heading} className={styles.parent}>
-<img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : datac[0]?.heading + " | EduAbroad"} style={{filter:`blur(${scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
+<img alt={datac[0] && datac[0].metaDesc? datac[0].metaDesc : datac[0]?.heading + " | EduAbroad"} style={{filter:`blur(${8-scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
 <div className={styles.content}>
 
 <div className={styles.left}>
