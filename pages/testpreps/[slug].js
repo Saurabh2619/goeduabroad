@@ -108,7 +108,7 @@ const courses = [
     {
         title:'15 Days',
         badge:'Best for Personal Teacher Attention',
-        benefits:'15 Hours of Live Classes, 10+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
+        benefits:'15 Hours of Live Classes, 10+ Mock Tests, Cambridge IELTS Book',
         price:'8000',
         date:'15th March',
         link:'/register',
@@ -117,7 +117,7 @@ const courses = [
     {
         title:'1 Month',
         badge:'Best for Personal Teacher Attention',
-        benefits:'30 Hours of Live Classes, 20+ Mock Tests,  12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
+        benefits:'30 Hours of Live Classes, 20+ Mock Tests, Cambridge IELTS Book',
         price:'8000',
         date:'15th March',
         link:'/register',
@@ -126,7 +126,7 @@ const courses = [
     {
         title:'2 Months',
         badge:'Best for Group Based Learning',
-        benefits:'60 Hours of Live Classes, 40+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
+        benefits:'60 Hours of Live Classes, 40+ Mock Tests, Cambridge IELTS Book',
         price:'8000',
         date:'15th March',
         link:'/register',
@@ -135,7 +135,7 @@ const courses = [
     {
         title:'3 Months',
         badge:'Best for Personal Teacher Attention',
-        benefits:'90 Hours of Live Classes, 60+ Mock Tests, 12 Speaking and Writing Evaluations, Study Materials with 500+ Questions, Cambridge IELTS Book',
+        benefits:'90 Hours of Live Classes, 60+ Mock Tests, Cambridge IELTS Book',
         price:'8000',
         date:'15th March',
         link:'/register',
