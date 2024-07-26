@@ -158,10 +158,10 @@ if(data){
         <NextSeo
       title={final.title }
       description={`${final.metaDesc}| Best Study Abroad Consultant in India`}
-      canonical={`https://goeduabroad.com/post/${final?.slug}`}
+      canonical={`https://www.goeduabroad.com/post/${final?.slug}`}
       openGraph={{
         type: "article",
-        url: `https://goeduabroad.com/post/${final?.slug}`,
+        url: `https://www.goeduabroad.com/post/${final?.slug}`,
         title: final?.title + " | EduAbroad",
         description : final && final.metaDesc? final.metaDesc : final?.title,
         article: {

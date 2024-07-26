@@ -162,10 +162,10 @@ function validatePhone(phone) {
         <NextSeo
       title={"Best "+datac[0].heading + " Service | EduAbroad"}
       description={datac[0] && datac[0].metaDesc? `${datac[0].metaDesc} | Best Study Abroad Consultant in India` : `${datac[0].heading} | Best Study Abroad Consultant in India`}
-      canonical={`https://goeduabroad.com/services/${datac[0]?.slug}`}
+      canonical={`https://www.goeduabroad.com/services/${datac[0]?.slug}`}
       openGraph={{
         type: "article",
-        url: `https://goeduabroad.com/services/${datac[0].slug}`,
+        url: `https://www.goeduabroad.com/services/${datac[0].slug}`,
         title: "Best "+datac[0].heading + " | EduAbroad",
         description : datac[0] && datac[0].metaDesc ? datac[0].metaDesc : datac[0]?.heading,
         article: {
