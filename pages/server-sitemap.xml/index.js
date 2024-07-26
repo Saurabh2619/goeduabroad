@@ -12,7 +12,7 @@ export const getServerSideProps = async(ctx) => {
     if (data && datgr && datapr) {
 
         r = data.data.map((i, d) => ({
-            "loc": `https://wwww.goeduabroad.com/services/${i.slug}`,
+            "loc": `https://www.goeduabroad.com/services/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
             "priority":1,
             "changefreq":"daily"
