@@ -1,0 +1,16 @@
+# *
+User-agent: *
+Disallow: /404
+Disallow: /age-5-10
+Disallow: /image.webp
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.goeduabroad.com/
+
+# Sitemaps
+Sitemap: https://www.goeduabroad.com/sitemap.xml
+Sitemap: https://www.goeduabroad.com/server-sitemap.xml

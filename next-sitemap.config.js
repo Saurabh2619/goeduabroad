@@ -1,5 +1,5 @@
 module.exports = {
-    siteUrl: 'https://goeduabroad.com/',
+    siteUrl: 'https://www.goeduabroad.com/',
     exclude: ['/404'],
     generateRobotsTxt: true,
     robotsTxtOptions: {
@@ -14,8 +14,8 @@ module.exports = {
             }
         ],
         additionalSitemaps: [
-            `https://goeduabroad.com/sitemap.xml`,
-            `https://goeduabroad.com/server-sitemap.xml`,
+            `https://www.goeduabroad.com/sitemap.xml`,
+            `https://www.goeduabroad.com/server-sitemap.xml`,
         ],
     },
 };

@@ -12,34 +12,40 @@ export const getServerSideProps = async(ctx) => {
     if (data && datgr && datapr) {
 
         r = data.data.map((i, d) => ({
-            "loc": `https://goeduabroad.com/services/${i.slug}`,
+            "loc": `https://wwww.goeduabroad.com/services/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
             "priority":1,
             "changefreq":"daily"
         }))
         const ne = datgr.data.map((i, d) => ({
-            "loc": `https://goeduabroad.com/post/${i.slug}`,
+            "loc": `https://www.goeduabroad.com/post/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
             "priority":1,
             "changefreq":"daily"
             
         }))
         const net = datapr.data.map((i, d) => ({
-            "loc": `https://goeduabroad.com/studyabroad/${i.slug}`,
+            "loc": `https://www.goeduabroad.com/studyabroad/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
             "priority":1,
             "changefreq":"daily"
         }))
         const neto = datapro.data.map((i, d) => ({
-            "loc": `https://goeduabroad.com/testpreps/${i.slug}`,
+            "loc": `https://www.goeduabroad.com/testpreps/${i.slug}`,
             "lastmod": `${i.created_at.substring(0,10)}`,
             "priority":1,
             "changefreq":"daily"
         }))
         const stat = [{
-            "loc": `https://goeduabroad.com/contact`,
+            "loc": `https://www.goeduabroad.com/contact`,
 
-        }]
+        },
+    
+        {
+            "loc": `https://www.goeduabroad.com`,
+
+        }
+    ]
         r = [...r, ...ne, ...stat,...net,...neto];
      
 
