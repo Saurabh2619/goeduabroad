@@ -86,7 +86,7 @@
     width: 35px;
 }
 .menuhold ul li {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     
     transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -232,7 +232,7 @@
     animation-fill-mode: forwards;
     opacity: 0;
     border-radius: 10px;
-    padding: 5px 30px;
+    padding: 5px 10px;
     list-style-type: none;
     font-family: SF Pro Display;
     position: relative;

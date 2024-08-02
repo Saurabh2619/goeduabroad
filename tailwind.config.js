@@ -7,11 +7,20 @@ module.exports = {
   
   content: [
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-    "./components/OfferPopup.js"
+    "./components/OfferPopup.js",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        heading:["Playfair Display","sans-serif"],
+        sans:["SF Pro Display","sans-serif"]
+      },
+      colors:{
+        primary:"#a51c30"
+      }
+    },
   },
   
   plugins: [nextui()],
