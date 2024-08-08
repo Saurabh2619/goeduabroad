@@ -41,7 +41,7 @@ export default function Results({data}){
 
 export async function getServerSideProps(){
 
-    const {data,error} = await supabase.from('content').select('*').eq('type','results');
+    const {data,error} = await supabase.from('content').select('*').eq('type','results').order('description',{ascending:false}).gt('description',7);
 
     if(error){
         return {notFound:true}
