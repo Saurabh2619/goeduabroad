@@ -70,6 +70,11 @@ const SATToACTConverter = () => {
         <div className='w-full max-w-[1600px] px-4 lg:px-12 mx-auto font-sans' >
         <img src='/sat-to-act.webp' className='w-full max-w-[1200px] mx-auto h-auto aspect-video rounded-xl'/>
         <Spacer y={12}></Spacer>
+        <h1 className='text-3xl font-bold my-2'>SAT to ACT Conversion: Find Your SAT Equivalent to ACT Score</h1>
+        <p><b>Converting SAT to ACT scores</b> is a common concern for students going through the college admissions process in the United States. To help students and parents simplify this process, we have developed an best <b>SAT to ACT Score Conversion Tool</b>. This tool provides an accurate and seamless way to convert <b>SAT scores to their ACT equivalents</b>.</p>
+        <p>Using the latest concordance data from the College Board and ACT, Inc., our tool offers a reliable way to compare your performance.</p>
+        <p>For those looking for a more visual approach, our SAT to ACT conversion chart and SAT to ACT conversion table offer clear and straightforward comparisons.</p>
+        <Spacer y={12}></Spacer>
             <div style={{
                 maxWidth: '400px',
                 margin: 'auto',
@@ -78,7 +83,7 @@ const SATToACTConverter = () => {
                 borderRadius: '20px',
                 backgroundColor: '#f9f9f9'
             }}>
-                <h2>SAT to ACT Score Converter</h2>
+                <h2 className='text-2xl font-bold'><strong>SAT to ACT Score Converter</strong></h2>
                 <label>Enter SAT Composite Score:</label>
                 <input
                     type="number"
@@ -96,19 +101,20 @@ const SATToACTConverter = () => {
                 </div>
             </div>
 
-            <h2 style={{ textAlign: 'left' }}>How to convert SAT to ACT Score</h2>
-            <h3 style={{ textAlign: 'left' }}>Step 1: Access the Tool</h3>
+            <h2 className='text-2xl font-bold mt-4' style={{ textAlign: 'left' }}>How to convert SAT to ACT Score</h2>
+            <Spacer y={6}></Spacer>
+            <h3 className='text-xl font-bold' style={{ textAlign: 'left' }}>Step 1: Access the Tool</h3>
             <div>
                 <p>Visit our website and navigate to the SAT to ACT Score Conversion Tool page.</p>
-                <h3>Step 2: Enter Your SAT Score</h3>
+                <h3 className='text-xl font-bold my-2'>Step 2: Enter Your SAT Score</h3>
                 <p>Input your total SAT score in the designated field. The tool accepts scores in the range of 400 to 1600, which corresponds to the SAT’s scoring scale.</p>
-                <h3>Step 3: Convert Your Score</h3>
+                <h3 className='text-xl font-bold my-2'>Step 3: Convert Your Score</h3>
                 <p>Click the “Convert” button to instantly view your corresponding ACT score. The tool will display your ACT composite score, which you can use to compare your performance across both tests.</p>
-                <h3>Step 4: Analyze Your Results</h3>
+                <h3 className='text-xl font-bold my-2'>Step 4: Analyze Your Results</h3>
                 <p>Review the converted ACT score and use it to inform your college application strategy. Consider how this score fits into the admissions requirements of the colleges you are interested in.</p>
             </div>
 
-            <h2 style={{ textAlign: 'left' }}>SAT to ACT Conversion Chart (2024)</h2>
+            <h2 className='text-xl font-bold my-2' style={{ textAlign: 'left' }}>SAT to ACT Conversion Chart (2024)</h2>
             <div>
                 SAT and ACT conversion table helps to convert scores between both tests. These tables are created based on statistical data and research conducted by the College Board (which administers the SAT) and ACT, Inc. (which administers the ACT). Here is a simplified version of a commonly used conversion table:
             </div>
@@ -155,7 +161,7 @@ const SATToACTConverter = () => {
                 </tbody>
             </table>
 
-            <h2 style={{ textAlign: 'left' }}>How SAT to ACT Conversion Works</h2>
+            <h2 className='text-2xl font-bold my-2' style={{ textAlign: 'left' }}>How SAT to ACT Conversion Works</h2>
             <div>
                 To convert SAT scores to ACT scores (or vice versa), most colleges and institutions use concordance tables. These tables are developed based on extensive research conducted by the College Board (which administers the SAT) and ACT, Inc. (which administers the ACT). The tables align scores from the two tests, allowing for a comparison of equivalent performance levels.
             </div>
