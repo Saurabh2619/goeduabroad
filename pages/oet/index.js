@@ -7,7 +7,9 @@ import Notifications from '../../components/Notification';
 import st from './TestPreparation.module.css'
 import { NextSeo } from 'next-seo';
 import axios from 'axios';
+import 'tailwindcss/tailwind.css' 
 import { cbKey } from '../../utils/cronBerryKey';
+import {Spacer,Divider,Button} from '@nextui-org/react'
 function OETExam(){
     const [notificationText,setNotificationText] = useState();
     const router = useRouter();
@@ -91,8 +93,8 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,pag
   }
 
 
-const datac = {featured_image:'https://roeveragri.ac.in/wp-content/uploads/2021/01/examinationhall.jpg',
-heading:'OET Exam Preparation'
+const datac = {featured_image:'/oetartwork.png',
+heading:'The leading English language test specifically for healthcare professionals'
 }
 
 
@@ -193,6 +195,46 @@ setNotification('Please Fill all the fields correctly')
 
     }
 }
+const included = [
+   { 
+    title:'Listening',
+className:'bg-[#EF5A6F]',
+description:'approx 45 minutes'
+},
+ {
+    title:'Reading',
+className:'bg-[#FF8225]',
+description:'60 minutes'
+},
+ {
+    title:'Writing',
+className:'bg-[#88D66C]',
+description:'45 minutes'
+},
+ {
+    title:'Speaking',
+className:'bg-[#4F1787]',
+description:'approx 20 minutes'
+}
+
+]
+const fieldsLeft = [
+    'Dentistry',
+    'Dietetics',
+    'Medicine',
+    'Nursing',
+    'Occupational Therapy',
+    'Speech Pathology',
+  ];
+
+  const fieldsRight = [
+    'Optometry',
+    'Podiatry',
+    'Pharmacy',
+    'Physiotherapy',
+    'Radiography',
+    'Veterinary Science',
+  ];
 function validatePhone(phone) {
     const re =  /^(\+\d{1,4})?(?!0+\s+,?$)\d{10}\s*,?$/;
     return re.test(phone);
@@ -234,54 +276,34 @@ function validatePhone(phone) {
             <a href="tel:+919044442989">Call Us</a>
         </div>
         </div></div>:''}
+        
+        
         {postData != undefined ? <>
-<div key={postData.heading} className={styles.parent}>
-<img alt={datac && datac.metaDesc? datac.metaDesc : datac?.heading + " | EduAbroad"} style={{filter:`blur(${8-scrollPos/50}px)`}} className={styles.hero} src={postData.featured_image}/>
-<div className={styles.content}>
+        <Spacer y={36}></Spacer>
+<div key={postData.heading} className={styles.parent + "  leading-tight font-sans"}>
+<img alt={datac && datac.metaDesc? datac.metaDesc : datac?.heading + " | EduAbroad"} className={'w-full max-w-[85%] mx-auto rounded-2xl shadow-md border-1 border-white'} src={postData.featured_image}/>
+<div className={"w-full max-w-[85%] mx-auto flex flex-col md:flex-row"}>
 
 <div className={styles.left}>
     <div className={styles.breadcrumb}><a href='/'>Home {'>'} </a><p>Test Preparation {'>'} OET </p></div>
-<h1>Prepare for OET with EduAbroad</h1>
-<h2>{postData.heading}</h2>
-<div className={styles.html} dangerouslySetInnerHTML={{__html:filterhtml}}></div>
-{postData && postData.id == 12? <div className={st.courses}>
+<h1 className='font-semibold text-5xl font-heading text-primary'>Prepare for OET with EduAbroad</h1>
+<h2 className='text-xl text-gray-600 my-4 font-sans font-bold  '>{postData.heading}</h2>
+<div className='w-full bg-black p-8 rounded-2xl text-white'>
 
-{courses && courses.map((i,d)=>{
+    <h2 className='text-3xl font-bold'>What is OET?</h2>
+    <p className='text-gray-200 my-4'>
+    OET is the leading English language test specifically for healthcare professionals. It assesses the language proficiency of healthcare professionals looking to register and practice in an English-speaking environment.
 
-    return <div className={st.course}>
-        
-        <img alt={datac && datac.metaDesc? datac.metaDesc : datac?.heading + " | EduAbroad"} className={st.courseimage} src={i.image}/>
-        <div className={st.coursecontent}>
-<h2>{i.title} OET Course</h2>
-<p className={st.badge}>{i.badge}</p>
-<strong><p>Benefits Includes:</p></strong>
-<ul>
-{i.benefits && i.benefits.split(',').map((a,c)=>{
-    return <li>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64"><path d="M32,2C15.431,2,2,15.432,2,32c0,16.568,13.432,30,30,30c16.568,0,30-13.432,30-30C62,15.432,48.568,2,32,2z M25.025,50  l-0.02-0.02L24.988,50L11,35.6l7.029-7.164l6.977,7.184l21-21.619L53,21.199L25.025,50z" fill="#43a047"/></svg>
-        {a}</li>
-})}</ul>
-{i.date ? <p className={st.date}>New Batches Every Week</p>:''}
-<a href={i.link} target="_blank">Enroll Now</a>
-        </div>
-    </div>
-})}
+    </p>
+    <Button className=' rounded-full bg-primary text-white' size='lg'>Learn More</Button>
+</div>
 
-</div>:''}
-{/* <div className={st.tabs}>
-{tabs && tabs.map((i,d)=>{
-    return <div onClick={()=>{setactiveIndex(activeIndex != d ? d : 8)}} className={st.tab + " " + (activeIndex == d ? st.activeTab : '') }><div className={st.tabtn}><h2>{i.title}</h2>
-    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.883 3.007 12 3a1 1 0 0 1 .993.883L13 4v7h7a1 1 0 0 1 .993.883L21 12a1 1 0 0 1-.883.993L20 13h-7v7a1 1 0 0 1-.883.993L12 21a1 1 0 0 1-.993-.883L11 20v-7H4a1 1 0 0 1-.993-.883L3 12a1 1 0 0 1 .883-.993L4 11h7V4a1 1 0 0 1 .883-.993L12 3l-.117.007Z" fill="black"/></svg>
-    </div><div className={st.tabcontent} dangerouslySetInnerHTML={{__html:i.content}}></div></div>
-})}</div> */}
-   {/*  <h2>List of Universities in {postData.heading}</h2>
-    <ul className={styles.universities} dangerouslySetInnerHTML={{__html:JSON.parse(postData.universities)}}></ul> */}
      </div>
 <div className={styles.right}>
     
-<div><img alt={datac && datac.metaDesc? datac.metaDesc :  datac?.heading + " | EduAbroad"} className={styles.featured} src={postData.featured_image}/></div>
-<div className={styles.col}><div className={styles.form}>
-    <h2>Enroll in our OET Course</h2>
+
+<div className={styles.col + " sticky top"}><div className={styles.form}>
+    <h2 className='font-semibold font-heading text-primary'>Enroll in our OET Course</h2>
 <input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
@@ -298,6 +320,59 @@ function validatePhone(phone) {
 
 </div>
 </div>
+<Divider className='my-8'></Divider>
+<div className='w-full flex flex-col justify-start items-start max-w-[85%] mx-auto'>
+    <h2 className='text-4xl font-sans font-bold text-primary mb-2'>Is OET the right test for me?</h2>
+    <p>OET tests internationally educated healthcare professionals from the following 12 professions:</p>
+    
+<table className={'my-4 bg-white rounded-xl overflow-hidden border-1 border-gray-100 p-2 shadow-md'}>
+      <thead className='bg-primary text-white p-4'>
+        <tr>
+          <th>Field of Study</th>
+          <th>Field of Study</th>
+        </tr>
+      </thead>
+      <tbody>
+        {fieldsLeft.map((field, index) => (
+          <tr className='border-1 border-gray-200 text-center' key={index}>
+            <td className='border-1 border-gray-200 text-center'>{field}</td>
+            <td className='border-1 border-gray-200 text-center'>{fieldsRight[index]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <Spacer y={8}></Spacer>
+<h2 className='text-4xl font-sans font-bold text-primary'>Who recognises OET?</h2>
+<div className='my-4'>For the most up to date list of organisations recognising OET as proof of English proficiency visit: 
+<br/>
+<a className='text-primary cursor-pointer' href='https://oet.com/discover/who-recognises-oet'>oet.com/discover/who-recognises-oet </a>
+</div>
+<Spacer y={8}></Spacer>
+<h2 className='text-4xl font-sans font-bold text-primary'>Healthcare Boards and Councils </h2>
+<p className='my-4'>OET is accepted as proof of English proficiency for registration, accreditation and licensing purposes in:
+<br/>
+Australia, Canada, Dubai , Ireland , Malta , Namibia, New Zealand, SIngapore, UK , Ukraine , US
+</p>
+<Spacer y={16}></Spacer>
+<h2 className='text-4xl font-sans font-bold text-primary'>Qualification Authorities</h2>
+<p className='my-2'><strong>Dubai</strong> - The Dubai Knowledge and Human Development Authority (KHDA) accepts OET as a quality standard qualification for proof of English proficiency. </p>
+<p className='my-2'><strong>New Zealand</strong> - The New Zealand Qualifications Authority (NZQA) accepts OET as an approved English Proficiency Assessment.</p>
+<Spacer y={16}></Spacer>
+    <h2 className='text-4xl font-sans font-bold text-primary'>What’s in the test?</h2>
+    <p className='text-lg text-gray-700'>OET covers all four language skills with an emphasis on communication in a healthcare environment.</p>
+   <Spacer y={4}></Spacer>
+    <div className='w-full flex flex-col md:flex-row items-start justify-start'>
+    {included && included.map((i,d)=>{
+        return <div className='mr-2 w-full md:w-auto mb-2 md:mb-0 flex-1'><div className={'flex-1 rounded-xl p-4  min-h-[150px] '+ i.className}>
+            <h2 className='text-white font-medium text-2xl'>{i.title}</h2>
+            <p className='text-gray-50 font-thin'>{i.description}</p>
+        </div></div>
+    })}</div>
+<p className=' text-gray-700 leading-tight text-medium my-4'>The Listening and Reading sub-tests are designed to assess your ability to understand spoken and written English, based on health-related topics and tasks common to all professions. The Writing and Speaking sub-tests are specific to the 12 individual healthcare professions – designed to reflect common tasks performed in the workplace
+</p>
+<Spacer y={4}></Spacer>
+</div>
+
 </div>
 
 </>:''} </DefaultLayout>
