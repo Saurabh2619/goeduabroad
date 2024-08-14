@@ -118,7 +118,7 @@ setPostData(datac[0])
 
         setScrollPos(window.scrollY)
     })
-})
+},[])
 
 
 async function SubmitContact(){

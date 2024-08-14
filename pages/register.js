@@ -353,7 +353,7 @@ useEffect(()=>{
       }else{
           setScrolled(false)
       }
-  })})
+  })},[])
 
 
 

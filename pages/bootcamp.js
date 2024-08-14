@@ -343,7 +343,7 @@ useEffect(()=>{
       }else{
           setScrolled(false)
       }
-  })})
+  })},[])
 
 
 async function triggerInterakt(){

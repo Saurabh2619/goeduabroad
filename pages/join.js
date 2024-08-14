@@ -345,7 +345,7 @@ useEffect(()=>{
       }else{
           setScrolled(false)
       }
-  })})
+  })},[])
 
 
 

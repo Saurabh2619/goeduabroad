@@ -102,7 +102,7 @@ setPostData(datac[0])
 
         setScrollPos(window.scrollY)
     })
-})
+},[])
 async function triggerInterakt(){
     axios.post('./api/interakt',{
       userId: Date.now(),

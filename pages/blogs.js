@@ -19,7 +19,7 @@ useEffect(()=>{
     if(router.query){
 setQuery(router.query.string)
 }
-})
+},[])
 
 function isoDateToWords(isoDate) {
     const months = [

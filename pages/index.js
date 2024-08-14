@@ -18,6 +18,7 @@ import { supabase } from '../utils/supabaseClient';
 import Notifications from '../components/Notification';
 import axios from 'axios'
 import { cbKey } from '../utils/cronBerryKey';
+import {Spacer} from '@nextui-org/react'
 const ResponsiveIFrame = ({ src }) => {
   return (
     <div className="video-container">
@@ -1205,14 +1206,19 @@ return <div className={styles.partners}>
   SUBMIT</div>
 
 </div>
+
         </div>
+        <br/>
+        <br/>
+
+        <br/>
 {/* <div className={styles.aitool}>
 <img src='/collegpano.png'/>
   <h2>Our AI Tool will help you to choose suitable university for yourself</h2>
   <a href="https://www.applyboard.com/partners/354594/intake-form">Get Started, It's Free !!</a>
 </div> */}
 
-<div id="applyboard" style={{display:'flex',alignContent:'center',alignItems:'center',justifyContent:'center'}} dangerouslySetInnerHTML={{__html:"<div style='max-width:1200px' id=\"ab-embedded-search\" data-host=\"https://www.applyboard.com\" data-rp-ref=\"17323\" data-orientation=\"horizontal\" data-default-countries=\"USA,Canada,United Kingdom,Australia,Ireland\"></div><script type=\"text/javascript\" src=\"https://www.applyboard.com/assets/embedded_search.js\"></script>"}}></div>
+{/* <div id="applyboard" style={{display:'flex',alignContent:'center',alignItems:'center',justifyContent:'center'}} dangerouslySetInnerHTML={{__html:"<div style='max-width:1200px' id=\"ab-embedded-search\" data-host=\"https://www.applyboard.com\" data-rp-ref=\"17323\" data-orientation=\"horizontal\" data-default-countries=\"USA,Canada,United Kingdom,Australia,Ireland\"></div><script type=\"text/javascript\" src=\"https://www.applyboard.com/assets/embedded_search.js\"></script>"}}></div> */}
       </DefaultLayout>
     </>
   )

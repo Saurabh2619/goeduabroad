@@ -89,7 +89,7 @@ useEffect(()=>{
 setQuery(router.query.slug)
 }
 
-})
+},[])
 
 
     function getDate(data){
