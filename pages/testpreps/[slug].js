@@ -103,7 +103,7 @@ setPostData(datac[0])
 
         setScrollPos(window.scrollY)
     })
-})
+},[])
 const courses = [
     {
         title:'15 Days',
