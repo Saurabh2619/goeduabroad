@@ -19,6 +19,7 @@ import Notifications from '../components/Notification';
 import axios from 'axios'
 import { cbKey } from '../utils/cronBerryKey';
 import {Spacer} from '@nextui-org/react'
+import GoogleReviews from '../components/GoogleReviews';
 const ResponsiveIFrame = ({ src }) => {
   return (
     <div className="video-container">
@@ -728,7 +729,7 @@ async function submitGetStarted(a){
           <video muted playsInline="true" poster='https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,h_600,q_29/v1680131427/vidpost_v3pyun.jpg' autoplay="true" loop="true"><source src='/v3_comp.mp4'/></video>
 <div className={styles.mask}></div>
 <div
-className={styles.content}>
+className={styles.content + " font-semibold"}>
   <h2><span className='b1'>An Initiative to</span><br/>Build Career Abroad</h2>
   {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p> */}
 <div className={styles.getstarted}><input value={getstarted} className={styles.input} placeholder="Enter your Phone" onChange={(e)=>{setGet(e.target.value)}}></input><button onClick={()=>{getstarted && getstarted.length > 6 ? submitGetStarted(getstarted) : setNotification('Please fill all the fields')}}>{loading? 
@@ -829,7 +830,7 @@ className={styles.content}>
       {i.video ? <ResponsiveIFrame
       src={i.video}
     />:''}
-      <div className={styles.stars}>
+      <div className={styles.stars + " flex flex-row items-center justify-start"}>
       {Array(i.stars ? i.stars : 0).fill().map((i,d)=>{
 return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
 
@@ -854,8 +855,9 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
 
       </Section>
-
-
+<Section>
+<GoogleReviews></GoogleReviews>
+</Section>
 <Section title=":Media Features" id="media" align="center" color="var(--brand-col1)">
   
   <div className={styles.featured}>

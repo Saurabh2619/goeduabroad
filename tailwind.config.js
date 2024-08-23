@@ -8,6 +8,7 @@ module.exports = {
   content: [
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
     "./components/OfferPopup.js",
+    "./components/GoogleReviews.js",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
 
   ],
