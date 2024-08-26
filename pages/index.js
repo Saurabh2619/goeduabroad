@@ -20,6 +20,7 @@ import axios from 'axios'
 import { cbKey } from '../utils/cronBerryKey';
 import {Spacer} from '@nextui-org/react'
 import GoogleReviews from '../components/GoogleReviews';
+import HomepageBlogs from '../components/HomepageBlogs';
 const ResponsiveIFrame = ({ src }) => {
   return (
     <div className="video-container">
@@ -41,7 +42,7 @@ const ResponsiveIFrame = ({ src }) => {
     </div>
   );
 };
-export default function Home({datac,datad}) {
+export default function Home({datac,datad,posts}) {
   const [mobile,setMobile] = useState('desktop');
 const [getstarted,setGet] = useState();
 const [notificationText,setNotificationText] = useState();
@@ -830,7 +831,7 @@ className={styles.content + " font-semibold"}>
       {i.video ? <ResponsiveIFrame
       src={i.video}
     />:''}
-      <div className={styles.stars + " flex flex-row items-center justify-start"}>
+      <div className={styles.stars +  " flex flex-row items-center justify-start"}>
       {Array(i.stars ? i.stars : 0).fill().map((i,d)=>{
 return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
 
@@ -1008,7 +1009,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
       <p>{i.description.substring(0,260)}...</p>
-      <div className={styles.stars}>
+      <div className={styles.stars +   "  flex flex-row items-center justify-start"}>
       {Array(i.stars).fill().map((i,d)=>{
 return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
 
@@ -1076,7 +1077,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
       <div class={styles.cardcontent}>
       <h2>{i.title}</h2>
       <p>{i.description.substring(0,260)}...</p>
-      <div className={styles.stars}>
+      <div className={styles.stars +   "  flex flex-row items-center justify-start"}>
       {Array(i.stars ? i.stars : 0).fill().map((i,d)=>{
 return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
 
@@ -1099,6 +1100,11 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
     </div>
   })}
 </Marquee>
+</Section>
+<Section title=":Our Blogs" align="left" color="var(--brand-col1)">
+
+<HomepageBlogs posts={posts}></HomepageBlogs>
+
 </Section>
 
 <Section title="Mentors" align="center" color="var(--brand-col1)">
@@ -1145,7 +1151,7 @@ return(<>
   <h2>{item.title}</h2>
   <p>{item.role}</p></div>
   </div>
-  <div className={styles.stars}>
+  <div className={styles.stars +   "  flex flex-row items-center justify-start"}>
 
   </div>
   </div></SwiperSlide>
@@ -1229,8 +1235,12 @@ return <div className={styles.partners}>
 
 export async function getServerSideProps(context){
 
-  const [datac,datad] = await Promise.all([supabase.from('services').select('*'),supabase.from('mentors').select('*')])
+  const [datac,datad,po] = await Promise.all([supabase.from('services').select('*'),supabase.from('mentors').select('*'),
+  supabase.from('blog_posts').select('*').eq('isActive',true).order('created_at',{ascending:false}).limit(4)
+])
   
   
-  return { props: {datac: datac ? datac.data : {}, datad:datad? datad.data : {}} } 
+  return { props: {datac: datac ? datac.data : {}, datad:datad? datad.data : {},posts:po ? po.data : []} } 
   }
+
+  
