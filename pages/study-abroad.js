@@ -587,8 +587,8 @@ function validateEmail(email) {
 </svg>
 <p>Submitting Form</p>
 </div> :''}
-<Image alt='EduAbroad Logo Official' width={200} height={50} className={styles.logo} src="/enl.svg"/>
-        <div className={styles.hero}>
+{/* <Image alt='EduAbroad Logo Official' width={200} height={50} className={styles.logo} src="/enl.svg"/> */}
+        {/* <div className={styles.hero}>
           
        <div className={styles.dotgrid} />
 <div className={styles.divider1}>
@@ -602,10 +602,12 @@ function validateEmail(email) {
   <Image width={"300"} height={"800"} alt='Student holding SAT Exam Books' src='/student.png'/>
 </div>
 
-        </div>
+        </div> */}
+
+        <img className={styles.heroimage} src='/sat.jpg'/>
 
         
-<GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee>
+{/* <GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee> */}
           <section className={styles.maincont} id="form">
 <Image width={"1920"} height={"500"} alt='Abroad Study Sklyine | EduAbroad Best Study Abroad Consultants' src='/skyline.svg' className={styles.skyline}/>
             <div className={styles.grad1}></div>

@@ -10,6 +10,11 @@
         overflow: hidden;
         font-family: SF Pro Display;
     }
+    .heroimage{
+        width: 100%;
+        object-fit: cover;
+        height: auto;
+    }
     .heading{
         font-size: 56px;
         font-family: Playfair Display;
@@ -404,7 +409,7 @@
         width: 100%;
         height: auto;
         min-height: 500px;
-        margin-top: -50px;
+        /* margin-top: -50px; */
         padding: 150px 6vw 50px 6vw;
         background-color: var(--brand-col1);
         display: flex;
@@ -1114,6 +1119,9 @@
     }
     
     @media only screen and (max-width:968px) {
+        .c1 h2{
+            font-size: 2rem;
+        }
         .heading{
             font-size: 22px;
         }
@@ -1213,7 +1221,8 @@
             margin: 0 auto;
         }
         .maincont {
-            padding: 80px 6vw 50px 6vw;
+            padding: 20px 6vw 50px 6vw;
+            
         }
         .maincont2 {
             padding: 80px 6vw 50px 6vw;
