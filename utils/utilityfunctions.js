@@ -15,3 +15,7 @@ value:`${currentYear+d}`,
   export function removeNumbers(text) {
     return text.replace(/\d/g, '');
 }
+
+export function getCurrentYear() {
+    return new Date().getFullYear();
+  }

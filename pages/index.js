@@ -21,6 +21,7 @@ import { cbKey } from '../utils/cronBerryKey';
 import {Spacer} from '@nextui-org/react'
 import GoogleReviews from '../components/GoogleReviews';
 import HomepageBlogs from '../components/HomepageBlogs';
+import { getCurrentYear } from '../utils/utilityfunctions';
 const ResponsiveIFrame = ({ src }) => {
   return (
     <div className="video-container">
@@ -964,7 +965,7 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 })}
 </div>
 </Section>
-<Section title="Top Countries of 2023 to : Study Abroad" align="center" color="var(--brand-col1)">
+<Section title={`Top Countries of ${getCurrentYear()} to : Study Abroad`} align="center" color="var(--brand-col1)">
 
 <Swiper
      modules={[Navigation, Pagination, Autoplay]}
