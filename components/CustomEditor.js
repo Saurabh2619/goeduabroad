@@ -6,10 +6,11 @@ function CustomEditor(props){
   
     const editor = useRef(null);
 	const [content, setContent] = useState(props.data? props.data : '');
-    const config = useMemo(() => ({
-        readonly: false,
-        placeholder: props.data || 'Start typings...',
-      }), [props.data]);
+  const config = useMemo(() => ({
+    readonly: false,
+    placeholder: props.data || 'Start typing...',
+    showXPathInStatusbar: true, // Enable tag selector
+}), [props.data]);
 	
 	
     return <div className={styles.edit}>
@@ -17,7 +18,7 @@ function CustomEditor(props){
     <JoditEditor
 			ref={editor}
 			value={content}
-			
+			config={config}
 			tabIndex={1} // tabIndex of textarea
 			/* onBlur={newContent => setContent(newContent)}  */// preferred to use only this option to update the content for performance reasons
 			onChange={newContent => {setContent(newContent),props.onChange(newContent)}}

@@ -182,7 +182,7 @@
     cursor: pointer;
     position: relative;
     background-color: var(--brand-col1);
-    color: black;
+    color: white;
     box-shadow: 2px 2px 0px 0px var(--brand-accent);
     font-weight: 600;
     font-family: SF Pro Display;
@@ -673,7 +673,7 @@
 }
 
 .edit {
-    background-color: var(--brand-accent);
+    background-color: var(--brand-col1);
     border-radius: 200px;
     display: flex;
     align-items: center;
@@ -1236,8 +1236,12 @@
     width: 16px;
     height: 16px;
     margin-right: 5px;
+    
 }
 
+.quickEdit path{
+    fill: white;
+}
 .newPost:hover {
     background-color: #69e1ff;
 }
