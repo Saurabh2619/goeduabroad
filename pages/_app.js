@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import { DefaultSeo } from 'next-seo'
 import { NextUIProvider } from '@nextui-org/react'
 import {SpeedInsights} from '@vercel/speed-insights/next';
-
+import {Toaster} from 'react-hot-toast'
 export default function App({ Component, pageProps }) {
   return <>
   <SpeedInsights></SpeedInsights>
@@ -47,7 +47,9 @@ twitter={{
   <>
  
   {process.env.NEXT_PUBLIC_SITE_LIVE == "true" ? 
-  <NextUIProvider> <Component {...pageProps} /></NextUIProvider>:
+  <NextUIProvider>
+    <Toaster position="bottom-right"></Toaster>
+     <Component {...pageProps} /></NextUIProvider>:
   <div><h1>Sorry, Something went Wrong!</h1><p>Please contact your cloud hosting provider to resolve the issue.</p></div>}</>
   </>
 }

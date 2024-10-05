@@ -10,6 +10,7 @@ module.exports = {
     "./components/OfferPopup.js",
     "./components/HomepageBlogs.js",
     "./components/GoogleReviews.js",
+    "./pages/sat/*{.js}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
 
   ],
