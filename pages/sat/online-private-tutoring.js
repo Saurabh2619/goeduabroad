@@ -93,19 +93,55 @@ export default function Component() {
       name: "Sanjeev Rathore",
       role: "English (Verbal Ability)",
       image: "/sj.jpg",
-      description: "Mayur, a mechanical engineer, followed his passion for verbal reasoning and aptitude. He breaks the most complex verbal concepts into simple mathematical steps that students can easily follow and achieve scores that they desire. Training more than 5000 students over the past 7 years, his students have had scores like 1570(V770). Truly following the words of Maya Angelou, \"When you know better you do better\", Mayur makes sure his students always know better."
+    
+      description:<><p>Over 12 years of teaching experience since 2012.<br/> Recognized with the Most Punctual Teacher Award from 2017 to 2023.<br/> Awarded for innovative learning hacks in vocabulary mnemonics.<br/> Postgraduate in English Language.</p>
+      <a href="https://youtu.be/dRw48Mv_b-M" target='_blank' className='text-sm flex flex-row my-2 text-primary items-center justify-start font-bold'>
+      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  className="external-icon mr-2"
+  viewBox="0 0 28.57  20"
+  focusable="false"
+  style={{
+    pointerEvents: "none",
+    display: "block",
+    width: 24,
+    height: 24
+  }}
+  
+>
+  <script xmlns="" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 28.57 20"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <g>
+      <path
+        d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z"
+        fill="#FF0000"
+      />
+      <path
+        d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z"
+        fill="white"
+      />
+    </g>
+  </svg>
+  <script xmlns="" />
+</svg>
+        Josh Talks Speaker</a>
+      </>
     },
     {
       name: "Divya Pandey",
       role: "English (Verbal Ability)",
-      image: "/sj.jpg",
-      description: "Kapil earned an MBA after his mechanical engineering degree. He performed well on standardized tests such as GMAT. He has been teaching Quant for more than 10 years and helped thousands of students achieve their target scores, with his unique ability to break a most complex problem into simpler mathematical steps. Most of his students get a score between Q45 - 51 on GMAT."
+      image: "/divya.jpg",
+      description: <p>Over 15 years of experience in guiding and training 1500+ students on their IELTS journey and abroad applications.<br/> Consistently helping students achieve IELTS scores of 7+ bands. <br/>Expertise in securing admissions and scholarships at top universities such as Boston University, UCL, LBS, and Warwick.<br/> Successfully helped students secure scholarships worth ₹4 crore+.</p>
     },
     {
         name: "Abhishek Singh",
         role: "Maths (Quantitative Ability)",
         image: "/abk.jpg",
-        description: "Kapil earned an MBA after his mechanical engineering degree. He performed well on standardized tests such as GMAT. He has been teaching Quant for more than 10 years and helped thousands of students achieve their target scores, with his unique ability to break a most complex problem into simpler mathematical steps. Most of his students get a score between Q45 - 51 on GMAT."
+        description: <p>Over 5 years of experience mentoring thousands of students for CAT, IPMAT, and SAT exams.<br/> 2 years at Class24 and 2 years at Chanakya Defence Academy, Dehradun.<br/> Expertise in effective strategies for students with Special Educational Needs (SEN) and consistently delivering exceptional exam results.<br/> B.Tech from FGIET, Raebareli.</p>
       }
   ]
   const faqItems = [
@@ -298,6 +334,34 @@ export default function Component() {
         </Card>
       </div></div>
     </div>
+
+{/* Testimonials */}
+
+<section className="bg-gray-100 py-16 font-sans">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center text-navy-900 mb-8">Testimonials</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <Card key={index} className="bg-white p-4 shadow-lg">
+              <CardHeader className="flex gap-4">
+                <Avatar classNames={{base:"w-24 h-24 flex-shrink-0"}} src={testimonial.image} size="lg" />
+                <div>
+                  <h3 className="text-xl text-primary font-semibold">{testimonial.name}</h3>
+                  <p className="text-gray-600">{testimonial.score}</p>
+                  
+                </div>
+              </CardHeader>
+              <CardBody>
+                <p className="text-gray-700 text-sm">{testimonial.content}</p>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+
     <div className="bg-gray-100 py-16 font-sans">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center text-navy-900 mb-12">Why Us ?</h2>
@@ -324,6 +388,34 @@ export default function Component() {
         </div>
       </div>
     </div>
+
+{/* Teahcers */}
+<section className="bg-gray-50 font-sans py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center text-navy-900 text-primary mb-8">Know your teachers</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {teachers.map((teacher, index) => (
+            <Card shadow='none' key={index} className="bg-white shadow-sm">
+              <CardHeader className="flex gap-4">
+                <Avatar src={teacher.image} classNames={{base:'w-24 flex-shrink-0 h-24'}} />
+                <div>
+                  <h3 className="text-xl font-semibold text-primary">{teacher.name}</h3>
+                  <p className="text-gray-600">{teacher.role}</p>
+                </div>
+              </CardHeader>
+              <CardBody>
+                <div className="text-gray-700 text-xs">{teacher.description}</div>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Button as={Link} href='#form' color="warning" size="lg">
+            Speak to a counselor
+          </Button>
+        </div>
+      </div>
+    </section>
 
     <div className="bg-gray-100 py-16 font-sans">
       <div className="container mx-auto px-4">
@@ -371,54 +463,8 @@ export default function Component() {
     </div>
 
 
-    <section className="bg-gray-50 font-sans py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-navy-900 text-primary mb-8">Know your teachers</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {teachers.map((teacher, index) => (
-            <Card shadow='none' key={index} className="bg-white shadow-sm">
-              <CardHeader className="flex gap-4">
-                <Avatar src={teacher.image} classNames={{base:'w-24 flex-shrink-0 h-24'}} />
-                <div>
-                  <h3 className="text-xl font-semibold text-primary">{teacher.name}</h3>
-                  <p className="text-gray-600">{teacher.role}</p>
-                </div>
-              </CardHeader>
-             {/*  <CardBody>
-                <p className="text-gray-700 text-xs">{teacher.description}</p>
-              </CardBody> */}
-            </Card>
-          ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Button as={Link} href='#form' color="warning" size="lg">
-            Speak to a counselor
-          </Button>
-        </div>
-      </div>
-    </section>
-    <section className="bg-gray-100 py-16 font-sans">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-navy-900 mb-8">Testimonials</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-white p-4 shadow-lg">
-              <CardHeader className="flex gap-4">
-                <Avatar classNames={{base:"w-24 h-24 flex-shrink-0"}} src={testimonial.image} size="lg" />
-                <div>
-                  <h3 className="text-xl text-primary font-semibold">{testimonial.name}</h3>
-                  <p className="text-gray-600">{testimonial.score}</p>
-                  
-                </div>
-              </CardHeader>
-              <CardBody>
-                <p className="text-gray-700 text-sm">{testimonial.content}</p>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
+   
+    
     <section className="bg-white w-full font-sans py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center text-primary text-navy-900 mb-8">Frequently Asked Questions</h2>
