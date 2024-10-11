@@ -10,7 +10,7 @@ const GooglePreview = ({ value }) => {
       <div className={styles['google-preview-container']}>
         
         <div className={styles['google-preview-title']}>{metaTitle}</div>
-        <div className={styles['google-preview-url']}>blog.nmnvisuals.com</div>
+        <div className={styles['google-preview-url']}>goeduabroad.com</div>
         <div className={styles['google-preview-description']}>{metaDesc}</div>
       </div></>
     );

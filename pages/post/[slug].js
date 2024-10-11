@@ -200,7 +200,7 @@ return <a href={i.link}><img src={i.icon}/></a>
                 <div></div>
             </div>}>
            
-           <div className={styles.author}> <img src={final.author.profile_image} width={44} height={44} /> <div className={styles.namebox}><p>{final.author.fullname} <span className={styles.auth}>Author</span></p><p>{final.author.badge}</p></div></div> </Tooltip>
+           <div className={styles.author}> <img src={final.author.profile_image} alt={final?.author?.fullname} width={44} height={44} /> <div className={styles.namebox}><p>{final.author.fullname} <span className={styles.auth}>Author</span></p><p>{final.author.badge}</p></div></div> </Tooltip>
         
         <p>{getDate(final.created_at)}</p> <p>{comments?.length} Comments</p> </div>
         <div className={styles.content} data-table="true">

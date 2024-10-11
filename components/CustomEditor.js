@@ -1,30 +1,32 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import JoditEditor from 'jodit-react';
-import styles from './CustomEditor.module.css'
+import styles from './CustomEditor.module.css';
 
-function CustomEditor(props){
-  
-    const editor = useRef(null);
-	const [content, setContent] = useState(props.data? props.data : '');
+function CustomEditor(props) {
+  const [content, setContent] = useState(props.data ? props.data : '');
+
+  // Define config with the sticky toolbar options
   const config = useMemo(() => ({
     readonly: false,
     placeholder: props.data || 'Start typing...',
     showXPathInStatusbar: true, // Enable tag selector
-}), [props.data]);
-	
-	
-    return <div className={styles.edit}>
-    
-    <JoditEditor
-			ref={editor}
-			value={content}
-			config={config}
-			tabIndex={1} // tabIndex of textarea
-			/* onBlur={newContent => setContent(newContent)}  */// preferred to use only this option to update the content for performance reasons
-			onChange={newContent => {setContent(newContent),props.onChange(newContent)}}
-		/>
-    
-  </div>
+    toolbarSticky: true,
+    toolbarStickyOffset: 0, // Set your desired offset
+  }), [props.data]);
+
+  return (
+    <div className={styles.edit}>
+      <JoditEditor
+        value={content}
+        config={config}
+        tabIndex={1}
+        onChange={newContent => {
+          setContent(newContent);
+          props.onChange(newContent);
+        }}
+      />
+    </div>
+  );
 }
 
 export default CustomEditor;

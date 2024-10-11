@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Editor.module.css'
 import axios from 'axios';
-
-import {useRouter} from 'next/router'
-
-
-
-
-
 import 'react-quill/dist/quill.snow.css';
-
 import dynamic from "next/dynamic";
-
-
 import RenderEditor from '../../components/RenderEditor';
-
 import CustomSelect from '../../components/CustomSelect';
 import Notifications from '../../components/Notification';
 import { supabase } from '../../utils/supabaseClient';
@@ -22,85 +11,46 @@ import ImageUploader from '../../components/ImageUploader';
 import TextContentEditor from '../../components/TextContentEditor';
 import PreviewComponent from '../../components/PreviewComponent';
 import Indicator from '../../components/Indicator';
-
 import Switch from '../../components/Switch'
-
-
-
-
-
-
-
-
 import MultipleTags from '../../components/MultipleTags';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 const CustomEditor = dynamic(() => import('../../components/CustomEditor'), {
     ssr: false,
   });
-  
-  
 import 'react-markdown-editor-lite/lib/index.css';
-
-const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
-  ssr: false,
-});
-
-
-function Editor({data,datac,da}) {
+import {Pagination,Skeleton} from '@nextui-org/react'
+import "tailwindcss/tailwind.css";
+function Editor() {
 
 const [isLoggedIn,setIsLoggedIn] = useState();
 const [formData,setFormData] = useState();
-const [currentVideo,setCurrentVideo] = useState();
-const [videoPopover,setVideoPopover] = useState()
 const [activeOption,setActiveOption] = useState(0);
 const [posts,setPosts] = useState();
 const [leads,setLeads] = useState();
-const [editTitle,setEditTitle] = useState();
-const[postsFiltered,setPostFiltered] = useState();
-const[activeQuestionCatAdder,setQuestionCatAdder]  = useState(false)
 const [posteditor,setPostEditor] = useState(false);
-const [category,setCategory] = useState();
 const [posteditorData,setPostEditorData] = useState();
 const [quickEdits,setQuickEdits] = useState();
-const [catfilter,setCatFilter] = useState("catscan");
-const [catnfilter,setCatNFilter] = useState("catscan");
 const [commentBox,setCommentBox] = useState(false);
-const [activeQuestionnaire,setActiveQuestionnaire] = useState();
-const [questionnaireData,setQuestionnaireData] = useState();
 const [comments,setComments] = useState();
 const [commentsList,setCommentsList] = useState();
-const [newQCatAdder,setNewQCatAdder] = useState(false)
 const [catdata,setCatData] = useState();
-const [qcatdata,setQCatData] = useState();
-const [activeQuestionnairePost,setActiveQuestionnairePost] = useState();
-const [configuration,setConfiguration] = useState({
-    showImage:true,
-})
-
-
+const postsPerPage = 10
 
 const [loading,setLoading] = useState(false);
 const [contentEditable,setContentEditable] = useState();
-const router = useRouter();
-const [editMD,setEditMD] = useState(false)
 const [addNewPost,setAddNewPost] = useState();
 const [newPostData,setNewPost] = useState();
 const [categories,setCategories] = useState();
-
 const [filterEmail,setFilterEmail] = useState();
 const [notificationText,setNotificationText] = useState();
-
-
 const [parentCatAdder,setParentCatAdder] = useState(false)
-
 const [pcatData,setPCatData] = useState();
-
 const [jsonContent,setjsonContent] = useState();
-const [questionUpdater,setQuestionUpdater]  = useState();
-const [profilizer,setProfilizer] = useState();
-const [activeQuestionUpdateId,setActiveQuestionUpdaterID] = useState();
+const [currentPage, setCurrentPage] = useState(1)
+const [totalPages, setTotalPages] = useState(1)
+const [isLoading, setIsLoading] = useState(true)
+
 useEffect(()=>{
-setCategories(data?.data)
+
 if(localStorage.getItem('isAuth-nmnVis-Bl')){
     setIsLoggedIn(true)
     const r = localStorage.getItem('isAuth-nmnVis-El');
@@ -154,38 +104,23 @@ function getCloudinaryThumbnailUrl(fullSizeImageUrl) {
     return thumbnailUrl;
   }
 
-  
-function renderEditorComps(a){
-
-}
-
 
 
 
 function activatePostEditor(a,b){
     setPostEditor(a);
     
-    setPostEditorData(b)}
+    setPostEditorData(b)
+
+}
 
 useEffect(()=>{
-if(datac){
-    setPosts(datac.data)
-}
-},[])
+getSetPosts(currentPage)
+},[currentPage])
 
 
 
 
-function fireAction(a){
-
-   
-
-    if(a == "leads")
-    {
-        getLeads()
-    }
-   
-}
 
 const menu = [
     {
@@ -204,10 +139,7 @@ const menu = [
         title:'CRM',
         action:'crm'
     },
-    {
-        title:'Leads',
-        action:'leads'
-    },
+   
     {
         title:'Tools',
         action:'tools'
@@ -262,38 +194,9 @@ async function getCommentsCount(a){
     
     
     }
-async function getLeads(a){
-
-    const {data,error} = await supabase.from('contacts').select("*").order('created_at',{ascending:false});
-    
-    if(data){
-    
-        setLeads(data)
-    }
-    
-    else if(error){
-        setNotification('Unable to Find Leads')
-    }
-    
-    
-    }
 
 
-    async function getProfilizer(a){
-
-        const {data,error} = await supabase.from('profilizer').select("*").order('created_at',{ascending:false});
-        
-        if(data){
-        
-            setProfilizer(data)
-        }
-        
-        else if(error){
-            setNotification('Unable to Find Profiles')
-        }
-        
-        
-        }    
+  
 
 async function updatePost(a){
 
@@ -353,7 +256,7 @@ const {data,error} = await supabase.from('blog_posts').update({
 if(data){
     setNotification('Post Update Successfully');
     setPostEditor(false);
-    getSetPosts()
+    getSetPosts(currentPage)
 }
 
 else {
@@ -375,15 +278,26 @@ else if(error){
     setNotification('Unable to Update Comment')
 }
 }
-async function getSetPosts(){
-    const {data,error} = await supabase
-    .from('blog_posts')
-    .select('*,cat!inner(*)').order('created_at',{ascending:false});
+async function getSetPosts(page) {
+    const from = (page - 1) * postsPerPage
+    const to = from + postsPerPage - 1
 
-    if(data){
-        setPosts(data)
-    }else if(error){}
-}
+    setIsLoading(true)
+    const { data, error, count } = await supabase
+      .from('blog_posts')
+      .select('*', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(from, to)
+
+    if (data) {
+      setPosts(data)
+      setIsLoading(false)
+      setTotalPages(Math.ceil((count || 0) / postsPerPage))
+    } else if (error) {
+        setIsLoading(false)
+      console.error('Error fetching posts:', error)
+    }
+  }
 async function updateField(a,b,c){
 
     const {data,error} = await supabase.from('blog_posts').update({
@@ -414,14 +328,7 @@ else if(error){
 
 }
 
-    function isYouTubeEmbedLink(link) {
-        // Regular expression pattern for matching YouTube embed links
-        var pattern = /^https?:\/\/(www\.)?youtube\.com\/embed\//;
-      
-        return pattern.test(link);
-      }
-      
-  
+   
 async function getSetCategory(){
  const {data,error} =   await supabase
     .from('categories')
@@ -441,6 +348,7 @@ async function getUserEmail(){
 useEffect(()=>{
     getUserEmail()
     getCommentsCount()
+    getSetCategory()
 },[])
 
 
@@ -483,15 +391,6 @@ const fields = [
         }
 
     },
-   
-   
-    
-  /*   {
-        label:"Enter Slug",
-        key:'slug',
-        placeholder:"Enter Post Slug",
-        type:"text",
-    } */
     
     
 ]
@@ -542,7 +441,7 @@ async function PublishNewPost(a){
     if(data){
         setAddNewPost(false)
         setNotification('Published Post Successfully')
-        getSetPosts()
+        getSetPosts(currentPage)
        setAddNewPost()
     }
 
@@ -551,18 +450,7 @@ async function PublishNewPost(a){
     }
 }
 
-async function SubmitData(data) {
-    const requiredKeys = ['title', 'intro', 'slug', 'content'];
-  
-    for (let key of requiredKeys) {
-      if (!data[key]) {
-        alert(`Error: Missing key '${key}'`);
-        return;
-      }
-    }
-  
-    
-  }
+
   
 function setNotification(de){
 
@@ -652,58 +540,17 @@ const posteditorfield = [
 
 
 
-async function deletePostById(a){
-
-    const {error} = await supabase.from('blog_posts').delete().eq('id',a);
-
-   
-
-    if(!error){
-        setTimeout(()=>{
-            setNotification('Deleted'),getSetPosts()
-    },500)
-    }
-    else if(error){
-        
-        setNotification('error')
-    }
-
-}
-async function getPostsbyCatId(a){
-    const {data,error} = await supabase.from('blog_posts').select("*").eq('cat',a)
-
-
-    if(data){
-        setPostFiltered(data)
-    }
-    else if(error){
-setNotification('error occured')
-    }
-
-    
-}
-
 
 
 function isAllowed() {
-    var allowedEmails = ['nitin4glory@gmail.com', 'officialnmn@gmail.com'];
+    var allowedEmails = ['ashutoshmishra@gmail.com', 'officialnmn@gmail.com'];
     var storedValue = localStorage.getItem('isAuth-nmnVis-El');
   
     return allowedEmails.includes(storedValue);
   }
 
 
-  const updateDataByKey2 = (key, newData,field) => {
-    
-    setQuestionUpdater(prevStateArray =>
-      prevStateArray.map(obj => {
-        if (obj.key === key) {
-          return { ...obj, [field]: newData };
-        }
-        return obj;
-      })
-    );
-  };
+ 
 
 async function uploadImage(a,b,c){
     const imageData = new FormData;
@@ -723,38 +570,38 @@ async function uploadImage(a,b,c){
     
     }
 
+    const PostSkeleton = () => (
+        <div  className="flex items-center mb-2 shadow-sm space-x-4 p-4 border border-gray-200 rounded-lg">
+          <Skeleton className="rounded-lg">
+            <div className="h-12 w-auto aspect-video bg-default-300"></div>
+          </Skeleton>
+          <div className="flex-1 space-y-2">
+            <Skeleton className="w-3/4 rounded-lg">
+              <div className="h-5 w-3/4 bg-default-200"></div>
+            </Skeleton>
+            <div className="flex space-x-2">
+              <Skeleton className="rounded-full">
+                <div className="h-6 w-24 bg-success-300"></div>
+              </Skeleton>
+              <Skeleton className="rounded-full">
+                <div className="h-6 w-36 bg-success-300"></div>
+              </Skeleton>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <Skeleton className="rounded-lg">
+              <div className="h-10 w-24 bg-primary-300"></div>
+            </Skeleton>
+            <Skeleton className="rounded-lg">
+              <div className="h-10 w-28 bg-primary-300"></div>
+            </Skeleton>
+          </div>
+        </div>
+      )
+
     return <>
 
-{questionUpdater != undefined ? 
-<div className={styles.popover}>
-    <div className={styles.popoverclose} onClick={()=>{setQuestionUpdater(),setActiveQuestionUpdaterID()}}></div>
-    <div className={styles.popoverinner}>
 
-        {questionUpdater && questionUpdater.map((i,d)=>{
-            if(i.type == "equation"){
-                return <EditableMathField style={{width:"100%",minHeight:"50px"}} latex={i.value} onChange={
-                    (e)=>{
-                      
-            updateDataByKey2(i.key,e.latex(),"latex")
-                    }
-                  }/>
-            }
-            
-            else if(i.type == "lite"){
-            
-                return <TextContentEditor value={i?.value  ? i.value : ''}  onChange={(e)=>{updateDataByKey2(i.key,e,"value")}}/>
-            }
-            else if(i.type == "complex"){
-                return <CustomEditor  value={data?.extra_text ? data.extra_text : '<b>Write Here</b>'} onChange={(e)=>{updateDataByKey2(i.key,e,"value")}}/>
-            }
-            else if(i.type == "image"){
-              return <ImageUploader  data={{image:i?.value ? i.value : ''}} onUploadComplete={(e)=>{updateDataByKey2(i.key,e,"value")}}/>
-            }
-        })}
-        <button className={styles.btn} onClick={()=>{updateQuestionbyId(questionUpdater,activeQuestionUpdateId)}}>Update</button>
-    </div>
-</div>
-:''}
     {/* Parent Category Adder */}
 
     {parentCatAdder ? <>
@@ -819,13 +666,13 @@ else if(i.type == "dynamic"){
 
     return<><h2>{i.label}</h2>
     <div className={styles.contentwrapper}>
-    {posteditorData?.MarkdownData != undefined ? 
+    {/* {posteditorData?.MarkdownData != undefined ? 
     <button onClick={()=>{setEditMD(!editMD)}}>{editMD ? "Save" : "Edit"} Markdown</button>
-    :''}
-    {posteditorData?.MarkdownData != undefined?
+    :''} */}
+    {/* {posteditorData?.MarkdownData != undefined?
        <>{posteditorData?.MarkdownData != undefined && editMD == false ? <ReactMarkdown>{posteditorData.MarkdownData}</ReactMarkdown> : <MdEditor style={{ height: '500px' }} renderHTML={(text)=><ReactMarkdown>{text}</ReactMarkdown>} value={posteditorData.MarkdownData}  onChange={(e)=>{setPostEditorData(res=>({...res,MarkdownData:e.text}))}}></MdEditor>
        
-        }</> :''}
+        }</> :''} */}
         {posteditorData?.MarkdownData != undefined ?"":<RenderEditor postData={posteditorData ? posteditorData :''}  onChange={(e)=>{setjsonContent(e)}}/>}
     </div>
     
@@ -902,7 +749,7 @@ else if(i.type == "keywords"){
 
     {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
     {addNewPost != undefined ? <div className={styles.zoverlay}>
-    <div className={styles.closer} onClick={(e)=>{e.stopPropagation(),setAddNewPost(),getSetPosts(),setNewPost()}}></div>
+    <div className={styles.closer} onClick={(e)=>{e.stopPropagation(),setAddNewPost(),getSetPosts(currentPage),setNewPost()}}></div>
     <div className={styles.modal}>
 
     {/* <div className={styles.dragarea}>
@@ -937,7 +784,7 @@ value:i.title}
 {/* Quick Edits */}
 
     {quickEdits != undefined ? <div className={styles.overlay} >
-<div className={styles.closer} onClick={(e)=>{e.stopPropagation(),setQuickEdits(),getSetPosts()}}></div>
+<div className={styles.closer} onClick={(e)=>{e.stopPropagation(),setQuickEdits(),getSetPosts(currentPage)}}></div>
         <div className={styles.modal}>
 
 <div className={styles.dragarea}>
@@ -967,7 +814,7 @@ value:i.title}
     <img className={styles.navlogo} src='/edulogo.svg'/>
 <ul>
 {menu && menu.map((i,d)=>{
-    return <li className={(activeOption == d ? styles.activeOption : '')} onClick={()=>{setActiveOption(d), fireAction(i.action)}}>{i.title}</li>
+    return <li className={(activeOption == d ? styles.activeOption : '')} onClick={()=>{setActiveOption(d)}}>{i.title}</li>
 })}
 </ul>
 </div>
@@ -1050,10 +897,11 @@ value:i.title}
 <button className={styles.newPost} onClick={()=>{setAddNewPost(true)}}>Add New Post</button>
     </div>
     <div className={styles.postList}>
+        {isLoading ? Array(postsPerPage).fill(0).map((_, index) => <PostSkeleton key={index} />) : <>
         {posts && posts.map((i,d)=>{
             return <div className={styles.post}>
                 <div className={styles.leftcont}>
-                {configuration.showImage? <img src={getCloudinaryThumbnailUrl(i.img)}/>:''}
+                <img src={getCloudinaryThumbnailUrl(i.img)}/>
                 <p className={styles.postTitle}>{i.title}</p>
                </div>
                 <div className={styles.postEditTools}>
@@ -1072,12 +920,23 @@ value:i.title}
                     Edit in Editor</a>
                     
                     
-                  {/*   <button onClick={()=>{deletePostById(i.id)
-                    }} className={styles.delete}>Delete</button> */}
+                
                     </div>
             </div>
-        })}
-    </div></>
+        })}</>}
+    </div>
+    <Pagination
+          total={totalPages}
+          initialPage={1}
+          page={currentPage}
+
+          onChange={(page) => setCurrentPage(page)}
+          color="primary"
+          size="lg"
+        />
+
+    
+    </>
     :'' }
 </div>
     </div>
@@ -1093,34 +952,5 @@ value:i.title}
 }
 
 export default Editor;
-export async function getServerSideProps(context) {
-    // Fetch data from external API
+
   
-  
-    const [data, datac] = await Promise.all([
-     await supabase
-  .from('categories')
-  .select('*')
-  , 
-  await supabase
-  .from('blog_posts')
-  .select('*,cat!inner(*)').order('created_at',{ascending:false})
-    ]);
-
-
-    let da = 0;
-    function setDa(){
-        
-        da = data.data.filter((i,id)=>{
-             
-                if(i.slug == context.query.string){ return i;}
-             
-             })}
-   if(data){
-setDa();
-    }
-    
-
-    return { props: {data,datac,da} }
-
-}
