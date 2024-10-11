@@ -666,13 +666,7 @@ else if(i.type == "dynamic"){
 
     return<><h2>{i.label}</h2>
     <div className={styles.contentwrapper}>
-    {/* {posteditorData?.MarkdownData != undefined ? 
-    <button onClick={()=>{setEditMD(!editMD)}}>{editMD ? "Save" : "Edit"} Markdown</button>
-    :''} */}
-    {/* {posteditorData?.MarkdownData != undefined?
-       <>{posteditorData?.MarkdownData != undefined && editMD == false ? <ReactMarkdown>{posteditorData.MarkdownData}</ReactMarkdown> : <MdEditor style={{ height: '500px' }} renderHTML={(text)=><ReactMarkdown>{text}</ReactMarkdown>} value={posteditorData.MarkdownData}  onChange={(e)=>{setPostEditorData(res=>({...res,MarkdownData:e.text}))}}></MdEditor>
-       
-        }</> :''} */}
+   
         {posteditorData?.MarkdownData != undefined ?"":<RenderEditor postData={posteditorData ? posteditorData :''}  onChange={(e)=>{setjsonContent(e)}}/>}
     </div>
     
