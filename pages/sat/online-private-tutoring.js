@@ -195,11 +195,10 @@ export default function Component() {
 
   const features2 = [
     "60+ Hours of SAT Online Private Tutoring",
-    "2500+ Online Practice Questions in Pre-class, In-class, Post-class, Topic tests & Sectional Tests",
-    "5 Full-length Official Style Mocks",
+    "2500+ Online Practice Questions in Pre-class, In-class, Post-class, Topic tests & 92 Sectional Tests",
+    "10 Full-length Official Style Mocks for SAT",
     "Access to class recordings for Revisions and Backups",
     "One to One Mock Analysis with both Verbal and Quant Faculties",
-    "Doubt Clearing via dedicated Telegram group",
     "Strategy Sessions to achieve target score",
     "Boot camp just before SAT date",
     "One to One Doubt Clearing Sessions with Faculties",
