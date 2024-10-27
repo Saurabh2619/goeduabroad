@@ -278,11 +278,11 @@ export default function Component() {
           Personalized program to help you achieve your target SAT® score!
         </p>
         <ul className="space-y-2">
-          <li>✓ One-on-One Live Classes</li>
-          <li>✓ Personalized Preparation</li>
-          <li>✓ Exhaustive Study Material</li>
-          <li>✓ Led by top instructors</li>
-          <li>✓ Performance insights backed by powerful data analytics</li>
+          <li>• 60+ Hours of SAT Online Private Tutoring</li>
+    <li>• In-class, Post-class, Topic tests & 92 Sectional Tests</li>
+    <li>• 10 Full-length Official Style Mocks for SAT</li>
+    <li>• Access to class recordings for Revisions and Backups</li>
+    <li>• One to One Mock Analysis with both Verbal and Quant Faculties</li>
         </ul>
       </div>
       <div className="flex-1 z-10 relative !p-4 w-full flex items-center justify-center">
