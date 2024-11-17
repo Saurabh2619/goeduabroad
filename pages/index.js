@@ -18,7 +18,7 @@ import { supabase } from '../utils/supabaseClient';
 import Notifications from '../components/Notification';
 import axios from 'axios'
 import { cbKey } from '../utils/cronBerryKey';
-import {Spacer} from '@nextui-org/react'
+import {Button, Spacer} from '@nextui-org/react'
 import GoogleReviews from '../components/GoogleReviews';
 import HomepageBlogs from '../components/HomepageBlogs';
 import { getCurrentYear } from '../utils/utilityfunctions';
@@ -776,6 +776,7 @@ className={styles.content + " font-semibold"}>
 <h2 className={styles.camtext}>CAMBRIDGE LEARNING PARTNER</h2>
 <img src='/camnew.svg' width={220} className={styles.camblogo}/></div>
       </div>
+      <CardSection></CardSection>
       <Section title="Testimonials" align="center" color="var(--brand-col1)">
 
 
@@ -1245,3 +1246,46 @@ export async function getServerSideProps(context){
   }
 
   
+  const CardSection =()=>{
+
+    return  <div className="w-full py-12 bg-white">
+    <div className="container px-4 mx-auto md:px-6">
+      <div className="flex font-sans flex-col md:flex-row items-center gap-6 relative overflow-hidden shadow-xl shadow-gray-600/10 rounded-3xl min-h-[60vh] sm:min-h-[40vh] bg-[#A51C30] p-8">
+        <div className="flex-1 space-y-4">
+          <h2 className="text-2xl font-heading font-semibold tracking-normal text-white sm:text-3xl md:text-4xl">
+          Personalized Career Guidance <br/>Test Powered by AI
+          </h2>
+          <p className="text-white/90 md:text-lg">
+          Career Aptitude Test for students from 10th to 12th, graduates & professionals
+          </p>
+          <div className='flex flex-row items-center justify-start'>
+          <Button 
+          href='https://www.bodhami.com/general/careerTest?token=-O2AvTjm4II7wR6rnO6Y_tpT0mZj6GKs'
+          as={Link}
+            className="bg-white text-[#A51C30] hover:bg-white/90"
+          >
+           Learn More
+          </Button>
+          <Spacer x={2}></Spacer>
+          <Button 
+          href='https://www.bodhami.com/customer/login?token=-O2AvTjm4II7wR6rnO6Y_tpT0mZj6GKs'
+          as={Link}
+            className="bg-white text-[#A51C30] hover:bg-white/90"
+          >
+           Take Test
+          </Button></div>
+        </div>
+        <Image
+            src="/careertest.png"
+            alt="Study Abroad"
+            width={400}
+            height={300}
+            className="rounded-lg absolute right-0 -bottom-0 sm:-bottom-[15%] h-auto sm:h-full w-full sm:w-auto object-contain"
+          />
+        <div className="flex-1 flex justify-center">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  }
