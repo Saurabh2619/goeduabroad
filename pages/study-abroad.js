@@ -28,7 +28,7 @@ import { cbKey } from '../utils/cronBerryKey'
 import Offer from '../components/OfferPopup'
 import { getCurrentAndNextTwoYears, removeNumbers } from '../utils/utilityfunctions'
 import { gtag_report_conversion } from '../utils/googleTag'
-
+import {useRouter} from 'next/router';
 
 export default function Home() {
 
@@ -45,6 +45,8 @@ const [datahtml,setHtml] = useState();
 const [formData,setFormData] = useState();
 const [mentors,setMentors] = useState([]);
 const years = getCurrentAndNextTwoYears();
+
+const router = useRouter();
 
 const testimonials =[{
   icon:'<svg width="44" height="44" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.788 3.103c.495-1.004 1.926-1.004 2.421 0l2.358 4.777 5.273.766c1.107.161 1.549 1.522.748 2.303l-.905.882a6.5 6.5 0 0 0-9.441 7.43l-3.96 2.082c-.99.52-2.147-.32-1.958-1.424l.9-5.25-3.815-3.72c-.801-.78-.359-2.142.748-2.303L8.43 7.88l2.358-4.777Zm3.49 10.872a2 2 0 0 1-1.441 2.497l-.584.144a5.729 5.729 0 0 0 .006 1.807l.54.13a2 2 0 0 1 1.45 2.51l-.187.632c.44.386.94.699 1.484.921l.494-.518a2 2 0 0 1 2.899 0l.498.525a5.281 5.281 0 0 0 1.483-.913l-.198-.686a2 2 0 0 1 1.441-2.496l.584-.144a5.716 5.716 0 0 0-.006-1.808l-.54-.13a2 2 0 0 1-1.45-2.51l.187-.63a5.278 5.278 0 0 0-1.484-.923l-.493.519a2 2 0 0 1-2.9 0l-.498-.525c-.544.22-1.044.53-1.483.912l.198.686ZM17.5 19c-.8 0-1.45-.672-1.45-1.5 0-.829.65-1.5 1.45-1.5.8 0 1.45.671 1.45 1.5 0 .828-.65 1.5-1.45 1.5Z" fill="#222F3D"/></svg>',
@@ -127,7 +129,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,epr
           },
           {
               "paramKey": "formname",
-              "paramValue": "EduAbroad Study Consultant Page"
+              "paramValue": router?.query?.source ?? "EduAbroad Study Consultant Page"
           },
           {
             "paramKey": "program",
@@ -493,7 +495,7 @@ async function SubmitContact(){
 email:formData.email,
 phone:formData.phone,
 subject:formData.goal,
-source:'Study Abroad Page'
+source:router?.query?.source  ?? 'Study Abroad Page'
     }).select();
  
  
