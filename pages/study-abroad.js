@@ -29,6 +29,7 @@ import Offer from '../components/OfferPopup'
 import { getCurrentAndNextTwoYears, removeNumbers } from '../utils/utilityfunctions'
 import { gtag_report_conversion } from '../utils/googleTag'
 import {useRouter} from 'next/router';
+import { PopupLeadForm } from '../components/PopupLeadForm'
 
 export default function Home() {
 
@@ -564,7 +565,7 @@ function validateEmail(email) {
         <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' />
       </Head>
       <DefaultLayout hideAI={true} navbar>
-        
+        <PopupLeadForm></PopupLeadForm>
         <Offer data={formData} onClose={()=>{setSubmitted(false)}} submitted={isSubmitted}></Offer>
       <main className={styles.main + " tailwind"}>
         {/* {isSubmitted? <div className={styles.modal}>

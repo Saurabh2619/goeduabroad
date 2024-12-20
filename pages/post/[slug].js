@@ -24,6 +24,7 @@ import DefaultLayout from '../../layouts/DefaultLayout';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import RenderEditor from '../../components/RenderEditor';
+import { PopupLeadForm } from '../../components/PopupLeadForm';
 function Post({data,datac}) {
     
     const router = useRouter();
@@ -155,6 +156,7 @@ if(data){
 })} */}
           
         </Head>
+       
         <NextSeo
       title={final.title }
       description={`${final.metaDesc}| Best Study Abroad Consultant in India`}
@@ -181,6 +183,7 @@ if(data){
     />
        
        <div className={styles.mainholder}>
+       <PopupLeadForm></PopupLeadForm>
         <div className={styles.topbar}></div>
     <article className={styles.post_holder}>
 <div className={styles.spacer}></div>

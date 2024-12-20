@@ -26,6 +26,7 @@ import { cbKey } from '../utils/cronBerryKey'
 import Offer from '../components/OfferPopup'
 import { getCurrentAndNextTwoYears, removeNumbers } from '../utils/utilityfunctions'
 import { gtag_report_conversion } from '../utils/googleTag'
+import { PopupLeadForm } from '../components/PopupLeadForm'
 
 export default function Home() {
 
@@ -500,7 +501,7 @@ function validateEmail(email) {
         <link rel="icon" href={favicon} />
       </Head>
       <DefaultLayout hideAI={true} navbar>
-        
+        <PopupLeadForm></PopupLeadForm>
       <Offer data={formData} onClose={()=>{setSubmitted(false)}} submitted={isSubmitted}></Offer>
       <main className={styles.main}>
      {/*  {isSubmitted? <div className={styles.modal}>

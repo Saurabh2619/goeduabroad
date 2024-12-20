@@ -45,7 +45,8 @@
         "react-youtube": "^10.1.0",
         "recharts": "^2.8.0",
         "remark-gfm": "^3.0.1",
-        "swiper": "^8.4.5"
+        "swiper": "^8.4.5",
+        "zod": "^3.24.1"
     },
     "devDependencies": {
         "tailwindcss": "^3.3.5"
