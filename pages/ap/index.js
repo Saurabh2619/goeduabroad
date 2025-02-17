@@ -31,7 +31,7 @@ export default function AP() {
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               Boost Your <span className="text-[#A51C30]">Scholarship</span> and{" "}
-              <span className="text-[#A51C30]">Admission</span> Chances with AP
+              <span className="text-[#A51C30]">Admission</span> Chances with <span className="text-[#A51C30]">AP</span>
             </h1>
             <p className="mt-6 text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               A strong AP performance enhances your college application and improves your chances of earning
