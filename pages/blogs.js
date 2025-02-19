@@ -63,7 +63,7 @@ const d = new Date(Date.now());
         
         />
 <div className={styles.post_holder}>
-    <h1 className={styles.mainhead}>{`Showing all Posts`}</h1>
+    <h1 className={styles.mainhead + " "}>{`Showing all Posts`}</h1>
     <p className={styles.para}>Number of Posts : {datac?.data?.length}</p>
 <Section noMargin text={''}>
 {datac?.data && datac?.data?.length > 0 ? <Paginator pagenumber={pagenumber || 0} count={pagecount.count} items={datac.data} renderFunction={(item,index)=>{
