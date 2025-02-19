@@ -463,34 +463,24 @@ async function SubmitContact(){
   }
 
   // Check year
-  if (!formData.year || formData.year.trim() === '') {
-    setNotification('Year field is empty');
-    return null;
-  }
-
-  // Validate the year
-  const year = parseInt(formData.year);
-  if (isNaN(year) || year < 1900 || year > 2099) {
-    setNotification('Year is not valid');
-    return null;
-  }
-
+  
+ 
 
   // Check city
   if (!formData.city || formData.city.trim() === '') {
     setNotification('City field is empty');
     return null;
   }
-  if (!formData.program) {
+ /*  if (!formData.program) {
     setNotification('Program is not Selected');
     return null;
-  }
+  } */
     setLoader(true)
     
     /* TestApi(); */
     triggerInterakt();
       /* await axios.post('/') */
-      cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.year,formData.city,'https://goeduabroad.com',formData.program);
+      cronberryTrigger(formData.fullname,formData.email,formData.phone,'',formData.city,'https://goeduabroad.com','');
       const {data,error} = await supabase.from('leads').insert({
         name:formData.fullname,
 email:formData.email,
@@ -637,14 +627,14 @@ function validateEmail(email) {
 </div>
 <div className={styles.c2}>
   <div className={styles.formcont}>
-<h1 className={styles.team_heading}>Register Now to Schedule Study Abroad Consultation</h1>
+<h1 className={styles.team_heading}>Fill out the form to Register for AP Webinar</h1>
 <input name={"name"} maxLength={30} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} maxLength={50} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
 <input name={"city"} maxLength={20} pattern="[a-zA-Z]+" className={styles.input}  placeholder={"Enter your City"} type={"text"} value={formData && formData.city} onChange={(e)=>{setFormData(res=>({...res,city:removeNumbers(e.target.value)})) }}/>
-<CustomSelect fullWidth z={9} full="true" defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
-<CustomSelect fullWidth z={7} full="true" defaultText="What do you wish to pursue?" noPadding={true} objects={programs} setSelect={(r)=>{setFormData(res=>({...res,program:r}))}}/>
-{formData && formData.city && formData.fullname && formData.phone && formData.email && formData.year? '':<p className={styles.error}>Please fill all the fields</p>}
+{/* <CustomSelect fullWidth z={9} full="true" defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
+<CustomSelect fullWidth z={7} full="true" defaultText="What do you wish to pursue?" noPadding={true} objects={programs} setSelect={(r)=>{setFormData(res=>({...res,program:r}))}}/> */}
+{formData && formData.city && formData.fullname && formData.phone && formData.email ? '':<p className={styles.error}>Please fill all the fields</p>}
 {/* <div onClick={TestApi} className={styles.submit}>TEST</div> */}
 <div onClick={SubmitContact} className={styles.submit}>SUBMIT</div>
 <div className={styles.encrypt}>
