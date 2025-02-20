@@ -30,7 +30,8 @@ import { getCurrentAndNextTwoYears, removeNumbers } from '../utils/utilityfuncti
 import { gtag_report_conversion } from '../utils/googleTag'
 import {useRouter} from 'next/router';
 import { PopupLeadForm } from '../components/PopupLeadForm'
-
+import {CheckCircle} from 'lucide-react'
+import {Avatar} from '@nextui-org/react';
 export default function Home() {
 
 const [isSubmitted,setSubmitted] = useState(false)
@@ -44,7 +45,11 @@ const [notificationText,setNotificationText] = useState();
 const [timeoutId, setTimeoutId] = useState(null);
 const [datahtml,setHtml] = useState();
 const [formData,setFormData] = useState();
-const [mentors,setMentors] = useState([]);
+const [mentors,setMentors] = useState([
+    {
+
+    }
+]);
 const years = getCurrentAndNextTwoYears();
 
 const router = useRouter();
@@ -76,7 +81,15 @@ const testimonials =[{
 
 },
 ]
-
+const features2 = [
+    "Personalized course curriculum tailored to different learning speeds",
+    "Expert faculty including Harvard-Cambridge alumni mentorship (Swati Ma'am)",
+    "Data-driven study plans & progress tracking",
+    "60+ hours of private tutoring and over 2,500+ practice questions",
+    "10 full-length mock tests & access to class recordings",
+    "One-on-one mock analysis & doubt-clearing sessions"
+  ];
+  
 const heading=['Register Now','Its Free','Limited Seats','Best Abroad Career Consultancy']
 function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,eprogram) {
 
@@ -161,27 +174,7 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,epr
   xhr.send(data);
 }
 
-async function getMentors(){
 
-
-    const {data,error} = await supabase.from('mentors').select('*');
-
-    if(data){
-
-setMentors(data && data.map((i,d)=>{
-    return {
-        fullname:i.title,
-        image:i.image,
-        collegeimage:i.collegeimage
-    }
-}))
-
-    }
-    else if(error){
-        setNotification('error getting mentors')
-    }
-
-}
 
 const programs = [
   {
@@ -206,10 +199,7 @@ const programs = [
     value:'Not Decided'
   }
 ]
-useEffect(()=>{
-    getMentors()
-    
-},[])
+
 
 const slides = [{
   image:'/EduAbroad.webp',
@@ -601,13 +591,13 @@ function validateEmail(email) {
 
         
 {/* <GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee> */}
-          <section className={styles.maincont} id="form">
+          <section className={styles.maincont + " !p-4 md:!p-16"} id="form">
 <Image width={"1920"} height={"500"} alt='Abroad Study Sklyine | EduAbroad Best Study Abroad Consultants' src='/skyline.svg' className={styles.skyline}/>
             <div className={styles.grad1}></div>
             <div className={styles.grad2}></div>
 <div className={styles.c1}>
   {/* <Image height={"200"} alt='SAT Summer Sale Offer upto 90% OFF | EduAbroad Best Study Abroad Consultants' className={styles.sale} width={'1920'} src='/satoffer.jpg'/> */}
-<h2>Get Started with Best Study Abroad Consultant in India</h2>
+<h2>Get Started with Best AP in India by EduAbroad</h2>
 <p>Start your journey with us & start your career in abroad with best study abroad consultant</p>
 <div className={styles.trust}>TOP RANKED CONSULTANT IN INDIA FOR ABROAD STUDIES</div>
 
@@ -627,7 +617,7 @@ function validateEmail(email) {
 </div>
 <div className={styles.c2}>
   <div className={styles.formcont}>
-<h1 className={styles.team_heading}>Fill out the form to Register for AP Webinar</h1>
+<h1 className={styles.team_heading + " font-bold leading-none"}>Fill out the form to Register for AP Webinar</h1>
 <input name={"name"} maxLength={30} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} maxLength={50} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
 <input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
@@ -667,17 +657,23 @@ function validateEmail(email) {
 </div>
           </section>
        
-         
-       
-          <div className={styles.mar}>
-<Marquee  speed={100} gradient={false}>
-              {countries && countries.map((i,d)=>{
-                return <div className={styles.country3} style={{backgroundImage:`url(${i.image})`}}>
-<h2>{i.title}</h2>
+         <div className='mt-12'></div>
+          <Section  color="var(--brand-col1)" align="left">
+            <h2 className={styles.heading  + " font-bold leading-none mb-8"}>Why choose EduAbroad <br/><span className={styles.red}>for AP?</span>
+</h2>
+<div className={styles.list}>
 
-                </div>
-              })}
-            </Marquee></div>
+      {features2 && features2.map((feature, index) => (
+        <div key={index} className="flex mb-2 items-center text-sm md:text-xl  space-x-3">
+          <CheckCircle className="text-green-600 flex-shrink-0" size={20} />
+          <span className="text-gray-900">{feature}</span>
+        </div>
+      ))}
+
+</div>
+          </Section> 
+      
+
         <Section title={"Words by: Our Students"} color="var(--brand-col1)" align="left">
 <div className={styles.parent}>
 <div className={styles.col1}>
@@ -700,43 +696,14 @@ function validateEmail(email) {
 
         </Section>
        
-        <Section title={"Know : Your Mentors"} color="var(--brand-col1)" align="left">
-        <div className={styles.parent2}>
-
-        {mentors && mentors.map((i,d)=>{
-return <div className={styles.card}>
-    <div className={styles.circ}></div>
-  {/* <div alt={i.role} className={styles.bg} style={{backgroundImage:"url("+i.bg+")"}}></div> */}
-  <Image width={"100"} height={"100"} alt={i.fullname} src={i.image}/>
-  <h2>{i.fullname}</h2>
-  {i.collegeimage ? <Image width={"100"} height={"80"} alt={i?.colleganame || i?.fullname} className={styles.colimg} src={i.collegeimage}/>:''}
-  {i.role ? <p className={styles.para}>{i.role}</p>:''}
-  {i.role2 ? <p className={styles.para}>{i.role2}</p>:''}
-</div>
-
-})}
-         
-          
-          </div></Section>
+        <Section title={"Meet our: Expert AP Instructors"} color="var(--brand-col1)" align="left">
+        <Mentors></Mentors>
+        </Section>
           
 
          
 
-          <Section  color="var(--brand-col1)" align="left">
-            <h2 className={styles.heading}>Why choose EduAbroad <br/><span className={styles.red}>as your study abroad consultants?</span>
-</h2>
-<div className={styles.list}>
-<p>
-•EduAbroad is the one stop destination for you to fulfill your dreams to study abroad. </p>
-<p>•We are the official learning partners of the University of Cambridge currently serving at Lucknow, Delhi, Mumbai, Kanpur, Indore and Nagpur. <br/></p>
-<p>•At EduAbroad you get exclusive study material, books and portal containing mock tests of the University of Cambridge which prepare you comprehensively and in the best possible manner for your various tests necessary for you to study abroad. <br/></p>
-<p>•We have the best faculty in India trained directly by Cambridge University for preparation of IELTS, TOEFL, SAT, GMAT, GRE, PTE. <br/></p>
-<p>•We assist our students in every step of their journey giving them personalized support from course & university selection; building application profile, SOP, CV & Video CV; helping students in getting scholarship & financial aid; accommodation and travel assistance and right till visa assistance and interview preparation. <br/></p>
-<p>•We are the one study abroad consultant which pays utmost attention to test preparation as we know that it is the most crucial step for you to study abroad. <br/></p>
-<p>•Also, our students get the golden opportunity to get invaluable insights from our renowned mentor & founder Dr. Swati Mishra, an alumna of the University of Cambridge and MIT, USA, and a former IIM Lucknow Professor, which helps them to overcome every challenge in their way with utmost ease.  <br/></p>
-<p>•With EduAbroad by your side, there is no stopping until you reach your dream university.</p>
-</div>
-          </Section>
+         
           
    
   {/*  <Section title={"Why choose: EduAbroad?"} color="var(--brand-col1)" align="left" visible="true">
@@ -831,3 +798,42 @@ return(<>
     </>
   )
 }
+
+
+const MentorCard = ({ name, title, experience, image }) => {
+    return (
+      <div className="bg-white shadow-lg rounded-xl p-4 flex flex-col items-center text-center w-80">
+        <Avatar src={image} alt={name} className="w-24 h-24 rounded-full object-cover mb-4" />
+        <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+        <p className="text-sm text-gray-600 font-medium">{title}</p>
+        <p className="text-sm text-gray-500">{experience}</p>
+      </div>
+    );
+  };
+
+
+
+  const Mentors = () => {
+    const mentors = [
+      {
+        name: "Sanjeev Kumar Saxena",
+        title: "Verbal Ability Expert",
+        experience: "20+ years of experience, expert in vocabulary mnemonics",
+        image: "/sanjeev-saxena.jpg"
+      },
+      {
+        name: "Syed Irshad",
+        title: "Industry Expert",
+        experience: "10+ years of experience in the industry",
+        image:null
+      }
+    ];
+  
+    return (
+      <div className="flex space-x-6 justify-start p-6">
+        {mentors.map((mentor, index) => (
+          <MentorCard key={index} {...mentor} />
+        ))}
+      </div>
+    );
+  };
