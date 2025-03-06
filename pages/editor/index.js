@@ -17,7 +17,7 @@ const CustomEditor = dynamic(() => import('../../components/CustomEditor'), {
     ssr: false,
   });
 import 'react-markdown-editor-lite/lib/index.css';
-import {Pagination,Skeleton} from '@nextui-org/react'
+import {Pagination,Select,SelectItem,Skeleton} from '@nextui-org/react'
 import "tailwindcss/tailwind.css";
 function Editor() {
 
@@ -48,6 +48,8 @@ const [jsonContent,setjsonContent] = useState();
 const [currentPage, setCurrentPage] = useState(1)
 const [totalPages, setTotalPages] = useState(1)
 const [isLoading, setIsLoading] = useState(true)
+const [selectedAuthor,setSelectedAuthor] = useState(undefined)
+const [authors,setAuthors] = useState()
 
 useEffect(()=>{
 
@@ -57,6 +59,7 @@ if(localStorage.getItem('isAuth-nmnVis-Bl')){
     setFilterEmail(r)
       
 }
+
 
 
 },[])
@@ -349,9 +352,22 @@ useEffect(()=>{
     getUserEmail()
     getCommentsCount()
     getSetCategory()
+    getAuthors()
 },[])
 
 
+async function getAuthors(){
+
+    const {data,error} = await supabase.from('authors').select();
+
+    if(error){
+        return
+    }
+    if(data){
+setAuthors(data)
+        return
+    }
+}
 async function Authenticate(a){
 
     const {data,error} = await axios.post('/api/auth',{
@@ -434,7 +450,7 @@ async function PublishNewPost(a){
         jsonContent:"[]",
         isActive:false,
        
-        author:filterEmail,
+        author:selectedAuthor ?? filterEmail,
         
     }).select();
 
@@ -767,6 +783,13 @@ value:i.title}
         /></>
     
 })}
+
+<Select selectedKeys={[selectedAuthor]} label="Select Author" onSelectionChange={(e)=>{setSelectedAuthor(e.anchorKey)}} placeholder='Select Author'>
+    {authors && authors.map((author,author_index)=>{
+        return <SelectItem key={author.email} value={author.email}>{author.fullname}</SelectItem>
+    })}
+</Select>
+
 <div className={styles.toolbarbottom}>
 <div className={styles.newPost} onClick={()=>{PublishNewPost(newPostData)}}>Publish Post</div>
 <div className={styles.btn} onClick={()=>{setAddNewPost()}}>Cancel</div></div>
