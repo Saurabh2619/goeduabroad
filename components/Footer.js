@@ -130,7 +130,7 @@ function getCurrentYear() {
         </div>
         <div className={styles.bottom}>
             <p>{getCurrentYear()}© All Rights Reserved | Edu Abroad</p>
-            <a href="https://blog.nmnvisuals.com">Developed & Designed by NMN Visuals</a>
+            
         </div>
         </div></footer>
 }
