@@ -148,36 +148,76 @@ function validatePhone(phone) {
     }).catch(res=>{
       })
   }
-async function SubmitContact(){
 
-    if(formData && formData.fullname && formData.email && formData.phone && validateEmail(formData.email) && validatePhone(formData.phone)){
-        setLoading(true);
-        triggerInterakt();
-        cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.subject,formData.message,'https://goeduabroad.com','GoEduAbroad Contact Page');
-        const {data,error} = await supabase.from('leads').insert({
-            name:formData.fullname,
-email:formData.email,
-phone:formData.phone,
-subject:formData.subject,
-message:formData.message,
-        }).select();
+  const sendLead = async (leadData) => {
+    const { firstname, phone, email } = leadData;
+  
+    if (!firstname || !phone || !email) {
+      throw new Error("Missing required fields: firstname, phone, and email are required.");
+    }
+  
+    try {
+      const response = await axios.post("/api/sendlead", leadData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error sending lead:", error);
+      throw error;
+    }
+  };
+  
 
-        if(data){
-setNotification('Submitted Successfully');
-setLoading(false)
-setThankYou(true)
-        }else if(error){
-            setLoading(false)
-setNotification('Something went Wrong')
+
+  async function SubmitContact() {
+    if (
+      formData &&
+      formData.fullname &&
+      formData.email &&
+      formData.phone &&
+      validateEmail(formData.email) &&
+      validatePhone(formData.phone)
+    ) {
+      setLoading(true);
+      triggerInterakt();
+      cronberryTrigger(
+        formData.fullname,
+        formData.email,
+        formData.phone,
+        formData.subject,
+        formData.message,
+        "https://goeduabroad.com",
+        "GoEduAbroad Contact Page"
+      );
+  
+      try {
+        const response = await sendLead({
+          firstname: formData.fullname,
+          lastname: "", // Add if available
+          phone: formData.phone,
+          email: formData.email,
+          city: formData.city || "", // Add if available
+          state: formData.state || "", // Add if available
+          country: formData.country || "", // Add if available
+          message: formData.message,
+        });
+  
+        if (response) {
+          setNotification("Submitted Successfully");
+          setThankYou(true);
         }
+      } catch (error) {
+        setNotification("Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setLoading(false);
+      setNotification("Please fill all the fields correctly");
     }
-    else{
-        setLoading(false)
-setNotification('Please Fill all the fields correctly')
-
-    }
-
-}
+  }
 
     return <DefaultLayout>
          {notificationText && notificationText.length > 2 ? <Notifications text={notificationText} /> : ''}
