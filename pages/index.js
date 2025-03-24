@@ -604,86 +604,71 @@ async function triggerInterakt(){
   }).catch(res=>{
     })
 }
-async function SubmitContact(){
-  if(formData == undefined){
-    setNotification('All Fields are empty')
-    return null
-  }
-  if (!formData.fullname || formData.fullname.trim() === '') {
-    setNotification('Fullname field is empty');
-    return null;
-  }
-
-  // Check email
-  if (!formData.email || formData.email.trim() === '') {
-    setNotification('Email field is empty');
-    return null;
-  }
-
-  // Validate the email format using a regular expression
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  if (!emailRegex.test(formData.email)) {
-    setNotification('Email is not valid');
-    return null;
-  }
-
-  // Check phone
-  if (!formData.phone || formData.phone.trim() === '') {
-    setNotification('Phone field is empty');
-    return null;
-  }
-
-  // Validate the phone number
-  const phoneRegex = /^[0-9]{10}$/; // Change the regex pattern as needed
-  if (!phoneRegex.test(formData.phone)) {
-    setNotification('Phone number is not valid');
-    return null;
-  }
-
-  // Check year
-  /* if (!formData.year || formData.year.trim() === '') {
-    setNotification('Year field is empty');
-    return null;
-  }
-
-  // Validate the year
-  const year = parseInt(formData.year);
-  if (isNaN(year) || year < 1900 || year > 2099) {
-    setNotification('Year is not valid');
-    return null;
-  } */
-
-  // Check city
- /*  if (!formData.city || formData.city.trim() === '') {
-    setNotification('City field is empty');
-    return null;
-  } */
+ const sendLead = async (leadData) => {
+    const { firstname, phone, email } = leadData;
   
-    
-    setLoading(true)
-    triggerInterakt()
-    cronberryTrigger(formData.fullname,formData.email,formData.phone,formData.goal,formData.city ? formData.city : 'N/A','https://goeduabroad.com','GoEduAbroad Main Page');
-    const {data,error} = await supabase.from('leads').insert({
-        name:formData.fullname,
-email:formData.email,
-phone:formData.phone,
-
-subject:formData.goal,
-source:'Homepage'
-    }).select();
-
-    if(data){
-setNotification('Submitted Successfully');
-setLoading(false)
-setThankYou(true)
-    }else if(error){
-        setLoading(false)
-setNotification('Something went Wrong')
+    if (!firstname || !phone || !email) {
+      throw new Error("Missing required fields: firstname, phone, and email are required.");
     }
+  
+    try {
+      const response = await axios.post("/api/sendlead", leadData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error sending lead:", error);
+      throw error;
+    }
+  };
+async function SubmitContact() {
+  if (
+    formData &&
+    formData.fullname &&
+    formData.email &&
+    formData.phone &&
+    validateEmail(formData.email) &&
+    validatePhone(formData.phone)
+  ) {
+    
+    triggerInterakt();
+    cronberryTrigger(
+      formData.fullname,
+      formData.email,
+      formData.phone,
+      formData.subject,
+      formData.message,
+      "https://goeduabroad.com",
+      "GoEduAbroad Contact Page"
+    );
 
+    try {
+      const response = await sendLead({
+        firstname: formData.fullname,
+        lastname: "", // Add if available
+        phone: formData.phone,
+        email: formData.email,
+        city: formData.city || "", // Add if available
+        state: formData.state || "", // Add if available
+        country: formData.country || "", // Add if available
+        message: formData.message,
+      });
 
-
-
+      if (response) {
+        setNotification("Submitted Successfully");
+        setThankYou(true);
+      }
+    } catch (error) {
+      setNotification("Something went wrong");
+    } finally {
+      
+    }
+  } else {
+    
+    setNotification("Please fill all the fields correctly");
+  }
 }
 
 function setNotification(de){
