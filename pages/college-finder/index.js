@@ -6,6 +6,17 @@ import { Loader2, GraduationCap, Globe, BookOpen, School } from "lucide-react"
 
 export default function CollegeFinder() {
   const [degree, setDegree] = useState("bachelors")
+
+  // Function to handle degree change and reset relevant fields
+  const handleDegreeChange = (newDegree) => {
+    setDegree(newDegree)
+    // Clear aptitude test fields when switching degrees
+    setForm((prev) => ({
+      ...prev,
+      aptitudeTest: "",
+      aptitudeTestScore: "",
+    }))
+  }
   const [form, setForm] = useState({})
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState([])
@@ -23,10 +34,19 @@ export default function CollegeFinder() {
 
     if (degree === "bachelors") {
       requiredFields.push("school", "boardScore")
+      if (form.aptitudeTest && form.aptitudeTest !== "None") {
+        requiredFields.push("aptitudeTestScore")
+      }
     } else if (degree === "masters") {
       requiredFields.push("bachelorCollege", "majorCourse", "cgpa", "backlogs")
+      if (form.aptitudeTest && form.aptitudeTest !== "None") {
+        requiredFields.push("aptitudeTestScore")
+      }
     } else if (degree === "phd") {
       requiredFields.push("mastersCollege", "majorCourse", "phdScore", "phdBacklogs")
+      if (form.aptitudeTest && form.aptitudeTest !== "None") {
+        requiredFields.push("aptitudeTestScore")
+      }
     }
 
     for (const field of requiredFields) {
@@ -161,6 +181,41 @@ export default function CollegeFinder() {
                 className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
               />
             </div>
+            <div className="col-span-1">
+              <label className="block font-semibold mb-1">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  <span>Aptitude Test</span>
+                </div>
+              </label>
+              <select
+                name="aptitudeTest"
+                value={form.aptitudeTest || ""}
+                onChange={handleChange}
+                className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
+              >
+                <option value="">Select aptitude test</option>
+                <option value="SAT">SAT</option>
+                <option value="ACT">ACT</option>
+                <option value="None">None</option>
+              </select>
+            </div>
+            <div className={`col-span-1 ${form.aptitudeTest === "None" || !form.aptitudeTest ? "hidden" : ""}`}>
+              <label className="block font-semibold mb-1">
+                <div className="flex items-center gap-2">
+                  <GraduationCap className="h-4 w-4" />
+                  <span>{form.aptitudeTest} Score</span>
+                </div>
+              </label>
+              <input
+                type="text"
+                name="aptitudeTestScore"
+                value={form.aptitudeTestScore || ""}
+                onChange={handleChange}
+                placeholder={`Enter your ${form.aptitudeTest} score`}
+                className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
+              />
+            </div>
           </div>
         )
       case "masters":
@@ -227,14 +282,38 @@ export default function CollegeFinder() {
                 max="5"
               />
             </div>
-            <div className="col-span-2">
-              <label className="block font-semibold mb-1">Aptitude Test (e.g., GRE, GMAT)</label>
-              <input
-                type="text"
+            <div className="col-span-1">
+              <label className="block font-semibold mb-1">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  <span>Aptitude Test</span>
+                </div>
+              </label>
+              <select
                 name="aptitudeTest"
                 value={form.aptitudeTest || ""}
                 onChange={handleChange}
-                placeholder="e.g., GRE, GMAT"
+                className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
+              >
+                <option value="">Select aptitude test</option>
+                <option value="GRE">GRE</option>
+                <option value="GMAT">GMAT</option>
+                <option value="None">None</option>
+              </select>
+            </div>
+            <div className={`col-span-1 ${form.aptitudeTest === "None" || !form.aptitudeTest ? "hidden" : ""}`}>
+              <label className="block font-semibold mb-1">
+                <div className="flex items-center gap-2">
+                  <GraduationCap className="h-4 w-4" />
+                  <span>{form.aptitudeTest} Score</span>
+                </div>
+              </label>
+              <input
+                type="text"
+                name="aptitudeTestScore"
+                value={form.aptitudeTestScore || ""}
+                onChange={handleChange}
+                placeholder={`Enter your ${form.aptitudeTest} score`}
                 className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
               />
             </div>
@@ -304,14 +383,38 @@ export default function CollegeFinder() {
                 max="5"
               />
             </div>
-            <div className="col-span-2">
-              <label className="block font-semibold mb-1">Aptitude Test (e.g., GRE, TOEFL)</label>
-              <input
-                type="text"
+            <div className="col-span-1">
+              <label className="block font-semibold mb-1">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  <span>Aptitude Test</span>
+                </div>
+              </label>
+              <select
                 name="aptitudeTest"
                 value={form.aptitudeTest || ""}
                 onChange={handleChange}
-                placeholder="e.g., GRE, TOEFL"
+                className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
+              >
+                <option value="">Select aptitude test</option>
+                <option value="GRE">GRE</option>
+                <option value="GMAT">GMAT</option>
+                <option value="None">None</option>
+              </select>
+            </div>
+            <div className={`col-span-1 ${form.aptitudeTest === "None" || !form.aptitudeTest ? "hidden" : ""}`}>
+              <label className="block font-semibold mb-1">
+                <div className="flex items-center gap-2">
+                  <GraduationCap className="h-4 w-4" />
+                  <span>{form.aptitudeTest} Score</span>
+                </div>
+              </label>
+              <input
+                type="text"
+                name="aptitudeTestScore"
+                value={form.aptitudeTestScore || ""}
+                onChange={handleChange}
+                placeholder={`Enter your ${form.aptitudeTest} score`}
                 className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
               />
             </div>
@@ -465,7 +568,7 @@ export default function CollegeFinder() {
                   <button
                     key={degreeOption}
                     type="button"
-                    onClick={() => setDegree(degreeOption)}
+                    onClick={() => handleDegreeChange(degreeOption)}
                     className={`py-2 px-2 sm:px-4 rounded-md text-center capitalize transition-all text-sm sm:text-base ${
                       degree === degreeOption
                         ? "bg-[#A51C30] text-white font-medium"
