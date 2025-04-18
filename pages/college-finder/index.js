@@ -407,17 +407,22 @@ export default function CollegeFinder() {
       <div className="space-y-6">
         {Object.entries(categories).map(([category, colleges]) => (
           <div key={category} className="mb-6">
-            <h3 className="text-xl font-bold mb-3 text-[#A51C30] border-b pb-2">{category}</h3>
+            <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[#A51C30] border-b pb-2">{category}</h3>
             <div className="space-y-3">
               {colleges.length > 0 ? (
                 colleges.map((college, index) => (
-                  <div key={index} className="p-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <div
+                    key={index}
+                    className="p-3 sm:p-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                  >
                     {typeof college === "string" ? (
-                      <p className="whitespace-pre-line">{college}</p>
+                      <p className="whitespace-pre-line text-sm sm:text-base">{college}</p>
                     ) : (
                       <>
-                        <h4 className="font-bold text-lg">{college.name || "College Name"}</h4>
-                        <p>{college.description || college.details || "No details available"}</p>
+                        <h4 className="font-bold text-base sm:text-lg">{college.name || "College Name"}</h4>
+                        <p className="text-sm sm:text-base">
+                          {college.description || college.details || "No details available"}
+                        </p>
                       </>
                     )}
                   </div>
@@ -434,11 +439,11 @@ export default function CollegeFinder() {
 
   return showLayout ? (
     <DefaultLayout>
-      <div className="flex justify-center py-8">
-        <div className="max-w-3xl w-full px-6 py-8 bg-white rounded-lg shadow-lg my-20">
+      <div className="flex justify-center py-4 sm:py-8">
+        <div className="max-w-3xl w-full px-4 sm:px-6 py-6 sm:py-8 bg-white rounded-lg shadow-lg my-8 sm:my-20">
           <div className="flex items-center justify-center mb-6">
             <GraduationCap className="h-8 w-8 text-[#A51C30] mr-2" />
-            <h2 className="text-2xl font-bold text-center">Find Your Ideal College</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-center">Find Your Ideal College</h2>
           </div>
 
           {formError && (
@@ -448,20 +453,20 @@ export default function CollegeFinder() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="bg-gray-50 p-3 sm:p-4 rounded-lg border border-gray-200">
               <label className="block font-semibold mb-3 text-lg border-b pb-2">
                 <div className="flex items-center gap-2">
                   <GraduationCap className="h-5 w-5" />
                   <span>Select Degree</span>
                 </div>
               </label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {["bachelors", "masters", "phd"].map((degreeOption) => (
                   <button
                     key={degreeOption}
                     type="button"
                     onClick={() => setDegree(degreeOption)}
-                    className={`py-2 px-4 rounded-md text-center capitalize transition-all ${
+                    className={`py-2 px-2 sm:px-4 rounded-md text-center capitalize transition-all text-sm sm:text-base ${
                       degree === degreeOption
                         ? "bg-[#A51C30] text-white font-medium"
                         : "bg-white border hover:bg-gray-100"
@@ -473,7 +478,7 @@ export default function CollegeFinder() {
               </div>
             </div>
 
-            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="bg-gray-50 p-3 sm:p-4 rounded-lg border border-gray-200">
               <h3 className="font-semibold mb-4 text-lg border-b pb-2">Education Details</h3>
               {renderCommonFields()}
               {renderDegreeFields()}
@@ -501,14 +506,16 @@ export default function CollegeFinder() {
   ) : (
     <div className="min-h-screen bg-white">
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-700 bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg w-4/5 sm:w-3/4 lg:w-2/3 max-h-[80vh] overflow-y-auto my-10">
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-700 bg-opacity-50 px-2 sm:px-0">
+          <div className="bg-white p-4 sm:p-8 rounded-lg w-full sm:w-4/5 lg:w-2/3 max-h-[90vh] sm:max-h-[80vh] overflow-y-auto my-4 sm:my-10">
             <div className="flex items-center justify-center mb-6">
               <School className="h-6 w-6 text-[#A51C30] mr-2" />
-              <h2 className="text-2xl font-bold text-center">College Recommendations</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-center">College Recommendations</h2>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-6">{renderResults()}</div>
+            <div className="bg-gray-50 p-3 sm:p-6 rounded-lg border border-gray-200 mb-4 sm:mb-6">
+              {renderResults()}
+            </div>
 
             <div className="flex justify-end">
               <button
@@ -516,7 +523,7 @@ export default function CollegeFinder() {
                   setShowModal(false)
                   setShowLayout(true)
                 }}
-                className="px-6 py-2 bg-[#A51C30] text-white font-semibold rounded-md hover:bg-[#9e1d2d] transition duration-300"
+                className="px-4 sm:px-6 py-2 bg-[#A51C30] text-white font-semibold rounded-md hover:bg-[#9e1d2d] transition duration-300 text-sm sm:text-base"
               >
                 Close
               </button>
@@ -527,4 +534,3 @@ export default function CollegeFinder() {
     </div>
   )
 }
- 
