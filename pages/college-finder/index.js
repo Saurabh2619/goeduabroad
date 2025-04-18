@@ -527,3 +527,4 @@ export default function CollegeFinder() {
     </div>
   )
 }
+ 
