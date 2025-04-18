@@ -90,3 +90,4 @@ Return the result strictly as a JSON array of objects with:
     return res.status(500).json({ error: "Failed to generate college recommendations" });
   }
 }
+ 
