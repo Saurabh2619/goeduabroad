@@ -46,18 +46,22 @@ export default async function handler(req, res) {
 `;
     }
 
+    // ✅ Here is your upgraded prompt
     prompt += `
-Please suggest at least 8 colleges divided into these categories:
-1. Ambitious - hard to get but possible
-2. Moderate - good match
-3. Safe - easy to get
 
-For each college, give:
+Please suggest exactly 9 colleges divided as follows:
+- 3 Ambitious colleges (challenging but achievable)
+- 3 Moderate colleges (good match based on profile)
+- 3 Safe colleges (high chances of admission)
+
+While suggesting colleges, prefer institutions where the student's Aptitude Test score and English Test score are higher than the general entry requirements.
+
+For each college, provide:
 - College Name
-- 2-3 line description explaining why it's a good fit
-- Category (Ambitious, Moderate, Safe)
+- 2-3 line description explaining why it's a good fit based on the profile (mention aptitude and English scores if relevant)
+- Category: "Ambitious" | "Moderate" | "Safe"
 
-Return the result as a JSON array with objects containing:
+Return the result strictly as a JSON array of objects with:
 - name: College Name
 - description: Short description
 - category: "Ambitious" | "Moderate" | "Safe"
