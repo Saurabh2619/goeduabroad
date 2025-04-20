@@ -62,8 +62,22 @@ export default function CollegeFinder() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!validateForm()) return
+
     setLoading(true)
     try {
+      // First check if the user is authenticated
+      const authResponse = await fetch("/api/check-auth", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      })
+
+      // If not authenticated, redirect to login page
+      if (!authResponse.ok) {
+        window.location.href = "https://pte.goeduabroad.com/login"
+        return
+      }
+
+      // User is authenticated, proceed with the college finder request
       const response = await fetch("/api/college-gpt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -76,6 +90,7 @@ export default function CollegeFinder() {
           },
         }),
       })
+
       const data = await response.json()
       if (response.ok) {
         setResult(data.result) // Assuming result is an array
