@@ -13,14 +13,16 @@ export default async function handler(req, res) {
   try {
     const body = req.body;
     const { degree, preferredCountry, fieldOfStudy, ...otherDetails } = body;
+    
 
+    //recomending collges are start from here
     let prompt = `I need college recommendations for a student with the following profile:
     - Degree Level: ${degree}
     - Preferred Country: ${preferredCountry}
     - Field of Study: ${fieldOfStudy}
     `;
 
-    // Include the relevant qualification and test data based on the degree
+    // Based on degree, add different qualification and scores
     if (degree === "bachelors") {
       prompt += `- Last Qualification: 12th Grade
       - School: ${otherDetails.school || "Not specified"}
@@ -42,21 +44,20 @@ export default async function handler(req, res) {
       `;
     }
 
-    // Add aptitude and English test details to the prompt
+    // Then add aptitude and English test scores
     prompt += `- Aptitude Test: ${otherDetails.aptitudeTest || "Not specified"}
     - Aptitude Test Score: ${otherDetails.aptitudeTestScore || "Not specified"}
     - English Test: ${otherDetails.englishTest || "Not specified"}
     - English Test Score: ${otherDetails.englishTestScore || "Not specified"}
     `;
 
-    // The main recommendation logic, asking the AI to match colleges based on qualifications, aptitude, and English scores
+    // Main logic is here
     prompt += `
     Please suggest exactly 9 colleges divided as follows:
     - 3 Ambitious colleges (challenging but achievable)
     - 3 Moderate colleges (good match based on profile)
     - 3 Safe colleges (high chances of admission)
     
-    While suggesting colleges, prioritize institutions where the student's scores in the Aptitude Test and English Test exceed the general entry requirements, and also take into account the student's last qualification scores.
 
     For each college, provide:
     - College Name
@@ -69,7 +70,7 @@ export default async function handler(req, res) {
     - "category": "Ambitious" | "Moderate" | "Safe"
     `;
 
-    // Call the OpenAI API to get the response
+    // Calling Api
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
@@ -79,7 +80,6 @@ export default async function handler(req, res) {
 
     const reply = completion.choices[0].message.content;
 
-    // Try parsing the response to get valid JSON
     let result;
     try {
       result = JSON.parse(reply);
@@ -88,7 +88,6 @@ export default async function handler(req, res) {
       result = { error: "Failed to parse college recommendations properly." };
     }
 
-    // Return the result to the user
     return res.status(200).json({ result });
 
   } catch (error) {
