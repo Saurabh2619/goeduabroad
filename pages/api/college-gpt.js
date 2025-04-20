@@ -14,8 +14,7 @@ export default async function handler(req, res) {
     const body = req.body;
     const { degree, preferredCountry, fieldOfStudy, ...otherDetails } = body;
     
-
-    //recomending collges are start from here
+    // Recommending colleges start from here
     let prompt = `I need college recommendations for a student with the following profile:
     - Degree Level: ${degree}
     - Preferred Country: ${preferredCountry}
@@ -51,13 +50,14 @@ export default async function handler(req, res) {
     - English Test Score: ${otherDetails.englishTestScore || "Not specified"}
     `;
 
-    // Main logic is here
+    // Insert your instruction exactly as you gave it
     prompt += `
+    Note:give the realist output as per the last gpa/percentage of student and aptitude test/english test score (if applicable) and where there are high chances of getting admission for all categories (ambitious, moderate, safe) last gpa/percentage of student should be the top priority.
+
     Please suggest exactly 9 colleges divided as follows:
     - 3 Ambitious colleges (challenging but achievable)
     - 3 Moderate colleges (good match based on profile)
     - 3 Safe colleges (high chances of admission)
-    
 
     For each college, provide:
     - College Name
@@ -70,9 +70,9 @@ export default async function handler(req, res) {
     - "category": "Ambitious" | "Moderate" | "Safe"
     `;
 
-    // Calling Api
+    // Calling OpenAI API
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.7,
       max_tokens: 2000,
