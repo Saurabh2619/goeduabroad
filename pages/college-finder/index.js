@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import DefaultLayout from "../../layouts/DefaultLayout"
-import { Loader2, GraduationCap, Globe, BookOpen, School } from "lucide-react"
+import { Loader2, GraduationCap, Globe, BookOpen, School, X } from "lucide-react"
+import axios from "axios"
 
 export default function CollegeFinder() {
   const [degree, setDegree] = useState("bachelors")
@@ -23,6 +24,26 @@ export default function CollegeFinder() {
   const [showModal, setShowModal] = useState(false)
   const [formError, setFormError] = useState("")
   const [showLayout, setShowLayout] = useState(true)
+
+  // Login popup state
+  const [showLoginPopup, setShowLoginPopup] = useState(false)
+  const [loginFormData, setLoginFormData] = useState({
+    fullname: "",
+    email: "",
+    phone: "",
+    city: "",
+  })
+  const [loginLoading, setLoginLoading] = useState(false)
+  const [loginSuccess, setLoginSuccess] = useState(false)
+
+  // Check if user is logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    // Check if user is logged in from localStorage
+    const userLoggedIn = localStorage.getItem("userLoggedIn") === "true"
+    setIsLoggedIn(userLoggedIn)
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -59,25 +80,77 @@ export default function CollegeFinder() {
     return true
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (!validateForm()) return
+  // Send lead data to CRM
+  const sendLead = async (leadData) => {
+    const { fullname, phone, email } = leadData
 
+    if (!fullname || !phone || !email) {
+      throw new Error("Missing required fields: fullname, phone, and email are required.")
+    }
+
+    try {
+      const response = await axios.post(
+        "/api/sendlead",
+        {
+          firstname: fullname,
+          lastname: "", // optional
+          phone,
+          email,
+          city: leadData.city,
+          state: "",
+          country: "India",
+          message: "",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      )
+      return response.data
+    } catch (error) {
+      console.error("Error sending lead:", error)
+      throw error
+    }
+  }
+
+  // Handle login form submission
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault()
+    setLoginLoading(true)
+    try {
+      await sendLead(loginFormData)
+      setLoginSuccess(true)
+      setIsLoggedIn(true)
+
+      // Save login state to localStorage
+      localStorage.setItem("userLoggedIn", "true")
+      localStorage.setItem("userEmail", loginFormData.email)
+
+      // Reset form
+      setLoginFormData({ fullname: "", email: "", phone: "", city: "" })
+
+      // Close popup and proceed with college finder submission
+      setTimeout(() => {
+        setShowLoginPopup(false)
+        proceedWithSubmission()
+      }, 1000)
+    } catch (err) {
+      alert("Something went wrong. Please try again.")
+    }
+    setLoginLoading(false)
+  }
+
+  // Handle login form input changes
+  const handleLoginChange = (e) => {
+    const { name, value } = e.target
+    setLoginFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  // Proceed with college finder submission after authentication
+  const proceedWithSubmission = async () => {
     setLoading(true)
     try {
-      // First check if the user is authenticated
-      const authResponse = await fetch("/api/check-auth", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      })
-
-      // If not authenticated, redirect to login page
-      if (!authResponse.ok) {
-        window.location.href = "https://pte.goeduabroad.com/login"
-        return
-      }
-
-      // User is authenticated, proceed with the college finder request
       const response = await fetch("/api/college-gpt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -90,7 +163,6 @@ export default function CollegeFinder() {
           },
         }),
       })
-
       const data = await response.json()
       if (response.ok) {
         setResult(data.result) // Assuming result is an array
@@ -103,6 +175,20 @@ export default function CollegeFinder() {
       alert("Server error")
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!validateForm()) return
+
+    // Check if user is logged in
+    if (!isLoggedIn) {
+      // Show login popup if not logged in
+      setShowLoginPopup(true)
+    } else {
+      // Proceed with submission if already logged in
+      proceedWithSubmission()
     }
   }
 
@@ -555,6 +641,93 @@ export default function CollegeFinder() {
     )
   }
 
+  // Login popup component
+  const renderLoginPopup = () => {
+    if (!showLoginPopup) return null
+
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+        <div className="bg-white rounded-lg shadow-xl w-[90%] max-w-md p-6 relative">
+          <button
+            onClick={() => setShowLoginPopup(false)}
+            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          >
+            <X size={20} />
+          </button>
+
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-center text-[#A51C30]">Login to View Results</h2>
+            <p className="text-center text-gray-600 mt-2">
+              Please fill in your details to see your college recommendations
+            </p>
+          </div>
+
+          {loginSuccess ? (
+            <div className="text-center py-4">
+              <div className="mb-4 text-green-600 font-semibold">Login successful!</div>
+              <div className="text-gray-600">Preparing your college recommendations...</div>
+            </div>
+          ) : (
+            <form onSubmit={handleLoginSubmit}>
+              <div className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    name="fullname"
+                    placeholder="Enter your Full Name"
+                    value={loginFormData.fullname}
+                    onChange={handleLoginChange}
+                    required
+                    className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#A51C30] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your Email Address"
+                    value={loginFormData.email}
+                    onChange={handleLoginChange}
+                    required
+                    className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#A51C30] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Enter your Phone Number"
+                    value={loginFormData.phone}
+                    onChange={handleLoginChange}
+                    required
+                    className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#A51C30] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="Enter your City"
+                    value={loginFormData.city}
+                    onChange={handleLoginChange}
+                    className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#A51C30] focus:border-transparent"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={loginLoading}
+                  className="w-full bg-[#A51C30] text-white py-3 rounded-md font-semibold hover:bg-[#8a1726] transition-colors disabled:opacity-70"
+                >
+                  {loginLoading ? "Submitting..." : "Submit"}
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
+    )
+  }
+
   return showLayout ? (
     <DefaultLayout>
       <div className="flex justify-center py-4 sm:py-8">
@@ -620,6 +793,9 @@ export default function CollegeFinder() {
           </form>
         </div>
       </div>
+
+      {/* Login popup */}
+      {renderLoginPopup()}
     </DefaultLayout>
   ) : (
     <div className="min-h-screen bg-white">

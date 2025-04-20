@@ -15,58 +15,61 @@ export default async function handler(req, res) {
     const { degree, preferredCountry, fieldOfStudy, ...otherDetails } = body;
 
     let prompt = `I need college recommendations for a student with the following profile:
-- Degree Level: ${degree}
-- Preferred Country: ${preferredCountry}
-- Field of Study: ${fieldOfStudy}
-`;
+    - Degree Level: ${degree}
+    - Preferred Country: ${preferredCountry}
+    - Field of Study: ${fieldOfStudy}
+    `;
 
+    // Include the relevant qualification and test data based on the degree
     if (degree === "bachelors") {
-      prompt += `- School: ${otherDetails.school || "Not specified"}
-- Board Score: ${otherDetails.boardScore || "Not specified"}
-`;
+      prompt += `- Last Qualification: 12th Grade
+      - School: ${otherDetails.school || "Not specified"}
+      - Board Score: ${otherDetails.boardScore || "Not specified"}
+      `;
     } else if (degree === "masters") {
-      prompt += `- Bachelor's College: ${otherDetails.bachelorCollege || "Not specified"}
-- Major Course: ${otherDetails.majorCourse || "Not specified"}
-- CGPA: ${otherDetails.cgpa || "Not specified"}
-- Backlogs: ${otherDetails.backlogs || "Not specified"}
-- Aptitude Test: ${otherDetails.aptitudeTest || "Not specified"}
-`;
+      prompt += `- Last Qualification: Bachelor's
+      - Bachelor's College: ${otherDetails.bachelorCollege || "Not specified"}
+      - Major Course: ${otherDetails.majorCourse || "Not specified"}
+      - CGPA: ${otherDetails.cgpa || "Not specified"}
+      - Backlogs: ${otherDetails.backlogs || "Not specified"}
+      `;
     } else if (degree === "phd") {
-      prompt += `- Master's College: ${otherDetails.mastersCollege || "Not specified"}
-- Major Course: ${otherDetails.majorCourse || "Not specified"}
-- Score: ${otherDetails.phdScore || "Not specified"}
-- Backlogs: ${otherDetails.phdBacklogs || "Not specified"}
-- Aptitude Test: ${otherDetails.aptitudeTest || "Not specified"}
-`;
+      prompt += `- Last Qualification: Master's
+      - Master's College: ${otherDetails.mastersCollege || "Not specified"}
+      - Major Course: ${otherDetails.majorCourse || "Not specified"}
+      - PhD Score: ${otherDetails.phdScore || "Not specified"}
+      - Backlogs: ${otherDetails.phdBacklogs || "Not specified"}
+      `;
     }
 
-    if (otherDetails.englishTest && otherDetails.englishTest !== "None") {
-      prompt += `- English Test: ${otherDetails.englishTest}
-- English Test Score: ${otherDetails.englishTestScore || "Not specified"}
-`;
-    }
+    // Add aptitude and English test details to the prompt
+    prompt += `- Aptitude Test: ${otherDetails.aptitudeTest || "Not specified"}
+    - Aptitude Test Score: ${otherDetails.aptitudeTestScore || "Not specified"}
+    - English Test: ${otherDetails.englishTest || "Not specified"}
+    - English Test Score: ${otherDetails.englishTestScore || "Not specified"}
+    `;
 
-    // ✅ Here is your upgraded prompt
+    // The main recommendation logic, asking the AI to match colleges based on qualifications, aptitude, and English scores
     prompt += `
+    Please suggest exactly 9 colleges divided as follows:
+    - 3 Ambitious colleges (challenging but achievable)
+    - 3 Moderate colleges (good match based on profile)
+    - 3 Safe colleges (high chances of admission)
+    
+    While suggesting colleges, prioritize institutions where the student's scores in the Aptitude Test and English Test exceed the general entry requirements, and also take into account the student's last qualification scores.
 
-Please suggest exactly 9 colleges divided as follows:
-- 3 Ambitious colleges (challenging but achievable)
-- 3 Moderate colleges (good match based on profile)
-- 3 Safe colleges (high chances of admission)
+    For each college, provide:
+    - College Name
+    - 2-3 line description explaining why it's a good fit based on the profile (mention aptitude and English scores if relevant)
+    - Category: "Ambitious" | "Moderate" | "Safe"
 
-While suggesting colleges, prefer institutions where the student's Aptitude Test score and English Test score are higher than the general entry requirements.
+    Return the result strictly as a valid JSON array of objects with:
+    - "name": College Name
+    - "description": A brief description of why it's a good fit
+    - "category": "Ambitious" | "Moderate" | "Safe"
+    `;
 
-For each college, provide:
-- College Name
-- 2-3 line description explaining why it's a good fit based on the profile (mention aptitude and English scores if relevant)
-- Category: "Ambitious" | "Moderate" | "Safe"
-
-Return the result strictly as a JSON array of objects with:
-- name: College Name
-- description: Short description
-- category: "Ambitious" | "Moderate" | "Safe"
-`;
-
+    // Call the OpenAI API to get the response
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
@@ -76,13 +79,16 @@ Return the result strictly as a JSON array of objects with:
 
     const reply = completion.choices[0].message.content;
 
+    // Try parsing the response to get valid JSON
     let result;
     try {
       result = JSON.parse(reply);
     } catch (e) {
-      result = reply;
+      console.error("Error parsing the response:", e);
+      result = { error: "Failed to parse college recommendations properly." };
     }
 
+    // Return the result to the user
     return res.status(200).json({ result });
 
   } catch (error) {
@@ -90,4 +96,3 @@ Return the result strictly as a JSON array of objects with:
     return res.status(500).json({ error: "Failed to generate college recommendations" });
   }
 }
- 
