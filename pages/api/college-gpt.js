@@ -26,13 +26,15 @@ Shortlist universities for a student with the following profile:
     if (degree === "bachelors") {
       prompt += `- Last Qualification: 12th Grade
 - School: ${otherDetails.school || "Not specified"}
-- Board Score (%): ${otherDetails.boardScore || "Not specified"}
+- Board Score (%): ${otherDetails.boardScore 
+        ? `${otherDetails.boardScore}% (Approx. CGPA: ${(otherDetails.boardScore / 10).toFixed(1)})` 
+        : "Not specified"}
 `;
     } else if (degree === "masters") {
       prompt += `- Last Qualification: Bachelor's
 - Bachelor's College: ${otherDetails.bachelorCollege || "Not specified"}
 - Major Course: ${otherDetails.majorCourse || "Not specified"}
-- CGPA: ${otherDetails.cgpa || "Not specified"}
+- CGPA: ${otherDetails.cgpa ? `${otherDetails.cgpa} out of ${otherDetails.cgpaScale || "10"}` : "Not specified"}
 - Backlogs: ${otherDetails.backlogs || "Not specified"}
 `;
     } else if (degree === "phd") {
@@ -50,11 +52,11 @@ Shortlist universities for a student with the following profile:
 - English Test Score: ${otherDetails.englishTestScore || "Not specified"}
 
 **Important Instructions:**
-- Prioritize the student's latest GPA/percentage and test scores when recommending universities.
+- Prioritize the student's latest GPA/percentage when recommending universities.
 - Classify each university carefully based on the student's real chances:
-  - **Ambitious**: Student has a low to medium chance but might succeed.
-  - **Moderate**: Student matches the university’s average admission profile.
-  - **Safe**: Student exceeds the university's usual admission requirements.
+  - **Ambitious**
+  - **Moderate**
+  - **Safe**
 - Always provide a list of exactly **9 universities** divided into:
   - 3 Ambitious
   - 3 Moderate
