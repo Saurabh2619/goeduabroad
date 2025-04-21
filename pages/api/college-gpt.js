@@ -15,7 +15,9 @@ export default async function handler(req, res) {
     const { degree, preferredCountry, fieldOfStudy, ...otherDetails } = body;
 
     // Build dynamic prompt
-    let prompt = `I need college recommendations for a student with the following profile:
+    let prompt = `You are an expert university admission counselor.
+
+Shortlist universities for a student with the following profile:
 - Degree Level: ${degree}
 - Preferred Country: ${preferredCountry}
 - Field of Study: ${fieldOfStudy}
@@ -24,7 +26,7 @@ export default async function handler(req, res) {
     if (degree === "bachelors") {
       prompt += `- Last Qualification: 12th Grade
 - School: ${otherDetails.school || "Not specified"}
-- Board Score: ${otherDetails.boardScore || "Not specified"}
+- Board Score (%): ${otherDetails.boardScore || "Not specified"}
 `;
     } else if (degree === "masters") {
       prompt += `- Last Qualification: Bachelor's
@@ -37,7 +39,7 @@ export default async function handler(req, res) {
       prompt += `- Last Qualification: Master's
 - Master's College: ${otherDetails.mastersCollege || "Not specified"}
 - Major Course: ${otherDetails.majorCourse || "Not specified"}
-- PhD Score: ${otherDetails.phdScore || "Not specified"}
+- PhD Score (GPA/percentage): ${otherDetails.phdScore || "Not specified"}
 - Backlogs: ${otherDetails.phdBacklogs || "Not specified"}
 `;
     }
@@ -46,28 +48,37 @@ export default async function handler(req, res) {
 - Aptitude Test Score: ${otherDetails.aptitudeTestScore || "Not specified"}
 - English Test: ${otherDetails.englishTest || "Not specified"}
 - English Test Score: ${otherDetails.englishTestScore || "Not specified"}
-`;
 
-    prompt += `
-Note: Prioritize colleges where the student's GPA/percentage and test scores give them a realistic chance of admission. However, always return a list of 9 colleges — even if exact matches are not available, suggest the closest possible options based on the profile. Do not leave the list empty.
+**Important Instructions:**
+- Prioritize the student's latest GPA/percentage and test scores when recommending universities.
+- Classify each university carefully based on the student's real chances:
+  - **Ambitious**: Student has a low to medium chance but might succeed.
+  - **Moderate**: Student matches the university’s average admission profile.
+  - **Safe**: Student exceeds the university's usual admission requirements.
+- Always provide a list of exactly **9 universities** divided into:
+  - 3 Ambitious
+  - 3 Moderate
+  - 3 Safe
 
-Please suggest exactly 9 colleges divided as follows:
-- 3 Ambitious colleges (challenging but achievable)
-- 3 Moderate colleges (good match based on profile)
-- 3 Safe colleges (high chances of admission)
-
-For each college, provide:
-- College Name
-- 2-3 line description explaining why it's a good fit based on the profile (mention aptitude and English scores if relevant)
-- Category: "Ambitious" | "Moderate" | "Safe"
-
-Return the result strictly as a valid JSON array of objects with:
+For each university, provide:
 - "name": College Name
-- "description": A brief description of why it's a good fit
+- "description": A short 2-3 line explanation mentioning relevant scores if needed
 - "category": "Ambitious" | "Moderate" | "Safe"
+
+**Output Format:**
+Return a valid **JSON array** with 9 objects. No text or explanation outside the JSON array.
+Start the output directly with '[' and end with ']'. Example:
+
+[
+  {
+    "name": "Example University",
+    "description": "Good fit based on your 90% score in 12th grade and strong IELTS score.",
+    "category": "Moderate"
+  },
+  ...
+]
 `;
 
-    // OpenAI API call
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [{ role: "user", content: prompt }],
@@ -75,25 +86,28 @@ Return the result strictly as a valid JSON array of objects with:
       max_tokens: 2000,
     });
 
-    const reply = completion.choices[0].message.content;
+    let reply = completion.choices[0].message.content;
 
-    // Debug logging (optional in dev)
     console.log("GPT raw response:", reply);
 
-    // Try to extract JSON array from response
+    // Remove ``` if present
+    if (reply.startsWith("```")) {
+      reply = reply.replace(/```(?:json)?/g, "").trim();
+      reply = reply.replace(/```/g, "").trim();
+    }
+
+    // Parse JSON
     let result;
-    const jsonMatch = reply.match(/\[\s*{[\s\S]*?}\s*\]/);
-    if (jsonMatch) {
-      result = JSON.parse(jsonMatch[0]);
-    } else {
-      result = { error: "Could not extract valid JSON from the response." };
+    try {
+      result = JSON.parse(reply);
+    } catch (error) {
+      console.error("JSON parsing error:", error);
+      result = { error: "Could not parse GPT response as JSON." };
     }
 
     return res.status(200).json({ result });
   } catch (error) {
     console.error("Error generating college recommendations:", error);
-    return res
-      .status(500)
-      .json({ error: "Failed to generate college recommendations" });
+    return res.status(500).json({ error: "Failed to generate college recommendations" });
   }
 }
