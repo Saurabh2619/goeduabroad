@@ -24,6 +24,7 @@ export default function CollegeFinder() {
   const [showModal, setShowModal] = useState(false)
   const [formError, setFormError] = useState("")
   const [showLayout, setShowLayout] = useState(true)
+  const [searchCompleted, setSearchCompleted] = useState(false)
 
   // Login popup state
   const [showLoginPopup, setShowLoginPopup] = useState(false)
@@ -58,7 +59,6 @@ export default function CollegeFinder() {
       requiredFields.push("customCountry")
     }
 
-    // Degree-specific validations
     if (degree === "bachelors") {
       requiredFields.push("school", "boardScore")
       if (form.aptitudeTest && form.aptitudeTest !== "None") {
@@ -78,12 +78,10 @@ export default function CollegeFinder() {
 
     for (const field of requiredFields) {
       if (!form[field] || form[field].toString().trim() === "") {
-        const fieldName = field === "customCountry" ? "country or city" : field
-        setFormError(`Please fill out the '${fieldName}' field.`)
+        setFormError(`Please fill out the '${field}' field.`)
         return false
       }
     }
-
     setFormError("")
     return true
   }
@@ -158,22 +156,17 @@ export default function CollegeFinder() {
   // Proceed with college finder submission after authentication
   const proceedWithSubmission = async () => {
     setLoading(true)
-    let attempts = 0
-    const maxAttempts = 2
+    let retryCount = 0
+    const maxRetries = 2
 
-    while (attempts < maxAttempts) {
+    const attemptSubmission = async () => {
       try {
-        // Set a longer timeout for the fetch request
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
-
         const response = await fetch("/api/college-gpt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...form,
-            // Use the custom country value if "Other" is selected, and handle it as location (country or city)
-            preferredLocation: form.preferredCountry === "Other" ? form.customCountry : form.preferredCountry,
+            // Use the custom country value if "Other" is selected
             preferredCountry: form.preferredCountry === "Other" ? form.customCountry : form.preferredCountry,
             degree,
             requestFormat: {
@@ -181,37 +174,49 @@ export default function CollegeFinder() {
               minColleges: 8,
             },
           }),
-          signal: controller.signal,
+          // Add a longer timeout
+          signal: AbortSignal.timeout(30000), // 30 seconds timeout
         })
 
-        clearTimeout(timeoutId)
-
-        if (response.status === 504) {
-          throw new Error("Server timeout")
+        if (!response.ok) {
+          const errorText = await response.text()
+          console.error("Server response error:", response.status, errorText)
+          throw new Error(`Server responded with status: ${response.status}`)
         }
 
         const data = await response.json()
-        if (response.ok) {
-          setResult(data.result) // Assuming result is an array
-          setShowModal(true)
-          setShowLayout(false)
-          return // Success, exit the function
-        } else {
-          throw new Error(data.message || "Server error")
-        }
+        setResult(data.result)
+        setShowModal(true)
+        setShowLayout(false)
+        setSearchCompleted(true)
       } catch (err) {
-        attempts++
-        if (attempts >= maxAttempts) {
-          alert(`Server error: ${err.message || "Could not connect to server"}. Please try again later.`)
+        console.error("Submission error:", err)
+
+        // Check if we should retry
+        if (retryCount < maxRetries) {
+          retryCount++
+          alert(`Request timed out. Retrying (${retryCount}/${maxRetries})...`)
+          return attemptSubmission()
         }
-        // If not the last attempt, wait before retrying
-        if (attempts < maxAttempts) {
-          await new Promise((resolve) => setTimeout(resolve, 2000)) // 2 second delay before retry
+
+        // Show a more helpful error message
+        if (err.message && err.message.includes("timeout")) {
+          alert(
+            "The server is taking too long to respond. This might be due to high traffic. Please try again later or contact support if the issue persists.",
+          )
+        } else if (err.message && err.message.includes("504")) {
+          alert(
+            "The server timed out. This usually happens when the system is under heavy load. Please try again in a few minutes.",
+          )
+        } else {
+          alert("There was a problem connecting to the server. Please check your internet connection and try again.")
         }
+      } finally {
+        setLoading(false)
       }
     }
 
-    setLoading(false)
+    await attemptSubmission()
   }
 
   const handleSubmit = async (e) => {
@@ -223,14 +228,8 @@ export default function CollegeFinder() {
       // Show login popup if not logged in
       setShowLoginPopup(true)
     } else {
-      try {
-        // Proceed with submission if already logged in
-        await proceedWithSubmission()
-      } catch (error) {
-        console.error("Error during submission:", error)
-        alert("An error occurred. Please try again later.")
-        setLoading(false)
-      }
+      // Proceed with submission if already logged in
+      proceedWithSubmission()
     }
   }
 
@@ -262,7 +261,7 @@ export default function CollegeFinder() {
             name="customCountry"
             value={form.customCountry || ""}
             onChange={handleChange}
-            placeholder="Enter country or city name"
+            placeholder="Enter your preferred country"
             className="w-full border px-4 py-2 rounded-md mt-2 focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
           />
         )}
@@ -858,6 +857,8 @@ export default function CollegeFinder() {
                 onClick={() => {
                   setShowModal(false)
                   setShowLayout(true)
+                  setLoading(false) // Ensure loading is reset
+                  setSearchCompleted(false) // Reset search completed state
                 }}
                 className="px-4 sm:px-6 py-2 bg-[#A51C30] text-white font-semibold rounded-md hover:bg-[#9e1d2d] transition duration-300 text-sm sm:text-base"
               >
