@@ -58,6 +58,7 @@ export default function CollegeFinder() {
       requiredFields.push("customCountry")
     }
 
+    // Degree-specific validations
     if (degree === "bachelors") {
       requiredFields.push("school", "boardScore")
       if (form.aptitudeTest && form.aptitudeTest !== "None") {
@@ -77,10 +78,12 @@ export default function CollegeFinder() {
 
     for (const field of requiredFields) {
       if (!form[field] || form[field].toString().trim() === "") {
-        setFormError(`Please fill out the '${field}' field.`)
+        const fieldName = field === "customCountry" ? "country or city" : field
+        setFormError(`Please fill out the '${fieldName}' field.`)
         return false
       }
     }
+
     setFormError("")
     return true
   }
@@ -155,34 +158,60 @@ export default function CollegeFinder() {
   // Proceed with college finder submission after authentication
   const proceedWithSubmission = async () => {
     setLoading(true)
-    try {
-      const response = await fetch("/api/college-gpt", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          // Use the custom country value if "Other" is selected
-          preferredCountry: form.preferredCountry === "Other" ? form.customCountry : form.preferredCountry,
-          degree,
-          requestFormat: {
-            categories: ["Ambitious", "Moderate", "Safe"],
-            minColleges: 8,
-          },
-        }),
-      })
-      const data = await response.json()
-      if (response.ok) {
-        setResult(data.result) // Assuming result is an array
-        setShowModal(true)
-        setShowLayout(false)
-      } else {
-        alert("Something went wrong. Please try again.")
+    let attempts = 0
+    const maxAttempts = 2
+
+    while (attempts < maxAttempts) {
+      try {
+        // Set a longer timeout for the fetch request
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+
+        const response = await fetch("/api/college-gpt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...form,
+            // Use the custom country value if "Other" is selected, and handle it as location (country or city)
+            preferredLocation: form.preferredCountry === "Other" ? form.customCountry : form.preferredCountry,
+            preferredCountry: form.preferredCountry === "Other" ? form.customCountry : form.preferredCountry,
+            degree,
+            requestFormat: {
+              categories: ["Ambitious", "Moderate", "Safe"],
+              minColleges: 8,
+            },
+          }),
+          signal: controller.signal,
+        })
+
+        clearTimeout(timeoutId)
+
+        if (response.status === 504) {
+          throw new Error("Server timeout")
+        }
+
+        const data = await response.json()
+        if (response.ok) {
+          setResult(data.result) // Assuming result is an array
+          setShowModal(true)
+          setShowLayout(false)
+          return // Success, exit the function
+        } else {
+          throw new Error(data.message || "Server error")
+        }
+      } catch (err) {
+        attempts++
+        if (attempts >= maxAttempts) {
+          alert(`Server error: ${err.message || "Could not connect to server"}. Please try again later.`)
+        }
+        // If not the last attempt, wait before retrying
+        if (attempts < maxAttempts) {
+          await new Promise((resolve) => setTimeout(resolve, 2000)) // 2 second delay before retry
+        }
       }
-    } catch (err) {
-      alert("Server error")
-    } finally {
-      setLoading(false)
     }
+
+    setLoading(false)
   }
 
   const handleSubmit = async (e) => {
@@ -194,8 +223,14 @@ export default function CollegeFinder() {
       // Show login popup if not logged in
       setShowLoginPopup(true)
     } else {
-      // Proceed with submission if already logged in
-      proceedWithSubmission()
+      try {
+        // Proceed with submission if already logged in
+        await proceedWithSubmission()
+      } catch (error) {
+        console.error("Error during submission:", error)
+        alert("An error occurred. Please try again later.")
+        setLoading(false)
+      }
     }
   }
 
@@ -227,7 +262,7 @@ export default function CollegeFinder() {
             name="customCountry"
             value={form.customCountry || ""}
             onChange={handleChange}
-            placeholder="Enter your preferred country"
+            placeholder="Enter country or city name"
             className="w-full border px-4 py-2 rounded-md mt-2 focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
           />
         )}
