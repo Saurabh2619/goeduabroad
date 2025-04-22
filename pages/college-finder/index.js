@@ -53,6 +53,11 @@ export default function CollegeFinder() {
   const validateForm = () => {
     const requiredFields = ["preferredCountry", "fieldOfStudy"]
 
+    // Add customCountry as a required field if "Other" is selected
+    if (form.preferredCountry === "Other") {
+      requiredFields.push("customCountry")
+    }
+
     if (degree === "bachelors") {
       requiredFields.push("school", "boardScore")
       if (form.aptitudeTest && form.aptitudeTest !== "None") {
@@ -150,32 +155,66 @@ export default function CollegeFinder() {
   // Proceed with college finder submission after authentication
   const proceedWithSubmission = async () => {
     setLoading(true)
-    try {
-      const response = await fetch("/api/college-gpt", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          degree,
-          requestFormat: {
-            categories: ["Ambitious", "Moderate", "Safe"],
-            minColleges: 8,
-          },
-        }),
-      })
-      const data = await response.json()
-      if (response.ok) {
-        setResult(data.result) // Assuming result is an array
+    let retryCount = 0
+    const maxRetries = 2
+
+    const attemptSubmission = async () => {
+      try {
+        const response = await fetch("/api/college-gpt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...form,
+            // Use the custom country value if "Other" is selected
+            preferredCountry: form.preferredCountry === "Other" ? form.customCountry : form.preferredCountry,
+            degree,
+            requestFormat: {
+              categories: ["Ambitious", "Moderate", "Safe"],
+              minColleges: 8,
+            },
+          }),
+          // Add a longer timeout
+          signal: AbortSignal.timeout(30000), // 30 seconds timeout
+        })
+
+        if (!response.ok) {
+          const errorText = await response.text()
+          console.error("Server response error:", response.status, errorText)
+          throw new Error(`Server responded with status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        setResult(data.result)
         setShowModal(true)
         setShowLayout(false)
-      } else {
-        alert("Something went wrong. Please try again.")
+      } catch (err) {
+        console.error("Submission error:", err)
+
+        // Check if we should retry
+        if (retryCount < maxRetries) {
+          retryCount++
+          alert(`Request timed out. Retrying (${retryCount}/${maxRetries})...`)
+          return attemptSubmission()
+        }
+
+        // Show a more helpful error message
+        if (err.message && err.message.includes("timeout")) {
+          alert(
+            "The server is taking too long to respond. This might be due to high traffic. Please try again later or contact support if the issue persists.",
+          )
+        } else if (err.message && err.message.includes("504")) {
+          alert(
+            "The server timed out. This usually happens when the system is under heavy load. Please try again in a few minutes.",
+          )
+        } else {
+          alert("There was a problem connecting to the server. Please check your internet connection and try again.")
+        }
+      } finally {
+        setLoading(false)
       }
-    } catch (err) {
-      alert("Server error")
-    } finally {
-      setLoading(false)
     }
+
+    await attemptSubmission()
   }
 
   const handleSubmit = async (e) => {
