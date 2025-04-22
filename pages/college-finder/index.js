@@ -53,11 +53,6 @@ export default function CollegeFinder() {
   const validateForm = () => {
     const requiredFields = ["preferredCountry", "fieldOfStudy"]
 
-    // Add customCountry as a required field if "Other" is selected
-    if (form.preferredCountry === "Other") {
-      requiredFields.push("customCountry")
-    }
-
     if (degree === "bachelors") {
       requiredFields.push("school", "boardScore")
       if (form.aptitudeTest && form.aptitudeTest !== "None") {
@@ -161,8 +156,6 @@ export default function CollegeFinder() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          // Use the custom country value if "Other" is selected
-          preferredCountry: form.preferredCountry === "Other" ? form.customCountry : form.preferredCountry,
           degree,
           requestFormat: {
             categories: ["Ambitious", "Moderate", "Safe"],
