@@ -508,7 +508,7 @@ export default function CollegeFinder() {
                 name="phdScore"
                 value={form.phdScore || ""}
                 onChange={handleChange}
-                placeholder="e.g., 3.8/4.0 GPA"
+                placeholder="e.g., 8.5"
                 className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
               />
             </div>
