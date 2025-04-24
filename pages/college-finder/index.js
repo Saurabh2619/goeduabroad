@@ -598,6 +598,46 @@ export default function CollegeFinder() {
           className="w-full border px-4 py-2 rounded-md mt-2 focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
         />
       )}
+
+      {/* Research Papers field for all degree types */}
+      <div className="mt-4">
+        <label className="block font-semibold mb-1">
+          <div className="flex items-center gap-2">
+            <BookOpen className="h-4 w-4" />
+            <span>Research Papers Published</span>
+          </div>
+        </label>
+        <input
+          type="number"
+          name="researchPapers"
+          value={form.researchPapers || ""}
+          onChange={handleChange}
+          placeholder="Number of research papers published"
+          className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
+          min="0"
+        />
+      </div>
+
+      {/* Work Experience field only for masters and PhD */}
+      {(degree === "masters" || degree === "phd") && (
+        <div className="mt-4">
+          <label className="block font-semibold mb-1">
+            <div className="flex items-center gap-2">
+              <BookOpen className="h-4 w-4" />
+              <span>Work Experience (months)</span>
+            </div>
+          </label>
+          <input
+            type="number"
+            name="workExperienceMonths"
+            value={form.workExperienceMonths || ""}
+            onChange={handleChange}
+            placeholder="Enter work experience in months"
+            className="w-full border px-4 py-2 rounded-md focus:ring-2 focus:ring-[#A51C30] focus:border-transparent transition-all"
+            min="0"
+          />
+        </div>
+      )}
     </div>
   )
 

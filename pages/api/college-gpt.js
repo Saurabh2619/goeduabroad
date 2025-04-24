@@ -12,7 +12,12 @@ export default async function handler(req, res) {
 
   try {
     const body = req.body;
-    const { degree, preferredCountry, fieldOfStudy, ...otherDetails } = body;
+    const {
+      degree,
+      preferredCountry,
+      fieldOfStudy,
+      ...otherDetails
+    } = body;
 
     // Build dynamic prompt
     let prompt = `You are an expert university admission counselor.
@@ -27,6 +32,7 @@ Shortlist universities for a student with the following profile:
       prompt += `- Last Qualification: 12th Grade
 - School: ${otherDetails.school || "Not specified"}
 - Board Score (%): ${otherDetails.boardScore || "Not specified"}
+- Research Papers Published: ${otherDetails.researchPapers || "Not specified"}
 `;
     } else if (degree === "masters") {
       prompt += `- Last Qualification: Bachelor's
@@ -34,6 +40,8 @@ Shortlist universities for a student with the following profile:
 - Major Course: ${otherDetails.majorCourse || "Not specified"}
 - CGPA: ${otherDetails.cgpa || "Not specified"}
 - Backlogs: ${otherDetails.backlogs || "Not specified"}
+- Research Papers Published: ${otherDetails.researchPapers || "Not specified"}
+- Work Experience (months): ${otherDetails.workExperienceMonths || "Not specified"}
 `;
     } else if (degree === "phd") {
       prompt += `- Last Qualification: Master's
@@ -41,6 +49,8 @@ Shortlist universities for a student with the following profile:
 - Major Course: ${otherDetails.majorCourse || "Not specified"}
 - PhD Score (GPA/percentage): ${otherDetails.phdScore || "Not specified"}
 - Backlogs: ${otherDetails.phdBacklogs || "Not specified"}
+- Research Papers Published: ${otherDetails.researchPapers || "Not specified"}
+- Work Experience (months): ${otherDetails.workExperienceMonths || "Not specified"}
 `;
     }
 
