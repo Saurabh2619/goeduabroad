@@ -59,20 +59,19 @@ Shortlist universities for a student with the following profile:
 - English Test: ${otherDetails.englishTest || "Not specified"}
 - English Test Score: ${otherDetails.englishTestScore || "Not specified"}
 
-**Important Instructions:**
+*Important Instructions:*
 - Focus mainly on the student's latest CGPA or board percentage for university selection.
 - Classify universities carefully into three categories:
-  - **Ambitious**: Universities whose entry requirement is slightly higher (around +0.5 to +1.0 CGPA higher, or +5% marks higher) than the student's CGPA/percentage. 
+  - *Ambitious*: Universities whose entry requirement is slightly higher (around +0.5 to +1.0 CGPA higher, or +5% marks higher) than the student's CGPA/percentage. 
     - These universities should be reachable if the student puts extra effort (good SOP, LOR, resume, etc.).
-    - Do NOT suggest extremely high-ranking universities that are unrealistic based on the profile.
-  - **Moderate**: Universities that closely match the student's current CGPA or board percentage.
-  - **Safe**: Universities that are slightly lower than the student's CGPA or board percentage and offer a high chance of admission.
+  - *Moderate*: Universities that closely match the student's current CGPA or board percentage.
+  - *Safe*: Universities that are slightly lower than the student's CGPA or board percentage and offer a high chance of admission.
 
 - Always prefer CGPA if available; otherwise, consider Board Score.
 - Keep university suggestions relevant to the student's selected country and course.
 
-**Output Format:**
-Return a valid **JSON array** with exactly 9 universities divided equally:
+*Output Format:*
+Return a valid *JSON array* with exactly 9 universities divided equally:
 - 3 "Ambitious"
 - 3 "Moderate"
 - 3 "Safe"
