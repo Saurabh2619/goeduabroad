@@ -255,7 +255,7 @@ export default function Youngpreneurs() {
               {/* Full width banner at the top */}
               <div className="w-full">
                 <img
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1746341303/eventbanner_1_n38oyq.jpg"
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1746454383/06Artboard_1_4x_ojk6pi.png"
                   alt="Youngpreneurs Event Banner"
                   className="w-full"
                 />
