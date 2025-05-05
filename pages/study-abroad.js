@@ -382,7 +382,6 @@ useEffect(()=>{
       }
   })},[])
 
-
 async function triggerInterakt(){
   axios.post('./api/interakt',{
     userId: Date.now(),
@@ -398,6 +397,9 @@ async function triggerInterakt(){
   }).catch(res=>{
     })
 }
+
+// from here the code of Swift crm code start
+
 const sendLead = async (leadData) => {
   const { firstname, phone, email } = leadData;
 
@@ -417,7 +419,7 @@ const sendLead = async (leadData) => {
     throw error;
   }
 };
-
+//end here
 
 const countries = [
   
