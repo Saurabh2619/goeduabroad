@@ -37,7 +37,7 @@ export default function Youngpreneurs() {
     const id = setTimeout(() => {
       setNotificationText()
       setTimeoutId(null)
-    }, 2500)
+    }, 3000) // Increased to 3 seconds (3000ms)
     setTimeoutId(id)
   }
 
@@ -95,7 +95,7 @@ export default function Youngpreneurs() {
       const response = await axios.post(
         "/api/sendlead",
         {
-          firstname: fullname,
+          firstname: `${fullname} --webinar page`,
           lastname: "", // optional
           phone,
           email,
@@ -199,9 +199,26 @@ export default function Youngpreneurs() {
       <DefaultLayout hideAI={true} navbar>
         <div className="w-full">
           {notificationText && notificationText.length > 2 ? (
-            <div className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md z-50">
-              {notificationText}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border-l-4 border-green-500 text-green-700 p-6 rounded-lg shadow-2xl z-50 w-full max-w-md"
+            >
+              <div className="flex items-center">
+                <svg
+                  className="w-6 h-6 mr-4 text-green-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p className="text-lg font-semibold">{notificationText}</p>
+              </div>
+            </motion.div>
           ) : (
             ""
           )}
@@ -246,7 +263,7 @@ export default function Youngpreneurs() {
 
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Hero section with heading and form side by side */}
-                <motion.section className="relative py-8 mb-16" {...fadeIn}>
+                <motion.section className="relative py-8 md:py-12 mb-8 md:mb-16" {...fadeIn}>
                   <div className="grid md:grid-cols-2 gap-8">
                     {/* Left side - Heading */}
                     <div className="flex flex-col justify-center">
@@ -254,13 +271,13 @@ export default function Youngpreneurs() {
                         className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6"
                         style={{ fontFamily: "'Playfair Display', serif" }}
                       >
-                        <span className="text-[#a61d31]">Fueling</span> the future, <br />
-                        <span className="text-[#a61d31]">one idea</span> at a time
+                        <span className="text-[#a61d31]">"Dream It.</span> Pitch It. <br />
+                        <span className="text-[#a61d31]">Build It."</span>
                       </h1>
                       <p className="mt-4 text-xl text-gray-700 leading-relaxed">
                         Brought to you by EduAbroad in collaboration with IPM Careers
                       </p>
-                      <div className="mt-8 flex flex-wrap gap-4">
+                      <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-4">
                         <div className="relative">
                           <motion.div
                             className="px-8 py-4 bg-[#a61d31] text-white font-semibold rounded-full text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg inline-flex items-center"
@@ -280,20 +297,40 @@ export default function Youngpreneurs() {
                           </motion.div>
                         </div>
                         <motion.div
-  className="px-8 py-4 bg-white text-[#a61d31] border-2 border-[#a61d31] font-semibold rounded-full text-lg shadow-lg inline-flex items-center"
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
->
-  <Trophy className="mr-2 h-5 w-5" />
-  <span>Be a Part of the Ultimate Challenge!</span>
-</motion.div>
+                          className="px-8 py-4 bg-white text-[#a61d31] border-2 border-[#a61d31] font-semibold rounded-full text-lg shadow-lg inline-flex items-center"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Trophy className="mr-2 h-5 w-5" />
+                          <span>Be a Part of the Ultimate Challenge!</span>
+                        </motion.div>
                       </div>
                     </div>
 
                     {/* Right side - Registration Form */}
-                    <div className="bg-white p-8 rounded-3xl shadow-xl" id="form">
-                      <h3 className="text-2xl font-bold text-[#a61d31] mb-6">Fill out the form to Register</h3>
-                      <div className="space-y-4">
+                    <div className="bg-white p-6 md:p-8 rounded-3xl shadow-xl" id="form">
+                      <h3 className="text-2xl font-bold text-[#a61d31] mb-6">Eligibility & Team Formation</h3>
+                      <div className="mb-6">
+                        <h4 className="font-bold mb-2">Who can register?</h4>
+                        <ul className="list-disc pl-5 mb-4 space-y-1">
+                          <li>Students from Classes 9–12 (any board)</li>
+                          <li>Solo or Team (up to 3 members)</li>
+                          <li>Each team must nominate a Team Leader</li>
+                        </ul>
+                        <h4 className="font-bold mb-2">Registration Form:</h4>
+                        <ul className="list-disc pl-5 mb-4 space-y-1">
+                          <li>Team Name</li>
+                          <li>Team Leader & Members' Name</li>
+                          <li>School Name</li>
+                          <li>Class</li>
+                          <li>Contact Phone Number</li>
+                          <li>Contact Email</li>
+                        </ul>
+                      </div>
+                      <div className="space-y-4 relative">
+                        <div className="absolute -top-12 right-0 bg-[#a61d31] text-white text-xs md:text-sm px-3 py-1 rounded-full transform rotate-3 shadow-md">
+                          Limited Seats Available!
+                        </div>
                         <div>
                           <input
                             name={"name"}
@@ -411,18 +448,18 @@ export default function Youngpreneurs() {
 
           <div className="my-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.section
-              className="bg-gradient-to-r from-[#a61d31] to-[#C82333] text-white p-8 sm:p-12 rounded-3xl shadow-2xl mb-24 w-full"
+              className="bg-gradient-to-r from-[#a61d31] to-[#C82333] text-white p-6 sm:p-8 md:p-12 rounded-3xl shadow-2xl mb-16 md:mb-24 w-full"
               {...fadeIn}
             >
               <h2 className="text-4xl font-semibold mb-10" style={{ fontFamily: "'Playfair Display', serif" }}>
-                INDIA'S ULTIMATE BUSINESS SHOWDOWN
+                KEY DETAILS AT A GLANCE
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {[
                   {
                     icon: <Calendar className="w-10 h-10" />,
                     title: "Event Date",
-                    text: "1st June, 2025",
+                    text: "1st June 2025",
                   },
                   {
                     icon: <Globe className="w-10 h-10" />,
@@ -431,8 +468,8 @@ export default function Youngpreneurs() {
                   },
                   {
                     icon: <Users className="w-10 h-10" />,
-                    title: "Participants",
-                    text: "Classes 9 to 12",
+                    title: "Registration",
+                    text: "5th May - 25th May 2025",
                   },
                   {
                     icon: <Briefcase className="w-10 h-10" />,
@@ -461,10 +498,10 @@ export default function Youngpreneurs() {
               >
                 Register for Youngpreneurs 2025
               </h2>
-              <div className="bg-gray-50 p-8 rounded-3xl shadow-lg">
+              <div className="bg-gray-50 p-6 md:p-8 rounded-3xl shadow-lg">
                 <h3 className="text-2xl font-bold text-[#a61d31] mb-6">Overview of the Event</h3>
                 <p className="text-lg mb-6">
-                  Welcome to the Youngpreneurs 2025, this isn't your average school project, but an India's ultimate
+                  Welcome to the Youngpreneurs 2025, this isn't your average school project, but India's ultimate
                   business showdown, Shark Tank style!
                 </p>
                 <p className="text-lg mb-6">
@@ -486,57 +523,55 @@ export default function Youngpreneurs() {
               >
                 Who Should Attend?
               </h2>
-              <div className="bg-gray-50 p-8 rounded-3xl shadow-lg">
-                <div className="grid gap-8 md:grid-cols-2">
-                  <motion.div
-                    className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
-                    whileHover={{ y: -5 }}
+              <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2">
+                <motion.div
+                  className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
+                  whileHover={{ y: -5 }}
+                >
+                  <h3
+                    className="text-2xl font-bold text-gray-900 mb-6"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    <h3
-                      className="text-2xl font-bold text-gray-900 mb-6"
-                      style={{ fontFamily: "'Playfair Display', serif" }}
-                    >
-                      This competition is for:
-                    </h3>
-                    <ul className="space-y-4">
-                      {[
-                        "Students of Classes 9 to 12 who think differently, dream boldly, and aren't afraid to pitch big.",
-                        "Anyone who's got a killer idea, a wild spark, or just wants to learn how the startup game works.",
-                      ].map((benefit, index) => (
-                        <motion.li
-                          key={index}
-                          className="flex items-start space-x-4"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <ArrowRight className="w-6 h-6 text-[#A41C30] flex-shrink-0 mt-1" />
-                          <span className="text-base text-gray-700">{benefit}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                  <motion.div
-                    className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
-                    whileHover={{ y: -5 }}
+                    This competition is for:
+                  </h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Students of Classes 9 to 12 who think differently, dream boldly, and aren't afraid to pitch big.",
+                      "Anyone who's got a killer idea, a wild spark, or just wants to learn how the startup game works.",
+                    ].map((benefit, index) => (
+                      <motion.li
+                        key={index}
+                        className="flex items-start space-x-4"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <ArrowRight className="w-6 h-6 text-[#A41C30] flex-shrink-0 mt-1" />
+                        <span className="text-base text-gray-700">{benefit}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+                <motion.div
+                  className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
+                  whileHover={{ y: -5 }}
+                >
+                  <h3
+                    className="text-2xl font-bold text-gray-900 mb-6"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    <h3
-                      className="text-2xl font-bold text-gray-900 mb-6"
-                      style={{ fontFamily: "'Playfair Display', serif" }}
-                    >
-                      Your Entrepreneurial Journey
-                    </h3>
-                    <p className="text-lg text-gray-700 mb-6">
-                      Think of this as your first step towards becoming the next Ritesh Agarwal, Falguni Nayar, or
-                      even... Elon 2.0 (but with better memes)
+                    Your Entrepreneurial Journey
+                  </h3>
+                  <p className="text-lg text-gray-700 mb-6">
+                    Think of this as your first step towards becoming the next Ritesh Agarwal, Falguni Nayar, or even...
+                    Elon 2.0.
+                  </p>
+                  <div className="bg-[#A41C30] text-white p-4 rounded-lg">
+                    <p className="text-lg font-semibold">
+                      This is your chance to showcase your innovative ideas and entrepreneurial spirit!
                     </p>
-                    <div className="bg-[#A41C30] text-white p-4 rounded-lg">
-                      <p className="text-lg font-semibold">
-                        This is your chance to showcase your innovative ideas and entrepreneurial spirit!
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.div>
               </div>
             </motion.section>
 
@@ -545,63 +580,46 @@ export default function Youngpreneurs() {
                 className="text-4xl font-semibold text-gray-900 mb-10 text-center"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                Meet Our Distinguished Jury
+                Meet Our Jury
               </h2>
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-                {[
-                  {
-                    name: "Dr. Swati Abhishek Mishra",
-                    title: "Founder- EduAbroad",
-                    credentials: "Former Professor, IIM Lucknow | Global Education Strategist",
-                    description:
-                    "With a PhD from the University of Cambridge and MIT, Dr. Swati has guided thousands on international career paths over 25+ years. A recipient of prestigious global scholarships, she's a trusted mentor and policy advisor shaping futures with vision and empathy.",
-                  },
-                  {
-                    name: "Prof. Abhishek Mishra",
-                    title: "Strategist | Politician | Academic",
-                    credentials: "Cambridge PhD | Former IIM Ahmedabad Professor",
-                    description:
-                    "A Cambridge PhD and former IIM Ahmedabad professor, Prof. Mishra served as Cabinet Minister in Uttar Pradesh and is currently National Secretary of the Samajwadi Party. With deep roots in academia, governance, and leadership, he bridges policy and education seamlessly.",
-                  },
-                  {
-                    name: "Mr. Ashutosh Mishra",
-                    title: "Founder- IPM Careers",
-                    credentials: "IIM Ahmedabad Alumnus | Mentor & Educator",
-                    description:
-                      "A chemical engineer with managerial finesse, Mr. Ashutosh Mishra brings over a decade of teaching experience, having mentored 10,000+ students. As the academic cornerstone of IPM Careers, his student-first philosophy sets the gold standard in educational excellence.",
-                  },
-                  {
-                    name: "Mr. J.S. Mishra (IAS Retd.)",
-                    title: "Chancellor, Sushant University",
-                    credentials: "Veteran Administrator | Education Visionary",
-                    description:
-                      "A veteran administrator and former IAS officer, Mr. J.S. Mishra brings decades of governance experience. As Chancellor of Sushant University, he upholds excellence in higher education through visionary leadership and institutional stewardship.",
-                  },
-                ].map((juror, index) => (
+              <div className="bg-white p-6 md:p-12 rounded-3xl shadow-lg text-center">
+                <div className="flex flex-col items-center justify-center">
                   <motion.div
-                    key={index}
-                    className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
+                    className="inline-block bg-[#A61d31] text-white py-4 md:py-6 px-8 md:px-12 rounded-xl text-2xl md:text-3xl font-semibold mb-6"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div className="h-16 w-16 rounded-full bg-gradient-to-r from-[#a61d31] to-[#C82333] text-white flex items-center justify-center text-2xl font-bold mb-4">
-                      {juror.name.charAt(0)}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{juror.name}</h3>
-                    <p className="text-[#a61d31] font-medium mb-2">{juror.title}</p>
-                    <p className="text-sm text-gray-600 mb-4">{juror.credentials}</p>
-                    <p className="text-sm text-gray-700">{juror.description}</p>
+                    Coming Soon...
                   </motion.div>
-                ))}
-              </div>
-              <div className="text-center mt-8">
-                <motion.div
-                  className="inline-block bg-[#A41C30] text-white py-2 px-6 rounded-full text-lg font-semibold"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Coming Soon...
-                </motion.div>
+                  <div className="flex justify-center mb-6">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <div
+                        key={i}
+                        className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gray-200 border-4 border-white shadow-md flex items-center justify-center text-gray-400"
+                        style={{ marginLeft: i > 1 ? "-1rem" : "0" }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          />
+                        </svg>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+                    Stay tuned to meet our panel of distinguished industry experts and mentors who will evaluate your
+                    innovative ideas.
+                  </p>
+                </div>
               </div>
             </motion.section>
 
@@ -612,7 +630,7 @@ export default function Youngpreneurs() {
               >
                 Why Should You Attend?
               </h2>
-              <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
+              <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                 {[
                   {
                     icon: <Lightbulb className="w-12 h-12" />,
@@ -633,7 +651,7 @@ export default function Youngpreneurs() {
                   {
                     icon: <Trophy className="w-12 h-12" />,
                     title: "Prizes & Certificates",
-                    description: "Recognition & Prizes worth up to ₹1,00,000",
+                    description: "Recognition & Gift Vouchers worth up to ₹50,000 | Free Career Guidance Sessions",
                   },
                   {
                     icon: <Users className="w-12 h-12" />,
@@ -662,9 +680,14 @@ export default function Youngpreneurs() {
               >
                 From the Founder's Desk
               </h2>
-              <div className="bg-white p-8 rounded-lg shadow-lg relative max-w-4xl mx-auto">
+              <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg relative max-w-4xl mx-auto">
                 <div className="absolute -top-5 left-8">
-                  <div className="bg-[#a61d31] text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl">
+                  <div className="bg-[#a61d31] text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl shadow-lg">
+                    "
+                  </div>
+                </div>
+                <div className="absolute -bottom-3 right-8 transform rotate-180">
+                  <div className="bg-[#a61d31] text-white w-8 h-8 rounded-full flex items-center justify-center text-xl shadow-lg">
                     "
                   </div>
                 </div>
@@ -676,7 +699,9 @@ export default function Youngpreneurs() {
                     Every remarkable venture begins with a spark, a what if, a why not, a bold idea sketched in the
                     margins of a notebook or exchanged in a quiet classroom moment. At EduAbroad, we believe those
                     sparks deserve a platform. That is why, in collaboration with IPM Careers, we have launched
-                    Youngpreneurs 2025, not just as a competition but as a catalyst for change.
+                    Youngpreneurs 2025 as a platform for innovation and bold thinking, where student ideas are developed
+                    into impactful ventures with real-world relevance. We live by the event's tagline Dream it. Pitch
+                    it. Build it, and we are here to support you in the journey to success.
                   </p>
 
                   <p className="mb-4">
@@ -686,13 +711,12 @@ export default function Youngpreneurs() {
                   </p>
 
                   <p className="mb-4">
-                    This is your chance to turn that spark into a structured business plan and pitch it to a panel of
-                    experts. Whether your idea is pitch-ready or still taking shape, this is your moment to step
-                    forward, share your vision, and challenge the status quo.
+                    Whether your pitch is refined or still evolving, now is the time to share your vision. Present it to
+                    a panel of experts and challenge the status quo.
                   </p>
 
                   <p className="mb-4">
-                    Because in doing so, we are not just building a venture; we are helping shape the future, one bold
+                    Because in doing so, you are not just building a venture; you are helping shape the future, one bold
                     idea at a time.
                   </p>
 
@@ -708,7 +732,7 @@ export default function Youngpreneurs() {
             </motion.section>
 
             <motion.section
-              className="text-center bg-gradient-to-r from-[#a61d31] to-[#C82333] text-white p-8 sm:p-12 rounded-3xl shadow-2xl mb-24"
+              className="text-center bg-gradient-to-r from-[#a61d31] to-[#C82333] text-white p-6 sm:p-8 md:p-12 rounded-3xl shadow-2xl mb-16 md:mb-24"
               {...fadeIn}
             >
               <h2 className="text-3xl font-semibold mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -726,8 +750,35 @@ export default function Youngpreneurs() {
               >
                 Register Now
               </motion.a>
+              <div className="mt-8 bg-white bg-opacity-10 p-4 md:p-6 rounded-xl max-w-2xl mx-auto">
+                <h3 className="text-xl font-bold mb-3">Steps to Register:</h3>
+                <ol className="text-left space-y-2 pl-6 list-decimal">
+                  <li className="text-white">Fill in names, classes, schools, and contact details</li>
+                  <li className="text-white">Mention your team name and a 2–3-line idea summary</li>
+                  <li className="text-white">Hit Submit – Confirmation lands in your inbox within 24 hours</li>
+                </ol>
+              </div>
             </motion.section>
           </div>
+          {/* Scroll to top button */}
+          <motion.button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-6 right-6 bg-[#a61d31] text-white p-3 rounded-full shadow-lg z-50 hover:bg-[#8a1827] transition-colors duration-300"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: scrolled ? 1 : 0 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            </svg>
+          </motion.button>
         </div>
       </DefaultLayout>
     </>
