@@ -510,7 +510,7 @@ export default function Youngpreneurs() {
                   With EduAbroad and IPM Careers as your guiding stars, your ideas won't just be heard, they'll be
                   celebrated, refined, and potentially launched into orbit.
                 </p>
-                <div className="bg-[#a61d31] text-white py-2 px-4 rounded-md text-center font-bold mb-4">
+                <div className="bg-[#a61d31] text-white py-2 px-4 rounded-md text-center font-bold mb-4"> 
                   INDIA'S ULTIMATE BUSINESS SHOWDOWN FOR STUDENTS
                 </div>
               </div>
