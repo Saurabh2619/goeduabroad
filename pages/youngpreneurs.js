@@ -1,32 +1,40 @@
 "use client"
 import DefaultLayout from "../layouts/DefaultLayout"
 import Head from "next/head"
-import { ArrowRight, Calendar, Users, Lightbulb, Trophy, Briefcase, Globe, Zap } from "lucide-react"
+import { ArrowRight, Calendar, Users, Lightbulb, Trophy, Briefcase, Globe, Zap, AlertCircle } from 'lucide-react'
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
-import axios from "axios"
+import { createClient } from "@supabase/supabase-js"
+
+// Initialize Supabase client
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 export default function Youngpreneurs() {
   const [isSubmitted, setSubmitted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [loader, setLoader] = useState(false)
-  const [currentSub, setSub] = useState("Register Now")
   const [notificationText, setNotificationText] = useState()
   const [timeoutId, setTimeoutId] = useState(null)
   const [formData, setFormData] = useState({
-    fullname: "",
+    team_name: "",
+    team_leader: "",
+    member_1: "",
+    member_2: "",
+    school_name: "",
+    class: "",
+    contact_number: "",
     email: "",
-    phone: "",
-    city: "",
   })
   const [formErrors, setFormErrors] = useState({
-    fullname: false,
+    team_name: false,
+    team_leader: false,
+    school_name: false,
+    class: false,
+    contact_number: false,
     email: false,
-    phone: false,
-    city: false,
   })
-
-  const heading = ["Register Now", "It's Free", "Limited Seats"]
 
   function setNotification(de) {
     if (timeoutId) {
@@ -40,24 +48,6 @@ export default function Youngpreneurs() {
     }, 3000) // Increased to 3 seconds (3000ms)
     setTimeoutId(id)
   }
-
-  useEffect(() => {
-    var index = 0
-
-    const r = setInterval(() => {
-      if (index < heading.length - 1) {
-        index++
-        setSub(heading[index])
-      } else {
-        index = 0
-        setSub(heading[0])
-      }
-    }, 2000)
-
-    return () => {
-      clearInterval(r)
-    }
-  }, [])
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -84,35 +74,32 @@ export default function Youngpreneurs() {
     return str.replace(/[0-9]/g, "")
   }
 
-  const sendLead = async (leadData) => {
-    const { fullname, phone, email } = leadData
+  // New function to save data to Supabase
+  const saveToSupabase = async (formData) => {
+    const { team_name, team_leader, member_1, member_2, school_name, class: classValue, contact_number, email } = formData
 
-    if (!fullname || !phone || !email) {
-      throw new Error("Missing required fields: fullname, phone, and email are required.")
+    if (!team_name || !team_leader || !school_name || !classValue || !contact_number || !email) {
+      throw new Error("Missing required fields")
     }
 
     try {
-      const response = await axios.post(
-        "/api/sendlead",
+      const { data, error } = await supabase.from("webinar_entries").insert([
         {
-          firstname: `${fullname} --webinar page`,
-          lastname: "", // optional
-          phone,
+          team_name,
+          team_leader,
+          member_1,
+          member_2,
+          school_name,
+          class: Number.parseInt(classValue),
+          contact_number,
           email,
-          city: leadData.city,
-          state: "",
-          country: "India",
-          message: "",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      )
-      return response.data
+      ])
+
+      if (error) throw error
+      return data
     } catch (error) {
-      console.error("Error sending lead:", error)
+      console.error("Error saving to Supabase:", error)
       throw error
     }
   }
@@ -120,17 +107,47 @@ export default function Youngpreneurs() {
   async function SubmitContact() {
     // Reset all errors
     const errors = {
-      fullname: false,
+      team_name: false,
+      team_leader: false,
+      school_name: false,
+      class: false,
+      contact_number: false,
       email: false,
-      phone: false,
-      city: false,
     }
     let hasError = false
 
-    if (!formData.fullname || formData.fullname.trim() === "") {
-      errors.fullname = true
+    if (!formData.team_name || formData.team_name.trim() === "") {
+      errors.team_name = true
       hasError = true
-      setNotification("Fullname field is empty")
+      setNotification("Team name field is empty")
+    }
+
+    if (!formData.team_leader || formData.team_leader.trim() === "") {
+      errors.team_leader = true
+      hasError = true
+      setNotification("Team leader field is empty")
+    }
+
+    if (!formData.school_name || formData.school_name.trim() === "") {
+      errors.school_name = true
+      hasError = true
+      setNotification("School name field is empty")
+    }
+
+    if (!formData.class || formData.class.trim() === "") {
+      errors.class = true
+      hasError = true
+      setNotification("Class field is empty")
+    }
+
+    if (!formData.contact_number || formData.contact_number.trim() === "") {
+      errors.contact_number = true
+      hasError = true
+      setNotification("Contact number field is empty")
+    } else if (!validatePhone(formData.contact_number)) {
+      errors.contact_number = true
+      hasError = true
+      setNotification("Contact number is not valid")
     }
 
     if (!formData.email || formData.email.trim() === "") {
@@ -143,22 +160,6 @@ export default function Youngpreneurs() {
       setNotification("Email is not valid")
     }
 
-    if (!formData.phone || formData.phone.trim() === "") {
-      errors.phone = true
-      hasError = true
-      setNotification("Phone field is empty")
-    } else if (!validatePhone(formData.phone)) {
-      errors.phone = true
-      hasError = true
-      setNotification("Phone number is not valid")
-    }
-
-    if (!formData.city || formData.city.trim() === "") {
-      errors.city = true
-      hasError = true
-      setNotification("City field is empty")
-    }
-
     setFormErrors(errors)
 
     if (hasError) {
@@ -168,7 +169,7 @@ export default function Youngpreneurs() {
     setLoader(true)
 
     try {
-      await sendLead(formData)
+      await saveToSupabase(formData)
       setLoader(false)
       setNotification("Submitted Successfully")
       setSubmitted(true)
@@ -284,82 +285,181 @@ export default function Youngpreneurs() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                           >
-                            <motion.span
-                              key={currentSub}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              transition={{ duration: 0.3 }}
-                              className="min-w-[180px] text-center"
-                            >
-                              {currentSub}
-                            </motion.span>
+                            <Calendar className="mr-2 h-5 w-5" />
+                            <span>Register Now</span>
                           </motion.div>
                         </div>
+
+                        <div className="mt-4 mb-4 bg-white p-4 rounded-lg shadow-sm">
+                          <h4 className="font-bold mb-2">Who can register?</h4>
+                          <ul className="list-disc pl-5 mb-4 space-y-1">
+                            <li>Students from Classes 9–12 (any board)</li>
+                            <li>Solo or Team (up to 3 members)</li>
+                            <li>Each team must nominate a Team Leader</li>
+                          </ul>
+                          <h4 className="font-bold mb-2">Registration Form:</h4>
+                          <ul className="list-disc pl-5 mb-4 space-y-1">
+                            <li>Team Name</li>
+                            <li>Team Leader & Members' Name</li>
+                            <li>School Name</li>
+                            <li>Class</li>
+                            <li>Contact Phone Number</li>
+                            <li>Contact Email</li>
+                          </ul>
+                        </div>
+
                         <motion.div
                           className="px-8 py-4 bg-white text-[#a61d31] border-2 border-[#a61d31] font-semibold rounded-full text-lg shadow-lg inline-flex items-center"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <Trophy className="mr-2 h-5 w-5" />
-                          <span>Be a Part of the Ultimate Challenge!</span>
+                          <AlertCircle className="mr-2 h-5 w-5" />
+                          <span>Limited Seats</span>
                         </motion.div>
                       </div>
                     </div>
 
                     {/* Right side - Registration Form */}
                     <div className="bg-white p-6 md:p-8 rounded-3xl shadow-xl" id="form">
-                      <h3 className="text-2xl font-bold text-[#a61d31] mb-6">Eligibility & Team Formation</h3>
-                      <div className="mb-6">
-                        <h4 className="font-bold mb-2">Who can register?</h4>
-                        <ul className="list-disc pl-5 mb-4 space-y-1">
-                          <li>Students from Classes 9–12 (any board)</li>
-                          <li>Solo or Team (up to 3 members)</li>
-                          <li>Each team must nominate a Team Leader</li>
-                        </ul>
-                        <h4 className="font-bold mb-2">Registration Form:</h4>
-                        <ul className="list-disc pl-5 mb-4 space-y-1">
-                          <li>Team Name</li>
-                          <li>Team Leader & Members' Name</li>
-                          <li>School Name</li>
-                          <li>Class</li>
-                          <li>Contact Phone Number</li>
-                          <li>Contact Email</li>
-                        </ul>
-                      </div>
+                      <h3 className="text-2xl font-bold text-[#a61d31] mb-6">Registration Form</h3>
                       <div className="space-y-4 relative">
                         <div className="absolute -top-12 right-0 bg-[#a61d31] text-white text-xs md:text-sm px-3 py-1 rounded-full transform rotate-3 shadow-md">
                           Limited Seats Available!
                         </div>
                         <div>
                           <input
-                            name={"name"}
+                            name="team_name"
                             maxLength={30}
                             className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
-                              formErrors.fullname ? "border-red-500" : "border-gray-300"
+                              formErrors.team_name ? "border-red-500" : "border-gray-300"
                             }`}
-                            placeholder={"Enter your Full Name"}
-                            type={"text"}
-                            value={formData && formData.fullname}
+                            placeholder="Enter your Team Name"
+                            type="text"
+                            value={formData.team_name}
                             onChange={(e) => {
-                              setFormData((res) => ({ ...res, fullname: e.target.value }))
+                              setFormData((res) => ({ ...res, team_name: e.target.value }))
                               if (e.target.value.trim() !== "") {
-                                setFormErrors((prev) => ({ ...prev, fullname: false }))
+                                setFormErrors((prev) => ({ ...prev, team_name: false }))
                               }
                             }}
                           />
-                          {formErrors.fullname && <p className="text-red-500 text-xs mt-1">Full name is required</p>}
+                          {formErrors.team_name && <p className="text-red-500 text-xs mt-1">Team name is required</p>}
                         </div>
                         <div>
                           <input
-                            name={"email"}
+                            name="team_leader"
+                            maxLength={30}
+                            className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
+                              formErrors.team_leader ? "border-red-500" : "border-gray-300"
+                            }`}
+                            placeholder="Enter Team Leader Name"
+                            type="text"
+                            value={formData.team_leader}
+                            onChange={(e) => {
+                              setFormData((res) => ({ ...res, team_leader: e.target.value }))
+                              if (e.target.value.trim() !== "") {
+                                setFormErrors((prev) => ({ ...prev, team_leader: false }))
+                              }
+                            }}
+                          />
+                          {formErrors.team_leader && <p className="text-red-500 text-xs mt-1">Team leader name is required</p>}
+                        </div>
+                        <div>
+                          <input
+                            name="member_1"
+                            maxLength={30}
+                            className="w-full px-4 py-2 border rounded-md border-gray-300 focus:ring-[#a61d31] focus:border-[#a61d31]"
+                            placeholder="Enter Member 1 Name (Optional)"
+                            type="text"
+                            value={formData.member_1}
+                            onChange={(e) => {
+                              setFormData((res) => ({ ...res, member_1: e.target.value }))
+                            }}
+                          />
+                        </div>
+                        <div>
+                          <input
+                            name="member_2"
+                            maxLength={30}
+                            className="w-full px-4 py-2 border rounded-md border-gray-300 focus:ring-[#a61d31] focus:border-[#a61d31]"
+                            placeholder="Enter Member 2 Name (Optional)"
+                            type="text"
+                            value={formData.member_2}
+                            onChange={(e) => {
+                              setFormData((res) => ({ ...res, member_2: e.target.value }))
+                            }}
+                          />
+                        </div>
+                        <div>
+                          <input
+                            name="school_name"
+                            maxLength={50}
+                            className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
+                              formErrors.school_name ? "border-red-500" : "border-gray-300"
+                            }`}
+                            placeholder="Enter School Name"
+                            type="text"
+                            value={formData.school_name}
+                            onChange={(e) => {
+                              setFormData((res) => ({ ...res, school_name: e.target.value }))
+                              if (e.target.value.trim() !== "") {
+                                setFormErrors((prev) => ({ ...prev, school_name: false }))
+                              }
+                            }}
+                          />
+                          {formErrors.school_name && <p className="text-red-500 text-xs mt-1">School name is required</p>}
+                        </div>
+                        <div>
+                          <input
+                            name="class"
+                            maxLength={2}
+                            className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
+                              formErrors.class ? "border-red-500" : "border-gray-300"
+                            }`}
+                            placeholder="Enter Class (9-12)"
+                            type="number"
+                            min="9"
+                            max="12"
+                            value={formData.class}
+                            onChange={(e) => {
+                              setFormData((res) => ({ ...res, class: e.target.value }))
+                              if (e.target.value.trim() !== "") {
+                                setFormErrors((prev) => ({ ...prev, class: false }))
+                              }
+                            }}
+                          />
+                          {formErrors.class && <p className="text-red-500 text-xs mt-1">Class is required (9-12)</p>}
+                        </div>
+                        <div>
+                          <input
+                            name="contact_number"
+                            className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
+                              formErrors.contact_number ? "border-red-500" : "border-gray-300"
+                            }`}
+                            placeholder="Enter Contact Number"
+                            type="text"
+                            value={formData.contact_number}
+                            onChange={(e) => {
+                              setFormData((res) => ({ ...res, contact_number: e.target.value }))
+                              if (validatePhone(e.target.value)) {
+                                setFormErrors((prev) => ({ ...prev, contact_number: false }))
+                              }
+                            }}
+                          />
+                          {formErrors.contact_number && (
+                            <p className="text-red-500 text-xs mt-1">Valid 10-digit contact number is required</p>
+                          )}
+                        </div>
+                        <div>
+                          <input
+                            name="email"
                             maxLength={50}
                             className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
                               formErrors.email ? "border-red-500" : "border-gray-300"
                             }`}
-                            placeholder={"Enter your Email Address"}
-                            type={"text"}
-                            value={formData && formData.email}
+                            placeholder="Enter Email Address"
+                            type="email"
+                            value={formData.email}
                             onChange={(e) => {
                               setFormData((res) => ({ ...res, email: e.target.value }))
                               if (validateEmail(e.target.value)) {
@@ -368,46 +468,6 @@ export default function Youngpreneurs() {
                             }}
                           />
                           {formErrors.email && <p className="text-red-500 text-xs mt-1">Valid email is required</p>}
-                        </div>
-                        <div>
-                          <input
-                            name={"phone"}
-                            className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
-                              formErrors.phone ? "border-red-500" : "border-gray-300"
-                            }`}
-                            placeholder={"Enter your Phone Number"}
-                            type={"text"}
-                            value={formData && formData.phone}
-                            onChange={(e) => {
-                              setFormData((res) => ({ ...res, phone: e.target.value }))
-                              if (validatePhone(e.target.value)) {
-                                setFormErrors((prev) => ({ ...prev, phone: false }))
-                              }
-                            }}
-                          />
-                          {formErrors.phone && (
-                            <p className="text-red-500 text-xs mt-1">Valid 10-digit phone number is required</p>
-                          )}
-                        </div>
-                        <div>
-                          <input
-                            name={"city"}
-                            maxLength={20}
-                            pattern="[a-zA-Z]+"
-                            className={`w-full px-4 py-2 border rounded-md focus:ring-[#a61d31] focus:border-[#a61d31] ${
-                              formErrors.city ? "border-red-500" : "border-gray-300"
-                            }`}
-                            placeholder={"Enter your City"}
-                            type={"text"}
-                            value={formData && formData.city}
-                            onChange={(e) => {
-                              setFormData((res) => ({ ...res, city: removeNumbers(e.target.value) }))
-                              if (e.target.value.trim() !== "") {
-                                setFormErrors((prev) => ({ ...prev, city: false }))
-                              }
-                            }}
-                          />
-                          {formErrors.city && <p className="text-red-500 text-xs mt-1">City is required</p>}
                         </div>
                         <button
                           onClick={SubmitContact}
@@ -510,7 +570,7 @@ export default function Youngpreneurs() {
                   With EduAbroad and IPM Careers as your guiding stars, your ideas won't just be heard, they'll be
                   celebrated, refined, and potentially launched into orbit.
                 </p>
-                <div className="bg-[#a61d31] text-white py-2 px-4 rounded-md text-center font-bold mb-4"> 
+                <div className="bg-[#a61d31] text-white py-2 px-4 rounded-md text-center font-bold mb-4">
                   INDIA'S ULTIMATE BUSINESS SHOWDOWN FOR STUDENTS
                 </div>
               </div>
