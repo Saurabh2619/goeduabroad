@@ -276,13 +276,13 @@ export default function Youngpreneurs() {
                 <motion.section className="relative py-8 md:py-12 mb-8 md:mb-16" {...fadeIn}>
                   <div className="grid md:grid-cols-2 gap-8 items-start">
                     {/* Left side - Heading */}
-                    <div className="flex flex-col justify-center items-center text-center md:items-start md:text-left">
+                    <div className="flex flex-col justify-center md:items-start md:text-left">
                       <h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6"
+                        className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6 text-center md:text-left"
                         style={{ fontFamily: "'Playfair Display', serif" }}
                       >
                         <span className="text-[#a61d31]">"Dream It.</span> Pitch It. <br />
-                        <span className="text-[#a61d31]">Build It."</span>
+                        <span className="text-[#a61d31] p-5">Build It."</span>
                       </h1>
                       <p className="mt-4 text-xl text-gray-700 leading-relaxed">
                         Brought to you by EduAbroad in collaboration with IPM Careers
@@ -304,15 +304,10 @@ export default function Youngpreneurs() {
                             <li>Solo or Team (up to 3 members)</li>
                             <li>Each team must nominate a Team Leader</li>
                           </ul>
-                          <h4 className="font-bold mb-2">Registration Form:</h4>
-                          <ul className="list-disc pl-5 mb-4 space-y-1">
-                            <li>Team Name</li>
-                            <li>Team Leader & Members' Name</li>
-                            <li>School Name</li>
-                            <li>Class</li>
-                            <li>Contact Phone Number</li>
-                            <li>Contact Email</li>
-                          </ul>
+                          <div className="flex items-center mt-2 text-amber-600 font-semibold">
+                            <Zap className="h-5 w-5 mr-2" />
+                            <span>Limited Seats Available!</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -751,6 +746,21 @@ export default function Youngpreneurs() {
                   </div>
                 </div>
 
+                <div className="flex flex-col items-center mb-6">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#a61d31] shadow-lg">
+                    <img
+                      src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1746616075/WhatsApp_Image_2025-05-07_at_15.47.54_igrctd.jpg"
+                      alt="Dr. Swati Abhishek Mishra"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="mt-4 text-center">
+                    <p className="font-bold">Dr. Swati Abhishek Mishra</p>
+                    <p>Founder, EduAbroad</p>
+                    <p>Former Professor, IIM Lucknow | Ph.D., University of Cambridge | MIT-USA</p>
+                  </div>
+                </div>
+
                 <div className="pt-4">
                   <p className="text-lg mb-4">Dear Changemakers,</p>
 
@@ -780,12 +790,6 @@ export default function Youngpreneurs() {
                   </p>
 
                   <p className="mb-4">With unwavering faith in your potential,</p>
-
-                  <div className="mt-6">
-                    <p className="font-bold">Dr. Swati Abhishek Mishra</p>
-                    <p>Founder, EduAbroad</p>
-                    <p>Former Professor, IIM Lucknow | Ph.D., University of Cambridge | MIT-USA</p>
-                  </div>
                 </div>
               </div>
             </motion.section>
@@ -809,14 +813,6 @@ export default function Youngpreneurs() {
               >
                 Register Now
               </motion.a>
-              <div className="mt-8 bg-white bg-opacity-10 p-4 md:p-6 rounded-xl max-w-2xl mx-auto">
-                <h3 className="text-xl font-bold mb-3">Steps to Register:</h3>
-                <ol className="text-left space-y-2 pl-6 list-decimal">
-                  <li className="text-white">Fill in names, classes, schools, and contact details</li>
-                  <li className="text-white">Mention your team name and a 2–3-line idea summary</li>
-                  <li className="text-white">Hit Submit – Confirmation lands in your inbox within 24 hours</li>
-                </ol>
-              </div>
             </motion.section>
           </div>
           {/* Scroll to top button */}
@@ -831,7 +827,7 @@ export default function Youngpreneurs() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
-              fill="none" 
+              fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
