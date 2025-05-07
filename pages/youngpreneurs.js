@@ -789,7 +789,7 @@ export default function Youngpreneurs() {
                     idea at a time.
                   </p>
 
-                  <p className="mb-4">With unwavering faith in your potential,</p>
+                  <p className="mb-4">With unwavering faith in your potential.</p>
                 </div>
               </div>
             </motion.section>
