@@ -1,7 +1,7 @@
 "use client"
 import DefaultLayout from "../layouts/DefaultLayout"
 import Head from "next/head"
-import { ArrowRight, Calendar, Users, Lightbulb, Trophy, Briefcase, Globe, Zap, AlertCircle } from 'lucide-react'
+import { ArrowRight, Calendar, Users, Lightbulb, Trophy, Briefcase, Globe, Zap } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { createClient } from "@supabase/supabase-js"
@@ -76,7 +76,16 @@ export default function Youngpreneurs() {
 
   // New function to save data to Supabase
   const saveToSupabase = async (formData) => {
-    const { team_name, team_leader, member_1, member_2, school_name, class: classValue, contact_number, email } = formData
+    const {
+      team_name,
+      team_leader,
+      member_1,
+      member_2,
+      school_name,
+      class: classValue,
+      contact_number,
+      email,
+    } = formData
 
     if (!team_name || !team_leader || !school_name || !classValue || !contact_number || !email) {
       throw new Error("Missing required fields")
@@ -265,9 +274,9 @@ export default function Youngpreneurs() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Hero section with heading and form side by side */}
                 <motion.section className="relative py-8 md:py-12 mb-8 md:mb-16" {...fadeIn}>
-                  <div className="grid md:grid-cols-2 gap-8">
+                  <div className="grid md:grid-cols-2 gap-8 items-start">
                     {/* Left side - Heading */}
-                    <div className="flex flex-col justify-center">
+                    <div className="flex flex-col justify-center items-center text-center md:items-start md:text-left">
                       <h1
                         className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6"
                         style={{ fontFamily: "'Playfair Display', serif" }}
@@ -278,19 +287,17 @@ export default function Youngpreneurs() {
                       <p className="mt-4 text-xl text-gray-700 leading-relaxed">
                         Brought to you by EduAbroad in collaboration with IPM Careers
                       </p>
-                      <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-4">
-                        <div className="relative">
-                          <motion.div
-                            className="px-8 py-4 bg-[#a61d31] text-white font-semibold rounded-full text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg inline-flex items-center"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Calendar className="mr-2 h-5 w-5" />
-                            <span>Register Now</span>
-                          </motion.div>
-                        </div>
+                      <div className="mt-8 flex flex-col gap-4 w-full">
+                        <motion.div
+                          className="px-8 py-4 bg-[#a61d31] text-white font-semibold rounded-full text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg inline-flex items-center justify-center"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Calendar className="mr-2 h-5 w-5" />
+                          <span>Register Now</span>
+                        </motion.div>
 
-                        <div className="mt-4 mb-4 bg-white p-4 rounded-lg shadow-sm">
+                        <div className="bg-white p-4 rounded-lg shadow-sm">
                           <h4 className="font-bold mb-2">Who can register?</h4>
                           <ul className="list-disc pl-5 mb-4 space-y-1">
                             <li>Students from Classes 9–12 (any board)</li>
@@ -307,25 +314,13 @@ export default function Youngpreneurs() {
                             <li>Contact Email</li>
                           </ul>
                         </div>
-
-                        <motion.div
-                          className="px-8 py-4 bg-white text-[#a61d31] border-2 border-[#a61d31] font-semibold rounded-full text-lg shadow-lg inline-flex items-center"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <AlertCircle className="mr-2 h-5 w-5" />
-                          <span>Limited Seats</span>
-                        </motion.div>
                       </div>
                     </div>
 
                     {/* Right side - Registration Form */}
-                    <div className="bg-white p-6 md:p-8 rounded-3xl shadow-xl" id="form">
+                    <div className="bg-white p-6 md:p-8 rounded-3xl shadow-xl w-full" id="form">
                       <h3 className="text-2xl font-bold text-[#a61d31] mb-6">Registration Form</h3>
                       <div className="space-y-4 relative">
-                        <div className="absolute -top-12 right-0 bg-[#a61d31] text-white text-xs md:text-sm px-3 py-1 rounded-full transform rotate-3 shadow-md">
-                          Limited Seats Available!
-                        </div>
                         <div>
                           <input
                             name="team_name"
@@ -362,7 +357,9 @@ export default function Youngpreneurs() {
                               }
                             }}
                           />
-                          {formErrors.team_leader && <p className="text-red-500 text-xs mt-1">Team leader name is required</p>}
+                          {formErrors.team_leader && (
+                            <p className="text-red-500 text-xs mt-1">Team leader name is required</p>
+                          )}
                         </div>
                         <div>
                           <input
@@ -407,7 +404,9 @@ export default function Youngpreneurs() {
                               }
                             }}
                           />
-                          {formErrors.school_name && <p className="text-red-500 text-xs mt-1">School name is required</p>}
+                          {formErrors.school_name && (
+                            <p className="text-red-500 text-xs mt-1">School name is required</p>
+                          )}
                         </div>
                         <div>
                           <input
