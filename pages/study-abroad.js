@@ -603,7 +603,7 @@ function validateEmail(email) {
 
         </div> */}
 
-        <img className={styles.heroimage} src='/sat.jpg'/>
+        <img className={styles.heroimage} src='/mbbsAbroad.jpg'/>
 
         
 {/* <GradientMarquee text="Europe • USA • UK • Australia • Singapore • Germany • And Many More... •"></GradientMarquee> */}
@@ -726,7 +726,7 @@ return <div className={styles.card}>
           </div></Section>
           
 
-          <Section  color="var(--brand-col1)" align="left">
+          {/* <Section  color="var(--brand-col1)" align="left">
             <h2 className={styles.heading}>Mastering the SAT Exam with EduAbroad:<br/><span className={styles.red}>Your Trusted Partner in Test Preparation</span>
 </h2>
 <div className={styles.list}>
@@ -801,7 +801,7 @@ return <div className={styles.card}>
 Embark on your test preparation journey with EduAbroad today and take the first step towards a bright academic future. Contact us now to learn more about our SAT preparation programs and how we can help you reach your goals.
 </p>
 </div>
-          </Section>
+          </Section> */}
         
 
           <Section  color="var(--brand-col1)" align="left">
