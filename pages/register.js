@@ -179,17 +179,18 @@ useEffect(()=>{
 },[])
 
 const slides = [
-  {
-    image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_1998/v1716228547/satoffer_si33ow.webp',
-    alt:'EduAbroad SAT Offer'
-  },
+  // {
+  //   image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_1998/v1716228547/satoffer_si33ow.webp',
+  //   alt:'EduAbroad SAT Offer'
+  // },
   {
   image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_1968/v1716228530/cambridgecreative_wyp0ja.webp',
   alt:"EduAbroad Career Consultant "
-},{
-  image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_2056/v1716228545/rvw_rveust.webp',
-  alt:'EduAbroad Career Consultant'
 }
+// {
+//   image:'https://res.cloudinary.com/dbnrwsxj1/image/upload/c_scale,w_2056/v1716228545/rvw_rveust.webp',
+//   alt:'EduAbroad Career Consultant'
+// }
 
 ]
 const faqs=[
