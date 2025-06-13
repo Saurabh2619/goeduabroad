@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+
 import styles from './Home.module.css'
 import {useState,useEffect} from 'react';
 import DefaultLayout from '../layouts/DefaultLayout'
@@ -1094,62 +1095,66 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
 </Section>
 
+
+
 <Section title="Mentors" align="center" color="var(--brand-col1)">
+  <Swiper
+    modules={[Navigation, Pagination, Autoplay]}
+    spaceBetween={mobile === "mobile" ? 30 : mobile === "tablet" ? 30 : 70}
+    slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 4}
+    loop={true}
+    autoplay={true}
+    pagination={{
+      el: ".paginate5",
+      clickable: true,
+    }}
+    centeredSlides={false}
+    onSlideChange={() => {}}
+    onSwiper={(swiper) => {}}
+    onInit={(swiper) => {
+      swiper.navigation.update();
+    }}
+    navigation={{
+      nextEl: ".next",
+      prevEl: ".prev",
+      clickable: true,
+    }}
+  >
+    {mentors &&
+      mentors.map((item, index) => (
+        <SwiperSlide key={index}>
+          <Link href={`/mentor/${item.slug}`}> {/* Replace with item.id if needed */}
+            <div
+              className={styles.dcard}
+              style={{ backgroundImage: "url(" + item.image + ")" }}
+            >
+              <div className={styles.dcardcontent}>
+                <img
+                  alt={item.title}
+                  className={styles.colimg}
+                  src={item.collegeimage}
+                />
+                <div>
+                  <h2>{item.title}</h2>
+                  <p>{item.role}</p>
+                </div>
+              </div>
+              <div
+                className={
+                  styles.stars + "  flex flex-row items-center justify-start"
+                }
+              >
+                {/* Star rating or other info */}
+              </div>
+            </div>
+          </Link>
+        </SwiperSlide>
+      ))}
+  </Swiper>
 
-<Swiper
-     modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={mobile === "mobile" ? 30 : mobile === "tablet" ?30 : 70}
-      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 4}
-      loop={true}
-      autoplay={true}
-      
-      pagination={{ 
-        el:".paginate5",
-        
-        clickable: true }}
-      
-      centeredSlides={false}
-      onSlideChange={() =>{}}
-      onSwiper={(swiper) => {}}
-      onInit={(swiper) => {
-       
-        swiper.navigation.update();
-      }}
-      navigation={{
-        nextEl: '.next',
-        prevEl: '.prev',
-        clickable:true,
-      }}
-   
-    >
-
-
-     
-      
-      {mentors && mentors.map((item,index)=>{
-
-return(<>
-
-<SwiperSlide key={index}><div className={styles.dcard} style={{backgroundImage:"url("+item.image+")"}}>
-  
-  <div className={styles.dcardcontent}>
-    <img alt={item.title} className={styles.colimg} src={item.collegeimage}/>
-    <div>
-  <h2>{item.title}</h2>
-  <p>{item.role}</p></div>
-  </div>
-  <div className={styles.stars +   "  flex flex-row items-center justify-start"}>
-
-  </div>
-  </div></SwiperSlide>
-
-</>)
-})} 
-
-
-    </Swiper>
-    <div className={"paginate5"}></div>
+  <div className={"paginate5"}></div>
 </Section>
+
 {/* <div className={styles.authorities}>
 <h2 className={styles.heading}>Trusted by Giant Authorities</h2>
 <div className={styles.marqueecont}>
