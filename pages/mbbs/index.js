@@ -101,28 +101,8 @@ export default function AP() {
           rel="stylesheet"
         />
       </Head>
-      <DefaultLayout>
+      <DefaultLayout hideAI={true} navbar>
         <div className="w-full">
-          {/* Hero Section */}
-          <div className="bg-[#FFE4E6] w-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.section className="relative pt-36 pb-8 text-center" {...fadeIn}>
-                <h1
-                  className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  <span className="text-[#A51C30]">MBBS Abroad</span> for Indian Students in{" "}
-                  <span className="text-[#A51C30]">2025</span>
-                </h1>
-                <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8">
-                  EduAbroad helps Indian students secure admissions to NMC-approved universities across countries
-                  offering English-medium MBBS programs. We offer detailed counseling, university shortlisting,
-                  documentation assistance, and full support for visa applications and post-arrival logistics.
-                </p>
-              </motion.section>
-            </div>
-          </div>
-
           {/* Full Width Image */}
           <div className="w-full">
             <img
@@ -133,51 +113,178 @@ export default function AP() {
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Study MBBS Abroad Options */}
+            {/* Study MBBS Abroad and Enquiry Form Section */}
             <motion.section className="py-16" {...fadeIn}>
-              <h2
-                className="text-4xl font-semibold text-gray-900 mb-10 text-center"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                Study MBBS Abroad in 2025 with options in:
-              </h2>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {[
-                  {
-                    country: "MBBS in Egypt",
-                    features:
-                      "Affordable tuition, English-medium courses, Indian food availability, and excellent clinical exposure",
-                  },
-                  {
-                    country: "MBBS in Georgia",
-                    features: "Low fees, top NMC-recognized universities, and excellent medical training",
-                  },
-                  {
-                    country: "MBBS in Russia",
-                    features: "Long-standing reputation, globally accepted degrees, and practical training",
-                  },
-                  {
-                    country: "MBBS in Kazakhstan",
-                    features: "Budget-friendly universities, English instruction, and safe student environment",
-                  },
-                  {
-                    country: "MBBS in Kyrgyzstan",
-                    features: "Popular among Indian students for affordable packages including accommodation and food",
-                  },
-                  {
-                    country: "MBBS in Uzbekistan",
-                    features: "Well-equipped medical institutes and growing Indian student community",
-                  },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
-                    whileHover={{ scale: 1.03 }}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Left Column - Study MBBS Abroad Options */}
+                <div className="bg-gray-50 p-6 rounded-3xl shadow-xl">
+                  <h2
+                    className="text-3xl font-semibold text-gray-900 mb-6 text-center"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    <h3 className="text-xl font-bold text-[#A51C30] mb-4">{item.country}</h3>
-                    <p className="text-gray-700">{item.features}</p>
-                  </motion.div>
-                ))}
+                    Apply Now
+                  </h2>
+                  <p className="text-center text-gray-700 mb-6">
+                    Admissions are now open for MBBS in Egypt, Georgia, Russia, Kazakhstan, Kyrgyzstan, and Uzbekistan.
+                  </p>
+
+                  {/* Application Form */}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <input
+                        type="text"
+                        name="firstname"
+                        value={formData.firstname}
+                        onChange={handleInputChange}
+                        placeholder="Full Name"
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Email"
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="Phone Number"
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <select
+                        name="yearOfPassing"
+                        value={formData.yearOfPassing}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
+                      >
+                        <option value="" disabled>
+                          Year of Passing 12th
+                        </option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <select
+                        name="neetAppeared"
+                        value={formData.neetAppeared}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
+                      >
+                        <option value="" disabled>
+                          NEET Appeared
+                        </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <select
+                        name="intake"
+                        value={formData.intake}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
+                      >
+                        <option value="" disabled>
+                          Intake
+                        </option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                      </select>
+                    </div>
+
+                    <div className="text-center">
+                      <motion.button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="px-6 py-3 bg-[#A51C30] text-white font-semibold rounded-full text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed w-full"
+                        whileHover={{ scale: isSubmitting ? 1 : 1.03 }}
+                        whileTap={{ scale: isSubmitting ? 1 : 0.97 }}
+                      >
+                        {isSubmitting ? "Submitting..." : "Start Your MBBS Journey"}
+                      </motion.button>
+                    </div>
+
+                    {submitMessage && (
+                      <div
+                        className={`text-center p-3 rounded-lg ${submitMessage.includes("successfully") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                      >
+                        {submitMessage}
+                      </div>
+                    )}
+                  </form>
+                </div>
+
+                {/* Right Column - Application Form */}
+                <div>
+                  <h2
+                    className="text-3xl md:text-4xl font-semibold text-gray-900 mb-8"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Study MBBS Abroad in 2025 with options in:
+                  </h2>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {[
+                      {
+                        country: "MBBS in Egypt",
+                        features:
+                          "Affordable tuition, English-medium courses, Indian food availability, and excellent clinical exposure",
+                      },
+                      {
+                        country: "MBBS in Georgia",
+                        features: "Low fees, top NMC-recognized universities, and excellent medical training",
+                      },
+                      {
+                        country: "MBBS in Russia",
+                        features: "Long-standing reputation, globally accepted degrees, and practical training",
+                      },
+                      {
+                        country: "MBBS in Kazakhstan",
+                        features: "Budget-friendly universities, English instruction, and safe student environment",
+                      },
+                      {
+                        country: "MBBS in Kyrgyzstan",
+                        features:
+                          "Popular among Indian students for affordable packages including accommodation and food",
+                      },
+                      {
+                        country: "MBBS in Uzbekistan",
+                        features: "Well-equipped medical institutes and growing Indian student community",
+                      },
+                    ].map((item, index) => (
+                      <motion.div
+                        key={index}
+                        className="bg-white p-4 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300"
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <h3 className="text-lg font-bold text-[#A51C30] mb-2">{item.country}</h3>
+                        <p className="text-gray-700 text-sm">{item.features}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.section>
 
@@ -229,159 +336,6 @@ export default function AP() {
                 EduAbroad is committed to unlocking every student's global potential. Our students are now studying in
                 top universities across the world with full support from our expert team.
               </p>
-            </motion.section>
-
-            {/* Apply Now Section with Expanded Form */}
-            <motion.section className="bg-gray-50 p-8 rounded-3xl shadow-xl mb-16" {...fadeIn}>
-              <h2
-                className="text-4xl font-semibold text-gray-900 mb-8 text-center"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                Apply Now
-              </h2>
-              <div className="text-center mb-8">
-                <p className="text-xl text-gray-700 mb-4">
-                  Admissions are now open for MBBS in Egypt, Georgia, Russia, Kazakhstan, Kyrgyzstan, and Uzbekistan.
-                </p>
-              </div>
-
-              {/* Application Form */}
-              <div className="max-w-2xl mx-auto mb-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <input
-                      type="text"
-                      name="firstname"
-                      value={formData.firstname}
-                      onChange={handleInputChange}
-                      placeholder="Full Name"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
-                    />
-                  </div>
-
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="Email"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
-                    />
-                  </div>
-
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="Phone Number"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
-                    />
-                  </div>
-                  
-                  <div>
-                    <select
-                      name="yearOfPassing"
-                      value={formData.yearOfPassing}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
-                    >
-                      <option value="" disabled>
-                        Year of Passing 12th
-                      </option>
-                      <option value="2023">2023</option>
-                      <option value="2024">2024</option>
-                      <option value="2025">2025</option>
-                      {/* <option value="Not Appeared">Not Appeared</option> */}
-                    </select>
-                  </div>
-
-                  <div>
-                    <select
-                      name="neetAppeared"
-                      value={formData.neetAppeared}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
-                    >
-                      <option value="" disabled>
-                        NEET Appeared
-                      </option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <select
-                      name="intake"
-                      value={formData.intake}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
-                    >
-                      <option value="" disabled>
-                        Intake
-                      </option>
-                      <option value="2025">2025</option>
-                      <option value="2026">2026</option>
-                    </select>
-                  </div>
-
-                  <div className="text-center">
-                    <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="px-8 py-4 bg-[#A51C30] text-white font-semibold rounded-full text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                      whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
-                      whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                    >
-                      {isSubmitting ? "Submitting..." : "Start Your MBBS Journey"}
-                    </motion.button>
-                  </div>
-
-                  {submitMessage && (
-                    <div
-                      className={`text-center p-4 rounded-lg ${submitMessage.includes("successfully") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
-                    >
-                      {submitMessage}
-                    </div>
-                  )}
-                </form>
-              </div>
-
-              {/* <p className="text-lg text-gray-700 text-center mb-8">Contact us today to begin your journey.</p> */}
-
-              {/* Contact Information */}
-              {/* <div className="grid gap-6 md:grid-cols-3">
-                <motion.div
-                  className="flex items-center justify-center space-x-3 bg-white p-6 rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Phone className="w-6 h-6 text-[#A51C30]" />
-                  <span className="text-gray-700">Call: [Insert Number]</span>
-                </motion.div>
-                <motion.div
-                  className="flex items-center justify-center space-x-3 bg-white p-6 rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Mail className="w-6 h-6 text-[#A51C30]" />
-                  <span className="text-gray-700">Email: [Insert Email]</span>
-                </motion.div>
-                <motion.div
-                  className="flex items-center justify-center space-x-3 bg-white p-6 rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <MapPin className="w-6 h-6 text-[#A51C30]" />
-                  <span className="text-gray-700">Book a free counseling session</span>
-                </motion.div>
-              </div> */}
             </motion.section>
 
             {/* Footer Message */}

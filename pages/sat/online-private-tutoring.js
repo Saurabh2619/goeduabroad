@@ -23,12 +23,12 @@ import {
   Accordion,
   AccordionItem,
 } from "@nextui-org/react"
-import { supabase } from "../../utils/supabaseClient"
 import "tailwindcss/tailwind.css"
 import { Phone } from "lucide-react"
 import Image from "next/image"
 import { toast } from "react-hot-toast"
 import Script from "next/script"
+import axios from "axios"
 
 export default function Component() {
   const [formData, setFormData] = useState({
@@ -38,51 +38,68 @@ export default function Component() {
     city: "",
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const currentYear = new Date().getFullYear()
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  // SWIFT AMS sendlead data start here
+  const sendLead = async (leadData) => {
+    const { firstname, phone, email, city } = leadData
 
-    // Basic form validation
-    const { name, email, phone, city } = formData
-
-    // Email regex pattern for validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    // Phone regex pattern to accept only numbers (optional: set a reasonable length)
-    const phonePattern = /^[0-9]{10,15}$/
-
-    if (!name || !email || !phone || !city) {
-      toast.error("Please fill in all the fields.")
-      return
-    }
-
-    if (!emailPattern.test(email)) {
-      toast.error("Please enter a valid email address.")
-      return
-    }
-
-    if (!phonePattern.test(phone)) {
-      toast.error("Please enter a valid phone number (digits only).")
-      return
+    if (!firstname || !phone || !email || !city) {
+      throw new Error("Missing required fields: firstname, phone, and email are required.")
     }
 
     try {
-      const { data, error } = await supabase.from("leads").insert([formData])
-
-      if (error) throw error
-
-      toast.success("Form submitted successfully:", data)
-      // Reset form after successful submission
-      setFormData({ name: "", email: "", phone: "", city: "" })
-      setIsSubmitted(true)
+      const response = await axios.post("/api/sendlead", leadData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      return response.data
     } catch (error) {
-      console.error("Error submitting form:", error)
-      toast.error("Failed to submit form.")
+      console.error("Error sending lead:", error)
+      throw error
     }
   }
+  //end here
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      // Map form data to match the sendLead function requirements
+      const leadData = {
+        firstname: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        city: formData.city,
+      }
+
+      await sendLead(leadData)
+      setIsSubmitted(true)
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        city: "",
+      })
+
+      toast.success("Thank you! We'll contact you shortly.")
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      toast.error("Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   const testimonials = [
     {
       name: "Ambar",
@@ -397,8 +414,14 @@ export default function Component() {
                   required
                 />
                 <Spacer y={4} />
-                <Button type="submit" color="primary" className="w-full">
-                  Submit
+                <Button
+                  type="submit"
+                  color="primary"
+                  className="w-full"
+                  isLoading={isSubmitting}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               </form>
             </Card>
