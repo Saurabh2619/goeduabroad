@@ -12,7 +12,7 @@ export default async function handler(req, res) {
  
 
   // Extracting data from the webhook
-  const { firstname, lastname, phone, email, city, state, country, message } = req.body;
+  const { firstname, lastname, phone, email, city, state, country, message, yearOfPassing, intake } = req.body;
 
   if (!firstname || !phone || !email) {
     return res.status(400).json({ error: "Missing required fields" });
@@ -31,6 +31,8 @@ export default async function handler(req, res) {
         state,
         country,
         message,
+        yearOfPassing,
+        intake,
       },
       {
         headers: {

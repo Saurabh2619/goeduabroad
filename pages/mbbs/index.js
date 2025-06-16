@@ -1,10 +1,90 @@
-import React from "react"
+"use client"
+
+import { useState } from "react"
 import DefaultLayout from "../../layouts/DefaultLayout"
 import Head from "next/head"
-import { ArrowRight, BookOpen, Calendar, CheckCircle, Star, GraduationCap, Award, Phone, Mail, MapPin } from 'lucide-react'
+import { BookOpen, CheckCircle, Star, GraduationCap, Award, Phone, Mail, MapPin } from "lucide-react"
 import { motion } from "framer-motion"
+import axios from "axios"
+
+const sendLead = async (leadData) => {
+  const {
+    firstname,
+    phone,
+    email,
+    yearOfPassing,
+    intake,
+  } = leadData;
+
+  // Validate required fields
+  if (!firstname || !phone || !email || !yearOfPassing || !intake) {
+    throw new Error("Missing required fields: firstname, phone, email, yearOfPassing, and intake are required.");
+  }
+
+  // Prepare payload for API
+  const payload = {
+    firstname,
+    phone,
+    email,
+    neet_year: yearOfPassing, // Map to backend expected field name
+    intake,
+  };
+
+  try {
+    const response = await axios.post("/api/sendlead", payload, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error sending lead:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
 
 export default function AP() {
+  const [formData, setFormData] = useState({
+    firstname: "",
+    email: "",
+    phone: "",
+    yearOfPassing: "",
+    intake: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitMessage("")
+
+    try {
+      await sendLead(formData)
+      setSubmitMessage("Thank you! Your application has been submitted successfully.")
+      setFormData({
+        firstname: "",
+        email: "",
+        phone: "",
+        yearOfPassing: "",
+        intake: "",
+      })
+    } catch (error) {
+      setSubmitMessage("Sorry, there was an error submitting your application. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -37,7 +117,9 @@ export default function AP() {
                   <span className="text-[#A51C30]">2025</span>
                 </h1>
                 <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8">
-                  EduAbroad helps Indian students secure admissions to NMC-approved universities across countries offering English-medium MBBS programs. We offer detailed counseling, university shortlisting, documentation assistance, and full support for visa applications and post-arrival logistics.
+                  EduAbroad helps Indian students secure admissions to NMC-approved universities across countries
+                  offering English-medium MBBS programs. We offer detailed counseling, university shortlisting,
+                  documentation assistance, and full support for visa applications and post-arrival logistics.
                 </p>
               </motion.section>
             </div>
@@ -65,28 +147,29 @@ export default function AP() {
                 {[
                   {
                     country: "MBBS in Egypt",
-                    features: "Affordable tuition, English-medium courses, Indian food availability, and excellent clinical exposure"
+                    features:
+                      "Affordable tuition, English-medium courses, Indian food availability, and excellent clinical exposure",
                   },
                   {
                     country: "MBBS in Georgia",
-                    features: "Low fees, top NMC-recognized universities, FMGE and NEXT support"
+                    features: "Low fees, top NMC-recognized universities, and excellent medical training",
                   },
                   {
                     country: "MBBS in Russia",
-                    features: "Long-standing reputation, globally accepted degrees, and practical training"
+                    features: "Long-standing reputation, globally accepted degrees, and practical training",
                   },
                   {
                     country: "MBBS in Kazakhstan",
-                    features: "Budget-friendly universities, English instruction, and safe student environment"
+                    features: "Budget-friendly universities, English instruction, and safe student environment",
                   },
                   {
                     country: "MBBS in Kyrgyzstan",
-                    features: "Popular among Indian students for affordable packages including accommodation and food"
+                    features: "Popular among Indian students for affordable packages including accommodation and food",
                   },
                   {
                     country: "MBBS in Uzbekistan",
-                    features: "Well-equipped medical institutes and growing Indian student community"
-                  }
+                    features: "Well-equipped medical institutes and growing Indian student community",
+                  },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -105,31 +188,34 @@ export default function AP() {
               className="bg-gradient-to-r from-[#A51C30] to-[#C82333] text-white p-8 sm:p-12 rounded-3xl shadow-2xl mb-16"
               {...fadeIn}
             >
-              <h2 className="text-4xl font-semibold mb-10 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <h2
+                className="text-4xl font-semibold mb-10 text-center"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
                 Why Choose EduAbroad
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   {
                     icon: <GraduationCap className="w-10 h-10" />,
-                    text: "Expert mentors from Cambridge, IIM, and MIT"
+                    text: "Expert mentors from Cambridge, IIM, and MIT",
                   },
                   {
                     icon: <BookOpen className="w-10 h-10" />,
-                    text: "Tailored counseling for SAT and MBBS abroad admissions"
+                    text: "Tailored counseling for MBBS abroad admissions",
                   },
                   {
                     icon: <CheckCircle className="w-10 h-10" />,
-                    text: "End-to-end services from university selection to pre-departure briefings"
+                    text: "End-to-end services from university selection to pre-departure briefings",
                   },
                   {
                     icon: <Star className="w-10 h-10" />,
-                    text: "100 percent support for visa, accommodation, and travel"
+                    text: "100 percent support for visa, accommodation, and travel",
                   },
                   {
                     icon: <Award className="w-10 h-10" />,
-                    text: "High success rate in SAT scores and MBBS placements"
-                  }
+                    text: "High success rate in MBBS placements",
+                  },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -142,11 +228,12 @@ export default function AP() {
                 ))}
               </div>
               <p className="text-center text-lg mt-8 leading-relaxed">
-                EduAbroad is committed to unlocking every student's global potential. Our students are now studying in top universities across the world with full support from our expert team.
+                EduAbroad is committed to unlocking every student's global potential. Our students are now studying in
+                top universities across the world with full support from our expert team.
               </p>
             </motion.section>
 
-            {/* Apply Now Section */}
+            {/* Apply Now Section with Expanded Form */}
             <motion.section className="bg-gray-50 p-8 rounded-3xl shadow-xl mb-16" {...fadeIn}>
               <h2
                 className="text-4xl font-semibold text-gray-900 mb-8 text-center"
@@ -158,16 +245,107 @@ export default function AP() {
                 <p className="text-xl text-gray-700 mb-4">
                   Admissions are now open for MBBS in Egypt, Georgia, Russia, Kazakhstan, Kyrgyzstan, and Uzbekistan.
                 </p>
-                <p className="text-lg text-gray-600">
-                  SAT registrations are also open for the upcoming cycle.
-                </p>
               </div>
-              <p className="text-lg text-gray-700 text-center mb-8">
-                Contact us today to begin your journey.
-              </p>
-              
+
+              {/* Application Form */}
+              <div className="max-w-2xl mx-auto mb-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <input
+                      type="text"
+                      name="firstname"
+                      value={formData.firstname}
+                      onChange={handleInputChange}
+                      placeholder="Full Name"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Email"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Phone Number"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
+                    />
+                  </div>
+
+                  <div>
+                    <select
+                      name="yearOfPassing"
+                      value={formData.yearOfPassing}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
+                    >
+                      <option value="" disabled>
+                        Year of Passing
+                      </option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="Not Appeared">Not Appeared</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <select
+                      name="intake"
+                      value={formData.intake}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
+                    >
+                      <option value="" disabled>
+                        Intake
+                      </option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                    </select>
+                  </div>
+
+                  <div className="text-center">
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-8 py-4 bg-[#A51C30] text-white font-semibold rounded-full text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
+                      whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+                    >
+                      {isSubmitting ? "Submitting..." : "Start Your MBBS Journey"}
+                    </motion.button>
+                  </div>
+
+                  {submitMessage && (
+                    <div
+                      className={`text-center p-4 rounded-lg ${submitMessage.includes("successfully") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                    >
+                      {submitMessage}
+                    </div>
+                  )}
+                </form>
+              </div>
+
+              {/* <p className="text-lg text-gray-700 text-center mb-8">Contact us today to begin your journey.</p> */}
+
               {/* Contact Information */}
-              <div className="grid gap-6 md:grid-cols-3 mb-8">
+              {/* <div className="grid gap-6 md:grid-cols-3">
                 <motion.div
                   className="flex items-center justify-center space-x-3 bg-white p-6 rounded-xl shadow-lg"
                   whileHover={{ scale: 1.05 }}
@@ -189,17 +367,7 @@ export default function AP() {
                   <MapPin className="w-6 h-6 text-[#A51C30]" />
                   <span className="text-gray-700">Book a free counseling session</span>
                 </motion.div>
-              </div>
-
-              <div className="text-center">
-                <motion.button
-                  className="px-8 py-4 bg-[#A51C30] text-white font-semibold rounded-full text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Start Your MBBS Journey
-                </motion.button>
-              </div>
+              </div> */}
             </motion.section>
 
             {/* Footer Message */}
@@ -211,7 +379,8 @@ export default function AP() {
                 EduAbroad – Your trusted partner for global education success.
               </h2>
               <p className="text-lg leading-relaxed max-w-3xl mx-auto">
-                With expert guidance and comprehensive support, we help you achieve your dream of studying MBBS abroad at top NMC-approved universities.
+                With expert guidance and comprehensive support, we help you achieve your dream of studying MBBS abroad
+                at top NMC-approved universities.
               </p>
             </motion.section>
           </div>
