@@ -3,22 +3,18 @@
 import { useState } from "react"
 import DefaultLayout from "../../layouts/DefaultLayout"
 import Head from "next/head"
-import { BookOpen, CheckCircle, Star, GraduationCap, Award, Phone, Mail, MapPin } from "lucide-react"
+import { BookOpen, CheckCircle, Star, GraduationCap, Award } from "lucide-react"
 import { motion } from "framer-motion"
 import axios from "axios"
 
 const sendLead = async (leadData) => {
-  const {
-    firstname,
-    phone,
-    email,
-    yearOfPassing,
-    intake,
-  } = leadData;
+  const { firstname, phone, email, neetAppeared, yearOfPassing, intake } = leadData
 
   // Validate required fields
-  if (!firstname || !phone || !email || !yearOfPassing || !intake) {
-    throw new Error("Missing required fields: firstname, phone, email, yearOfPassing, and intake are required.");
+  if (!firstname || !phone || !email || !neetAppeared || !yearOfPassing || !intake) {
+    throw new Error(
+      "Missing required fields: firstname, phone, email, neetAppeared, yearOfPassing, and intake are required.",
+    )
   }
 
   // Prepare payload for API
@@ -26,29 +22,30 @@ const sendLead = async (leadData) => {
     firstname,
     phone,
     email,
-    neet_year: yearOfPassing, // Map to backend expected field name
+    neetAppeared, // Map to backend expected field name
+    yearOfPassing, // Map to backend expected field name
     intake,
-  };
+  }
 
   try {
     const response = await axios.post("/api/sendlead", payload, {
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    return response.data;
+    })
+    return response.data
   } catch (error) {
-    console.error("Error sending lead:", error.response?.data || error.message);
-    throw error;
+    console.error("Error sending lead:", error.response?.data || error.message)
+    throw error
   }
-};
-
+}
 
 export default function AP() {
   const [formData, setFormData] = useState({
     firstname: "",
     email: "",
     phone: "",
+    neetAppeared: "",
     yearOfPassing: "",
     intake: "",
   })
@@ -75,6 +72,7 @@ export default function AP() {
         firstname: "",
         email: "",
         phone: "",
+        neetAppeared: "",
         yearOfPassing: "",
         intake: "",
       })
@@ -285,7 +283,7 @@ export default function AP() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900 placeholder-gray-500"
                     />
                   </div>
-
+                  
                   <div>
                     <select
                       name="yearOfPassing"
@@ -295,12 +293,28 @@ export default function AP() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
                     >
                       <option value="" disabled>
-                        Year of Passing
+                        Year of Passing 12th
                       </option>
                       <option value="2023">2023</option>
                       <option value="2024">2024</option>
                       <option value="2025">2025</option>
-                      <option value="Not Appeared">Not Appeared</option>
+                      {/* <option value="Not Appeared">Not Appeared</option> */}
+                    </select>
+                  </div>
+
+                  <div>
+                    <select
+                      name="neetAppeared"
+                      value={formData.neetAppeared}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A51C30] focus:border-transparent text-gray-900"
+                    >
+                      <option value="" disabled>
+                        NEET Appeared
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
                     </select>
                   </div>
 
