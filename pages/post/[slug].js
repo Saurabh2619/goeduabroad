@@ -30,7 +30,6 @@ function Post({ data, datac }) {
   const [rquery, setQuery] = useState()
   const [relatedPosts, setRelatedPosts] = useState()
   const [commentData, setCommentData] = useState({ name: "", comment: "" })
-  const [activeTab, setActiveTab] = useState("content")
   const [showShareMenu, setShowShareMenu] = useState(false)
   const [estimatedReadTime, setEstimatedReadTime] = useState("5 min read")
   const final = datac.data[0]
@@ -54,7 +53,7 @@ function Post({ data, datac }) {
       setEstimatedReadTime(`${readTime} min read`)
     }
 
-    // Add scroll progress indicator
+    // Add scroll progress indicator with higher z-index
     const progressBar = document.getElementById("reading-progress")
     const updateProgress = () => {
       const scrollTop = window.scrollY
@@ -187,28 +186,34 @@ function Post({ data, datac }) {
     setShowShareMenu(false)
   }
 
-  // Simple comment form component
+  // Enhanced comment form component with better focus handling
   const CommentForm = () => (
     <div className="bg-white rounded-lg border border-gray-200 p-6 mt-8">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Add a Comment</h3>
-      <div className="space-y-4">
+      <h3 className="text-xl font-semibold text-gray-900 mb-6">Leave a Comment</h3>
+      <div className="space-y-6">
         <div>
+          <label htmlFor="comment-name" className="block text-sm font-medium text-gray-700 mb-2">
+            Your Name *
+          </label>
           <input
-            key="name-input"
+            id="comment-name"
             type="text"
-            placeholder="Write your Name"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+            placeholder="Enter your full name"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 text-base"
             value={commentData.name}
             onChange={(e) => setCommentData((prev) => ({ ...prev, name: e.target.value }))}
             autoComplete="name"
           />
         </div>
         <div>
+          <label htmlFor="comment-text" className="block text-sm font-medium text-gray-700 mb-2">
+            Your Comment *
+          </label>
           <textarea
-            key="comment-textarea"
-            placeholder="Write your Comment Here"
-            rows={4}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none transition-all"
+            id="comment-text"
+            placeholder="Share your thoughts about this article..."
+            rows={5}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-none transition-all duration-200 text-base"
             value={commentData.comment}
             onChange={(e) => setCommentData((prev) => ({ ...prev, comment: e.target.value }))}
             autoComplete="off"
@@ -216,10 +221,64 @@ function Post({ data, datac }) {
         </div>
         <button
           onClick={addComment}
-          className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-lg transition-colors"
+          className="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 text-base"
         >
-          Add Comment
+          Submit Comment
         </button>
+      </div>
+    </div>
+  )
+
+  // Author section component
+  const AuthorSection = () => (
+    <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-100 shadow-lg p-8 mt-12">
+      <div className="flex items-center mb-4">
+        <svg className="h-6 w-6 text-red-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+          />
+        </svg>
+        <h3 className="text-xl font-bold text-red-700 uppercase tracking-wide">About the Author</h3>
+      </div>
+      <div className="flex items-start">
+        <div className="relative">
+          <img
+            src={final.author.profile_image || "/placeholder.svg"}
+            alt={final?.author?.fullname}
+            className="w-20 h-20 rounded-full border-4 border-white shadow-lg object-cover flex-shrink-0"
+          />
+          <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 border-3 border-white rounded-full flex items-center justify-center">
+            <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className="ml-6 flex-1">
+          <h4 className="font-bold text-gray-900 text-xl mb-1">{final.author.fullname}</h4>
+          <p className="text-base text-red-600 font-medium mb-3">{final.author.badge}</p>
+          <p className="text-base text-gray-700 leading-relaxed mb-4">
+            {final.author.description ||
+              "Expert education consultant specializing in international education and study abroad programs with years of experience helping students achieve their academic goals."}
+          </p>
+          <div className="flex items-center text-sm text-gray-600">
+            <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Verified Education Expert
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -251,8 +310,8 @@ function Post({ data, datac }) {
         }}
       />
 
-      {/* Reading progress bar */}
-      <div className="fixed top-0 left-0 z-50 w-full h-1 bg-gray-200">
+      {/* Reading progress bar with higher z-index */}
+      <div className="fixed top-0 left-0 z-[9999] w-full h-1 bg-gray-200">
         <div
           id="reading-progress"
           className="h-full bg-gradient-to-r from-red-700 to-red-500 transition-all duration-300"
@@ -260,10 +319,10 @@ function Post({ data, datac }) {
         ></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-28 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 py-28 sm:px-6 lg:px-8">
         <PopupLeadForm />
 
-        {/* Simplified Hero section - removed title overlay */}
+        {/* Hero section */}
         <div className="relative w-full rounded-2xl overflow-hidden mb-12 mt-8 shadow-2xl">
           <div className="relative h-[500px] md:h-[600px]">
             <img src={final.img || "/placeholder.svg"} alt={final?.metaTitle} className="w-full h-full object-cover" />
@@ -305,18 +364,18 @@ function Post({ data, datac }) {
 
         {/* Article title and meta info */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">{final.title}</h1>
-          <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 leading-tight">{final.title}</h1>
+          <div className="flex flex-wrap items-center gap-6 text-base text-gray-600">
             <div className="flex items-center">
               <img
                 src={final.author.profile_image || "/placeholder.svg"}
                 alt={final?.author?.fullname}
-                className="w-8 h-8 rounded-full border-2 border-gray-200 object-cover mr-2"
+                className="w-10 h-10 rounded-full border-2 border-gray-200 object-cover mr-3"
               />
-              <span>{final.author.fullname}</span>
+              <span className="font-medium">{final.author.fullname}</span>
             </div>
             <div className="flex items-center">
-              <svg className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -327,7 +386,7 @@ function Post({ data, datac }) {
               {getDate(final.created_at)}
             </div>
             <div className="flex items-center">
-              <svg className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -338,7 +397,7 @@ function Post({ data, datac }) {
               {estimatedReadTime}
             </div>
             <div className="flex items-center">
-              <svg className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -353,11 +412,11 @@ function Post({ data, datac }) {
 
         {/* Tags */}
         {final?.tags && (
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-3 mb-10">
             {final.tags.split(",").map((tag, index) => (
               <span
                 key={index}
-                className="bg-red-50 text-red-700 text-xs font-medium px-3 py-1 rounded-full border border-red-200"
+                className="bg-red-50 text-red-700 text-sm font-medium px-4 py-2 rounded-full border border-red-200"
               >
                 #{tag.trim()}
               </span>
@@ -365,245 +424,109 @@ function Post({ data, datac }) {
           </div>
         )}
 
-        {/* Content layout */}
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Simplified Sidebar - only author info and social share */}
-          <div className="lg:w-1/3 xl:w-1/4">
-            <div className="sticky top-24 space-y-6">
-              {/* Author info */}
-              <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-100 shadow-lg p-6">
-                <div className="flex items-center mb-3">
-                  <svg className="h-5 w-5 text-red-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                  <p className="text-sm text-red-700 font-medium uppercase tracking-wide">Written by</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="relative">
-                    <img
-                      src={final.author.profile_image || "/placeholder.svg"}
-                      alt={final?.author?.fullname}
-                      className="w-16 h-16 rounded-full border-3 border-white shadow-lg object-cover flex-shrink-0"
-                    />
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-2 border-white rounded-full flex items-center justify-center">
-                      <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-1">
-                    <h4 className="font-bold text-gray-900 text-lg">{final.author.fullname}</h4>
-                    <p className="text-sm text-red-600 font-medium mb-2">{final.author.badge}</p>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                      {final.author.description ||
-                        "Expert education consultant specializing in international education and study abroad programs with years of experience helping students achieve their academic goals."}
-                    </p>
-                    <div className="flex items-center text-xs text-gray-500">
-                      <svg className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      Verified Expert
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* Social share buttons */}
 
-              {/* Social share */}
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4 text-center">Share this article</h4>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => handleShare("facebook")}
-                    className="flex items-center justify-center p-3 rounded-xl bg-[#1877F2] hover:bg-[#166FE5] text-white transition-colors"
-                  >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => handleShare("twitter")}
-                    className="flex items-center justify-center p-3 rounded-xl bg-[#1DA1F2] hover:bg-[#1A91DA] text-white transition-colors"
-                  >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => handleShare("linkedin")}
-                    className="flex items-center justify-center p-3 rounded-xl bg-[#0A66C2] hover:bg-[#095BA8] text-white transition-colors"
-                  >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => handleShare("whatsapp")}
-                    className="flex items-center justify-center p-3 rounded-xl bg-[#25D366] hover:bg-[#22C55E] text-white transition-colors"
-                  >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                  </button>
-                </div>
-                <button
-                  onClick={() => handleShare("copy")}
-                  className="w-full mt-3 flex items-center justify-center p-3 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                    />
-                  </svg>
-                  Copy Link
-                </button>
-              </div>
+        {/* Main article content with enlarged text */}
+        <div
+          id="main-content"
+          className="prose prose-xl max-w-none mb-16 prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:text-xl prose-p:leading-relaxed prose-a:text-red-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:text-lg prose-li:leading-relaxed prose-li:marker:text-gray-800 prose-li:marker:font-semibold"
+        >
+          <style jsx>{`
+            .article-content ul li::marker {
+              color: #1f2937;
+              font-weight: 600;
+            }
+            .article-content ol li::marker {
+              color: #1f2937;
+              font-weight: 600;
+            }
+            .article-content ul li {
+              color: #374151;
+              font-size: 1.125rem;
+              line-height: 1.75;
+            }
+            .article-content ol li {
+              color: #374151;
+              font-size: 1.125rem;
+              line-height: 1.75;
+            }
+            .article-content p {
+              font-size: 1.125rem;
+              line-height: 1.75;
+              margin-bottom: 1.5rem;
+            }
+            .article-content h2 {
+              font-size: 1.875rem;
+              margin-top: 2.5rem;
+              margin-bottom: 1.25rem;
+            }
+            .article-content h3 {
+              font-size: 1.5rem;
+              margin-top: 2rem;
+              margin-bottom: 1rem;
+            }
+          `}</style>
+          {final.MarkdownData ? (
+            <ReactMarkdown className="article-content" remarkPlugins={[remarkGfm]}>
+              {final.MarkdownData}
+            </ReactMarkdown>
+          ) : (
+            <RenderEditor isJSON={false} renderFrontEndOnly={true} postData={final} onChange={(e) => {}} />
+          )}
+        </div>
+
+        {/* Author section moved to end */}
+        <AuthorSection />
+
+        {/* Comments section moved after author */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Comments ({comments?.length || 0})</h2>
+
+          {comments && comments.length > 0 ? (
+            <div className="space-y-6 mb-12">
+              {comments
+                .filter((i) => i.isApproved === true && !i.isReply) // Only show approved comments
+                .map((item, index) => (
+                  <div key={index} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center font-semibold flex-shrink-0 text-lg">
+                        {item?.user
+                          ? item.user
+                              .split(" ")
+                              .map((i) => i.substring(0, 1))
+                              .join("")
+                          : ""}
+                      </div>
+                      <div className="ml-4 flex-1">
+                        <p className="font-semibold text-gray-900 text-lg">{item.user}</p>
+                        <p className="text-gray-700 mt-2 text-base leading-relaxed">{item.text}</p>
+                        <p className="text-sm text-gray-500 mt-3">{getDate(item.created_at)}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </div>
-          </div>
-
-          {/* Main content */}
-          <div className="lg:w-2/3 xl:w-3/4">
-            {/* Content tabs */}
-            <div className="border-b border-gray-200 mb-8">
-              <nav className="flex space-x-8">
-                <button
-                  onClick={() => setActiveTab("content")}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                    activeTab === "content"
-                      ? "border-red-700 text-red-700"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                  }`}
-                >
-                  <div className="flex items-center">
-                    <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
-                    Article
-                  </div>
-                </button>
-                <button
-                  onClick={() => setActiveTab("comments")}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                    activeTab === "comments"
-                      ? "border-red-700 text-red-700"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                  }`}
-                >
-                  <div className="flex items-center">
-                    <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                      />
-                    </svg>
-                    Comments ({comments?.length || 0})
-                  </div>
-                </button>
-              </nav>
+          ) : (
+            <div className="text-center py-12 bg-gray-50 rounded-lg mb-12">
+              <svg
+                className="h-16 w-16 text-gray-400 mx-auto mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+              <p className="text-gray-500 text-lg">No comments yet. Be the first to share your thoughts!</p>
             </div>
+          )}
 
-            {activeTab === "content" && (
-              <div>
-                {/* Article content */}
-                <div
-                  id="main-content"
-                  className="prose prose-lg max-w-none mb-12 prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-red-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:marker:text-gray-800 prose-li:marker:font-semibold"
-                >
-                  <style jsx>{`
-                    .article-content ul li::marker {
-                      color: #1f2937;
-                      font-weight: 600;
-                    }
-                    .article-content ol li::marker {
-                      color: #1f2937;
-                      font-weight: 600;
-                    }
-                    .article-content ul li {
-                      color: #374151;
-                    }
-                    .article-content ol li {
-                      color: #374151;
-                    }
-                  `}</style>
-                  {final.MarkdownData ? (
-                    <ReactMarkdown className="article-content" remarkPlugins={[remarkGfm]}>
-                      {final.MarkdownData}
-                    </ReactMarkdown>
-                  ) : (
-                    <RenderEditor isJSON={false} renderFrontEndOnly={true} postData={final} onChange={(e) => {}} />
-                  )}
-                </div>
-
-                {/* Leave a comment section in article tab */}
-                <CommentForm />
-              </div>
-            )}
-
-            {activeTab === "comments" && (
-              <div>
-                {/* Simplified Comments section */}
-                <div className="mb-12">
-                  <h2 className="text-2xl font-bold text-red-600 mb-6">Comments ({comments?.length || 0})</h2>
-
-                  {comments && comments.length > 0 ? (
-                    <div className="space-y-6 mb-8">
-                      {comments
-                        .filter((i) => i.isApproved === true && !i.isReply) // Only show approved comments
-                        .map((item, index) => (
-                          <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                            <div className="flex items-start">
-                              <div className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center font-semibold flex-shrink-0">
-                                {item?.user
-                                  ? item.user
-                                      .split(" ")
-                                      .map((i) => i.substring(0, 1))
-                                      .join("")
-                                  : ""}
-                              </div>
-                              <div className="ml-4 flex-1">
-                                <p className="font-semibold text-gray-900">{item.user}</p>
-                                <p className="text-gray-700 mt-1">{item.text}</p>
-                                <p className="text-sm text-gray-500 mt-2">{getDate(item.created_at)}</p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-8">
-                      <p className="text-gray-500">No Comment found on this post. You can leave a comment</p>
-                    </div>
-                  )}
-
-                  {/* Leave a comment section in comments tab */}
-                  <CommentForm />
-                </div>
-              </div>
-            )}
-          </div>
+          {/* Comment form */}
+          <CommentForm />
         </div>
 
         {/* Related posts */}
@@ -611,7 +534,7 @@ function Post({ data, datac }) {
           <div className="mt-20 mb-12">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">You May Also Like</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
                 Discover more insights and expert advice on studying abroad
               </p>
             </div>
