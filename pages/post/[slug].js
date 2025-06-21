@@ -438,7 +438,7 @@ function Post({ data, datac }) {
     .prose li,
     .prose h2,
     .prose h3 {
-      font-size: 16px !important;
+      font-size: 18px !important;
       line-height: 1.6 !important;
     }
 
