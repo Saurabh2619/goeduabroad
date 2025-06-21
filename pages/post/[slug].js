@@ -428,52 +428,43 @@ function Post({ data, datac }) {
 
         {/* Main article content with enlarged text */}
         <div
-          id="main-content"
-          className="prose prose-xl max-w-none mb-16 prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:text-xl prose-p:leading-relaxed prose-a:text-red-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:text-lg prose-li:leading-relaxed prose-li:marker:text-gray-800 prose-li:marker:font-semibold"
-        >
-          <style jsx>{`
-            .article-content ul li::marker {
-              color: #1f2937;
-              font-weight: 600;
-            }
-            .article-content ol li::marker {
-              color: #1f2937;
-              font-weight: 600;
-            }
-            .article-content ul li {
-              color: #374151;
-              font-size: 1.125rem;
-              line-height: 1.75;
-            }
-            .article-content ol li {
-              color: #374151;
-              font-size: 1.125rem;
-              line-height: 1.75;
-            }
-            .article-content p {
-              font-size: 1.125rem;
-              line-height: 1.75;
-              margin-bottom: 1.5rem;
-            }
-            .article-content h2 {
-              font-size: 1.875rem;
-              margin-top: 2.5rem;
-              margin-bottom: 1.25rem;
-            }
-            .article-content h3 {
-              font-size: 1.5rem;
-              margin-top: 2rem;
-              margin-bottom: 1rem;
-            }
-          `}</style>
-          {final.MarkdownData ? (
-            <ReactMarkdown className="article-content" remarkPlugins={[remarkGfm]}>
-              {final.MarkdownData}
-            </ReactMarkdown>
-          ) : (
-            <RenderEditor isJSON={false} renderFrontEndOnly={true} postData={final} onChange={(e) => {}} />
-          )}
-        </div>
+  id="main-content"
+  className="prose prose-xl max-w-none mb-16 prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:text-xl prose-p:leading-relaxed prose-a:text-red-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:text-lg prose-li:leading-relaxed prose-li:marker:text-gray-800 prose-li:marker:font-semibold"
+>
+  {/* Global CSS to override content font sizes */}
+  <style jsx global>{`
+    /* Increase font size for post content */
+    .prose p,
+    .prose li,
+    .prose h2,
+    .prose h3 {
+      font-size: 16px !important;
+      line-height: 1.6 !important;
+    }
+
+    /* Optional: Increase h2 and h3 more if needed */
+    .prose h2 {
+      font-size: 22px !important;
+    }
+
+    .prose h3 {
+      font-size: 20px !important;
+    }
+  `}</style>
+
+  {final.MarkdownData ? (
+    <ReactMarkdown className="article-content" remarkPlugins={[remarkGfm]}>
+      {final.MarkdownData}
+    </ReactMarkdown>
+  ) : (
+    <RenderEditor
+      isJSON={false}
+      renderFrontEndOnly={true}
+      postData={final}
+      onChange={(e) => {}}
+    />
+  )}
+</div>
 
         {/* Author section moved to end */}
         <AuthorSection />
