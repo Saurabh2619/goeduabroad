@@ -32,6 +32,7 @@ function Post({ data, datac }) {
   const [commentData, setCommentData] = useState({ name: "", comment: "" })
   const [showShareMenu, setShowShareMenu] = useState(false)
   const [estimatedReadTime, setEstimatedReadTime] = useState("5 min read")
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const final = datac.data[0]
 
   useEffect(() => {
@@ -141,6 +142,8 @@ function Post({ data, datac }) {
       return
     }
 
+    setIsSubmitting(true)
+
     const newComment = {
       post_id: final.id,
       user: commentData.name.trim(),
@@ -159,6 +162,8 @@ function Post({ data, datac }) {
     } else {
       alert("Error submitting comment. Please try again.")
     }
+
+    setIsSubmitting(false)
   }
 
   const handleShare = (platform) => {
@@ -186,52 +191,56 @@ function Post({ data, datac }) {
     setShowShareMenu(false)
   }
 
-  // Enhanced comment form component with better focus handling
+  // Enhanced comment form component with better responsive design
   const CommentForm = () => (
-    <div className="bg-white rounded-lg border border-gray-200 p-6 mt-8">
-      <h3 className="text-xl font-semibold text-gray-900 mb-6">Leave a Comment</h3>
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6 lg:p-8 mt-8">
+      <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Leave a Comment</h3>
       <div className="space-y-6">
         <div>
-          <label htmlFor="comment-name" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="comment-name" className="block text-sm font-medium text-gray-700 mb-3">
             Your Name *
           </label>
           <input
             id="comment-name"
             type="text"
             placeholder="Enter your full name"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 text-base"
+            className="w-full px-4 py-4 sm:px-5 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 text-base sm:text-lg bg-gray-50 focus:bg-white"
             value={commentData.name}
             onChange={(e) => setCommentData((prev) => ({ ...prev, name: e.target.value }))}
             autoComplete="name"
+            disabled={isSubmitting}
           />
         </div>
         <div>
-          <label htmlFor="comment-text" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="comment-text" className="block text-sm font-medium text-gray-700 mb-3">
             Your Comment *
           </label>
           <textarea
             id="comment-text"
-            placeholder="Share your thoughts about this article..."
-            rows={5}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-none transition-all duration-200 text-base"
+            placeholder="Share your thoughts about this article... Feel free to write as much as you'd like!"
+            rows={mobile === "mobile" ? 6 : 8}
+            className="w-full px-4 py-4 sm:px-5 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y transition-all duration-200 text-base sm:text-lg bg-gray-50 focus:bg-white min-h-[120px] sm:min-h-[150px]"
             value={commentData.comment}
             onChange={(e) => setCommentData((prev) => ({ ...prev, comment: e.target.value }))}
             autoComplete="off"
+            disabled={isSubmitting}
           />
+          <div className="mt-2 text-sm text-gray-500">{commentData.comment.length} characters</div>
         </div>
         <button
           onClick={addComment}
-          className="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 text-base"
+          disabled={isSubmitting || !commentData.name.trim() || !commentData.comment.trim()}
+          className="w-full sm:w-auto bg-red-600 hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-4 px-8 rounded-lg transition-colors duration-200 text-base sm:text-lg"
         >
-          Submit Comment
+          {isSubmitting ? "Submitting..." : "Submit Comment"}
         </button>
       </div>
     </div>
   )
 
-  // Author section component
+  // Enhanced Author section component with better mobile layout
   const AuthorSection = () => (
-    <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-100 shadow-lg p-8 mt-12">
+    <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-100 shadow-lg p-4 sm:p-6 lg:p-8 mt-12">
       <div className="flex items-center mb-4">
         <svg className="h-6 w-6 text-red-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -241,14 +250,14 @@ function Post({ data, datac }) {
             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
           />
         </svg>
-        <h3 className="text-xl font-bold text-red-700 uppercase tracking-wide">About the Author</h3>
+        <h3 className="text-lg sm:text-xl font-bold text-red-700 uppercase tracking-wide">About the Author</h3>
       </div>
-      <div className="flex items-start">
-        <div className="relative">
+      <div className="flex flex-col sm:flex-row items-start">
+        <div className="relative mb-4 sm:mb-0 sm:mr-6">
           <img
             src={final.author.profile_image || "/placeholder.svg"}
             alt={final?.author?.fullname}
-            className="w-20 h-20 rounded-full border-4 border-white shadow-lg object-cover flex-shrink-0"
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg object-cover flex-shrink-0"
           />
           <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 border-3 border-white rounded-full flex items-center justify-center">
             <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -260,7 +269,7 @@ function Post({ data, datac }) {
             </svg>
           </div>
         </div>
-        <div className="ml-6 flex-1">
+        <div className="flex-1">
           <h4 className="font-bold text-gray-900 text-xl mb-1">{final.author.fullname}</h4>
           <p className="text-base text-red-600 font-medium mb-3">{final.author.badge}</p>
           <p className="text-base text-gray-700 leading-relaxed mb-4">
@@ -319,19 +328,19 @@ function Post({ data, datac }) {
         ></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-28 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         <PopupLeadForm />
 
-        {/* Hero section */}
-        <div className="relative w-full rounded-2xl overflow-hidden mb-12 mt-8 shadow-2xl">
-          <div className="relative h-[500px] md:h-[600px]">
+        {/* Hero section - Enhanced mobile responsiveness */}
+        <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden mb-8 sm:mb-12 mt-4 sm:mt-8 shadow-2xl">
+          <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
             <img src={final.img || "/placeholder.svg"} alt={final?.metaTitle} className="w-full h-full object-cover" />
           </div>
         </div>
 
-        {/* Breadcrumb */}
-        <nav className="flex py-4 text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-          <ol className="flex items-center space-x-1">
+        {/* Breadcrumb - Enhanced mobile layout */}
+        <nav className="flex py-4 text-sm text-gray-500 mb-6 overflow-x-auto" aria-label="Breadcrumb">
+          <ol className="flex items-center space-x-1 whitespace-nowrap">
             <li>
               <a href="/" className="hover:text-red-700 transition-colors">
                 Home
@@ -357,15 +366,17 @@ function Post({ data, datac }) {
                   clipRule="evenodd"
                 />
               </svg>
-              <span className="ml-1 text-gray-700 truncate max-w-xs">{final.title}</span>
+              <span className="ml-1 text-gray-700 truncate max-w-[150px] sm:max-w-xs">{final.title}</span>
             </li>
           </ol>
         </nav>
 
-        {/* Article title and meta info */}
+        {/* Article title and meta info - Enhanced mobile layout */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 leading-tight">{final.title}</h1>
-          <div className="flex flex-wrap items-center gap-6 text-base text-gray-600">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 leading-tight">
+            {final.title}
+          </h1>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 text-sm sm:text-base text-gray-600">
             <div className="flex items-center">
               <img
                 src={final.author.profile_image || "/placeholder.svg"}
@@ -410,13 +421,13 @@ function Post({ data, datac }) {
           </div>
         </div>
 
-        {/* Tags */}
+        {/* Tags - Enhanced mobile layout */}
         {final?.tags && (
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-10">
             {final.tags.split(",").map((tag, index) => (
               <span
                 key={index}
-                className="bg-red-50 text-red-700 text-sm font-medium px-4 py-2 rounded-full border border-red-200"
+                className="bg-red-50 text-red-700 text-xs sm:text-sm font-medium px-3 py-2 sm:px-4 rounded-full border border-red-200"
               >
                 #{tag.trim()}
               </span>
@@ -424,63 +435,89 @@ function Post({ data, datac }) {
           </div>
         )}
 
-        {/* Social share buttons */}
-
-        {/* Main article content with enlarged text */}
+        {/* Main article content with enhanced mobile typography */}
         <div
-  id="main-content"
-  className="prose prose-xl max-w-none mb-16 prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:text-xl prose-p:leading-relaxed prose-a:text-red-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:text-lg prose-li:leading-relaxed prose-li:marker:text-gray-800 prose-li:marker:font-semibold"
->
-  {/* Global CSS to override content font sizes */}
-  <style jsx global>{`
-    /* Increase font size for post content */
-    .prose p,
-    .prose li,
-    .prose h2,
-    .prose h3 {
-      font-size: 18px !important;
-      line-height: 1.6 !important;
-    }
+          id="main-content"
+          className="prose prose-lg sm:prose-xl max-w-none mb-12 sm:mb-16 prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:text-lg sm:prose-p:text-xl prose-p:leading-relaxed prose-a:text-red-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:text-base sm:prose-li:text-lg prose-li:leading-relaxed prose-li:marker:text-gray-800 prose-li:marker:font-semibold"
+        >
+          {/* Enhanced mobile typography */}
+          <style jsx global>{`
+            .prose p,
+            .prose li {
+              font-size: 16px !important;
+              line-height: 1.7 !important;
+            }
 
-    /* Optional: Increase h2 and h3 more if needed */
-    .prose h2 {
-      font-size: 22px !important;
-    }
+            .prose h2 {
+              font-size: 20px !important;
+              margin-top: 2rem !important;
+              margin-bottom: 1rem !important;
+            }
 
-    .prose h3 {
-      font-size: 20px !important;
-    }
-  `}</style>
+            .prose h3 {
+              font-size: 18px !important;
+              margin-top: 1.5rem !important;
+              margin-bottom: 0.75rem !important;
+            }
 
-  {final.MarkdownData ? (
-    <ReactMarkdown className="article-content" remarkPlugins={[remarkGfm]}>
-      {final.MarkdownData}
-    </ReactMarkdown>
-  ) : (
-    <RenderEditor
-      isJSON={false}
-      renderFrontEndOnly={true}
-      postData={final}
-      onChange={(e) => {}}
-    />
-  )}
-</div>
+            @media (min-width: 640px) {
+              .prose p,
+              .prose li {
+                font-size: 18px !important;
+                line-height: 1.6 !important;
+              }
 
-        {/* Author section moved to end */}
+              .prose h2 {
+                font-size: 24px !important;
+              }
+
+              .prose h3 {
+                font-size: 22px !important;
+              }
+            }
+
+            @media (min-width: 1024px) {
+              .prose p,
+              .prose li {
+                font-size: 19px !important;
+              }
+
+              .prose h2 {
+                font-size: 26px !important;
+              }
+
+              .prose h3 {
+                font-size: 24px !important;
+              }
+            }
+          `}</style>
+
+          {final.MarkdownData ? (
+            <ReactMarkdown className="article-content" remarkPlugins={[remarkGfm]}>
+              {final.MarkdownData}
+            </ReactMarkdown>
+          ) : (
+            <RenderEditor isJSON={false} renderFrontEndOnly={true} postData={final} onChange={(e) => {}} />
+          )}
+        </div>
+
+        {/* Author section */}
         <AuthorSection />
 
-        {/* Comments section moved after author */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Comments ({comments?.length || 0})</h2>
+        {/* Comments section - Enhanced mobile layout */}
+        <div className="mt-12 sm:mt-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
+            Comments ({comments?.length || 0})
+          </h2>
 
           {comments && comments.length > 0 ? (
-            <div className="space-y-6 mb-12">
+            <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-12">
               {comments
-                .filter((i) => i.isApproved === true && !i.isReply) // Only show approved comments
+                .filter((i) => i.isApproved === true && !i.isReply)
                 .map((item, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                  <div key={index} className="bg-gray-50 rounded-lg p-4 sm:p-6 border border-gray-200">
                     <div className="flex items-start">
-                      <div className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center font-semibold flex-shrink-0 text-lg">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-red-600 text-white flex items-center justify-center font-semibold flex-shrink-0 text-sm sm:text-lg">
                         {item?.user
                           ? item.user
                               .split(" ")
@@ -488,19 +525,19 @@ function Post({ data, datac }) {
                               .join("")
                           : ""}
                       </div>
-                      <div className="ml-4 flex-1">
-                        <p className="font-semibold text-gray-900 text-lg">{item.user}</p>
-                        <p className="text-gray-700 mt-2 text-base leading-relaxed">{item.text}</p>
-                        <p className="text-sm text-gray-500 mt-3">{getDate(item.created_at)}</p>
+                      <div className="ml-3 sm:ml-4 flex-1">
+                        <p className="font-semibold text-gray-900 text-base sm:text-lg">{item.user}</p>
+                        <p className="text-gray-700 mt-2 text-sm sm:text-base leading-relaxed">{item.text}</p>
+                        <p className="text-xs sm:text-sm text-gray-500 mt-3">{getDate(item.created_at)}</p>
                       </div>
                     </div>
                   </div>
                 ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-gray-50 rounded-lg mb-12">
+            <div className="text-center py-8 sm:py-12 bg-gray-50 rounded-lg mb-8 sm:mb-12">
               <svg
-                className="h-16 w-16 text-gray-400 mx-auto mb-4"
+                className="h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mx-auto mb-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -512,26 +549,28 @@ function Post({ data, datac }) {
                   d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                 />
               </svg>
-              <p className="text-gray-500 text-lg">No comments yet. Be the first to share your thoughts!</p>
+              <p className="text-gray-500 text-base sm:text-lg">
+                No comments yet. Be the first to share your thoughts!
+              </p>
             </div>
           )}
 
-          {/* Comment form */}
+          {/* Enhanced Comment form */}
           <CommentForm />
         </div>
 
-        {/* Related posts */}
+        {/* Related posts - Enhanced mobile layout */}
         {relatedPosts && relatedPosts.length > 0 && (
-          <div className="mt-20 mb-12">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">You May Also Like</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <div className="mt-16 sm:mt-20 mb-8 sm:mb-12">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">You May Also Like</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg px-4">
                 Discover more insights and expert advice on studying abroad
               </p>
             </div>
             <Swiper
               modules={[Pagination, Autoplay]}
-              spaceBetween={24}
+              spaceBetween={mobile === "mobile" ? 16 : 24}
               slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 3}
               loop={true}
               autoplay={{
@@ -556,12 +595,12 @@ function Post({ data, datac }) {
           </div>
         )}
 
-        {/* Enhanced CTA Banner */}
-        <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+        {/* Enhanced CTA Banner - Better mobile layout */}
+        <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 mb-8 sm:mb-12 shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-orange-600/20"></div>
           <div className="relative max-w-4xl mx-auto text-center">
-            <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <svg className="h-8 w-8 sm:h-10 sm:w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -570,16 +609,16 @@ function Post({ data, datac }) {
                 />
               </svg>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Start Your Study Abroad Journey?
             </h2>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+            <p className="text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto text-base sm:text-lg px-4">
               Our expert counselors can guide you through every step of the application process for studying in Germany
               and other countries.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
               <Button text="Book a Free Consultation" />
-              <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-medium py-3 px-8 rounded-xl transition-all duration-300 hover:shadow-lg">
+              <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-medium py-3 px-6 sm:px-8 rounded-xl transition-all duration-300 hover:shadow-lg text-sm sm:text-base">
                 Download Brochure
               </button>
             </div>
