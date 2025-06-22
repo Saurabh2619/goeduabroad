@@ -332,12 +332,13 @@ function Post({ data, datac }) {
         <PopupLeadForm />
 
         {/* Hero section - Enhanced mobile responsiveness */}
-        <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden mb-8 sm:mb-12 mt-4 sm:mt-8 shadow-2xl">
-          <div className="relative min-h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+        {/* Hero section - Fixed mobile responsiveness without white space */}
+        <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-12 mt-4 sm:mt-8 shadow-2xl">
+          <div className="relative">
             <img
               src={final.img || "/placeholder.svg"}
               alt={final?.metaTitle}
-              className="w-full h-full object-contain sm:object-cover bg-gray-100"
+              className="w-full h-auto min-h-[200px] sm:min-h-[400px] md:h-[500px] lg:h-[600px] sm:object-cover object-cover"
             />
           </div>
         </div>
