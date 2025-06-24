@@ -754,7 +754,7 @@ export default function Component() {
         </section>
 
         {/* Why Us Section */}
-        <div className="bg-white py-16 font-sans">
+        {/* <div className="bg-white py-16 font-sans">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-navy-900 mb-12">Why Choose Us?</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -783,7 +783,7 @@ export default function Component() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Teachers Section */}
         <section className="bg-gray-50 font-sans py-16 rounded-2xl my-8">
@@ -818,7 +818,7 @@ export default function Component() {
         </section>
 
         {/* Program Features */}
-        <div className="bg-white py-16 font-sans">
+        {/* <div className="bg-white py-16 font-sans">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <Card className="lg:col-span-2 bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white">
@@ -861,7 +861,7 @@ export default function Component() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Enhanced FAQ Section with Read More */}
         <section className="bg-gray-50 w-full font-sans py-16 rounded-2xl my-8">
