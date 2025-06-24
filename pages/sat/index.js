@@ -188,7 +188,7 @@ export default function Component() {
     {
       name: "Sanjeev Saxena",
       role: "Senior Faculty & Test Prep Mentor",
-      image: "/saxena.jpg",
+      image: "/divya.jpg",
       description: (
         <p>
           With over 35 years of teaching experience, Sanjeev Sir is a highly respected mentor in standardized test
@@ -407,10 +407,169 @@ export default function Component() {
 
       {/* Container wrapper for all content after hero */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Enhanced Form Section */}
+        {/* Enhanced Form Section - Mobile Optimized */}
         <section className="bg-white py-16 font-sans" id="form">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Mobile Layout: Form first, then content */}
+            <div className="block lg:hidden">
+              {/* Mobile Form Section */}
+              <div className="mb-12">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-3xl shadow-2xl border border-blue-100">
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">🎯 Ready to Boost Your SAT Score?</h3>
+                  </div>
+
+                  <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
+                    <CardBody className="p-4">
+                      <div className="text-center mb-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Sign Up for a Free Demo Class</h4>
+                        <div className="w-16 h-1 bg-[#A51C30] mx-auto rounded-full"></div>
+                      </div>
+
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        <Input
+                          name="name"
+                          label="Full Name"
+                          placeholder="Enter your full name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          size="sm"
+                          classNames={{
+                            input: "text-gray-900",
+                            inputWrapper: "border-gray-200 hover:border-blue-400 focus-within:border-blue-500",
+                          }}
+                        />
+
+                        <Input
+                          name="email"
+                          label="Email Address"
+                          placeholder="Enter your email address"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          size="sm"
+                          classNames={{
+                            input: "text-gray-900",
+                            inputWrapper: "border-gray-200 hover:border-blue-400 focus-within:border-blue-500",
+                          }}
+                        />
+
+                        <Input
+                          name="phone"
+                          label="Phone Number"
+                          placeholder="Enter your phone number"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                          size="sm"
+                          classNames={{
+                            input: "text-gray-900",
+                            inputWrapper: "border-gray-200 hover:border-blue-400 focus-within:border-blue-500",
+                          }}
+                        />
+
+                        <Input
+                          name="city"
+                          label="City"
+                          placeholder="Enter your city"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          required
+                          size="sm"
+                          classNames={{
+                            input: "text-gray-900",
+                            inputWrapper: "border-gray-200 hover:border-blue-400 focus-within:border-blue-500",
+                          }}
+                        />
+
+                        <Button
+                          type="submit"
+                          color="primary"
+                          className="w-full bg-[#A51C30] text-white font-semibold py-3 text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                          isLoading={isSubmitting}
+                          disabled={isSubmitting}
+                          size="md"
+                        >
+                          {isSubmitting ? "Submitting..." : "Get Free Demo Class"}
+                        </Button>
+                      </form>
+                    </CardBody>
+                  </Card>
+                </div>
+              </div>
+
+              {/* Mobile Content Section */}
+              <div>
+                <div className="mb-8">
+                  <h2
+                    className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 text-center"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Why Choose Our SAT Prep Program?
+                  </h2>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    {
+                      title: "✅ Expert-Led Learning from the Start",
+                      points: [
+                        "60+ Hours of Live Classes",
+                        "15+ Years of Experience",
+                        "Comprehensive Study Material",
+                        "Time-tested Strategies",
+                      ],
+                    },
+                    {
+                      title: "✅ Practice & Assessment to Build Confidence",
+                      points: [
+                        "20 Full-length SAT Mock Tests",
+                        "Online Portal with 100+ Topic-wise Tests",
+                        "SAT Workshops Prior to the Exam",
+                        "Final Revision Sessions",
+                      ],
+                    },
+                    {
+                      title: "✅ Personalized Support at Every Step",
+                      points: [
+                        "Unlimited Doubt Sessions",
+                        "Mock Analysis Sessions",
+                        "Performance Review Sessions",
+                        "Score Improvement Strategies",
+                      ],
+                    },
+                    {
+                      title: "✅ Flexible & Student-friendly Learning",
+                      points: [
+                        "Access to Class Recordings",
+                        "Revision and Backup Materials",
+                        "Flexible Scheduling Options",
+                        "24/7 Learning Support",
+                      ],
+                    },
+                  ].map((section, index) => (
+                    <div
+                      key={index}
+                      className="bg-white p-4 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-blue-300"
+                    >
+                      <h3 className="text-base font-bold text-[#A51C30] mb-3">{section.title}</h3>
+                      <ul className="list-disc list-inside text-gray-700 text-xs space-y-1">
+                        {section.points.map((point, idx) => (
+                          <li key={idx} className="leading-relaxed">
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Layout: Side by side */}
+            <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-start">
               {/* Left Column - Enhanced Form Section */}
               <div className="order-2 lg:order-1">
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-3xl shadow-2xl border border-blue-100">
