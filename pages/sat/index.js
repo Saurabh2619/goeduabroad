@@ -188,7 +188,7 @@ export default function Component() {
     {
       name: "Sanjeev Saxena",
       role: "Senior Faculty & Test Prep Mentor",
-      image: "/divya.jpg",
+      image: "/saxena.jpg",
       description: (
         <p>
           With over 35 years of teaching experience, Sanjeev Sir is a highly respected mentor in standardized test
