@@ -162,10 +162,10 @@ const links = [{
 },
 {
 
-    title:'SAT & OET',
-    link:'/sat',
-    dropdown:true,
-    items:sats
+    title: 'SAT & OET',
+    link: '/sat',
+    dropdown: true,
+    items: sats
 
 },
 {

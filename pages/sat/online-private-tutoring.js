@@ -374,7 +374,7 @@ export default function Component() {
           <div className="flex-1 z-10 relative !p-4 w-full flex items-center justify-center">
             <Card className="p-6 w-full sm:w-96">
               <Link as={Link} href="#form" className="text-2xl font-bold mb-4">
-                Speak to a Counsellor
+                Sign Up for a Free Demo Class
               </Link>
               <form onSubmit={handleSubmit}>
                 <Input
