@@ -428,8 +428,8 @@ export default function Component() {
 
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <Input
-                          name="name"
-                          label="Full Name"
+                          name="firstname"
+                          label="firstname"
                           placeholder="Enter your full name"
                           value={formData.name}
                           onChange={handleInputChange}
