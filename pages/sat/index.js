@@ -396,7 +396,7 @@ export default function Component() {
       {/* Simple Hero Banner with Cloudinary Image */}
       <div className="relative">
         <Image
-          src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1750767229/WhatsApp_Image_2025-06-24_at_17.38.50_yk05sh.jpg"
+          src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751024715/WhatsApp_Image_2025-06-27_at_16.47.56_fbsvhb.jpg"
           alt="SAT Preparation Program"
           width={1920}
           height={800}
