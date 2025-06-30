@@ -79,7 +79,7 @@ export default function Component() {
     try {
       // Map form data to match the sendLead function requirements
       const leadData = {
-        firstname: formData.name,
+        firstname: `${formData.name} ~~SAT Page`,
         phone: formData.phone,
         email: formData.email,
         city: formData.city,
@@ -396,7 +396,7 @@ export default function Component() {
       {/* Simple Hero Banner with Cloudinary Image */}
       <div className="relative">
         <Image
-          src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751024715/WhatsApp_Image_2025-06-27_at_16.47.56_fbsvhb.jpg"
+          src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751275108/5463453_1_bisjhm.jpg"
           alt="SAT Preparation Program"
           width={1920}
           height={800}
