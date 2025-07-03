@@ -89,7 +89,7 @@ export default function Component() {
       setIsSubmitted(true)
 
       // Reset form
-      setFormData({
+      setFormData({ 
         name: "",
         email: "",
         phone: "",
