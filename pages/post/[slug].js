@@ -1,6 +1,5 @@
 "use client"
-
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { useRouter } from "next/router"
 import { supabase } from "../../utils/supabaseClient"
 import HTML_Render from "../../components/HTML_Render"
@@ -23,6 +22,124 @@ import remarkGfm from "remark-gfm"
 import RenderEditor from "../../components/RenderEditor"
 import { PopupLeadForm } from "../../components/PopupLeadForm"
 
+// Move CommentForm outside the main component to prevent recreation on every render
+const CommentForm = ({ commentData, setCommentData, addComment, isSubmitting, mobile }) => {
+  // Use useCallback to prevent function recreation on every render
+  const handleNameChange = useCallback(
+    (e) => {
+      setCommentData((prev) => ({ ...prev, name: e.target.value }))
+    },
+    [setCommentData],
+  )
+
+  const handleCommentChange = useCallback(
+    (e) => {
+      setCommentData((prev) => ({ ...prev, comment: e.target.value }))
+    },
+    [setCommentData],
+  )
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6 lg:p-8 mt-8">
+      <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Leave a Comment</h3>
+      <div className="space-y-6">
+        <div>
+          <label htmlFor="comment-name" className="block text-sm font-medium text-gray-700 mb-3">
+            Your Name *
+          </label>
+          <input
+            id="comment-name"
+            type="text"
+            placeholder="Enter your full name"
+            className="w-full px-4 py-4 sm:px-5 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 text-base sm:text-lg bg-gray-50 focus:bg-white"
+            value={commentData.name}
+            onChange={handleNameChange}
+            autoComplete="name"
+            disabled={isSubmitting}
+          />
+        </div>
+        <div>
+          <label htmlFor="comment-text" className="block text-sm font-medium text-gray-700 mb-3">
+            Your Comment *
+          </label>
+          <textarea
+            id="comment-text"
+            placeholder="Share your thoughts about this article... Feel free to write as much as you'd like!"
+            rows={mobile === "mobile" ? 6 : 8}
+            className="w-full px-4 py-4 sm:px-5 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y transition-all duration-200 text-base sm:text-lg bg-gray-50 focus:bg-white min-h-[120px] sm:min-h-[150px]"
+            value={commentData.comment}
+            onChange={handleCommentChange}
+            autoComplete="off"
+            disabled={isSubmitting}
+          />
+          <div className="mt-2 text-sm text-gray-500">{commentData.comment.length} characters</div>
+        </div>
+        <button
+          onClick={addComment}
+          disabled={isSubmitting || !commentData.name.trim() || !commentData.comment.trim()}
+          className="w-full sm:w-auto bg-red-600 hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-4 px-8 rounded-lg transition-colors duration-200 text-base sm:text-lg"
+        >
+          {isSubmitting ? "Submitting..." : "Submit Comment"}
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// Move AuthorSection outside as well for consistency
+const AuthorSection = ({ final }) => (
+  <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-100 shadow-lg p-4 sm:p-6 lg:p-8 mt-12">
+    <div className="flex items-center mb-4">
+      <svg className="h-6 w-6 text-red-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+        />
+      </svg>
+      <h3 className="text-lg sm:text-xl font-bold text-red-700 uppercase tracking-wide">About the Author</h3>
+    </div>
+    <div className="flex flex-col sm:flex-row items-start">
+      <div className="relative mb-4 sm:mb-0 sm:mr-6">
+        <img
+          src={final.author.profile_image || "/placeholder.svg"}
+          alt={final?.author?.fullname}
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg object-cover flex-shrink-0"
+        />
+        <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 border-3 border-white rounded-full flex items-center justify-center">
+          <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fillRule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
+      <div className="flex-1">
+        <h4 className="font-bold text-gray-900 text-xl mb-1">{final.author.fullname}</h4>
+        <p className="text-base text-red-600 font-medium mb-3">{final.author.badge}</p>
+        <p className="text-base text-gray-700 leading-relaxed mb-4">
+          {final.author.description ||
+            "Expert education consultant specializing in international education and study abroad programs with years of experience helping students achieve their academic goals."}
+        </p>
+        <div className="flex items-center text-sm text-gray-600">
+          <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          Verified Education Expert
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
 function Post({ data, datac }) {
   const router = useRouter()
   const [mobile, setMobile] = useState("desktop")
@@ -34,6 +151,39 @@ function Post({ data, datac }) {
   const [estimatedReadTime, setEstimatedReadTime] = useState("5 min read")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const final = datac.data[0]
+
+  // Use useCallback for functions that are passed to child components
+  const handleSetCommentData = useCallback((updater) => {
+    setCommentData(updater)
+  }, [])
+
+  const addComment = useCallback(async () => {
+    if (!commentData.name.trim() || !commentData.comment.trim()) {
+      alert("Please fill in all required fields")
+      return
+    }
+
+    setIsSubmitting(true)
+    const newComment = {
+      post_id: final.id,
+      user: commentData.name.trim(),
+      text: commentData.comment.trim(),
+      isApproved: false, // Comments need admin approval
+      isReply: false,
+      created_at: new Date().toISOString(),
+    }
+
+    const { data, error } = await supabase.from("comments").insert(newComment).select()
+
+    if (data && data[0]) {
+      // Clear form after successful submission
+      setCommentData({ name: "", comment: "" })
+      alert("Comment submitted successfully! It will appear after admin approval.")
+    } else {
+      alert("Error submitting comment. Please try again.")
+    }
+    setIsSubmitting(false)
+  }, [commentData, final?.id])
 
   useEffect(() => {
     function setWidth() {
@@ -66,7 +216,6 @@ function Post({ data, datac }) {
     window.addEventListener("scroll", updateProgress)
     window.addEventListener("resize", setWidth)
     window.addEventListener("load", setWidth)
-
     setWidth()
 
     return () => {
@@ -91,7 +240,6 @@ function Post({ data, datac }) {
       data.map((i, id) => {
         return React.createElement(components[i.component], { ...i.props, key: id })
       })
-
     return getOb()
   }
 
@@ -136,40 +284,9 @@ function Post({ data, datac }) {
     }
   }, [final])
 
-  const addComment = async () => {
-    if (!commentData.name.trim() || !commentData.comment.trim()) {
-      alert("Please fill in all required fields")
-      return
-    }
-
-    setIsSubmitting(true)
-
-    const newComment = {
-      post_id: final.id,
-      user: commentData.name.trim(),
-      text: commentData.comment.trim(),
-      isApproved: false, // Comments need admin approval
-      isReply: false,
-      created_at: new Date().toISOString(),
-    }
-
-    const { data, error } = await supabase.from("comments").insert(newComment).select()
-
-    if (data && data[0]) {
-      // Clear form after successful submission
-      setCommentData({ name: "", comment: "" })
-      alert("Comment submitted successfully! It will appear after admin approval.")
-    } else {
-      alert("Error submitting comment. Please try again.")
-    }
-
-    setIsSubmitting(false)
-  }
-
   const handleShare = (platform) => {
     const url = `https://www.goeduabroad.com/post/${final?.slug}`
     const title = final?.title
-
     switch (platform) {
       case "twitter":
         window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`)
@@ -187,110 +304,8 @@ function Post({ data, datac }) {
         navigator.clipboard.writeText(url)
         alert("Link copied to clipboard!")
     }
-
     setShowShareMenu(false)
   }
-
-  // Enhanced comment form component with better responsive design
-  const CommentForm = () => (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6 lg:p-8 mt-8">
-      <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Leave a Comment</h3>
-      <div className="space-y-6">
-        <div>
-          <label htmlFor="comment-name" className="block text-sm font-medium text-gray-700 mb-3">
-            Your Name *
-          </label>
-          <input
-            id="comment-name"
-            type="text"
-            placeholder="Enter your full name"
-            className="w-full px-4 py-4 sm:px-5 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 text-base sm:text-lg bg-gray-50 focus:bg-white"
-            value={commentData.name}
-            onChange={(e) => setCommentData((prev) => ({ ...prev, name: e.target.value }))}
-            autoComplete="name"
-            disabled={isSubmitting}
-          />
-        </div>
-        <div>
-          <label htmlFor="comment-text" className="block text-sm font-medium text-gray-700 mb-3">
-            Your Comment *
-          </label>
-          <textarea
-            id="comment-text"
-            placeholder="Share your thoughts about this article... Feel free to write as much as you'd like!"
-            rows={mobile === "mobile" ? 6 : 8}
-            className="w-full px-4 py-4 sm:px-5 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y transition-all duration-200 text-base sm:text-lg bg-gray-50 focus:bg-white min-h-[120px] sm:min-h-[150px]"
-            value={commentData.comment}
-            onChange={(e) => setCommentData((prev) => ({ ...prev, comment: e.target.value }))}
-            autoComplete="off"
-            disabled={isSubmitting}
-          />
-          <div className="mt-2 text-sm text-gray-500">{commentData.comment.length} characters</div>
-        </div>
-        <button
-          onClick={addComment}
-          disabled={isSubmitting || !commentData.name.trim() || !commentData.comment.trim()}
-          className="w-full sm:w-auto bg-red-600 hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-4 px-8 rounded-lg transition-colors duration-200 text-base sm:text-lg"
-        >
-          {isSubmitting ? "Submitting..." : "Submit Comment"}
-        </button>
-      </div>
-    </div>
-  )
-
-  // Enhanced Author section component with better mobile layout
-  const AuthorSection = () => (
-    <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-100 shadow-lg p-4 sm:p-6 lg:p-8 mt-12">
-      <div className="flex items-center mb-4">
-        <svg className="h-6 w-6 text-red-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-          />
-        </svg>
-        <h3 className="text-lg sm:text-xl font-bold text-red-700 uppercase tracking-wide">About the Author</h3>
-      </div>
-      <div className="flex flex-col sm:flex-row items-start">
-        <div className="relative mb-4 sm:mb-0 sm:mr-6">
-          <img
-            src={final.author.profile_image || "/placeholder.svg"}
-            alt={final?.author?.fullname}
-            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg object-cover flex-shrink-0"
-          />
-          <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 border-3 border-white rounded-full flex items-center justify-center">
-            <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className="flex-1">
-          <h4 className="font-bold text-gray-900 text-xl mb-1">{final.author.fullname}</h4>
-          <p className="text-base text-red-600 font-medium mb-3">{final.author.badge}</p>
-          <p className="text-base text-gray-700 leading-relaxed mb-4">
-            {final.author.description ||
-              "Expert education consultant specializing in international education and study abroad programs with years of experience helping students achieve their academic goals."}
-          </p>
-          <div className="flex items-center text-sm text-gray-600">
-            <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            Verified Education Expert
-          </div>
-        </div>
-      </div>
-    </div>
-  )
 
   return (
     <DefaultLayout isSideBar={true} isHomepage={false} cat={data.data} isActivePassive={true}>
@@ -332,7 +347,6 @@ function Post({ data, datac }) {
         <PopupLeadForm />
 
         {/* Hero section - Enhanced mobile responsiveness */}
-        {/* Hero section - Fixed mobile responsiveness without white space */}
         <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-12 mt-4 sm:mt-8 shadow-2xl">
           <div className="relative">
             <img
@@ -452,51 +466,42 @@ function Post({ data, datac }) {
               font-size: 16px !important;
               line-height: 1.7 !important;
             }
-
             .prose h2 {
               font-size: 20px !important;
               margin-top: 2rem !important;
               margin-bottom: 1rem !important;
             }
-
             .prose h3 {
               font-size: 18px !important;
               margin-top: 1.5rem !important;
               margin-bottom: 0.75rem !important;
             }
-
             @media (min-width: 640px) {
               .prose p,
               .prose li {
                 font-size: 18px !important;
                 line-height: 1.6 !important;
               }
-
               .prose h2 {
                 font-size: 24px !important;
               }
-
               .prose h3 {
                 font-size: 22px !important;
               }
             }
-
             @media (min-width: 1024px) {
               .prose p,
               .prose li {
                 font-size: 19px !important;
               }
-
               .prose h2 {
                 font-size: 26px !important;
               }
-
               .prose h3 {
                 font-size: 24px !important;
               }
             }
           `}</style>
-
           {final.MarkdownData ? (
             <ReactMarkdown className="article-content" remarkPlugins={[remarkGfm]}>
               {final.MarkdownData}
@@ -507,14 +512,13 @@ function Post({ data, datac }) {
         </div>
 
         {/* Author section */}
-        <AuthorSection />
+        <AuthorSection final={final} />
 
         {/* Comments section - Enhanced mobile layout */}
         <div className="mt-12 sm:mt-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
             Comments ({comments?.length || 0})
           </h2>
-
           {comments && comments.length > 0 ? (
             <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-12">
               {comments
@@ -560,8 +564,14 @@ function Post({ data, datac }) {
             </div>
           )}
 
-          {/* Enhanced Comment form */}
-          <CommentForm />
+          {/* Enhanced Comment form - Now using the external component */}
+          <CommentForm
+            commentData={commentData}
+            setCommentData={handleSetCommentData}
+            addComment={addComment}
+            isSubmitting={isSubmitting}
+            mobile={mobile}
+          />
         </div>
 
         {/* Related posts - Enhanced mobile layout */}
