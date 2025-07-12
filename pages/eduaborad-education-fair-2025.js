@@ -129,7 +129,7 @@ export default function StudyAbroadFair() {
               {/* Full width banner at the top */}
               <div className="w-full">
                 <img
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751542308/Education_banner_1_nuj7z3.jpg"
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1752296413/new_event_banner1_mupa1f.png"
                   alt="Study Abroad Fair Banner"
                   className="w-full h-auto shadow-lg"
                 />
