@@ -701,6 +701,18 @@ async function submitGetStarted(a){
         <meta name="description" content="Study in Abroad" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/edufavicon.svg" />
+          <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "EduAbroad",
+              url: "https://www.goeduabroad.com",
+              logo: "https://www.goeduabroad.com/edufavicon.svg",
+            }),
+          }}
+        />
         
       </Head>
       <DefaultLayout scroll={300}>
