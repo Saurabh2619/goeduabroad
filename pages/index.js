@@ -697,11 +697,13 @@ async function submitGetStarted(a){
   return (
     <>
       <Head>
-        <title>EduAbroad | Best Study Abroad Consultant in India - Rated #1</title>
+        <title>EduAbroad | Study in Abroad</title>
         <meta name="description" content="Study in Abroad" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/edufavicon.svg" />
-          <script
+        
+        {/* ✅ Structured data for Google logo */}
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -709,11 +711,10 @@ async function submitGetStarted(a){
               "@type": "Organization",
               name: "EduAbroad",
               url: "https://www.goeduabroad.com",
-              logo: "https://www.goeduabroad.com/edufavicon.svg",
+              logo: "https://www.goeduabroad.com/edufavicon.png", // replace with real branding logo if needed
             }),
           }}
         />
-        
       </Head>
       <DefaultLayout scroll={300}>
       
