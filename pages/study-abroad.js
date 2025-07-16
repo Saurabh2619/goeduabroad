@@ -624,10 +624,10 @@ function validateEmail(email) {
   <p>Hours Served<br/><span className={styles.numbers}>{students*3}</span></p>
 </div> */}
 <div>
-  <div className={styles.progress}>
+  {/* <div className={styles.progress}>
     <div className={styles.progress_inner} style={{width:formData ? Object.keys(formData).length*100/5 +"%" : '0%'}}><p>Form Progress : {formData ? Object.entries(formData).length*100/5 +"%" : '0%'}</p></div>
  {formData && Object.keys(formData).length*100/5 == 100 ?  <p style={{right:'0',left:'unset'}}>Done</p>:''}
-  </div>
+  </div> */}
  
 </div>
 </div>
@@ -636,7 +636,23 @@ function validateEmail(email) {
 <h1 className={styles.team_heading}>Register Now to Schedule Study Abroad Consultation</h1>
 <input name={"name"} maxLength={30} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
 <input name={"email"} maxLength={50} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
-<input name={"phone"} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:e.target.value})) }}/>
+<input
+  name="phone"
+  className={
+    styles.input +
+    " " +
+    (validatePhone(formData?.phone || '+918888888888') ? '' : styles.fielderror)
+  }
+  placeholder="Enter your Phone Number"
+  type="text"
+  inputMode="numeric"
+  pattern="[0-9]*"
+  value={formData?.phone || ''}
+  onChange={(e) => {
+    const onlyDigits = e.target.value.replace(/\D/g, ''); // remove non-digits
+    setFormData((res) => ({ ...res, phone: onlyDigits }));
+  }}
+/>
 <input name={"city"} maxLength={20} pattern="[a-zA-Z]+" className={styles.input}  placeholder={"Enter your City"} type={"text"} value={formData && formData.city} onChange={(e)=>{setFormData(res=>({...res,city:removeNumbers(e.target.value)})) }}/>
 <CustomSelect fullWidth z={9} full="true" defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
 <CustomSelect fullWidth z={7} full="true" defaultText="What do you wish to pursue?" noPadding={true} objects={programs} setSelect={(r)=>{setFormData(res=>({...res,program:r}))}}/>
