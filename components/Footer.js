@@ -13,7 +13,7 @@ const contacts = props?.contacts
     title:'LinkedIn',
 },
 {
-    link:'https://www.instagram.com/goeduabroad/',
+    link:'https://www.instagram.com/goeduabroadofficial/',
     title:'Instagram',
 },
 {
