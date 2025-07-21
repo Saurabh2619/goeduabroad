@@ -632,17 +632,24 @@ function Post({ data, datac }) {
               and other countries.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-              <Button text="Book a Free Consultation" />
-              <a
-  href="/EduAbroad_Brochure%20(1).pdf"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-medium py-3 px-6 sm:px-8 rounded-xl transition-all duration-300 hover:shadow-lg text-sm sm:text-base">
-    Download Brochure
-  </button>
-</a>
-            </div>
+  <a
+    href="https://www.goeduabroad.com/study-abroad"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button text="Book a Free Consultation" />
+  </a>
+
+  <a
+    href="/EduAbroad_Brochure%20(1).pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-medium py-3 px-6 sm:px-8 rounded-xl transition-all duration-300 hover:shadow-lg text-sm sm:text-base">
+      Download Brochure
+    </button>
+  </a>
+</div>
           </div>
         </div>
       </div>
