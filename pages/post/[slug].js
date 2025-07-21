@@ -463,7 +463,7 @@ function Post({ data, datac }) {
           <style jsx global>{`
             .prose p,
             .prose li {
-              font-size: 16px !important;
+              font-size: 20px !important;
               line-height: 1.7 !important;
             }
             .prose h2 {
@@ -479,8 +479,8 @@ function Post({ data, datac }) {
             @media (min-width: 640px) {
               .prose p,
               .prose li {
-                font-size: 18px !important;
-                line-height: 1.6 !important;
+                font-size: 20px !important;
+                line-height: 1.2 !important;
               }
               .prose h2 {
                 font-size: 24px !important;
@@ -492,7 +492,7 @@ function Post({ data, datac }) {
             @media (min-width: 1024px) {
               .prose p,
               .prose li {
-                font-size: 22px !important;
+                font-size: 28px !important;
               }
               .prose h2 {
                 font-size: 28px !important;
