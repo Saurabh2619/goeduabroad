@@ -492,13 +492,13 @@ function Post({ data, datac }) {
             @media (min-width: 1024px) {
               .prose p,
               .prose li {
-                font-size: 19px !important;
+                font-size: 22px !important;
               }
               .prose h2 {
-                font-size: 26px !important;
+                font-size: 28px !important;
               }
               .prose h3 {
-                font-size: 24px !important;
+                font-size: 26px !important;
               }
             }
           `}</style>
