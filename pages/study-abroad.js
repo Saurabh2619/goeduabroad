@@ -401,7 +401,7 @@ async function triggerInterakt(){
 // from here the code of Swift crm code start
 
 const sendLead = async (leadData) => {
-  const { firstname, phone, email, city } = leadData;
+  const { firstname, phone, email,city } = leadData;
 
   if (!firstname || !phone || !email || !city ) {
     throw new Error("Missing required fields: firstname, phone, and email are required.");
