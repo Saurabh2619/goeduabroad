@@ -8,6 +8,7 @@ import { useState } from "react"
 import axios from "axios"
 import { Input, Button } from "@nextui-org/react"
 import { toast } from "react-hot-toast"
+import { gtag_report_conversion } from '../utils/googleTag'
 
 export default function StudyAbroadFair() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -49,7 +50,6 @@ export default function StudyAbroadFair() {
     setIsSubmitting(true)
 
     try {
-      // Map form data to match the sendLead function requirements
       const leadData = {
         firstname: `${formData.name} ~~Education Fair 2025`,
         phone: formData.phone,
@@ -58,7 +58,26 @@ export default function StudyAbroadFair() {
       }
 
       await sendLead(leadData)
+
+      // Trigger Google Tag Conversion (google tag place)
+     xhr.addEventListener("readystatechange", function() {
+
+      if (this.readyState === 4) {
+          
+          setLoader(false)
+          setNotification('Submitted Successfully')
+          gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {
+            
+            // Optionally, you can add any post-conversion logic here
+          });
+          
+          setSubmitted(true)
+
+      }
+  });
+
       setIsSubmitted(true)
+
       // Reset form
       setFormData({
         name: "",
