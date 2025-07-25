@@ -59,22 +59,8 @@ export default function StudyAbroadFair() {
 
       await sendLead(leadData)
 
-      // Trigger Google Tag Conversion (google tag place)
-     xhr.addEventListener("readystatechange", function() {
-
-      if (this.readyState === 4) {
-          
-          setLoader(false)
-          setNotification('Submitted Successfully')
-          gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {
-            
-            // Optionally, you can add any post-conversion logic here
-          });
-          
-          setSubmitted(true)
-
-      }
-  });
+      // Trigger Google Tag Conversion
+      gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp')
 
       setIsSubmitted(true)
 
@@ -89,6 +75,7 @@ export default function StudyAbroadFair() {
         neetAppeared: "",
         intake: "",
       })
+
       toast.success("Thank you! We'll contact you shortly.")
     } catch (error) {
       console.error("Error submitting form:", error)
