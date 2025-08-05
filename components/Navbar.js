@@ -193,7 +193,7 @@ const links = [{
 
 function checkwidth(d){
 
-    if(window.scrollY >  window.outerHeight){
+    if(window.scrollY >  50){
         setActive(true)
     }else{
         setActive(false)
