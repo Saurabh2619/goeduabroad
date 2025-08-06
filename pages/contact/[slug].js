@@ -239,21 +239,30 @@ function sanitizePhone(a){
    <p> Address : {a?.address}</p>
     </div>
     
- { slug == "delhi"?  <>
-<h2>Contact Us</h2>
-<input name={"name"} className={styles.input} placeholder={"Enter your Full Name"} type={"text"} value={formData && formData.fullname} onChange={(e)=>{setFormData(res=>({...res,fullname:e.target.value})) }}/>
-<input name={"email"} className={styles.input + " " + (validateEmail(formData ? formData.email : 'test@gm.co') ? '' : styles.fielderror)} placeholder={"Enter your Email Address"} type={"text"} value={formData && formData.email} onChange={(e)=>{setFormData(res=>({...res,email:e.target.value})) }}/>
-<input name={"phone"} maxLength={10} className={styles.input + " " + (validatePhone(formData ? formData.phone : '+918888888888') ? '' : styles.fielderror)} placeholder={"Enter your Phone Number"} type={"text"} value={formData && formData.phone} onChange={(e)=>{setFormData(res=>({...res,phone:sanitizePhone(e.target.value)})) }}/>
-<CustomSelect z={10} fullWidth defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r)=>{setFormData(res=>({...res,year:r}))}}/>
-<CustomSelect z={9} fullWidth defaultText="What do you wish to pursue?" noPadding={true} objects={programs} setSelect={(r)=>{setFormData(res=>({...res,pursue:r}))}}/>
-{formData  && formData.fullname && formData.phone && formData.email && formData.goal? '':<p className={styles.error}>Please fill all the fields</p>}
-<div onClick={SubmitContact} className={styles.submit}>
-{loading? 
-    <svg width="800px" height="800px" viewBox="0 0 256 256" id="Flat" fill="white">
-  <path d="M64,136H32a8,8,0,0,1,0-16H64a8,8,0,0,1,0,16ZM173.25488,90.74512a7.97769,7.97769,0,0,0,5.65723-2.34278l22.62695-22.62695a8.00052,8.00052,0,1,0-11.31445-11.31445l-22.627,22.627a8,8,0,0,0,5.65722,13.65723ZM65.77539,54.46094A8.00052,8.00052,0,0,0,54.46094,65.77539l22.627,22.62695A8.00052,8.00052,0,0,0,88.40234,77.08789Zm11.3125,113.13672-22.62695,22.627a8.00052,8.00052,0,0,0,11.31445,11.31445l22.62695-22.62695a8.00052,8.00052,0,0,0-11.31445-11.31445ZM224,120H192a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16Zm-45.08789,47.59766a8.00052,8.00052,0,0,0-11.31445,11.31445l22.627,22.62695a8.00052,8.00052,0,1,0,11.31445-11.31445ZM128,184a8.00039,8.00039,0,0,0-8,8v32a8,8,0,0,0,16,0V192A8.00039,8.00039,0,0,0,128,184Zm0-160a8.00039,8.00039,0,0,0-8,8V64a8,8,0,0,0,16,0V32A8.00039,8.00039,0,0,0,128,24Z"/>
-</svg>
-:''}
-    SUBMIT</div></>:''}
+<>
+  <h2>Contact Us</h2>
+  <input name="name" className={styles.input} placeholder="Enter your Full Name" type="text" value={formData?.fullname || ''} onChange={(e) => setFormData(res => ({ ...res, fullname: e.target.value }))} />
+
+  <input name="email" required className={`${styles.input} ${validateEmail(formData?.email || '') ? '' : styles.fielderror}`} style={{ backgroundColor: 'white' }} placeholder="Enter your Email Address" type="text" value={formData?.email || ''} onChange={(e) => setFormData(res => ({ ...res, email: e.target.value }))} />
+
+  <input name="phone" maxLength={10} className={`${styles.input} ${validatePhone(formData?.phone || '') ? '' : styles.fielderror}`} style={{ backgroundColor: 'white' }} placeholder="Enter your Phone Number" type="text" value={formData?.phone || ''} onChange={(e) => setFormData(res => ({ ...res, phone: sanitizePhone(e.target.value) }))} />
+
+  <CustomSelect z={10} fullWidth defaultText="When are you planning to move abroad for Studies?" noPadding={true} objects={years} setSelect={(r) => setFormData(res => ({ ...res, year: r }))} />
+
+  <CustomSelect z={9} fullWidth defaultText="What do you wish to pursue?" noPadding={true} objects={programs} setSelect={(r) => setFormData(res => ({ ...res, pursue: r }))} />
+
+  {formData && formData.fullname && formData.phone && formData.email && formData.goal ? '' : <p className={styles.error}>Please fill all the fields</p>}
+
+  <div onClick={SubmitContact} className={styles.submit}>
+    {loading ? (
+      <svg width="800px" height="800px" viewBox="0 0 256 256" id="Flat" fill="white">
+        <path d="M64,136H32a8,8,0,0,1,0-16H64a8,8,0,0,1,0,16ZM173.25488,90.74512a7.97769,7.97769,0,0,0,5.65723-2.34278l22.62695-22.62695a8.00052,8.00052,0,1,0-11.31445-11.31445l-22.627,22.627a8,8,0,0,0,5.65722,13.65723ZM65.77539,54.46094A8.00052,8.00052,0,0,0,54.46094,65.77539l22.627,22.62695A8.00052,8.00052,0,0,0,88.40234,77.08789Zm11.3125,113.13672-22.62695,22.627a8.00052,8.00052,0,0,0,11.31445,11.31445l22.62695-22.62695a8.00052,8.00052,0,0,0-11.31445-11.31445ZM224,120H192a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16Zm-45.08789,47.59766a8.00052,8.00052,0,0,0-11.31445,11.31445l22.627,22.62695a8.00052,8.00052,0,1,0,11.31445-11.31445ZM128,184a8.00039,8.00039,0,0,0-8,8v32a8,8,0,0,0,16,0V192A8.00039,8.00039,0,0,0,128,184Zm0-160a8.00039,8.00039,0,0,0-8,8V64a8,8,0,0,0,16,0V32A8.00039,8.00039,0,0,0,128,24Z" />
+      </svg>
+    ) : ''}
+    SUBMIT
+  </div>
+</>
+
     </div>
 
 </div>
