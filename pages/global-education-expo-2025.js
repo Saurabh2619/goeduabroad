@@ -4,7 +4,7 @@ import DefaultLayout from "../layouts/DefaultLayout"
 import Head from "next/head"
 import { Users, Gift, GraduationCap, Phone, Mail, Award } from "lucide-react"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 import { Input, Button } from "@nextui-org/react"
 import { toast } from "react-hot-toast"
@@ -13,6 +13,7 @@ import { gtag_report_conversion } from "../utils/googleTag"
 export default function StudyAbroadFair() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +24,30 @@ export default function StudyAbroadFair() {
     neetAppeared: "",
     intake: "",
   })
+
+  // Countdown Timer Effect
+  useEffect(() => {
+    const eventDate = new Date("2025-09-27T00:00:00") // Target Event Date
+
+    const timer = setInterval(() => {
+      const now = new Date()
+      const diff = eventDate - now
+
+      if (diff <= 0) {
+        clearInterval(timer)
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+      } else {
+        setTimeLeft({
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((diff / 1000 / 60) % 60),
+          seconds: Math.floor((diff / 1000) % 60),
+        })
+      }
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
 
   // SWIFT AMS sendlead data start here
   const sendLead = async (leadData) => {
@@ -141,182 +166,208 @@ export default function StudyAbroadFair() {
               </div>
 
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  {/* Top Section with Form + Highlights */}
-  <motion.section
-    className="relative py-6 sm:py-8 md:py-12 mb-6 sm:mb-8 md:mb-12"
-    {...fadeIn}
-  >
-    <div className="grid lg:grid-cols-4 gap-8 lg:gap-12 items-start">
-      {/* Left side - Form (50%) */}
-      <motion.div
-        className="lg:col-span-2 bg-white/95 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-3xl shadow-2xl w-full border border-white/20 relative overflow-hidden"
-        id="form"
-        variants={fadeIn}
-      >
-        <div className="relative z-10">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-[#a61d31] to-[#C82333] bg-clip-text text-transparent mb-2">
-              Register for the Expo
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Seats are limited — fill the form to secure your spot!
-            </p>
-          </div>
+                {/* Top Section with Form + Highlights */}
+                <motion.section
+                  className="relative py-4 sm:py-6 md:py-10 mb-4 sm:mb-6 md:mb-2"
+                  {...fadeIn}
+                >
+                  <div className="grid lg:grid-cols-4 gap-8 lg:gap-12 items-start">
+                    {/* LEFT SIDE: Form */}
+                    <motion.div
+                      className="lg:col-span-2 bg-white/95 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-3xl shadow-2xl w-full border border-white/20 relative overflow-hidden"
+                      id="form"
+                      variants={fadeIn}
+                    >
+                      <div className="relative z-10">
+                        <div className="text-center mb-6">
+                          <h3 className="text-2xl font-bold bg-gradient-to-r from-[#a61d31] to-[#C82333] bg-clip-text text-transparent mb-2">
+                            Register for the Expo
+                          </h3>
+                          <p className="text-gray-600 text-sm">
+                            Seats are limited — fill the form to secure your spot!
+                          </p>
+                        </div>
 
-          {/* Registration Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-4">
-              <Input
-                name="name"
-                label={
-                  <span>
-                    Full Name <span className="text-red-600 font-bold">*</span>
-                  </span>
-                }
-                placeholder="Enter your full name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
-              <Input
-                name="email"
-                type="email"
-                label={
-                  <span>
-                    Email Address{" "}
-                    <span className="text-red-600 font-bold">*</span>
-                  </span>
-                }
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-              />
-              <Input
-                name="phone"
-                label={
-                  <span>
-                    Phone Number{" "}
-                    <span className="text-red-600 font-bold">*</span>
-                  </span>
-                }
-                placeholder="Enter your phone number"
-                value={formData.phone}
-                onChange={handleInputChange}
-                required
-              />
-              <Input
-                name="city"
-                label={
-                  <span>
-                    City <span className="text-red-600 font-bold">*</span>
-                  </span>
-                }
-                placeholder="Enter your city"
-                value={formData.city}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+                        {/* Registration Form */}
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                          <div className="space-y-4">
+                            <Input
+                              name="name"
+                              label={
+                                <span>
+                                  Full Name <span className="text-red-600 font-bold">*</span>
+                                </span>
+                              }
+                              placeholder="Enter your full name"
+                              value={formData.name}
+                              onChange={handleInputChange}
+                              required
+                            />
+                            <Input
+                              name="email"
+                              type="email"
+                              label={
+                                <span>
+                                  Email Address{" "}
+                                  <span className="text-red-600 font-bold">*</span>
+                                </span>
+                              }
+                              placeholder="Enter your email"
+                              value={formData.email}
+                              onChange={handleInputChange}
+                              required
+                            />
+                            <Input
+                              name="phone"
+                              type="tel"
+                              label={
+                                <span>
+                                  Phone Number{" "}
+                                  <span className="text-red-600 font-bold">*</span>
+                                </span>
+                              }
+                              placeholder="Enter your phone number"
+                              value={formData.phone}
+                              onChange={(e) => {
+                                const value = e.target.value
+                                // Allow only numbers and limit to 10 digits
+                                if (/^\d{0,10}$/.test(value)) {
+                                  handleInputChange(e)
+                                }
+                              }}
+                              maxLength={10}
+                              required
+                            />
+                            <Input
+                              name="city"
+                              label={
+                                <span>
+                                  City <span className="text-red-600 font-bold">*</span>
+                                </span>
+                              }
+                              placeholder="Enter your city"
+                              value={formData.city}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
 
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="pt-3"
-            >
-              <Button
-                type="submit"
-                className="w-full bg-gradient-to-r from-[#a61d31] via-[#C82333] to-[#a61d31] text-white font-bold py-3 text-base shadow-2xl"
-                isLoading={isSubmitting}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Registering..." : <>🎟️ Register Now - FREE</>}
-              </Button>
-            </motion.div>
-          </form>
-        </div>
-      </motion.div>
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="pt-3"
+                          >
+                            <Button
+                              type="submit"
+                              className="w-full bg-gradient-to-r from-[#a61d31] via-[#C82333] to-[#a61d31] text-white font-bold py-3 text-base shadow-2xl"
+                              isLoading={isSubmitting}
+                              disabled={isSubmitting}
+                            >
+                              {isSubmitting ? "Registering..." : <>🎟️ Register Now - FREE</>}
+                            </Button>
+                          </motion.div>
+                        </form>
+                      </div>
+                    </motion.div>
 
-      {/* Right side - Dream Big Global section (50%) */}
-      <motion.div
-        className="lg:col-span-2 flex flex-col justify-center"
-        variants={staggerChildren}
-      >
-        <motion.h2
-  className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-[#a61d31] to-[#C82333] bg-clip-text text-transparent mb-8 leading-snug"
-  variants={fadeIn}
->
-  ✨DREAM BIG, STUDY GLOBAL
-</motion.h2>
+                    {/* RIGHT SIDE - Event Highlights */}
+                    <motion.div
+                      className="lg:col-span-2 flex flex-col justify-center"
+                      variants={staggerChildren}
+                    >
+                      <motion.h2
+                        className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-[#a61d31] to-[#C82333] bg-clip-text text-transparent mb-8 leading-snug"
+                        variants={fadeIn}
+                      >
+                        ✨DREAM BIG, STUDY GLOBAL
+                      </motion.h2>
 
-        <motion.div
-          className="space-y-5 mb-8"
-          variants={staggerChildren}
-        >
-          <motion.div
-            className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
-            variants={fadeIn}
-          >
-            <Award className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
-            <p className="text-lg">
-              🏆 Fast-Track Admissions — Same-day* spot offers
-            </p>
-          </motion.div>
+                      <motion.div
+                        className="space-y-5 mb-8"
+                        variants={staggerChildren}
+                      >
+                        <motion.div
+                          className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                          variants={fadeIn}
+                        >
+                          <Award className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
+                          <p className="text-lg">
+                            🏆 Fast-Track Admissions — Same-day* spot offers
+                          </p>
+                        </motion.div>
 
-          <motion.div
-            className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
-            variants={fadeIn}
-          >
-            <Gift className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
-            <p className="text-lg">
-              🎁 Lucky Draws — Smart Watches, Travel Vouchers & more
-            </p>
-          </motion.div>
+                        <motion.div
+                          className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                          variants={fadeIn}
+                        >
+                          <Gift className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
+                          <p className="text-lg">
+                            🎁 Lucky Draws — Smart Watches, Travel Vouchers & more
+                          </p>
+                        </motion.div>
 
-          <motion.div
-            className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
-            variants={fadeIn}
-          >
-            <GraduationCap className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
-            <p className="text-lg">
-              🎓 Scholarships up to 50% + Fee Waivers**
-            </p>
-          </motion.div>
+                        <motion.div
+                          className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                          variants={fadeIn}
+                        >
+                          <GraduationCap className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
+                          <p className="text-lg">
+                            🎓 Scholarships up to 50% + Fee Waivers**
+                          </p>
+                        </motion.div>
 
-          <motion.div
-            className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
-            variants={fadeIn}
-          >
-            <Users className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
-            <p className="text-lg">
-              🌐 Workshop: "Study Destinations Decoded"
-            </p>
-          </motion.div>
+                        <motion.div
+                          className="flex items-start space-x-4 p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                          variants={fadeIn}
+                        >
+                          <Users className="text-[#a61d31] w-6 h-6 flex-shrink-0 mt-1" />
+                          <p className="text-lg">
+                            🌐 Workshop: "Study Destinations Decoded"
+                          </p>
+                        </motion.div>
 
-          <motion.div
-            className="bg-gradient-to-r from-white to-gray-50 p-6 rounded-2xl shadow-lg border-l-4 border-[#a61d31] hover:shadow-xl transition-shadow"
-            variants={fadeIn}
-          >
-            <div className="flex items-start gap-4">
-              <div className="bg-[#a61d31]/10 p-2 rounded-lg flex-shrink-0">
-                <GraduationCap className="w-6 h-6 text-[#a61d31]" />
+                        <motion.div
+                          className="bg-gradient-to-r from-white to-gray-50 p-6 rounded-2xl shadow-lg border-l-4 border-[#a61d31] hover:shadow-xl transition-shadow"
+                          variants={fadeIn}
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="bg-[#a61d31]/10 p-2 rounded-lg flex-shrink-0">
+                              <GraduationCap className="w-6 h-6 text-[#a61d31]" />
+                            </div>
+                            <div>
+                              <p className="text-lg font-bold text-gray-800 mb-2">
+                                🌟 Learn directly from Dr. Swati Mishra
+                              </p>
+                              <p className="text-base text-gray-600">
+                                Cambridge - UK, MIT - USA | Founder, EduAbroad
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </motion.section>
+
+                {/* Countdown Section */}
+                <div className=" mb-12 text-center bg-gradient-to-r from-[#a61d31] via-[#C82333] to-[#a61d31] text-white p-6 rounded-2xl shadow-lg">
+                  <h2 className="text-2xl font-bold mb-4">⏳ Countdown to Event</h2>
+                  <div className="flex justify-center gap-6 text-lg md:text-xl font-semibold">
+                    <div className="bg-white text-[#a61d31] rounded-xl px-4 py-2 shadow-md">
+                      {timeLeft.days} <span className="block text-sm">Days</span>
+                    </div>
+                    <div className="bg-white text-[#a61d31] rounded-xl px-4 py-2 shadow-md">
+                      {timeLeft.hours} <span className="block text-sm">Hours</span>
+                    </div>
+                    <div className="bg-white text-[#a61d31] rounded-xl px-4 py-2 shadow-md">
+                      {timeLeft.minutes} <span className="block text-sm">Minutes</span>
+                    </div>
+                    <div className="bg-white text-[#a61d31] rounded-xl px-4 py-2 shadow-md">
+                      {timeLeft.seconds} <span className="block text-sm">Seconds</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="text-lg font-bold text-gray-800 mb-2">
-                  🌟 Learn directly from Dr. Swati Mishra
-                </p>
-                <p className="text-base text-gray-600">
-                  Cambridge - UK, MIT - USA | Founder, EduAbroad
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </div>
-  </motion.section>
-</div>
-
             </div>
           </div>
 
