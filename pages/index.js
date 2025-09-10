@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import CombinedSlider from './success-stories/combinedslider'
 
 
 import styles from './Home.module.css'
@@ -776,87 +777,11 @@ className={styles.content + " font-semibold"}>
 <img src='/camnew.svg' width={220} className={styles.camblogo}/></div>
       </div>
       <CardSection></CardSection>
-      <Section title="Testimonials" align="center" color="var(--brand-col1)">
 
-
-
-
-      <Swiper
-     modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={mobile === "mobile" ? 30 : mobile === "tablet" ?30 :10}
-      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 4}
-      loop={true}
-      loopedSlides={5}
-      autoplay={true}
-      slidesPerGroup={1}
-      simulateTouch={true}
-      pagination={{ 
-        el:".paginate2",
-        
-        clickable: true }}
-      
-      centeredSlides={false}
-      onSlideChange={() =>{}}
-      onSwiper={(swiper) => {}}
-      onInit={(swiper) => {
-       
-        swiper.navigation.update();
-      }}
-      navigation={{
-        nextEl: '.next',
-        prevEl: '.prev',
-        clickable:true,
-      }}
-   
-    >
-
-
-     
-      
-      
-
-
-   
-{/* <div className={styles.cardhold}> */}
-  {results && results.map((i,d)=>{
-
-    return <SwiperSlide key={i}>
-      <div className={styles.rcard} >
-      <img alt={i.college} src={i.image}/>
-      <div className={styles.rbadge}>{i.college}</div>
-      <div className={styles.cric} style={{backgroundImage:"url("+i.image+")"}}></div>
-      <div class={styles.cardcontent}>
-      <h2>{i.title} <span className={styles.country}>{i.country? i.country : ''}</span></h2>
-      
-      <p>{i.description}</p>
-      {i.video ? <ResponsiveIFrame
-      src={i.video}
-    />:''}
-      <div className={styles.stars +  " flex flex-row items-center justify-start"}>
-      {Array(i.stars ? i.stars : 0).fill().map((i,d)=>{
-return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
-
-    })}</div>
-    
-    </div>
-    </div></SwiperSlide>
-  })
-
-  }
-
- </Swiper>
-
-<div className={"paginate2"}></div>
-
-
-
-
-
-
-
-
-
+      <Section>
+        <CombinedSlider/>
       </Section>
+
 <Section>
 <GoogleReviews></GoogleReviews>
 </Section>
@@ -1108,7 +1033,87 @@ return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 1
 
 </Section>
 
+<Section title="Testimonials" align="center" color="var(--brand-col1)">
 
+
+
+
+      <Swiper
+     modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={mobile === "mobile" ? 30 : mobile === "tablet" ?30 :10}
+      slidesPerView={mobile === "mobile" ? 1 : mobile === "tablet" ? 2 : 4}
+      loop={true}
+      loopedSlides={5}
+      autoplay={true}
+      slidesPerGroup={1}
+      simulateTouch={true}
+      pagination={{ 
+        el:".paginate2",
+        
+        clickable: true }}
+      
+      centeredSlides={false}
+      onSlideChange={() =>{}}
+      onSwiper={(swiper) => {}}
+      onInit={(swiper) => {
+       
+        swiper.navigation.update();
+      }}
+      navigation={{
+        nextEl: '.next',
+        prevEl: '.prev',
+        clickable:true,
+      }}
+   
+    >
+
+
+     
+      
+      
+
+
+   
+{/* <div className={styles.cardhold}> */}
+  {results && results.map((i,d)=>{
+
+    return <SwiperSlide key={i}>
+      <div className={styles.rcard} >
+      <img alt={i.college} src={i.image}/>
+      <div className={styles.rbadge}>{i.college}</div>
+      <div className={styles.cric} style={{backgroundImage:"url("+i.image+")"}}></div>
+      <div class={styles.cardcontent}>
+      <h2>{i.title} <span className={styles.country}>{i.country? i.country : ''}</span></h2>
+      
+      <p>{i.description}</p>
+      {i.video ? <ResponsiveIFrame
+      src={i.video}
+    />:''}
+      <div className={styles.stars +  " flex flex-row items-center justify-start"}>
+      {Array(i.stars ? i.stars : 0).fill().map((i,d)=>{
+return <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.85 17.92" fill="#f7ae1e"><defs></defs><g id="Layer_1-2"><polygon class="cls-1" points="9.42 0 12.33 5.9 18.85 6.85 14.13 11.44 15.25 17.92 9.42 14.86 3.6 17.92 4.71 11.44 0 6.85 6.51 5.9 9.42 0"/></g></svg>
+
+    })}</div>
+    
+    </div>
+    </div></SwiperSlide>
+  })
+
+  }
+
+ </Swiper>
+
+<div className={"paginate2"}></div>
+
+
+
+
+
+
+
+
+
+      </Section>
 
 <Section title="Mentors" align="center" color="var(--brand-col1)">
   <Swiper
