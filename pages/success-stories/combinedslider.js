@@ -104,7 +104,7 @@ export default function CombinedSlider() {
                   <h2 className="font-sans text-lg font-bold text-primary">
                     {slide.title}
                   </h2>
-                  <p className="text-gray-700 text-sm">{slide.description}</p>
+                  <p className="text-gray-700 text-sm">{slide.description}</p> 
                 </CardBody>
               </Card>
             )}
