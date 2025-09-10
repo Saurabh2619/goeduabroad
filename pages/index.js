@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-// import CombinedSlider from './success-stories/combinedslider'
+import CombinedSlider from './success-stories/combinedslider'
 
 
 import styles from './Home.module.css'
@@ -778,9 +778,9 @@ className={styles.content + " font-semibold"}>
       </div>
       <CardSection></CardSection>
 
-      {/* <Section>
+      <Section>
         <CombinedSlider/>
-      </Section> */}
+      </Section>
 
 <Section>
 <GoogleReviews></GoogleReviews>
