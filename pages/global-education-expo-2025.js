@@ -159,7 +159,7 @@ export default function StudyAbroadFair() {
             <div className="w-full relative z-10">
               <div className="w-full">
                 <img
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1752296413/new_event_banner1_mupa1f.png"
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1757614213/GLOBAL_EDUCATION_EXPO_20205_1_dvaqay.jpg"
                   alt="Global Education Expo Banner"
                   className="w-full h-auto shadow-lg"
                 />
