@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabaseClient";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper";
+import { Autoplay } from "swiper"; // removed Pagination import
 import { Card, CardHeader, CardBody } from "@nextui-org/react";
 
 export default function CombinedSlider() {
@@ -11,13 +10,11 @@ export default function CombinedSlider() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch clg_form images
       const { data: clgForms, error: clgError } = await supabase
         .from("clg_form")
         .select("id, imgs")
         .limit(15);
 
-      // Fetch content (with full info)
       const { data: content, error: contentError } = await supabase
         .from("content")
         .select("id, image, title, description")
@@ -25,7 +22,6 @@ export default function CombinedSlider() {
         .limit(15);
 
       if (!clgError && !contentError) {
-        // Normalize data
         const formatted = [
           ...(clgForms || []).map((item) => ({
             id: `form-${item.id}`,
@@ -41,7 +37,6 @@ export default function CombinedSlider() {
           })),
         ];
 
-        // ✅ Remove duplicates by image URL
         const unique = Array.from(
           new Map(formatted.map((item) => [item.img, item])).values()
         );
@@ -59,12 +54,11 @@ export default function CombinedSlider() {
   return (
     <div className="w-full max-w-6xl mx-auto my-8">
       <h2 className="text-6xl font-serif font-bold text-center mb-12 text-primary">
-        Success
+        Success Stories
       </h2>
 
       <Swiper
-        modules={[Pagination, Autoplay]}
-        pagination={{ clickable: true }}
+        modules={[Autoplay]} // removed Pagination module
         autoplay={{ delay: 2500, disableOnInteraction: false }}
         spaceBetween={20}
         slidesPerView={1}
@@ -73,9 +67,8 @@ export default function CombinedSlider() {
           1024: { slidesPerView: 3 },
           1280: { slidesPerView: 4 },
         }}
-        loop={true}
-        // 👇 give padding for bullets to appear
-        className="pb-12 relative"
+        loop={true} // ✅ still looping
+        className="pb-4"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
@@ -115,21 +108,6 @@ export default function CombinedSlider() {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* 👇 Style bullets */}
-      <style jsx global>{`
-        .swiper-pagination-bullet {
-          background: #0d6efd !important; /* primary color */
-          opacity: 1;
-        }
-        .swiper-pagination-bullet-active {
-          background: #0a58ca !important;
-        }
-        .swiper-pagination {
-          bottom: 0 !important;
-          text-align: center;
-        }
-      `}</style>
     </div>
   );
 }
