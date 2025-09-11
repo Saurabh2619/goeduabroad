@@ -28,7 +28,7 @@ export default function CombinedSlider() {
         // Normalize data
         const formatted = [
           ...(clgForms || []).map((item) => ({
-            id: `form-${item.id}`, // prefix to avoid same ids
+            id: `form-${item.id}`,
             type: "clg_form",
             img: item.imgs,
           })),
@@ -74,7 +74,8 @@ export default function CombinedSlider() {
           1280: { slidesPerView: 4 },
         }}
         loop={true}
-        className="pb-12"
+        // 👇 give padding for bullets to appear
+        className="pb-12 relative"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
@@ -93,7 +94,10 @@ export default function CombinedSlider() {
                     className="rounded-t-md w-full h-36 object-cover 
                                transform transition-transform duration-500 ease-in-out 
                                hover:scale-105"
-                    src={slide.img ?? "https://static.toiimg.com/photo/62192417.cms"}
+                    src={
+                      slide.img ??
+                      "https://static.toiimg.com/photo/62192417.cms"
+                    }
                     alt={slide.title}
                   />
                   <div className="w-10 h-10 border-2 flex flex-col justify-center items-center text-sm border-white bg-primary text-white shadow-md shadow-primary rounded-full px-3 absolute right-2 top-2 font-sans font-bold -rotate-[15deg]">
@@ -104,13 +108,28 @@ export default function CombinedSlider() {
                   <h2 className="font-sans text-lg font-bold text-primary">
                     {slide.title}
                   </h2>
-                  <p className="text-gray-700 text-sm">{slide.description}</p> 
+                  <p className="text-gray-700 text-sm">{slide.description}</p>
                 </CardBody>
               </Card>
             )}
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* 👇 Style bullets */}
+      <style jsx global>{`
+        .swiper-pagination-bullet {
+          background: #0d6efd !important; /* primary color */
+          opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+          background: #0a58ca !important;
+        }
+        .swiper-pagination {
+          bottom: 0 !important;
+          text-align: center;
+        }
+      `}</style>
     </div>
   );
 }
