@@ -59,7 +59,7 @@ export default function CombinedSlider() {
   return (
     <div className="w-full max-w-6xl mx-auto my-8">
       <h2 className="text-6xl font-serif font-bold text-center mb-12 text-primary">
-        Success Stories
+        Success
       </h2>
 
       <Swiper
