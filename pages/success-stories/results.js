@@ -25,7 +25,10 @@ export default function Results({ data, clgForms }) {
                 className="w-full h-auto object-contain rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer"
               />
             ))}
+
+
           </div>
+            <h2 className="text-gray-500 text-lg font-sans mb-10">and many more...</h2>
 
           {/* Results Section */}
           <div className="text-4xl from-primary font-heading to-red-900 bg-gradient-to-r text-white text-center w-full p-4 py-12 rounded-xl">
