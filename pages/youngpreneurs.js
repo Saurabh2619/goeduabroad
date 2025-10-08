@@ -281,7 +281,7 @@ export default function Youngpreneurs() {
                         className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6 text-center md:text-left"
                         style={{ fontFamily: "'Playfair Display', serif" }}
                       >
-                        <span className="text-[#a61d31]">"Dream It.</span> Pitch It. <br />
+                        <span className="text-[#a61d31]">"Dreams It.</span> Pitch It. <br />
                         <span className="text-[#a61d31] p-5">Build It."</span>
                       </h1>
                       <p className="mt-4 text-xl text-gray-700 leading-relaxed">
