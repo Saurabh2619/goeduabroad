@@ -21,7 +21,7 @@ import {Pagination,Select,SelectItem,Skeleton} from '@nextui-org/react'
 import "tailwindcss/tailwind.css";
 function Editor() {
 
-const [isLoggedIn,setIsLoggedIn] = useState();
+const [isLoggedIn,setIsLoggedIn] = useState(); 
 const [formData,setFormData] = useState();
 const [activeOption,setActiveOption] = useState(0);
 const [posts,setPosts] = useState();
