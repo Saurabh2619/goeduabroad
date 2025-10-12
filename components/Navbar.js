@@ -132,12 +132,12 @@ const links = [{
     link:'/',
     dropdown:false,
 },
-/* {
+// {
 
-    title:'About',
-    link:'/about',
-    dropdown:false,
-}, */
+//     title:'About',
+//     link:'/about',
+//     dropdown:false,
+// }, 
 {
 
     title:'Study Abroad',
@@ -187,6 +187,12 @@ const links = [{
     link:'/contact',
     dropdown:true,
     items:contacts
+},
+{
+
+    title:'Our Team',
+    link:'/our-team',
+    dropdown:false,
 },
 
 ]
