@@ -181,7 +181,7 @@ export default function StudyAbroadFair() {
                       <div className="relative z-10">
                         <div className="text-center mb-6">
                           <h3 className="text-2xl font-bold bg-gradient-to-r from-[#a61d31] to-[#C82333] bg-clip-text text-transparent mb-2">
-                            Register for the Expo
+                            Register for the Expose
                           </h3>
                           <p className="text-gray-600 text-sm">
                             Seats are limited — fill the form to secure your spot!
