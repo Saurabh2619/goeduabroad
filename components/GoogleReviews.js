@@ -9,6 +9,51 @@ const [stars,setStars] = useState(5)
 
 const reviews = [
     {
+        "name": "Vaishali Jain",
+        "review": "EduAbroad made my study abroad journey super smooth! From shortlisting universities to getting my visa approved, their team was hands-on and always supportive. The best part is that they genuinely care and guide you like a mentor, not just a consultant. Highly recommend for anyone planning to study overseas!",
+        "rating": 5
+    },
+    {
+        "name": "Arpan Jona Tigga",
+        "review": "I had an amazing experience with EduAbroad. Their expert guidance, personalized support, and in-depth knowledge of international universities made my admission process smooth and stress-free. I highly recommend their services to anyone looking to study abroad!",
+        "rating": 4.5
+    },
+    {
+        "name": "Apraajita Goswami",
+        "review": "I am very thankful to the EduAbroad team for guiding me throughout my admission process for the UK. They made the entire procedure smooth and stress-free. I really appreciate their support and prompt responses.",
+        "rating": 4
+    },
+    {
+        "name": "Ashwani Chauhan",
+        "review": "It was a great experience and the consulting of this coaching is amazing. I prefer to come and start preparation for IELTS exams to fulfill my dream to study abroad. The teaching pattern is unique and effective.",
+        "rating": 4.5
+    },
+    {
+        "name": "Diwanshi Srivastva",
+        "review": "Excellent place for achieving your study abroad dreams. They have highly experienced faculty and detailed classes for IELTS and SAT. Their mentorship truly helps students perform their best.",
+        "rating": 5
+    },
+    {
+        "name": "Poonam Choudhary",
+        "review": "I had a fantastic experience with EduAbroad while preparing for the IELTS exam. Their instructors are highly knowledgeable, providing clear and effective strategies that helped me improve my scores in all sections.",
+        "rating": 4.5
+    },
+    {
+        "name": "Mohd Saif",
+        "review": "EduAbroad is the best study abroad consultant in Lucknow. Their expert guidance, personalized approach, and strong alumni network make the application process seamless. Highly recommended for anyone looking to study abroad with confidence.",
+        "rating": 5
+    },
+    {
+        "name": "Gauravi Dwivedi",
+        "review": "The best coaching for IELTS, EduAbroad also offers exceptional study abroad consulting. Their expert advice and dedication to student success make them the best choice for aspiring international students.",
+        "rating": 4
+    },
+    {
+        "name": "Monika Gupta",
+        "review": "EduAbroad is the best study abroad consultant and the best coaching centre for IELTS. The team is highly knowledgeable and provides excellent services and guidance throughout the process.",
+        "rating": 4.5
+    },    //old reviews
+    {
         "name": "Poonam Choudhary",
         "review": "I had a fantastic experience with EduAbroad while preparing for the IELTS exam. Their instructors are highly knowledgeable, providing clear and effective strategies that helped me improve my scores in all sections. The personalized feedback and supportive environment made the learning process smooth and enjoyable. I felt fully prepared and confident on exam day, and I credit their excellent teaching methods for my success. Highly recommend them for anyone serious about acing the IELTS!",
         "rating": 5
