@@ -203,11 +203,13 @@ export default function IELTSMasterclass() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {contentImages.map((item, index) => (
                 <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                  <img 
-                    src={item.url} 
-                    alt={item.title}
-                    className="w-full h-64 object-cover"
-                  />
+                  <div className="w-full h-80 overflow-hidden">
+                    <img 
+                      src={item.url} 
+                      alt={item.title}
+                      className="w-full h-full object-contain bg-gray-100"
+                    />
+                  </div>
                   <div className="p-6">
                     <h3 className="text-2xl font-bold text-primary mb-2">{item.title}</h3>
                     <p className="text-gray-600 text-lg">{item.description}</p>
