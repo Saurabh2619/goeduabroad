@@ -1,36 +1,9 @@
 import { Spacer, Card, CardHeader, CardBody, Button } from "@nextui-org/react";
 import DefaultLayout from "../../layouts/DefaultLayout";
+import IeltsResult from "../success-stories/ieltsresult";
 import "tailwindcss/tailwind.css";
 
 export default function IELTSMasterclass() {
-  const testimonials = [
-    {
-      name: "Priya Sharma",
-      band: "8.5",
-      text: "The strategies taught in the masterclass were game-changing! The personalized feedback helped me identify my weak areas."
-    },
-    {
-      name: "Rahul Verma",
-      band: "8.0",
-      text: "Excellent guidance from expert trainers. The mock tests were incredibly realistic and helpful."
-    },
-    {
-      name: "Ananya Reddy",
-      band: "7.5",
-      text: "The lifetime access to recordings helped me practice repeatedly. I improved my score significantly!"
-    },
-    {
-      name: "Arjun Patel",
-      band: "8.0",
-      text: "Comprehensive coverage of all modules with practical techniques that actually work in the exam."
-    },
-    {
-      name: "Sneha Gupta",
-      band: "7.5",
-      text: "The grammar and vocabulary sessions were incredibly helpful! Highly recommend to everyone."
-    }
-  ];
-
   const benefits = [
     "Live interaction with top IELTS educators",
     "New topics covered daily",
@@ -130,9 +103,13 @@ export default function IELTSMasterclass() {
     },
     {
       question: "How does the Masterclass differ from IELTS Plus Program?",
-      answer: "Masterclasses are free, introductory learning sessions. IELTS Plus is a premium, comprehensive program offering in-depth instruction, personalized guidance, and structured assessments."
+      answer: "Masterclasses are affordable, introductory learning sessions at just ₹49. IELTS Plus is a premium, comprehensive program offering in-depth instruction, personalized guidance, and structured assessments."
     }
   ];
+
+  const handleEnrollClick = () => {
+    window.open('https://rzp.io/rzp/gqOnTLIN', '_blank');
+  };
 
   return (
     <DefaultLayout>
@@ -142,47 +119,62 @@ export default function IELTSMasterclass() {
         <div className="mx-auto max-w-[95%] md:max-w-[85%] w-full">
 
           {/* Hero Section with Primary Background */}
-          <div className="bg-gradient-to-br from-primary via-primary to-red-800 text-white rounded-3xl p-8 md:p-16 mb-12 shadow-2xl">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-heading font-bold mb-4">
-                Free IELTS MasterClasses
-              </h1>
-              <p className="text-xl md:text-2xl font-sans mb-2 opacity-95">
-                500+ Students Enrolled. Limited Seats Only.
-              </p>
-              <p className="text-lg md:text-xl mb-8 opacity-90">
-                Led by Expert Trainers from IIM, Cambridge & MIT
-              </p>
-              
-              <div className="max-w-3xl mx-auto mb-10">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {features.map((feature, index) => (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
-                      <div className="text-3xl mb-2">{feature.icon}</div>
-                      <h3 className="font-bold text-sm mb-1">{feature.title}</h3>
-                      <p className="text-xs opacity-90">{feature.description}</p>
-                    </div>
-                  ))}
+          <div className="bg-gradient-to-br from-primary via-primary to-red-800 text-white rounded-3xl p-6 md:p-10 mb-12 shadow-2xl overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-1 md:gap-2 items-center">
+              {/* Left side - Text content */}
+              <div className="text-center md:text-left order-2 md:order-1">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3">
+                  IELTS MasterClasses at Just ₹49
+                </h1>
+                <p className="text-base sm:text-lg md:text-xl font-sans mb-1 opacity-95">
+                  500+ Students Enrolled. Limited Seats Only.
+                </p>
+                <p className="text-sm sm:text-base md:text-lg mb-6 opacity-90">
+                  Led by Expert Trainers from IIM, Cambridge & MIT
+                </p>
+                
+                <div className="max-w-3xl mx-auto md:mx-0 mb-6">
+                  <div className="grid grid-cols-2 gap-1 sm:gap-2">
+                    {features.map((feature, index) => (
+                      <div
+                        key={index}
+                        className="bg-white/10 backdrop-blur-sm rounded-lg p-1 sm:p-3 hover:bg-white/20 transition-all"
+                      >
+                        <div className="text-xl sm:text-2xl mb-1">{feature.icon}</div>
+                        <h3 className="font-bold text-sm sm:text-lg mb-0.5">{feature.title}</h3>
+                        <p className="text-sm opacity-90">{feature.description}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+                
+                <Button
+                  size="lg"
+                  onClick={handleEnrollClick}
+                  className="bg-white text-primary font-bold text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 hover:shadow-2xl hover:scale-105 transition-transform w-full sm:w-auto"
+                >
+                  Enroll Now at ₹49 Only
+                </Button>
+                <p className="text-xs sm:text-sm mt-3 opacity-80">
+                  🎁 Get exclusive practice materials & templates as giveaways
+                </p>
               </div>
 
-              <Button 
-                size="lg" 
-                className="bg-white text-primary font-bold text-xl px-12 py-7 hover:shadow-2xl hover:scale-105 transition-transform"
-              >
-                Reserve Your Free Seat Now
-              </Button>
-              
-              <p className="text-sm mt-4 opacity-80">
-                🎁 Get exclusive practice materials & templates as giveaways
-              </p>
+              {/* Right side - Image */}
+              <div className="order-1 md:order-2 flex justify-center md:justify-end -mr-0 md:-mr-1">
+                <img
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764570268/IELTS_GIRL_wwbqvu.png"
+                  alt="IELTS Student"
+                  className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-sm lg:max-w-md h-auto object-contain"
+                />
+              </div>
             </div>
           </div>
 
           {/* What You Get Section */}
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary text-center mb-8">
-              What You'll Get in Our Free Masterclasses
+              What You'll Get in Our Masterclasses
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -190,30 +182,6 @@ export default function IELTSMasterclass() {
                 <div key={index} className="flex items-center bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-5 hover:shadow-lg transition-shadow">
                   <span className="text-green-600 text-3xl mr-4">✓</span>
                   <p className="text-lg font-medium text-gray-800">{benefit}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Image Content Grid */}
-          <div className="bg-gray-50 rounded-3xl p-8 md:p-12 mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary text-center mb-10">
-              Why Choose EduAbroad?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {contentImages.map((item, index) => (
-                <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                  <div className="w-full h-80 overflow-hidden">
-                    <img 
-                      src={item.url} 
-                      alt={item.title}
-                      className="w-full h-full object-contain bg-gray-100"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-primary mb-2">{item.title}</h3>
-                    <p className="text-gray-600 text-lg">{item.description}</p>
-                  </div>
                 </div>
               ))}
             </div>
@@ -280,31 +248,8 @@ export default function IELTSMasterclass() {
             </div>
           </div>
 
-          {/* Success Stories - Names Only */}
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-3">
-              <span className="bg-gradient-to-r from-primary to-red-900 bg-clip-text text-transparent">
-                Success Stories from Our Learners
-              </span>
-            </h2>
-            <p className="text-center text-gray-600 text-lg mb-10">
-              Join hundreds of successful students who achieved their dream band scores
-            </p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="font-sans hover:shadow-xl transition-shadow">
-                  <CardBody className="p-6 text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary to-red-800 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
-                      {testimonial.band}
-                    </div>
-                    <h3 className="font-sans text-xl font-bold text-primary mb-3">{testimonial.name}</h3>
-                    <p className="text-gray-600 text-sm italic leading-relaxed">"{testimonial.text}"</p>
-                  </CardBody>
-                </Card>
-              ))}
-            </div>
-          </div>
+          {/* IELTS Results Component */}
+          <IeltsResult />
 
           {/* Expert Trainers */}
           <div className="bg-gradient-to-r from-primary to-red-900 text-white rounded-3xl p-8 md:p-12 mb-12 text-center">
@@ -356,17 +301,18 @@ export default function IELTSMasterclass() {
               Ready to Start Your IELTS Journey?
             </h2>
             <p className="text-lg md:text-xl mb-3 opacity-95">
-              🔥 Limited Seats Available - Register Before They're Gone!
+              🔥 Limited Seats Available - Enroll at Just ₹49!
             </p>
             <p className="text-base md:text-lg mb-8 opacity-90 max-w-2xl mx-auto">
               Join 500+ students who are already preparing with India's best IELTS trainers. Get lifetime access to recordings and exclusive practice materials.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                size="lg" 
+                size="lg"
+                onClick={handleEnrollClick}
                 className="bg-white text-primary font-bold text-xl px-10 py-7 hover:shadow-2xl hover:scale-105 transition-transform"
               >
-                Register Now - It's Free!
+                Enroll Now at ₹49!
               </Button>
               <Button 
                 size="lg" 
