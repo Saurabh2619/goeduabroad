@@ -37,23 +37,23 @@ export default function IELTSMasterclass() {
   const features = [
     {
       icon: "👥",
-      title: "500+ Learners",
-      description: "Join our growing community"
+      title: "Cambridge Faculty",
+      // description: "Join our growing community"
     },
     {
       icon: "🎯",
-      title: "90% Achieve 7+ Bands",
-      description: "Result-driven frameworks"
+      title: "100+ Mock Tests",
+      // description: "Result-driven frameworks"
     },
     {
       icon: "⭐",
-      title: "4.5/5 Rating",
-      description: "Highly rated by students"
+      title: "6 Classes a Week  ",
+      // description: "Highly rated by students"
     },
     {
       icon: "🎥",
-      title: "Lifetime Access",
-      description: "Review recordings anytime"
+      title: "Unlimited doubts sessions",
+      // description: "Review recordings anytime"
     }
   ];
 
@@ -100,10 +100,6 @@ export default function IELTSMasterclass() {
     {
       question: "Is the Masterclass suitable for beginners?",
       answer: "Absolutely. Sessions introduce foundational concepts and progressively build towards advanced techniques."
-    },
-    {
-      question: "How does the Masterclass differ from IELTS Plus Program?",
-      answer: "Masterclasses are affordable, introductory learning sessions at just ₹49. IELTS Plus is a premium, comprehensive program offering in-depth instruction, personalized guidance, and structured assessments."
     }
   ];
 
@@ -119,134 +115,152 @@ export default function IELTSMasterclass() {
         <div className="mx-auto max-w-[95%] md:max-w-[85%] w-full">
 
           {/* Hero Section with Primary Background */}
-          <div className="bg-gradient-to-br from-primary via-primary to-red-800 text-white rounded-3xl p-6 md:p-10 mb-12 shadow-2xl overflow-hidden">
-            <div className="grid md:grid-cols-2 gap-1 md:gap-2 items-center">
-              {/* Left side - Text content */}
-              <div className="text-center md:text-left order-2 md:order-1">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3">
-                  IELTS MasterClasses at Just ₹49
-                </h1>
-                <p className="text-base sm:text-lg md:text-xl font-sans mb-1 opacity-95">
-                  500+ Students Enrolled. Limited Seats Only.
-                </p>
-                <p className="text-sm sm:text-base md:text-lg mb-6 opacity-90">
-                  Led by Expert Trainers from IIM, Cambridge & MIT
-                </p>
-                
-                <div className="max-w-3xl mx-auto md:mx-0 mb-6">
-                  <div className="grid grid-cols-2 gap-1 sm:gap-2">
-                    {features.map((feature, index) => (
-                      <div
-                        key={index}
-                        className="bg-white/10 backdrop-blur-sm rounded-lg p-1 sm:p-3 hover:bg-white/20 transition-all"
-                      >
-                        <div className="text-xl sm:text-2xl mb-1">{feature.icon}</div>
-                        <h3 className="font-bold text-sm sm:text-lg mb-0.5">{feature.title}</h3>
-                        <p className="text-sm opacity-90">{feature.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <Button
-                  size="lg"
-                  onClick={handleEnrollClick}
-                  className="bg-white text-primary font-bold text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 hover:shadow-2xl hover:scale-105 transition-transform w-full sm:w-auto"
-                >
-                  Enroll Now at ₹49 Only
-                </Button>
-                <p className="text-xs sm:text-sm mt-3 opacity-80">
-                  🎁 Get exclusive practice materials & templates as giveaways
-                </p>
-              </div>
+          <div className="bg-gradient-to-br from-primary via-primary to-red-800 text-white rounded-3xl p-6 md:p-10 mb-12 shadow-2xl overflow-hidden relative">
 
-              {/* Right side - Image */}
-              <div className="order-1 md:order-2 flex justify-center md:justify-end -mr-0 md:-mr-1">
-                <img
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764570268/IELTS_GIRL_wwbqvu.png"
-                  alt="IELTS Student"
-                  className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-sm lg:max-w-md h-auto object-contain"
-                />
-              </div>
-            </div>
+  {/* Cambridge Logo (Top-Left) */}
+  <img
+    src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764762538/cambridge_02_1_pez5tp.png"
+    alt="Cambridge Logo"
+    className="w-36 sm:w-40 md:w-48 mb-0"
+  />
+
+  <div className="grid md:grid-cols-2 gap-1 md:gap-2 items-center">
+
+    {/* Left Content */}
+    <div className="text-center md:text-left order-2 md:order-1">
+
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3">
+        IELTS Master Classes at Just ₹49
+      </h1>
+
+      <p className="text-base sm:text-lg md:text-xl font-sans mb-1 opacity-95">
+        Led by Expert Trainers from IIM, Cambridge & MIT
+      </p>
+
+      <p className="text-sm sm:text-base md:text-lg mb-6 opacity-90">
+        Limited Seats Only.
+      </p>
+
+      {/* Features Grid */}
+      <div className="max-w-3xl mx-auto md:mx-0 mb-6">
+        <div className="grid grid-cols-2 gap-1 sm:gap-2">
+
+          {/* Feature 1 */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-1 sm:p-3 hover:bg-white/20 transition-all">
+            <img
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764762539/faculty_j9hiaw.png"
+              alt="Cambridge Faculty"
+              className="w-7 sm:w-9 h-auto mb-1"
+            />
+            <h3 className="font-bold text-sm sm:text-lg mb-0.5">Cambridge Faculty</h3>
+            <p className="text-sm opacity-90">Learn from top educators</p>
           </div>
+
+          {/* Feature 2 */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-1 sm:p-3 hover:bg-white/20 transition-all">
+            <img
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764762539/mock_test_zdwkzv.png"
+              alt="100+ Mock Tests"
+              className="w-7 sm:w-9 h-auto mb-1"
+            />
+            <h3 className="font-bold text-sm sm:text-lg mb-0.5">100+ Mock Tests</h3>
+            <p className="text-sm opacity-90">Boost your confidence</p>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-1 sm:p-3 hover:bg-white/20 transition-all">
+            <img
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764762538/frequent_classes_nlutjb.png"
+              alt="6 Classes a Week"
+              className="w-7 sm:w-9 h-auto mb-1"
+            />
+            <h3 className="font-bold text-sm sm:text-lg mb-0.5">6 Classes a Week</h3>
+            <p className="text-sm opacity-90">Intensive learning</p>
+          </div>
+
+          {/* Feature 4 */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-1 sm:p-3 hover:bg-white/20 transition-all">
+            <img
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764762538/DOUBT_SESSION_fszmmj.png"
+              alt="Unlimited Doubts"
+              className="w-7 sm:w-9 h-auto mb-1"
+            />
+            <h3 className="font-bold text-sm sm:text-lg mb-0.5">Unlimited Doubt Sessions</h3>
+            <p className="text-sm opacity-90">Ask anything anytime</p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Enroll Button */}
+      <Button
+        size="lg"
+        onClick={handleEnrollClick}
+        className="bg-white text-primary font-bold text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 hover:shadow-2xl hover:scale-105 transition-transform w-full sm:w-auto"
+      >
+        Enroll Now at ₹49 Only
+      </Button>
+
+      <p className="text-xs sm:text-sm mt-3 opacity-80">
+        🎁 Get exclusive practice materials & templates as giveaways
+      </p>
+    </div>
+
+    {/* Right Side Image */}
+    <div className="order-1 md:order-2 flex justify-center md:justify-end items-end -mr-0 md:-mr-1">
+      <img
+        src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1764570268/IELTS_GIRL_wwbqvu.png"
+        alt="IELTS Student"
+        className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-sm lg:max-w-md h-auto object-contain object-bottom translate-y-0 md:translate-y-2 lg:translate-y-10"
+      />
+    </div>
+
+  </div>
+</div>
+
 
           {/* What You Get Section */}
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary text-center mb-8">
-              What You'll Get in Our Masterclasses
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-5 hover:shadow-lg transition-shadow">
-                  <span className="text-green-600 text-3xl mr-4">✓</span>
-                  <p className="text-lg font-medium text-gray-800">{benefit}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Modules Covered Section */}
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-3">
-              <span className="bg-gradient-to-r from-primary to-red-900 bg-clip-text text-transparent">
-                All 4 IELTS Modules Covered
-              </span>
-            </h2>
-            <p className="text-center text-gray-600 text-lg mb-10 max-w-3xl mx-auto">
-              Comprehensive training for Listening, Reading, Writing, and Speaking with module-specific strategies
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {modules.map((module, index) => (
-                <Card key={index} className="font-sans hover:shadow-xl transition-all hover:-translate-y-2 border-t-4 border-primary">
-                  <CardBody className="p-6">
-                    <div className="text-5xl mb-4 text-center">{module.icon}</div>
-                    <h3 className="text-2xl font-bold text-primary mb-3 text-center">{module.title}</h3>
-                    <p className="text-gray-600 text-center">{module.description}</p>
-                  </CardBody>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Additional Benefits */}
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary text-center mb-8">
-              Bonus Benefits
+              What You'll Get in Our Masterclasses
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <div className="flex items-start bg-white rounded-xl p-6 shadow-md">
                 <span className="text-primary text-3xl mr-4">📚</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Grammar & Vocabulary</h4>
-                  <p className="text-gray-600">Strengthen language fundamentals essential for a high band score</p>
+                  <h4 className="font-bold text-xl mb-2">Cambridge Faculty</h4>
+                  <p className="text-gray-600">Cambridge-trained faculty guiding you to top IELTS scores</p>
                 </div>
               </div>
               <div className="flex items-start bg-white rounded-xl p-6 shadow-md">
                 <span className="text-primary text-3xl mr-4">🎯</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">High-Utility Techniques</h4>
-                  <p className="text-gray-600">Clear explanations aligned with official test expectations</p>
+                  <h4 className="font-bold text-xl mb-2">100+ Mock Tests</h4>
+                  <p className="text-gray-600">100+ full-length mock tests for real exam readiness</p>
                 </div>
               </div>
               <div className="flex items-start bg-white rounded-xl p-6 shadow-md">
                 <span className="text-primary text-3xl mr-4">📝</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Practice Resources</h4>
-                  <p className="text-gray-600">Access templates, worksheets, and curated practice material</p>
+                  <h4 className="font-bold text-xl mb-2">6 Classes a Week</h4>
+                  <p className="text-gray-600">High-frequency learning with 6 sessions weekly</p>
                 </div>
               </div>
               <div className="flex items-start bg-white rounded-xl p-6 shadow-md">
                 <span className="text-primary text-3xl mr-4">🌏</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">PAN-India Community</h4>
-                  <p className="text-gray-600">Collaborate with motivated students from across India</p>
+                  <h4 className="font-bold text-xl mb-2">Unlimited doubts sessions</h4>
+                  <p className="text-gray-600">Unlimited doubt sessions for uninterrupted learning.</p>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Modules Covered Section */}
+          
+
+          {/* Additional Benefits */}
+          
 
           {/* IELTS Results Component */}
           <IeltsResult />
@@ -272,6 +286,29 @@ export default function IELTSMasterclass() {
               <span className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-lg font-semibold">
                 3+ Years Training
               </span>
+            </div>
+          </div>
+          
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-3">
+              <span className="bg-gradient-to-r from-primary to-red-900 bg-clip-text text-transparent">
+                All 4 IELTS Modules Covered
+              </span>
+            </h2>
+            <p className="text-center text-gray-600 text-lg mb-10 max-w-3xl mx-auto">
+              Comprehensive training for Listening, Reading, Writing, and Speaking with module-specific strategies
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {modules.map((module, index) => (
+                <Card key={index} className="font-sans hover:shadow-xl transition-all hover:-translate-y-2 border-t-4 border-primary">
+                  <CardBody className="p-6">
+                    <div className="text-5xl mb-4 text-center">{module.icon}</div>
+                    <h3 className="text-2xl font-bold text-primary mb-3 text-center">{module.title}</h3>
+                    <p className="text-gray-600 text-center">{module.description}</p>
+                  </CardBody>
+                </Card>
+              ))}
             </div>
           </div>
 
@@ -314,12 +351,12 @@ export default function IELTSMasterclass() {
               >
                 Enroll Now at ₹49!
               </Button>
-              <Button 
+              {/* <Button 
                 size="lg" 
                 className="bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold text-xl px-10 py-7 hover:bg-white/20 transition-all"
               >
                 Learn About IELTS Plus
-              </Button>
+              </Button> */}
             </div>
             <p className="text-sm mt-6 opacity-80">
               💬 Need help? Our academic advisors are available for personalized guidance
