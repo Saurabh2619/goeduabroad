@@ -736,7 +736,7 @@ image:'https://blog.smartabroad.in/wp-content/uploads/2022/08/studying-student-o
         <meta name="description" content="Study in Abroad" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/edufavicon.svg" />
-
+ 
         {/* ✅ Structured data for Google logo */}
         <script
           type="application/ld+json"
