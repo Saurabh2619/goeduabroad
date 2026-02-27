@@ -44,28 +44,28 @@ function Navbar(props) {
       slug: "services/visaandtravel",
     },
   ];
-  const testprep = [
-    {
-      title: "About IELTS",
-      slug: "testpreps/about-ielts",
-    },
-    {
-      title: "What we offer",
-      slug: "testpreps/what-we-offer",
-    },
-    {
-      title: "IELTS Structure",
-      slug: "testpreps/ielts-structure",
-    },
-    {
-      title: "The IELTS 9-band scale",
-      slug: "testpreps/band-scale",
-    },
-    {
-      title: "Courses",
-      slug: "testpreps/courses",
-    },
-  ];
+  // const testprep = [
+  //   {
+  //     title: "About IELTS",
+  //     slug: "testpreps/about-ielts",
+  //   },
+  //   {
+  //     title: "What we offer",
+  //     slug: "testpreps/what-we-offer",
+  //   },
+  //   {
+  //     title: "IELTS Structure",
+  //     slug: "testpreps/ielts-structure",
+  //   },
+  //   {
+  //     title: "The IELTS 9-band scale",
+  //     slug: "testpreps/band-scale",
+  //   },
+  //   {
+  //     title: "Courses",
+  //     slug: "testpreps/courses",
+  //   },
+  // ];
 
   const sats = [
     {
@@ -103,7 +103,7 @@ function Navbar(props) {
     // },
     {
       title: "My Portal",
-      link: "/study-abroad",
+      link: "https://app.goeduabroad.com",
       dropdown: false,
     },
 
