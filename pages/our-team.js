@@ -47,6 +47,14 @@ const teamMembers = [
     image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1760253020/Picture5_ghbgd5.jpg"
   },
   {
+    name: "Pulkit Maheshwari",
+    role: "Head, B2B Partnerships",
+    organization: "EduAbroad",
+    // subtitle: "Ex-UpGrad",
+    description: "With 6.5+ years of experience, Pulkit has helped hundreds of students navigate admissions abroad. A quick learner and deadline-driven professional, he now leads the B2B and MBBS vertical at EduAbroad, committed to helping students navigate their medical education journey abroad with clarity and confidence.",
+    image: "https://res.cloudinary.com/dduzrmc4b/image/upload/v1774431283/WhatsApp_Image_2026-03-25_at_09.32.29_kdktjt.jpg"
+  },
+  {
     name: "Anushka Sharma",
     role: "HR & Operations",
     organization: "EduAbroad",
