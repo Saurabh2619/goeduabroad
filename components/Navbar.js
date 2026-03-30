@@ -43,6 +43,10 @@ function Navbar(props) {
       title: "Visa & Travel Assistance",
       slug: "services/visaandtravel",
     },
+    {
+    title: "MBBS Kyrgyzstan",
+    slug: "mbbs-kyrgyzstan",
+  },
   ];
   // const testprep = [
   //   {
