@@ -44,8 +44,8 @@ function Navbar(props) {
       slug: "services/visaandtravel",
     },
     {
-    title: "MBBS Admission",
-    slug: "mbbs-admission",
+    title: "SAT Exam",
+    slug: "sat",
   },
   ];
   // const testprep = [
@@ -73,12 +73,8 @@ function Navbar(props) {
 
   const sats = [
     {
-      title: "SAT Exam",
-      slug: "/sat",
-    },
-    {
-      title: "OET Exam",
-      slug: "/oet",
+      title: "MBBS",
+      slug: "/mbbs-admission",
     },
   ];
   const succs = [
@@ -124,9 +120,9 @@ function Navbar(props) {
       items: succs,
     },
     {
-      title: "SAT & OET",
-      link: "/sat",
-      dropdown: true,
+      title: "MBBS",
+      link: "/mbbs-admission",
+      // dropdown: true,
       items: sats,
     },
     {
