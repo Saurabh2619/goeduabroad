@@ -210,7 +210,7 @@ export default function KyrgyzstanMBBS() {
   return (
     <>
       <Head>
-        <title>MBBS in Kyrgyzstan | EduAbroad — Study Medicine in Central Asia</title>
+        <title>MBBS Admission | EduAbroad — Study Medicine in Central Asia</title>
         <meta name="description" content="Pursue MBBS in Kyrgyzstan at NMC-approved universities. English medium, affordable fees from ₹18–25 Lakhs. Direct partner with Bishkek International Medical Institute for UP, MP & Uttarakhand." />
         {/* Fonts loaded via _document.js — see instructions below */}
       </Head>
