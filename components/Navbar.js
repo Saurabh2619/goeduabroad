@@ -44,8 +44,8 @@ function Navbar(props) {
       slug: "services/visaandtravel",
     },
     {
-    title: "MBBS Admissioon",
-    slug: "mbbs-kyrgyzstan",
+    title: "MBBS Admission",
+    slug: "mbbs-admission",
   },
   ];
   // const testprep = [
