@@ -142,17 +142,20 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,epr
   xhr.addEventListener("readystatechange", function() {
 
       if (this.readyState === 4) {
-          
-          setLoader(false)
-          setNotification('Submitted Successfully')
-          gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {
-            
-            // Optionally, you can add any post-conversion logic here
-          });
-          
-          setSubmitted(true)
+    setLoader(false)
+    setNotification('Submitted Successfully')
+    gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {});
+    
+    // ADD HERE ↓
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17036003431/IDuTCOCY374aEOeQs7s_',
+        'value': 1.0,
+        'currency': 'INR'
+    });
+    
+    setSubmitted(true)
+}
 
-      }
   });
   xhr.open("POST", "https://register.cronberry.com/api/campaign/register-audience-data");
   xhr.setRequestHeader("Content-Type", "application/json");
@@ -484,9 +487,14 @@ async function SubmitContact() {
       });
 
       if (response) {
-        setNotification("Submitted Successfully");
-        setThankYou(true);
-      }
+    setNotification("Submitted Successfully");
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17036003431/IDuTCOCY374aEOeQs7s_',
+        'value': 1.0,
+        'currency': 'INR'
+    });
+    setSubmitted(true); // setThankYou ki jagah setSubmitted
+}
     } catch (error) {
       setNotification("Something went wrong");
     } finally {
