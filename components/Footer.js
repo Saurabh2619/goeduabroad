@@ -5,7 +5,7 @@ function Footer(props){
 const contacts = props?.contacts
     const socials = [
 {
-    link:'https://www.facebook.com/profile.php?id=100089557687518',
+    link:'https://www.facebook.com/goeduabroadofficial',
     title:'Facebook',
 },
 {
@@ -21,7 +21,7 @@ const contacts = props?.contacts
     title:'WhatsApp',
 },
 {
-    link:'https://www.youtube.com/@eduabroad6658',
+    link:'https://www.youtube.com/@goeduabroadofficial',
     title:'YouTube',
 },
     ]
