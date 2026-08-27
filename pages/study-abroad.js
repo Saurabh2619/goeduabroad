@@ -146,12 +146,13 @@ function cronberryTrigger(username, u_email, u_mobile, u_year, u_city, linke,epr
     setNotification('Submitted Successfully')
     gtag_report_conversion('AW-11123490788/CJ4_CIiN9-MYEOT_i7gp', () => {});
     
-    // ADD HERE ↓
-    gtag('event', 'conversion', {
-        'send_to': 'AW-17036003431/IDuTCOCY374aEOeQs7s_',
-        'value': 1.0,
-        'currency': 'INR'
-    });
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+            'send_to': 'AW-17036003431/IDuTCOCY374aEOeQs7s_',
+            'value': 1.0,
+            'currency': 'INR'
+        });
+    }
     
     setSubmitted(true)
 }
@@ -488,11 +489,13 @@ async function SubmitContact() {
 
       if (response) {
     setNotification("Submitted Successfully");
-    gtag('event', 'conversion', {
-        'send_to': 'AW-17036003431/IDuTCOCY374aEOeQs7s_',
-        'value': 1.0,
-        'currency': 'INR'
-    });
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+            'send_to': 'AW-17036003431/IDuTCOCY374aEOeQs7s_',
+            'value': 1.0,
+            'currency': 'INR'
+        });
+    }
     setSubmitted(true); // setThankYou ki jagah setSubmitted
 }
     } catch (error) {
@@ -567,6 +570,17 @@ function validateEmail(email) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon} />
         <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17036003431"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17036003431');
+            `,
+          }}
+        />
       </Head>
       <DefaultLayout hideAI={true} navbar>
         {/* <PopupLeadForm></PopupLeadForm> */}
